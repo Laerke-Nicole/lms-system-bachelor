@@ -11,7 +11,7 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="company_name" />
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="company_mail" />
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="company_phone" />
-        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" />
+        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" />
         <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" />
 
         <button type="submit" class="btn btn-primary">Submit</button>

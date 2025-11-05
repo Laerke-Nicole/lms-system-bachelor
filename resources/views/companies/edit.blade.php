@@ -13,7 +13,7 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="company_name" value="{{ $company->company_name }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="company_mail" value="{{ $company->company_mail }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="company_phone" value="{{ $company->company_phone }}"/>
-        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" value="{{ $company->is_vestas }}"/>
+        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" value="{{ $company->is_vestas }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" value="{{ $company->address_id }}"/>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

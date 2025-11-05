@@ -12,7 +12,7 @@
                 <td>{{ $company->company_name }}</td>
                 <td>{{ $company->company_mail }}</td>
                 <td>{{ $company->company_phone }}</td>
-                <td>{{ $company->is_vestas }}</td>
+                <td>{{ $company->is_vestas ? 'True' : 'False' }}</td>
                 <td>{{ $company->address_id }}</td>
                 <td>
                     <x-blocks.table-row-actions :showRoute="route('companies.show', $company->id)"
