@@ -1,21 +1,21 @@
-//// bootstrap functions
-//@import "bootstrap/scss/functions";
+// bootstrap functions
+@import "bootstrap/scss/functions";
 
 // variables
 @import 'variable-overrides';
-//
-//// bootstrap imports
-//@import "bootstrap/scss/variables";
-//@import "bootstrap/scss/maps";
-//@import "bootstrap/scss/mixins";
-//@import "bootstrap/scss/utilities";
-//@import "bootstrap-icons/font/bootstrap-icons";
-//@import "bootstrap/scss/utilities/api";
+
+// bootstrap imports
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap-icons/font/bootstrap-icons";
+@import "bootstrap/scss/utilities/api";
 
 //  import styling
 @import "utilities";
 @import 'main';
 @import 'blocks/import';
 
-//// bootstrap scss
-//@import "bootstrap/scss/bootstrap";
+// bootstrap scss
+@import "bootstrap/scss/bootstrap";

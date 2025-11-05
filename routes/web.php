@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostalCodeController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CompanyController;
