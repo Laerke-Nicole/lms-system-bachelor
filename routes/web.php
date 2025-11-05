@@ -15,14 +15,25 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\FollowUpMaterialController;
 use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\RequirementController;
+use App\Http\Controllers\AuthController;
 
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 //layout
+//auth
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['guest'])->controller(AuthController::class)->group(function () {
+    Route::get('/register', 'showRegister')->name('show.register');
+    Route::get('/login', 'showLogin')->name('show.login');
+    Route::post('/register', 'register')->name('register');
+    Route::post('/login', 'login')->name('login');
+});
+
+
 
 //app
 Route::middleware(['auth'])->group(function () {
