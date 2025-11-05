@@ -1,0 +1,40 @@
+.mm-menu {
+    --mm-listitem-size: 56px;
+    --mm-color-background: $light;
+}
+
+// mmenu on large desktop and up
+@include media-breakpoint-up(lg) {
+    body.mm-wrapper--sidebar-expanded {
+        --mm-sidebar-expanded-size: 0 !important;
+    }
+
+    .mm-wrapper--sidebar-expanded .mm-menu {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        height: 100vh;
+        overflow-y: auto;
+        width: 250px !important;
+    }
+
+    .mm-wrapper--sidebar-expanded .mm-page,
+    .mm-wrapper--sidebar-expanded .mm-slideout {
+        transform: none !important;
+    }
+
+    #app {
+        margin-left: 250px;
+    }
+}
+
+// mmenu on large screens and down
+@media (max-width: 991px) {
+    .mm-wrapper,
+    .mm-page,
+    .mm-menu {
+        transition: transform 0.3s ease;
+    }
+}

@@ -1,0 +1,72 @@
+// ----- Colors -----
+$primary: #559cbe;
+$secondary: #666565;
+$light: #ededed;
+$dark: #000000;
+
+$body-color: #666565;
+$headings-color: #000000;
+$body-bg: #ffffff;
+$body-secondary-bg: #e6e6e6;
+$border-color: #559cbe;
+$link-color: #666565;
+$link-hover-color: #559cbe;
+
+// ----- Typography -----
+$font-family-sans-serif: "Helvetica Neue", "Arial", "sans-serif";
+$font-size-base: 1rem;
+$line-height-base: 1;
+$font-weight-base: 400;
+$headings-letter-spacing: 0.05em;
+$h1-font-size: 2.4rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.6rem;
+$h4-font-size: 1.2rem;
+$h5-font-size: 0.9rem;
+$h6-font-size: 0.7rem;
+
+$display-font-sizes: (
+    1: 2.4rem,
+    2: 2rem,
+    3: 1.6rem,
+    4: 1.2rem,
+    5: 0.9rem,
+    6: 0.7rem
+);
+
+$enable-responsive-font-sizes: true;
+
+// ----- Buttons -----
+$input-btn-padding-y: 0.8rem;
+$input-btn-padding-x: 1.1rem;
+$input-btn-font-size: 0.9rem;
+$input-btn-line-height: 91%;
+$btn-border-width: 0px;
+$btn-border-radius: 0rem;
+$btn-font-weight: 400;
+$link-decoration: none;
+
+// ----- Forms -----
+$form-label-font-size: 0.8rem;
+$form-label-font-weight: $font-weight-base;
+$form-label-color: $headings-color;
+
+$input-padding-y: 0.6rem;
+$input-padding-x: 1rem;
+$input-font-size: 0.9rem;
+$input-line-height: 1.4;
+$input-placeholder-color: #BEBEBE;
+$input-border-radius: 0rem;
+
+// ----- Grid & Containers -----
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px);
+
+// ----- Tables -----
+$table-cell-padding-y: 0.9rem;
+$table-cell-padding-x: 0.9rem;

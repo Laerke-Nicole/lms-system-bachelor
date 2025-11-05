@@ -1,0 +1,22 @@
+$utilities: map-merge(
+    $utilities,
+    (
+        "letter-spacing": (
+            property: letter-spacing,
+            class: ls,
+            responsive: true,
+            values: (
+                05: 0.05em,
+                1: 0.1em,
+                2: 0.2em,
+            ),
+        ),
+        "box-shadow": (
+            property: box-shadow,
+            class: box-shadow,
+            values: (
+                inset: 0 4px #00000008 inset
+            )
+        )
+    )
+);
