@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'phone',
+        'role',
+        'company_id',
     ];
 
     /**
@@ -44,5 +48,61 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function trainings()
+    {
+        return $this->belongsToMany(Training::class)->withTimestamps();
+    }
+
+    public function emails()
+    {
+        return $this->belongsToMany(Email::class)->withTimestamps();
+    }
+
+    public function evaluations()
+    {
+        return $this->belongsToMany(Evaluation::class, 'signature')
+            ->using(Signature::class)
+            ->withPivot('signed_date', 'is_signed')
+            ->withTimestamps();
+    }
+
+    public function followUpTests()
+    {
+        return $this->belongsToMany(FollowUpTest::class, 'user_test_result')
+            ->using(UserTestResult::class)
+            ->withPivot('is_passed', 'complete_date')
+            ->withTimestamps();
+    }
+
+    public function sentEmails()
+    {
+        return $this->hasMany(Email::class, 'sender_id');
+    }
+
+    public function receivedEmails()
+    {
+        return $this->hasMany(Email::class, 'recipient_id');
+    }
+
+    public function orderedTrainings()
+    {
+        return $this->hasMany(Training::class, 'ordered_by_id');
+    }
+
+    public function trainingsAsTrainer()
+    {
+        return $this->hasMany(Training::class, 'trainer_id');
+    }
+
+    public function verifiedCertificates()
+    {
+        return $this->hasMany(Training::class, 'verified_by_id');
     }
 }
