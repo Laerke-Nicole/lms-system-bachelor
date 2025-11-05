@@ -14,9 +14,9 @@
         <x-elements.input col="col-12 col-lg-4" label="City" name="city" value="{{ $postalCode->city }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Country" name="country" value="{{ $postalCode->country }}"/>
 
-        <div class="d-flex flex-wrap gap-2">
+        <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button href="{{ route('postal_codes.index') }}" class="btn btn-outline-secondary">Cancel</button>
+            <a href="{{ route('postal_codes.index') }}" class="btn btn-outline-secondary">Cancel</a>
         </div>
     </x-blocks.form>
 

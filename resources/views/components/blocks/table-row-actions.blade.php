@@ -5,5 +5,5 @@
     <a class="btn btn-primary btn-sm" href="{{ $editRoute }}"><i class="bi bi-pencil-square"></i></a>
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3"></i></button>
+    <button type="submit" class="btn btn-danger btn-sm mb-0" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3"></i></button>
 </form>

@@ -24,10 +24,10 @@
 {{--                @endguest--}}
 
                 @auth
-                    <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building">
-    {{--                    <li><x-elements.link title="Sites" href="{{ route('sites') }}" icon="bi bi-dot"></x-elements.link></li>--}}
-    {{--                    <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
-                        <li><x-elements.link title="login" href="{{ route('show.login') }}" icon="bi bi-dot"></x-elements.link></li>
+                    <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building" href="{{ route('companies.index') }}">
+{{--                        <li><x-elements.link title="Sites" href="{{ route('sites') }}" icon="bi bi-dot"></x-elements.link></li>--}}
+{{--                        <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
+{{--                        <li><x-elements.link title="login" href="{{ route('show.login') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
