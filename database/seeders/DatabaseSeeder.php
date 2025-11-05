@@ -18,6 +18,8 @@ use App\Models\Site;
 use App\Models\Training;
 use App\Models\TrainingUser;
 use App\Models\User;
+use Database\Factories\SignatureFactory;
+use Database\Factories\UserTestResultFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -44,6 +46,8 @@ class DatabaseSeeder extends Seeder
         FollowUpMaterial::factory(20)->create();
         Preparation::factory(20)->create();
         Requirement::factory(10)->create();
+        SignatureFactory::new()->count(50)->create();
+        UserTestResultFactory::new()->count(50)->create();
         EmailUser::factory(100)->create();
         TrainingUser::factory(100)->create();
     }
