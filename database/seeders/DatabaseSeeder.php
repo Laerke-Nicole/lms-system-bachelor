@@ -50,5 +50,12 @@ class DatabaseSeeder extends Seeder
         UserTestResultFactory::new()->count(50)->create();
         EmailUser::factory(100)->create();
         TrainingUser::factory(100)->create();
+
+        //  seeders
+        $this->call([
+            PostalCodeSeeder::class,
+            AddressSeeder::class,
+            AbInventechSeeder::class,
+        ]);
     }
 }
