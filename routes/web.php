@@ -19,6 +19,8 @@ use App\Http\Controllers\RequirementController;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 //layout
 
