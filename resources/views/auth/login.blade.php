@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="container-fluid vh-100">
+    <div class="vh-100">
         <div class="row h-100">
             <!-- left side with form -->
             <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start px-0 px-lg-5 bg-white">
@@ -12,7 +12,7 @@
                 <div class="w-100" style="max-width: 320px;">
                     <h3 class="mb-4">Log in</h3>
 
-                    <x-blocks.form action="{{ route('login') }}">
+                    <x-blocks.form action="{{ route('login') }}" method="POST">
                         <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" required :value="old('email')" />
 
                         <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" required />

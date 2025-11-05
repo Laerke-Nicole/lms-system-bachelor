@@ -21,7 +21,6 @@ use App\Http\Controllers\AuthController;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //layout
 //auth
@@ -38,6 +37,7 @@ Route::middleware(['guest'])->controller(AuthController::class)->group(function 
 
 //app
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('postal_codes', PostalCodeController::class);
     Route::resource('addresses', AddressController::class);
     Route::resource('companies', CompanyController::class);

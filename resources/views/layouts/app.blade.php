@@ -20,7 +20,10 @@
 
                 <li><x-elements.link href="/" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
 
-                @guest
+{{--                @guest--}}
+{{--                @endguest--}}
+
+                @auth
                     <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building">
     {{--                    <li><x-elements.link title="Sites" href="{{ route('sites') }}" icon="bi bi-dot"></x-elements.link></li>--}}
     {{--                    <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
@@ -36,7 +39,6 @@
                     <x-blocks.mmenu-dropdown title="Courses" icon="bi bi-journals">
     {{--                    <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
-                @endguest
 
     {{--            <x-blocks.mmenu-dropdown title="Clients">--}}
     {{--                <x-blocks.mmenu-dropdown title="Clients">--}}
@@ -45,9 +47,9 @@
     {{--                </x-blocks.mmenu-dropdown>--}}
     {{--            </x-blocks.mmenu-dropdown>--}}
 
-                @auth
+
                     <li>
-                        <x-blocks.form action="{{ route('logout') }}">
+                        <x-blocks.form action="{{ route('logout') }}" method="POST">
                             <button type="submit" class="border-0">Logout</button>
                         </x-blocks.form>
                     </li>

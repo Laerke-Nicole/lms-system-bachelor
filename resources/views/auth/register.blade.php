@@ -12,7 +12,7 @@
                 <div class="w-100" style="max-width: 320px;">
                     <h3 class="mb-4">Register</h3>
 
-                    <x-blocks.form action="{{ route('register') }}">
+                    <x-blocks.form action="{{ route('register') }}" method="POST">
 
                         <x-elements.input label="First name" placeholder="Enter your first name" name="first_name" type="text" required :value="old('first_name')"  />
                         <x-elements.input label="Last name" placeholder="Enter your last name" name="last_name" type="text" required :value="old('last_name')"  />

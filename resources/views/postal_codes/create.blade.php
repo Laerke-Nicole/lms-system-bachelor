@@ -7,7 +7,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('postal_codes.store') }}">
+    <x-blocks.form action="{{ route('postal_codes.store') }}" method="POST">
         <x-elements.input col="col-12 col-lg-4" label="Postal Code" name="postal_code" />
         <x-elements.input col="col-12 col-lg-4" label="City" name="city" />
         <x-elements.input col="col-12 col-lg-4" label="Country" name="country" />
