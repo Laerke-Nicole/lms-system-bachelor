@@ -48,9 +48,10 @@
     {{--            </x-blocks.mmenu-dropdown>--}}
 
 
-                    <li>
-                        <x-blocks.form action="{{ route('logout') }}" method="POST">
-                            <button type="submit" class="border-0">Logout</button>
+                    <li class="">
+                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
+                            <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">
+                                <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>
                         </x-blocks.form>
                     </li>
 

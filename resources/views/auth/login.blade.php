@@ -4,26 +4,28 @@
     <div class="vh-100">
         <div class="row h-100">
             <!-- left side with form -->
-            <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start px-0 px-lg-5 bg-white">
-                <div class="mb-5">
-                    <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
-                </div>
+            <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start">
+                <div class="px-0 px-lg-5">
+                    <div class="mb-5">
+                        <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
+                    </div>
 
-                <div class="w-100" style="max-width: 320px;">
-                    <h3 class="mb-4">Log in</h3>
+                    <div class="w-100" style="max-width: 320px;">
+                        <h3 class="mb-4">Log in</h3>
 
-                    <x-blocks.form action="{{ route('login') }}" method="POST">
-                        <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" required :value="old('email')" />
+                        <x-blocks.form action="{{ route('login') }}" method="POST">
+                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" required :value="old('email')" />
 
-                        <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" required />
+                            <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" required />
 
-                        <div class="d-flex flex-column mt-2">
-                            <a href="#" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
-                            <button type="submit" class="btn btn-primary">Log in</button>
-                        </div>
+                            <div class="d-flex flex-column mt-2">
+                                <a href="#" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
+                                <button type="submit" class="btn btn-primary">Log in</button>
+                            </div>
 
-                        <x-blocks.error-alert />
-                    </x-blocks.form>
+                            <x-blocks.error-alert />
+                        </x-blocks.form>
+                    </div>
                 </div>
             </div>
 
