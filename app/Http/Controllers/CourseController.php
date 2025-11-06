@@ -45,7 +45,7 @@ class CourseController extends Controller
             'duration_months' => 'required|integer',
         ]);
 
-        // create a new course in the db
+        // create a new courses in the db
         Course:: create($request->all());
 
         //  redirect the user and send a success message
@@ -93,7 +93,7 @@ class CourseController extends Controller
             'duration_months' => 'required|integer',
         ]);
 
-        // update a new course in the db
+        // update a new courses in the db
         $course->update($request->all());
 
         //  redirect the user and send a success message
@@ -102,14 +102,14 @@ class CourseController extends Controller
 
 
     /**
-     * Remove the course based on the id from the db.
+     * Remove the courses based on the id from the db.
      *
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
     public function destroy(Course $course)
     {
-        // delete the course from the db
+        // delete the courses from the db
         $course->delete();
 
         //  redirect the user and send a success message

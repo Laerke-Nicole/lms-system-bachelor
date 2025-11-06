@@ -24,20 +24,22 @@
 {{--                @endguest--}}
 
                 @auth
-                    <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building" href="{{ route('companies.index') }}">
-{{--                        <li><x-elements.link title="Sites" href="{{ route('sites') }}" icon="bi bi-dot"></x-elements.link></li>--}}
+                    <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building">
+                        <li><x-elements.link title="Companies" href="{{ route('companies.index') }}" icon="bi bi-dot"></x-elements.link></li>
+                        <li><x-elements.link title="Sites" href="{{ route('sites.index') }}" icon="bi bi-dot"></x-elements.link></li>
 {{--                        <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
 {{--                        <li><x-elements.link title="login" href="{{ route('show.login') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
-                        <li><x-elements.link title="Upcoming trainings" href="/trainings/upcoming" icon="bi bi-dot"></x-elements.link></li>
+                        <li><x-elements.link title="Upcoming trainings" href="{{ route('trainings.index') }}" icon="bi bi-dot"></x-elements.link></li>
     {{--                    <li><x-elements.link title="Completed trainings" :href="route('trainings.completed')" icon="bi bi-dot"></x-elements.link></li>--}}
     {{--                    <li><x-elements.link title="User groups" href="{{ route('training.users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
                     <x-blocks.mmenu-dropdown title="Courses" icon="bi bi-journals">
-    {{--                    <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
+                        <li><x-elements.link class="dropdown-item" title="Course" href="{{ route('courses.index') }}" icon="bi bi-dot"></x-elements.link></li>
+{{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
     {{--            <x-blocks.mmenu-dropdown title="Clients">--}}
@@ -48,7 +50,7 @@
     {{--            </x-blocks.mmenu-dropdown>--}}
 
 
-                    <li class="">
+                    <li>
                         <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
                             <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">
                                 <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>

@@ -14,17 +14,17 @@
 
                     <x-blocks.form action="{{ route('register') }}" method="POST">
 
-                        <x-elements.input label="First name" placeholder="Enter your first name" name="first_name" type="text" required :value="old('first_name')"  />
-                        <x-elements.input label="Last name" placeholder="Enter your last name" name="last_name" type="text" required :value="old('last_name')"  />
-                        <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" required :value="old('email')"  />
-                        <x-elements.input label="Phone" placeholder="Enter your phone number" name="phone" type="text" required :value="old('phone')"  />
-                        <x-elements.select label="Company" name="company_id" required>
+                        <x-elements.input label="First name" placeholder="Enter your first name" name="first_name" type="text" :value="old('first_name')"  />
+                        <x-elements.input label="Last name" placeholder="Enter your last name" name="last_name" type="text" :value="old('last_name')"  />
+                        <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')"  />
+                        <x-elements.input label="Phone" placeholder="Enter your phone number" name="phone" type="text" :value="old('phone')"  />
+                        <x-elements.select label="Company" name="company_id">
                             @foreach($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                             @endforeach
                         </x-elements.select>
-                        <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" required />
-                        <x-elements.input labelFor="password_confirmation" label="Confirm password" placeholder="Confirm your password" name="password_confirmation" type="password" required />
+                        <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" />
+                        <x-elements.input labelFor="password_confirmation" label="Confirm password" placeholder="Confirm your password" name="password_confirmation" type="password" />
 
                         <div class="d-flex flex-column mt-2">
                             <a href="#" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>

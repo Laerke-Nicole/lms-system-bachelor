@@ -1,0 +1,26 @@
+@extends('layouts.app')
+
+@section('content')
+
+    <x-blocks.title href="{{ route('sites.index') }}" title="Edit site"
+                    buttonText="Go back"></x-blocks.title>
+
+    <x-blocks.error-alert/>
+
+    <x-blocks.form action="{{ route('sites.update', $site->id) }}" method="post">
+        @method('PUT')
+
+        <x-elements.input col="col-12 col-lg-4" label="Name" name="site_name" value="{{ $site->site_name }}"/>
+        <x-elements.input col="col-12 col-lg-4" label="Mail" name="site_mail" value="{{ $site->site_mail }}"/>
+        <x-elements.input col="col-12 col-lg-4" label="Phone" name="site_phone" value="{{ $site->site_phone }}"/>
+        <x-elements.input col="col-12 col-lg-4" label="Company" name="company_id" value="{{ $site->company_id }}"/>
+{{--        <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" value="{{ $site->address_id }}"/>--}}
+
+        <div class="d-flex flex-wrap align-items-baseline gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ route('sites.index') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </x-blocks.form>
+
+
+@endsection

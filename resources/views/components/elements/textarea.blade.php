@@ -1,13 +1,13 @@
 <div class="{{ $col ?? 'col-12' }}">
     <div class="form-group mb-3">
         <label class="form-label ls-2 fs-6 text-uppercase" for="{{ $labelFor ?? null }}">{{ $label }}</label>
-        <input
-            type="{{ $type ?? 'text' }}"
+        <textarea
             name="{{ $name }}"
-            value="{{ old($name, $value ?? '') }}"
             class="{{ $class ?? 'form-control box-shadow-inset' }}"
+            rows="{{ $rows ?? 4 }}"
             placeholder="{{ $placeholder ?? $label }}"
             {{ $attributes->merge(['required' => true]) }}
         >
+        </textarea>
     </div>
 </div>
