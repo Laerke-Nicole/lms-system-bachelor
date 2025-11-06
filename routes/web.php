@@ -1,23 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostalCodeController;
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AbInventechController;
-use App\Http\Controllers\GdprController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Auth\AuthSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
-use App\Http\Controllers\FollowUpTestController;
-use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\FollowUpMaterialController;
+use App\Http\Controllers\FollowUpTestController;
+use App\Http\Controllers\GdprController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostalCodeController;
 use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\RequirementController;
-use App\Http\Controllers\RegisteredUserController;
-use App\Http\Controllers\AuthSessionController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TrainingController;
+use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
 //    return view('welcome');
