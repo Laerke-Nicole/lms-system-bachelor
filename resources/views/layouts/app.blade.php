@@ -69,6 +69,10 @@
         {{--    </ul>--}}
     </header>
 
+
+    <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
+
+
     <main class="container margin-screen">
         @yield('content')
     </main>

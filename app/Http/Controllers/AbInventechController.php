@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AbInventech;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AbInventechController extends Controller
 {
@@ -39,14 +40,20 @@ class AbInventechController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'ab_inventech_name' => 'required',
             'ab_inventech_mail' => 'required|email',
             'ab_inventech_phone' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('ab_inventechs', 'public');
+            $validated['logo'] = $logoPath;
+        }
+
         // create a new ab inventech in the db
-        AbInventech:: create($request->all());
+        AbInventech::create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('ab_inventechs.index')->with('success', 'AB Inventech created successfully.');
@@ -87,14 +94,23 @@ class AbInventechController extends Controller
     public function update(Request $request, AbInventech $abInventech)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'ab_inventech_name' => 'required',
             'ab_inventech_mail' => 'required|email',
             'ab_inventech_phone' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        if ($request->hasFile('logo')) {
+            if ($abInventech->logo) {
+                Storage::delete('public/' . $abInventech->logo);
+            }
+            $logoPath = $request->file('logo')->store('ab_inventechs', 'public');
+            $validated['logo'] = $logoPath;
+        }
+
         // update a new ab inventech in the db
-        $abInventech->update($request->all());
+        $abInventech->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('ab_inventechs.index')->with('success', 'AB Inventech updated successfully.');
@@ -109,6 +125,10 @@ class AbInventechController extends Controller
      */
     public function destroy(AbInventech $abInventech)
     {
+        if ($abInventech->logo) {
+            Storage::delete('public/' . $abInventech->logo);
+        }
+
         // delete the ab inventech from the db
         $abInventech->delete();
 
