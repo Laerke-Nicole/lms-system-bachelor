@@ -16,7 +16,8 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\FollowUpMaterialController;
 use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\RequirementController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\AuthSessionController;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -24,12 +25,13 @@ use App\Http\Controllers\AuthController;
 
 //layout
 //auth
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::middleware(['guest'])->controller(AuthController::class)->group(function () {
+Route::middleware(['guest'])->controller(RegisteredUserController::class)->group(function () {
     Route::get('/register', 'showRegister')->name('show.register');
-    Route::get('/login', 'showLogin')->name('show.login');
     Route::post('/register', 'register')->name('register');
+});
+
+Route::middleware(['guest'])->controller(AuthSessionController::class)->group(function () {
+    Route::get('/login', 'showLogin')->name('show.login');
     Route::post('/login', 'login')->name('login');
 });
 
@@ -37,6 +39,7 @@ Route::middleware(['guest'])->controller(AuthController::class)->group(function 
 
 //app
 Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('postal_codes', PostalCodeController::class);
     Route::resource('addresses', AddressController::class);
