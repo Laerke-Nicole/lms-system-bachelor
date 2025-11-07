@@ -28,7 +28,6 @@
                         <li><x-elements.link title="Companies" href="{{ route('companies.index') }}" icon="bi bi-dot"></x-elements.link></li>
                         <li><x-elements.link title="Sites" href="{{ route('sites.index') }}" icon="bi bi-dot"></x-elements.link></li>
 {{--                        <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
-{{--                        <li><x-elements.link title="login" href="{{ route('show.login') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
@@ -41,14 +40,6 @@
                         <li><x-elements.link class="dropdown-item" title="Course" href="{{ route('courses.index') }}" icon="bi bi-dot"></x-elements.link></li>
 {{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
-
-    {{--            <x-blocks.mmenu-dropdown title="Clients">--}}
-    {{--                <x-blocks.mmenu-dropdown title="Clients">--}}
-    {{--                    <li><x-elements.link title="Test" href="/sites"></x-elements.link></li>--}}
-    {{--                    <li><x-elements.link title="Test" href="/sites"></x-elements.link></li>--}}
-    {{--                </x-blocks.mmenu-dropdown>--}}
-    {{--            </x-blocks.mmenu-dropdown>--}}
-
 
                     <li>
                         <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">

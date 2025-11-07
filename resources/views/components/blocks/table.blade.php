@@ -1,6 +1,6 @@
 @props(['headers'])
 
-<table class="table table-fixed">
+<table class="table">
     <thead>
     <tr>
         @foreach ($headers as $header)

@@ -10,7 +10,10 @@
         <x-blocks.detail field="Mail:" title="{{ optional($company)->company_mail }}"></x-blocks.detail>
         <x-blocks.detail field="Phone:" title="{{ optional($company)->company_phone }}"></x-blocks.detail>
         <x-blocks.detail field="Is Vestas?:" title="{{ optional($company)->is_vestas ? 'True' : 'False' }}"></x-blocks.detail>
-        <x-blocks.detail field="Address:" title="{{ optional($company)->address_id }}"></x-blocks.detail>
+        <x-blocks.detail field="Street:" title="{{ optional($company)->address->street_name }} {{ optional($company)->address->street_number }}"></x-blocks.detail>
+        <x-blocks.detail field="Postal code:" title="{{ optional($company)->address->postalCode->postal_code }}"></x-blocks.detail>
+        <x-blocks.detail field="City:" title="{{ optional($company)->address->postalCode->city }}"></x-blocks.detail>
+        <x-blocks.detail field="Country:" title="{{ optional($company)->address->postalCode->country }}"></x-blocks.detail>
     </div>
 
 @endsection

@@ -13,7 +13,11 @@
                 <td>{{ $company->company_mail }}</td>
                 <td>{{ $company->company_phone }}</td>
                 <td>{{ $company->is_vestas ? 'True' : 'False' }}</td>
-                <td>{{ $company->address_id }}</td>
+                <td>{{ $company->address->street_name }} {{ $company->address->street_number }}
+                    <br>{{ $company->address->postalCode->postal_code }} {{ $company->address->postalCode->city }}
+                    <br>{{ $company->address->postalCode->country }}
+                </td>
+
                 <td>
                     <x-blocks.table-row-actions :showRoute="route('companies.show', $company->id)"
                                                 :editRoute="route('companies.edit', $company->id)"

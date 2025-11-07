@@ -41,8 +41,8 @@ Route::middleware(['guest'])->controller(AuthSessionController::class)->group(fu
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::resource('postal_codes', PostalCodeController::class);
-    Route::resource('addresses', AddressController::class);
+//    Route::resource('postal_codes', PostalCodeController::class);
+//    Route::resource('addresses', AddressController::class);
     Route::resource('companies', CompanyController::class);
     Route::resource('sites', SiteController::class);
     Route::resource('ab_inventech', AbInventechController::class);
