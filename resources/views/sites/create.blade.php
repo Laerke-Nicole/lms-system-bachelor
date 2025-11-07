@@ -11,8 +11,12 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="site_name" />
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="site_mail" />
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="site_phone" />
-        <x-elements.input col="col-12 col-lg-4" label="Company" name="company_id" />
-        <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" />
+        <x-elements.select label="Company" name="company_id">
+            @foreach($companies as $company)
+                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+            @endforeach
+        </x-elements.select>
+        <x-blocks.create-address />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
