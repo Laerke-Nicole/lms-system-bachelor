@@ -4,7 +4,7 @@
     <thead>
     <tr>
         @foreach ($headers as $header)
-            <th scope="col">{{ $header }}</th>
+            <th scope="col" class="text-label text-body">{{ $header }}</th>
         @endforeach
     </tr>
     </thead>
