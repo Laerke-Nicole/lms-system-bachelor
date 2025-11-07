@@ -11,7 +11,7 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="site_name" />
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="site_mail" />
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="site_phone" />
-        <x-elements.select label="Company" name="company_id">
+        <x-elements.select label="Company" name="company_id" col="col-12 col-lg-4">
             @foreach($companies as $company)
                 <option value="{{ $company->id }}">{{ $company->company_name }}</option>
             @endforeach
