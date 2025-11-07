@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PostalCode;
+use App\Models\Address;
 use App\Models\Site;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -26,7 +29,8 @@ class SiteController extends Controller
      */
     public function create()
     {
-        return view('sites.create');
+        $companies = Company::all();
+        return view('sites.create', compact('companies'));
     }
 
 
@@ -43,10 +47,36 @@ class SiteController extends Controller
             'site_name' => 'required',
             'site_mail' => 'required|email',
             'site_phone' => 'required',
+            'company_id' => 'required|exists:companies,id',
+            'street_name' => 'required|string|max:255',
+            'street_number' => 'required|string|max:10',
+            'postal_code' => 'required|string|max:10',
+            'city' => 'required|string|max:100',
+            'country' => 'required|string|max:100',
         ]);
 
-        // create a new site in the db
-        Site:: create($request->all());
+        // create postal code
+        $postalCode = PostalCode::create([
+            'postal_code' => $request->postal_code,
+            'city' => $request->city,
+            'country' => $request->country,
+        ]);
+
+        // create address including postal code id
+        $address = Address::create([
+            'street_name' => $request->street_name,
+            'street_number' => $request->street_number,
+            'postal_code_id' => $postalCode->id,
+        ]);
+
+        // create site including address id
+        Site::create([
+            'site_name' => $request->site_name,
+            'site_mail' => $request->site_mail,
+            'site_phone' => $request->site_phone,
+            'company_id' => $request->company_id,
+            'address_id' => $address->id,
+        ]);
 
         //  redirect the user and send a success message
         return redirect()->route('sites.index')->with('success', 'Site created successfully.');
@@ -91,10 +121,36 @@ class SiteController extends Controller
             'site_name' => 'required',
             'site_mail' => 'required|email',
             'site_phone' => 'required',
+            'street_name' => 'required|string|max:255',
+            'street_number' => 'required|string|max:10',
+            'postal_code' => 'required|string|max:10',
+            'city' => 'required|string|max:100',
+            'country' => 'required|string|max:100',
         ]);
 
-        // update a new site in the db
-        $site->update($request->all());
+        // update postal code
+        if ($site->address && $site->address->postalCode) {
+            $site->address->postalCode->update([
+                'postal_code' => $request->postal_code,
+                'city' => $request->city,
+                'country' => $request->country,
+            ]);
+        }
+
+        // update address
+        if ($site->address) {
+            $site->address->update([
+                'street_name' => $request->street_name,
+                'street_number' => $request->street_number,
+            ]);
+        }
+
+        // update site
+        $site->update([
+            'site_name' => $request->site_name,
+            'site_mail' => $request->site_mail,
+            'site_phone' => $request->site_phone,
+        ]);
 
         //  redirect the user and send a success message
         return redirect()->route('sites.index')->with('success', 'Site updated successfully.');
