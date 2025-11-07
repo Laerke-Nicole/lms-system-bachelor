@@ -14,7 +14,7 @@
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="site_mail" value="{{ $site->site_mail }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="site_phone" value="{{ $site->site_phone }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Company" name="company_id" value="{{ $site->company_id }}"/>
-{{--        <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" value="{{ $site->address_id }}"/>--}}
+        <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" value="{{ $site->address_id }}"/>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>

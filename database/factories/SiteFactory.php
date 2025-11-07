@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +20,7 @@ class SiteFactory extends Factory
             'site_mail' => $this->faker->unique()->companyEmail(),
             'site_phone' => $this->faker->unique()->phoneNumber(),
             'company_id' => Company::inRandomOrder()->value('id'),
+            'address_id' => Address::inRandomOrder()->value('id'),
         ];
     }
 }

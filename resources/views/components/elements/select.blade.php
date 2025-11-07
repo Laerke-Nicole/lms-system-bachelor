@@ -5,7 +5,7 @@
             name="{{ $name }}"
             id="{{ $name }}"
             class="{{ $class ?? 'form-select box-shadow-inset' }}"
-            {{ $required ? 'required' : '' }}
+            {{ $attributes->merge(['required' => true]) }}
         >
             {{ $slot }}
         </select>

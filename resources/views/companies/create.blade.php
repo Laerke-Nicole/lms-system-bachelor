@@ -14,7 +14,10 @@
         <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" />
         <x-elements.input col="col-12 col-lg-4" label="Address" name="address_id" />
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex flex-wrap align-items-baseline gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ route('sites.index') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
     </x-blocks.form>
 
 @endsection

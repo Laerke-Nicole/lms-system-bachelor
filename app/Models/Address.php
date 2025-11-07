@@ -25,6 +25,11 @@ class   Address extends Model
         return $this->hasMany(Company::class);
     }
 
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
+
     public function abInventech()
     {
         return $this->hasMany(AbInventech::class);

@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="vh-100">
+    <div class="vh-100 container-fluid">
         <div class="row h-100">
             <!-- left side with form -->
             <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start">
-                <div class="px-0 px-lg-5">
+                <div class="px-5 d-flex flex-column w-100 bg-white">
                     <div class="mb-5">
                         <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
                     </div>
@@ -30,7 +30,7 @@
             </div>
 
             <!-- right side with img -->
-            <div class="col-lg-8 d-none d-lg-block p-0">
+            <div class="col-lg-8 p-0">
 {{--                <img src="{{ asset('images/login-bg.jpg') }}"--}}
 {{--                     alt="Wind turbines"--}}
 {{--                     class="img-fluid w-100 h-100 object-fit-cover">--}}

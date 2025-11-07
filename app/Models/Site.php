@@ -14,10 +14,16 @@ class Site extends Model
         'site_mail',
         'site_phone',
         'company_id',
+        'address_id',
     ];
 
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 }

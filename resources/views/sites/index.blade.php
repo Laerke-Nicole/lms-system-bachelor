@@ -13,7 +13,7 @@
                 <td>{{ $site->site_mail }}</td>
                 <td>{{ $site->site_phone }}</td>
                 <td>{{ $site->company_id }}</td>
-{{--                <td>{{ $site->address_id }}</td>--}}
+                <td>{{ $site->address_id }}</td>
                 <td>
                     <x-blocks.table-row-actions :showRoute="route('sites.show', $site->id)"
                                                 :editRoute="route('sites.edit', $site->id)"

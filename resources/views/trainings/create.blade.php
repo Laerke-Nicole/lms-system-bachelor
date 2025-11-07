@@ -29,7 +29,10 @@
         <x-elements.input col="col-12 col-lg-4" label="Ordered by" name="ordered_by_id" />
         <x-elements.input col="col-12 col-lg-4" label="Trainer" name="trainer_id" />
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex flex-wrap align-items-baseline gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ route('sites.index') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
     </x-blocks.form>
 
 @endsection
