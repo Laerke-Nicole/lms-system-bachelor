@@ -9,7 +9,7 @@
         <x-blocks.detail field="Name:" title="{{ optional($site)->site_name }}"></x-blocks.detail>
         <x-blocks.detail field="Mail:" title="{{ optional($site)->site_mail }}"></x-blocks.detail>
         <x-blocks.detail field="Phone:" title="{{ optional($site)->site_phone }}"></x-blocks.detail>
-        <x-blocks.detail field="Company:" title="{{ optional($site)->company_id }}"></x-blocks.detail>
+        <x-blocks.detail field="Company:" title="{{ optional($site->company)->company_name }}"></x-blocks.detail>
         <x-blocks.show-address :table="$site" />
     </div>
 
