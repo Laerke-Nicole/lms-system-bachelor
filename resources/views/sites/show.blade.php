@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('sites.index') }}" title="Show site"
+    <x-blocks.title href="{{ route('sites.index') }}" title="{{ $site->site_name }}" tagline="Site for {{ $site->company->company_name }}"
                     buttonText="Go back"></x-blocks.title>
 
     <div class="row">

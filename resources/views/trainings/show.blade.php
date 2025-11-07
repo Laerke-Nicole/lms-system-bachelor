@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('trainings.index') }}" title="Show training"
+    <x-blocks.title href="{{ route('trainings.index') }}" title="Training for: {{ $training->course->title }}"
                     buttonText="Go back"></x-blocks.title>
 
     <div class="row">
@@ -14,9 +14,9 @@
         <x-blocks.detail field="Reminder sent 22 months:" title="{{ optional($training)->reminder_sent_22_m ? 'True' : 'False' }}"></x-blocks.detail>
         <x-blocks.detail field="Reminder before training:" title="{{ optional($training)->reminder_before_training }}"></x-blocks.detail>
         <x-blocks.detail field="Extra comments:" title="{{ optional($training)->extra_comments }}"></x-blocks.detail>
-        <x-blocks.detail field="Course:" title="{{ optional($training)->course_id }}"></x-blocks.detail>
-        <x-blocks.detail field="Ordered by:" title="{{ optional($training)->ordered_by_id }}"></x-blocks.detail>
-        <x-blocks.detail field="Trainer:" title="{{ optional($training)->trainer_id }}"></x-blocks.detail>
+        <x-blocks.detail field="Course:" title="{{ optional($training->course)->title }}"></x-blocks.detail>
+        <x-blocks.detail field="Ordered by:" title="{{ optional($training->orderedBy)->first_name. ' ' . optional($training->orderedBy)->last_name }}"></x-blocks.detail>
+        <x-blocks.detail field="Trainer:" title="{{ optional($training->trainer)->first_name. ' ' . optional($training->trainer)->last_name }}"></x-blocks.detail>
     </div>
 
 @endsection

@@ -2,6 +2,7 @@
     <div class="col-lg-12 margin-tb">
         <div>
             <h2>{{ $title }}</h2>
+            <h4>{{ $tagline ?? null }}</h4>
         </div>
 
         @if(! $attributes->has('withoutButton'))
