@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use App\Models\User;
 
 class TrainingController extends Controller
 {
@@ -99,7 +100,12 @@ class TrainingController extends Controller
      */
     public function edit(Training $training)
     {
-        return view('trainings.edit', compact('training'));
+        $places = ['Online', 'On site'];
+        $statuses = ['Upcoming', 'Completed', 'Expired'];
+        $trainers = User::all();
+        $orderedBys = User::all();
+
+        return view('trainings.edit', compact('training', 'places', 'statuses', 'trainers', 'orderedBys'));
     }
 
 

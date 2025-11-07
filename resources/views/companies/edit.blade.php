@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('companies.index') }}" title="Edit company"
+    <x-blocks.title href="{{ route('companies.index') }}" title="Edit {{ $company['company_name'] }}"
                     buttonText="Go back"></x-blocks.title>
 
     <x-blocks.error-alert/>
@@ -13,7 +13,6 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="company_name" value="{{ $company->company_name }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="company_mail" value="{{ $company->company_mail }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="company_phone" value="{{ $company->company_phone }}"/>
-        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" :required="false" />
         <x-blocks.edit-address :table="$company" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
