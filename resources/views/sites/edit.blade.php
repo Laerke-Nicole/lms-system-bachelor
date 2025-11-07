@@ -13,11 +13,6 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="site_name" value="{{ $site->site_name }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="site_mail" value="{{ $site->site_mail }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="site_phone" value="{{ $site->site_phone }}"/>
-        <x-elements.select label="Company" name="company_id" col="col-12 col-lg-4">
-            @foreach($companies as $company)
-                <option value="{{ $company->id }}">{{ $site->company->company_name }}</option>
-            @endforeach
-        </x-elements.select>
         <x-blocks.edit-address :table="$site" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

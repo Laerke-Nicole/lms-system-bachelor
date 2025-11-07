@@ -6,7 +6,7 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table
+    <x-blocks.table-head
         :headers="['Place', 'Status', 'Date', 'Whatsapp link', 'Reminder sent 18 months', 'Reminder sent 22 months', 'Reminder before training', 'Extra comments', 'Course', 'Ordered by', 'Trainer', 'Actions']">
         @foreach ($trainings as $training)
             <tr>
@@ -22,13 +22,13 @@
                 <td>{{ $training->ordered_by_id }}</td>
                 <td>{{ $training->trainer_id }}</td>
                 <td>
-                    <x-blocks.table-row-actions :showRoute="route('trainings.show', $training->id)"
+                    <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"
                                                 :editRoute="route('trainings.edit', $training->id)"
                                                 :deleteRoute="route('trainings.destroy', $training->id)"/>
                 </td>
             </tr>
         @endforeach
-    </x-blocks.table>
+    </x-blocks.table-head>
 
 
     <x-elements.pagination :items="$trainings"/>
