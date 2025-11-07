@@ -2,17 +2,17 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('trainings.create') }}" title="Trainings" buttonText="Create new training"/>
+    <x-blocks.title href="{{ route('trainings.create') }}" title="{{ $title ?? 'Trainings' }}" withoutButton/>
 
     <x-blocks.message/>
 
-    <x-blocks.table :headers="['Place', 'Status', 'Date', 'Time', 'Whatsapp link', 'Reminder sent 18 months', 'Reminder sent 22 months', 'Reminder before training', 'Extra comments', 'Course', 'Ordered by', 'Trainer', 'Actions']">
+    <x-blocks.table
+        :headers="['Place', 'Status', 'Date', 'Whatsapp link', 'Reminder sent 18 months', 'Reminder sent 22 months', 'Reminder before training', 'Extra comments', 'Course', 'Ordered by', 'Trainer', 'Actions']">
         @foreach ($trainings as $training)
             <tr>
                 <td>{{ $training->place }}</td>
                 <td>{{ $training->status }}</td>
-                <td>{{ $training->training_date }}</td>
-                <td>{{ $training->training_time }}</td>
+                <td>{{ $training->training_date }} at {{ $training->training_date }} o'clock</td>
                 <td>{{ $training->participation_link }}</td>
                 <td>{{ $training->reminder_sent_18_m ? 'True' : 'False' }}</td>
                 <td>{{ $training->reminder_sent_22_m ? 'True' : 'False' }}</td>

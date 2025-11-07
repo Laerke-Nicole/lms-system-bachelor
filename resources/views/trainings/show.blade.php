@@ -8,7 +8,7 @@
     <div class="row">
         <x-blocks.detail field="Place:" title="{{ optional($training)->place }}"></x-blocks.detail>
         <x-blocks.detail field="Status:" title="{{ optional($training)->status }}"></x-blocks.detail>
-        <x-blocks.detail field="Date:" title="{{ optional($training)->training_date }}"></x-blocks.detail>
+        <x-blocks.detail field="Date:" title="{{ optional($training)->training_date }} at {{ optional($training)->training_time }} o'clock"></x-blocks.detail>
         <x-blocks.detail field="Time:" title="{{ optional($training)->training_time }}"></x-blocks.detail>
         <x-blocks.detail field="Whatsapp link:" title="{{ optional($training)->participation_link }}"></x-blocks.detail>
         <x-blocks.detail field="Reminder sent 18 months:" title="{{ optional($training)->reminder_sent_18_m ? 'True' : 'False' }}"></x-blocks.detail>

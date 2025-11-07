@@ -4,18 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Training;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class TrainingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
         $trainings = Training::latest()->paginate(5);
-        return view('trainings.index', compact('trainings'))->with(request()->input('page'));
+        return view('trainings.index', [
+            'trainings' => $trainings,
+            'title' => 'All Trainings',
+        ]);
+    }
+
+    public function upcoming()
+    {
+        $trainings = Training::where('Status', 'Upcoming')->latest()->paginate(5);
+
+        return view('trainings.index', [
+            'trainings' => $trainings,
+            'title' => 'Upcoming Trainings',
+        ]);
+    }
+
+    public function past()
+    {
+        $trainings = Training::whereIn('status', ['Completed', 'Expired'])->latest()->paginate(5);
+
+        return view('trainings.index', [
+            'trainings' => $trainings,
+            'title' => 'Completed Trainings',
+        ]);
     }
 
 

@@ -31,8 +31,8 @@
                     </x-blocks.mmenu-dropdown>
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
-                        <li><x-elements.link title="Upcoming trainings" href="{{ route('trainings.index') }}" icon="bi bi-dot"></x-elements.link></li>
-    {{--                    <li><x-elements.link title="Completed trainings" :href="route('trainings.completed')" icon="bi bi-dot"></x-elements.link></li>--}}
+                        <li><x-elements.link title="Upcoming trainings" href="{{ route('trainings.upcoming') }}" icon="bi bi-dot"></x-elements.link></li>
+                        <li><x-elements.link title="Completed trainings" :href="route('trainings.past')" icon="bi bi-dot"></x-elements.link></li>
     {{--                    <li><x-elements.link title="User groups" href="{{ route('training.users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 

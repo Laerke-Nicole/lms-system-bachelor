@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('courses', CourseController::class);
     Route::resource('evaluations', EvaluationController::class);
     Route::resource('follow_up_tests', FollowUpTestController::class);
+    Route::get('trainings/upcoming', [TrainingController::class, 'upcoming'])->name('trainings.upcoming');
+    Route::get('trainings/past', [TrainingController::class, 'past'])->name('trainings.past');
     Route::resource('trainings', TrainingController::class);
     Route::resource('follow_up_materials', FollowUpMaterialController::class);
     Route::resource('preparations', PreparationController::class);
