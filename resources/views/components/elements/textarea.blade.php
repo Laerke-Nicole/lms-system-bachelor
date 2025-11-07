@@ -7,7 +7,6 @@
             rows="{{ $rows ?? 4 }}"
             placeholder="{{ $placeholder ?? $label }}"
             {{ $attributes->merge(['required' => true]) }}
-        >
-        </textarea>
+        >{{ old($name, $value ?? '') }}</textarea>
     </div>
 </div>
