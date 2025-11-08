@@ -16,7 +16,11 @@
 
             <ul class="list-unstyled d-flex mb-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href="#"><i class="bi bi-person-circle me-2 fs-4"></i><span>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </span><i class="bi bi-three-dots-vertical"></i></a>
+                    <a class="nav-link fs-5" href="#">
+                        <i class="bi bi-person-circle me-2 fs-4"></i>
+                        <span class="me-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </span>
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </a>
                 </li>
             </ul>
         </div>
