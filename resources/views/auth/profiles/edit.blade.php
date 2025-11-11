@@ -41,6 +41,8 @@
                     </div>
                 </x-blocks.form>
 
+                <x-blocks.message />
+
                 <x-blocks.error-alert/>
             </div>
 

@@ -40,16 +40,16 @@ class ProfileController extends Controller
 
         // validate the user input
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:255',
         ]);
 
         // update user info in the db
-        $user->update($request->all());
+        $user->update($request->only(['first_name', 'last_name', 'email', 'phone']));
 
         //  redirect the user and send a success message
-        return redirect()->route('profile.edit')->with('success', 'Updated your info successfully.');
+        return redirect()->route('profiles.edit')->with('success', 'Updated your info successfully.');
     }
 }
