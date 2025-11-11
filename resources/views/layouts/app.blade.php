@@ -1,6 +1,7 @@
 <html>
 <head>
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>AB Inventech</title>
+
     <!-- SCSS and JS -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 

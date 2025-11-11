@@ -5,7 +5,7 @@ export const initMmenu = () => {
     const menu = new Mmenu("#menu", {
         navbar: {
             add: true,
-            title: "Ab-Inventech",
+            title: "AB Inventech",
         },
         slidingSubmenus: false,
         offCanvas: {

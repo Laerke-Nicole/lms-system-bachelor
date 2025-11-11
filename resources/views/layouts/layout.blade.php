@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>LMS-system - Ab-Inventech</title>
+    <title>AB Inventech</title>
 
     <!-- Vite Assets -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
