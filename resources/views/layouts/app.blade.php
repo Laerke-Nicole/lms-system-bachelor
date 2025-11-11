@@ -10,8 +10,8 @@
 
 <div id="app">
     <header>
-        <div class="p-3 d-flex align-items-center justify-content-between justify-content-lg-end">
-            <a href="#menu" class="btn fs-3 d-lg-none">
+        <div class="container py-3 d-flex align-items-center justify-content-between justify-content-lg-end">
+            <a href="#menu" class="btn fs-3 p-0 d-lg-none">
                 <span><i class="bi bi-list"></i></span>
             </a>
 
