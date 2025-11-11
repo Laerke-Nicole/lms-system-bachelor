@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-3 d-flex justify-content-end">
-                    <a href=""><i class="bi bi-pencil me-2"></i></a>
+                    <a href=""><i class="bi bi-pencil"></i></a>
                 </div>
             </div>
         </div>

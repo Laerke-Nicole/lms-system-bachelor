@@ -16,13 +16,16 @@
             </a>
 
             <ul class="list-unstyled d-flex mb-0">
-                <li class="nav-item">
-                    <a class="nav-link fs-5" href="{{ route('profiles.edit') }}">
-                        <i class="bi bi-person-circle me-2 fs-4"></i>
-                        <span class="me-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </span>
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </a>
-                </li>
+                <x-blocks.dropdown dropdownTitle="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" icon="bi bi-person" class="fs-5">
+                    <li><x-elements.link title="Personal information" href="{{ route('profiles.edit') }}" class="dropdown-item fs-5"></x-elements.link></li>
+                    <li><x-elements.link title="Certificates" href="{{ route('profiles.edit') }}" class="dropdown-item fs-5"></x-elements.link></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
+                            <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">Logout</button>
+                        </x-blocks.form>
+                    </li>
+                </x-blocks.dropdown>
             </ul>
         </div>
 
@@ -52,12 +55,12 @@
 {{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
-                    <li>
-                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
-                            <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">
-                                <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>
-                        </x-blocks.form>
-                    </li>
+{{--                    <li>--}}
+{{--                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">--}}
+{{--                            <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">--}}
+{{--                                <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>--}}
+{{--                        </x-blocks.form>--}}
+{{--                    </li>--}}
                 @endauth
             </ul>
         </nav>
