@@ -20,3 +20,10 @@ button {
     @extend .text-uppercase;
     font-weight: 400;
 }
+
+.text-label-1 {
+    @extend .ls-1;
+    @extend .fs-6;
+    @extend .text-uppercase;
+    font-weight: 400;
+}

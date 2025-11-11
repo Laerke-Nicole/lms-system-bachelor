@@ -17,6 +17,14 @@ $utilities: map-merge(
             values: (
                 inset: 0 4px #00000008 inset
             )
-        )
+        ),
+        "text-decoration": (
+            property: text-decoration,
+            class: text-decoration,
+            state: hover,
+            values: (
+                underline: underline
+            )
+        ),
     )
 );
