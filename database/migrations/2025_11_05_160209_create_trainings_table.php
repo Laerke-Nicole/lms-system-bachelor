@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('place', ['Online', 'On site']);
             $table->enum('status', ['Upcoming', 'Completed', 'Expired'])->default('Upcoming');
-            $table->time('training_time');
-            $table->date('training_date');
+            $table->dateTime('training_date');
             $table->string('participation_link');
             $table->boolean('reminder_sent_18_m')->default(false);
             $table->boolean('reminder_sent_22_m')->default(false);

@@ -68,7 +68,6 @@ class TrainingController extends Controller
         $request->validate([
             'place' => 'required',
             'status' => 'required',
-            'training_time' => 'required',
             'training_date' => 'required|date',
         ]);
 
@@ -122,7 +121,6 @@ class TrainingController extends Controller
         $request->validate([
             'place' => 'required',
             'status' => 'required',
-            'training_time' => 'required',
             'training_date' => 'required|date',
         ]);
 

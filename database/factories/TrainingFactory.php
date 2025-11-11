@@ -21,7 +21,6 @@ class TrainingFactory extends Factory
         return [
             'place' => $this->faker->randomElement($places),
             'status' => $this->faker->randomElement($statuses),
-            'training_time' => $this->faker->time(),
             'training_date' => $this->faker->dateTimeBetween('-6 months', '+6 months'),
             'participation_link' => $this->faker->url(),
             'reminder_sent_18_m' => $this->faker->boolean(30),

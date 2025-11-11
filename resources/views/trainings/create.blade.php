@@ -19,7 +19,6 @@
             @endforeach
         </x-elements.select>
         <x-elements.input col="col-12 col-lg-4" label="Date" name="training_date" type="date" />
-        <x-elements.input col="col-12 col-lg-4" label="Time" name="training_time" type="time" />
         <x-elements.input col="col-12 col-lg-4" label="Whatsapp link" name="participation_link" />
         <x-elements.input col="col-12 col-lg-4" label="Reminder sent 18 months" name="reminder_sent_18_m" type="checkbox" class="form-check-input" />
         <x-elements.input col="col-12 col-lg-4" label="Reminder sent 22 months" name="reminder_sent_22_m" type="checkbox" class="form-check-input" />
