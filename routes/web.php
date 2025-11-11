@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AbInventechController;
-use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\AuthSessionController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CompanyController;
@@ -12,7 +12,6 @@ use App\Http\Controllers\FollowUpMaterialController;
 use App\Http\Controllers\FollowUpTestController;
 use App\Http\Controllers\GdprController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostalCodeController;
 use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\SiteController;
@@ -58,4 +57,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('follow_up_materials', FollowUpMaterialController::class);
     Route::resource('preparations', PreparationController::class);
     Route::resource('requirements', RequirementController::class);
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 });
