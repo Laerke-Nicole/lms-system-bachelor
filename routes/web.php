@@ -57,6 +57,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('follow_up_materials', FollowUpMaterialController::class);
     Route::resource('preparations', PreparationController::class);
     Route::resource('requirements', RequirementController::class);
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::get('/profiles', [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
 });

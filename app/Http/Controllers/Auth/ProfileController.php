@@ -6,27 +6,11 @@ use App\Models\Company;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $user = Auth::user();
-
-        // Eager load related trainings (certificates)
-        $user->load('trainings');
-
-        $companies = Company::all();
-        return view('profile.show', compact('user', 'companies'));
-    }
-
-    /**
+        /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
@@ -34,7 +18,13 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $user = Auth::user();
+
+        // Eager load related trainings (certificates)
+        $user->load('trainings');
+
+        $companies = Company::all();
+        return view('auth.profiles.edit', compact('user', 'companies'));
     }
 
     /**
@@ -44,8 +34,10 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
+        $user = Auth::user();
+
         // validate the user input
         $request->validate([
             'first_name' => 'required',
@@ -58,6 +50,6 @@ class ProfileController extends Controller
         $user->update($request->all());
 
         //  redirect the user and send a success message
-        return redirect()->route('users.index')->with('success', 'Updated your info successfully.');
+        return redirect()->route('profile.edit')->with('success', 'Updated your info successfully.');
     }
 }

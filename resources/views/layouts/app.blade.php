@@ -17,7 +17,7 @@
 
             <ul class="list-unstyled d-flex mb-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href="#">
+                    <a class="nav-link fs-5" href="{{ route('profiles.edit') }}">
                         <i class="bi bi-person-circle me-2 fs-4"></i>
                         <span class="me-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </span>
                         <i class="bi bi-three-dots-vertical"></i>
@@ -58,18 +58,13 @@
                                 <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>
                         </x-blocks.form>
                     </li>
-
-                    <span>Hi there, {{ Auth::user()->first_name }}</span>
                 @endauth
             </ul>
         </nav>
     </header>
 
 
-    <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
-
-
-    <main class="container margin-screen">
+    <main class="container">
         @yield('content')
     </main>
 </div>
