@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -39,14 +40,20 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'duration_months' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('courses', 'public');
+            $validated['image'] = $imagePath;
+        }
+
         // create a new courses in the db
-        Course:: create($request->all());
+        Course:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
@@ -87,14 +94,23 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'duration_months' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        if ($request->hasFile('image')) {
+            if ($course->image) {
+                Storage::delete('public/' . $course->image);
+            }
+            $imagePath = $request->file('image')->store('courses', 'public');
+            $validated['image'] = $imagePath;
+        }
+
         // update a new courses in the db
-        $course->update($request->all());
+        $course->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
@@ -109,6 +125,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        if ($course->image) {
+            Storage::delete('public/' . $course->image);
+        }
+
         // delete the courses from the db
         $course->delete();
 

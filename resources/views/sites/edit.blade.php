@@ -7,7 +7,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('sites.update', $site->id) }}" method="post">
+    <x-blocks.form action="{{ route('sites.update', $site->id) }}" method="POST">
         @method('PUT')
 
         <x-elements.input col="col-12 col-lg-4" label="Name" name="site_name" value="{{ $site->site_name }}"/>

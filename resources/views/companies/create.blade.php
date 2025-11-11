@@ -7,7 +7,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('companies.store') }}" method="POST">
+    <x-blocks.form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
         <x-elements.input col="col-12 col-lg-4" label="Name" name="company_name" />
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="company_mail" />
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="company_phone" />

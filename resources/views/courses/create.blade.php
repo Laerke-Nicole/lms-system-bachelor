@@ -7,7 +7,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('courses.store') }}" method="POST">
+    <x-blocks.form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
         <x-elements.input col="col-12 col-lg-4" label="Title" name="title" />
         <x-elements.textarea col="col-12 col-lg-4" label="Description" name="description" />
         <x-elements.input col="col-12 col-lg-4" label="Duration months" name="duration_months" type="number" />

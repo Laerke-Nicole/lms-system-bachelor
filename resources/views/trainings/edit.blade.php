@@ -7,7 +7,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('trainings.update', $training->id) }}" method="post">
+    <x-blocks.form action="{{ route('trainings.update', $training->id) }}" method="POST">
         @method('PUT')
 
         <x-elements.select label="Place" name="place" col="col-12 col-lg-4">

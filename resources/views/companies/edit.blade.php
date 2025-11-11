@@ -7,7 +7,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('companies.update', $company->id) }}" method="post">
+    <x-blocks.form action="{{ route('companies.update', $company->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
 
         <x-elements.input col="col-12 col-lg-4" label="Name" name="company_name" value="{{ $company->company_name }}"/>
