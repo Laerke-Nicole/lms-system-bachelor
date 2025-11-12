@@ -1,4 +1,4 @@
-<li class="dropdown">
+<li class="{{ $class ?? 'dropdown' }}">
     @isset($icon)
         <i class="{{ $icon }} me-2 fs-4"></i>
     @endisset

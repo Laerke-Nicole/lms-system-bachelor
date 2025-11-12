@@ -52,4 +52,11 @@ class ProfileController extends Controller
         //  redirect the user and send a success message
         return redirect()->route('profiles.edit')->with('success', 'Updated your info successfully.');
     }
+
+    public function certificates()
+    {
+        $user = Auth::user();
+
+        $user->load('trainings');
+    }
 }
