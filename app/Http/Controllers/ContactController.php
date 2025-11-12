@@ -16,8 +16,8 @@ class ContactController extends Controller
      */
     public function show(AbInventech $ab_inventech)
     {
-        $info = AbInventech::first();
+        $ab_inventech = AbInventech::first()->load('address.postalCode');
 
-        return view('auth.profiles.contacts', compact('info'));
+        return view('auth.profiles.contacts', compact('ab_inventech'));
     }
 }
