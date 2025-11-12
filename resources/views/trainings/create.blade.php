@@ -23,7 +23,6 @@
         <x-elements.input col="col-12 col-lg-4" label="Reminder sent 18 months" name="reminder_sent_18_m" type="checkbox" class="form-check-input" />
         <x-elements.input col="col-12 col-lg-4" label="Reminder sent 22 months" name="reminder_sent_22_m" type="checkbox" class="form-check-input" />
         <x-elements.input col="col-12 col-lg-4" label="Reminder before training" name="reminder_before_training" type="date" />
-        <x-elements.textarea col="col-12 col-lg-4" label="Extra comments" name="extra_comments" />
         <x-elements.input col="col-12 col-lg-4" label="Course" name="course_id" />
         <x-elements.input col="col-12 col-lg-4" label="Ordered by" name="ordered_by_id" />
         <x-elements.input col="col-12 col-lg-4" label="Trainer" name="trainer_id" />

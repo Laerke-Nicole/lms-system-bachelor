@@ -18,7 +18,6 @@ class Training extends Model
         'reminder_sent_18_m',
         'reminder_sent_22_m',
         'reminder_before_training',
-        'extra_comments',
         'course_id',
         'created_by_id',
         'ordered_by_id',

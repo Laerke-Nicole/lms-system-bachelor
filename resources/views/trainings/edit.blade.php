@@ -17,7 +17,6 @@
         </x-elements.select>
         <x-elements.input col="col-12 col-lg-4" label="Date" name="training_date" type="date" value="{{ $training->training_date }}"/>
         <x-elements.input col="col-12 col-lg-4" label="Whatsapp link" name="participation_link" value="{{ $training->participation_link }}"/>
-        <x-elements.textarea col="col-12 col-lg-4" label="Extra comments" name="extra_comments" value="{{ $training->extra_comments }}" />
         <x-elements.select label="Trainer" name="trainer_id" col="col-12 col-lg-4">
             @foreach($trainers as $trainer)
                 <option value="{{ $trainer->id }}" {{ $training->trainer_id === $trainer->id ? 'selected' : '' }}>{{ $trainer->first_name }} {{ $trainer->last_name }}</option>

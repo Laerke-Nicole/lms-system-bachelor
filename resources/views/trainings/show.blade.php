@@ -16,7 +16,6 @@
         <x-blocks.detail field="Reminder before training" title="{{ $training->reminder_before_training_formatted }}"></x-blocks.detail>
         <x-blocks.detail field="Reminder sent 18 months" title="{{ $training->reminder_sent_18_m ? 'True' : 'False' }}"></x-blocks.detail>
         <x-blocks.detail field="Reminder sent 22 months" title="{{ $training->reminder_sent_22_m ? 'True' : 'False' }}"></x-blocks.detail>
-        <x-blocks.detail field="Extra comments" title="{{ $training->extra_comments }}"></x-blocks.detail>
     </div>
 
 @endsection

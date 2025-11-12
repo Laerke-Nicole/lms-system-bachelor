@@ -26,7 +26,6 @@ class TrainingFactory extends Factory
             'reminder_sent_18_m' => $this->faker->boolean(30),
             'reminder_sent_22_m' => $this->faker->boolean(20),
             'reminder_before_training' => $this->faker->optional()->dateTimeBetween('-1 month', '+1 month'),
-            'extra_comments' => $this->faker->optional()->paragraph(),
             'course_id' => Course::inRandomOrder()->value('id'),
             'ordered_by_id' => User::inRandomOrder()->value('id'),
             'trainer_id' => User::inRandomOrder()->value('id'),
