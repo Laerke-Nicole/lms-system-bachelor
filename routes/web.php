@@ -16,6 +16,7 @@ use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
@@ -58,4 +59,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profiles', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
     Route::get('/profiles/certificates', [ProfileController::class, 'certificates'])->name('profiles.certificates');
+    Route::get('/profiles/contacts', [ContactController::class, 'show'])->name('profiles.contacts');
 });
