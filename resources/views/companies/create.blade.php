@@ -11,8 +11,8 @@
         <x-elements.input col="col-12 col-lg-4" label="Name" name="company_name" />
         <x-elements.input col="col-12 col-lg-4" label="Mail" name="company_mail" />
         <x-elements.input col="col-12 col-lg-4" label="Phone" name="company_phone" />
-        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" :required="false" />
         <x-blocks.create-address />
+        <x-elements.input col="col-12 col-lg-4" label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" :required="false" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
