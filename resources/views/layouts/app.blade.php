@@ -22,7 +22,7 @@
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
-                            <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">Logout</button>
+                            <button type="submit" class="dropdown-item fs-5 mb-0 ">Logout</button>
                         </x-blocks.form>
                     </li>
                 </x-blocks.dropdown>
