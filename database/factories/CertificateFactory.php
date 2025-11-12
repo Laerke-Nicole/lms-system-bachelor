@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Training;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,6 +26,7 @@ class CertificateFactory extends Factory
             'content' => $this->faker->paragraph(),
             'verified_by_id' => User::inRandomOrder()->value('id'),
             'user_id' => User::inRandomOrder()->value('id'),
+            'training_id' => Training::inRandomOrder()->value('id'),
         ];
     }
 }

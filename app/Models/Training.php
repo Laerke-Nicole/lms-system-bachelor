@@ -67,4 +67,9 @@ class Training extends Model
     {
         return $this->belongsTo(User::class, 'trainer_id');
     }
+
+    public function certificates()
+    {
+        return $this->belongsToMany(Certificate::class)->withTimestamps();
+    }
 }

@@ -30,6 +30,11 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
+            $table->foreignId('training_id')
+                ->constrained('trainings')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }
