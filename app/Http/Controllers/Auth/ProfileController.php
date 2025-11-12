@@ -20,9 +20,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // Eager load related trainings (certificates)
-        $user->load('trainings');
-
         $companies = Company::all();
         return view('auth.profiles.edit', compact('user', 'companies'));
     }
@@ -57,6 +54,9 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
+        // load trainings to get certificates
         $user->load('trainings');
+
+        return view('auth.profiles.certificates', compact('user'));
     }
 }

@@ -16,7 +16,6 @@ class CompanyController extends Controller
      */
     public function index()
     {
-//        $companies = Company::with('address.postalCode')->latest()->paginate(5);
         $companies = Company::latest()->paginate(5);
         return view('companies.index', compact('companies'))->with(request()->input('page'));
     }

@@ -11,7 +11,7 @@
 
             <ul class="text-label-1 list-unstyled d-flex flex-column gap-4">
                 <li><a href="{{ route('profiles.edit') }}" class="text-decoration-underline-hover">Personal information</a></li>
-                <li><a href="" class="text-decoration-underline-hover">Certificates</a></li>
+                <li><a href="{{ route('profiles.certificates') }}" class="text-decoration-underline-hover">Certificates</a></li>
                 <li><a href="" class="text-decoration-underline-hover">Contact & help</a></li>
                 <li>
                     <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
