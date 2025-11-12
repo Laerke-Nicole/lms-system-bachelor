@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="vh-100 container-fluid login">
+    <div class="vh-100 container-fluid auth">
         <div class="row h-100">
             <!-- left side with form -->
-            <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start login-left">
-                <div class="p-4 d-flex flex-column w-100 login-left__container">
+            <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start auth-left">
+                <div class="p-4 d-flex flex-column w-100 auth-left__container">
                     <div class="mb-5">
                         <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
                     </div>
@@ -19,7 +19,7 @@
                             <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" />
 
                             <div class="d-flex flex-column mt-2">
-                                <a href="#" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
+                                <a href="{{ route('password.request') }}" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
                                 <button type="submit" class="btn btn-primary mb-0">Log in</button>
                             </div>
 

@@ -31,6 +31,7 @@
                             <button type="submit" class="btn btn-primary">register</button>
                         </div>
 
+                        <x-blocks.message />
                         <x-blocks.error-alert />
                     </x-blocks.form>
                 </div>

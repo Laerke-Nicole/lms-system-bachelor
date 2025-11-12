@@ -25,9 +25,9 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('home');
+});
 
 //layout
 //auth
@@ -70,15 +70,17 @@ Route::middleware(['auth'])->group(function () {
 
 
 //    request password reset link
-//    view with pass reset form
+//    user sends their email and request for an email reset link
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
 
 //    handle submit to reset password
 Route::post('/forgot-password', function (Request $request) {
+//    validate email
     $request->validate(['email' => 'required|email']);
 
+//    send reset link to user
     $status = Password::sendResetLink(
         $request->only('email')
     );
@@ -89,18 +91,18 @@ Route::post('/forgot-password', function (Request $request) {
 })->middleware('guest')->name('password.email');
 
 //    reset password
-//    view of reset form when user clicks reset pass link
+//    form for when user clicks email with the link to reset pass
 Route::get('/reset-password/{token}', function (string $token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
-//    handle form submit
+//    handle resetting the password
 Route::post('/reset-password', function (Request $request) {
     //        validate the inputs and token
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
-        'password' => 'requir   ed|min:8|confirmed',
+        'password' => 'required|min:8|confirmed',
     ]);
 
     //        validate pass reset
