@@ -54,8 +54,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // load trainings to get certificates
-        $user->load('trainings');
+        $user->load('certificates.training.course');
 
         return view('auth.profiles.certificates', compact('user'));
     }

@@ -105,4 +105,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Training::class, 'verified_by_id');
     }
+
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }

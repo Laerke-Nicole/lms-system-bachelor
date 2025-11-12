@@ -8,7 +8,7 @@
 
     <x-blocks.table-head
         :headers="['Date', 'Course', 'Place', 'Status', 'Trainer', 'Ordered by', 'Reminder before training', 'Reminder sent 18 months', 'Reminder sent 22 months', 'Extra comments', 'Actions']">
-        @foreach ($trainings as $training)
+        @forelse ($trainings as $training)
             <tr>
                 <td>{{ $training->training_date->format('d M Y H:i') }}</td>
                 <td>{{ $training->course->title }}</td>
@@ -26,7 +26,11 @@
                                                 :deleteRoute="route('trainings.destroy', $training->id)"/>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="6">There are no upcoming trainings.</td>
+            </tr>
+        @endforelse
     </x-blocks.table-head>
 
 
