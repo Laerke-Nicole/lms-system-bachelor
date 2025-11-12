@@ -7,7 +7,6 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class RegisteredUserController extends Controller
 {
@@ -28,9 +27,6 @@ class RegisteredUserController extends Controller
             'company_id' => 'required|exists:companies,id',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
-        //        hasing password
-        $validated['password'] = Hash::make($validated['password']);
 
         //        create user and store it
         $user = User::create($validated);
