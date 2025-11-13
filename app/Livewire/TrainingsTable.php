@@ -15,7 +15,6 @@ class TrainingsTable extends Component
 
     public $paginationTheme = 'bootstrap';
 
-    //    filtering
     public $filter = 'all';
 
     //    update filtering when clicking the filter btns
@@ -36,11 +35,19 @@ class TrainingsTable extends Component
             ->when($this->filter === 'expired', fn($q) =>
             $q->where('status', 'Expired')
             )
-            ->latest()
+
+//            sort upcoming and all by training_date ascending
+            ->when(in_array($this->filter, ['upcoming', 'all']),
+                fn($q) => $q->orderBy('training_date', 'asc')
+            )
+//            sort completed and expired by training_date descending
+            ->when(in_array($this->filter, ['completed', 'expired']),
+                fn($q) => $q->orderBy('training_date', 'desc')
+            )
             ->paginate(5);
     }
 
-    //    show table heads based on which filtering is active
+    //    show table heads on training index based on which filtering is active
     public function getTableHeadersProperty()
     {
 //        store the different headers
