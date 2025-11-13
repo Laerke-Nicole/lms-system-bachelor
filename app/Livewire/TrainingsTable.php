@@ -43,11 +43,13 @@ class TrainingsTable extends Component
     //    show table heads based on which filtering is active
     public function getTableHeadersProperty()
     {
+//        store the different headers
         $base = ['Date', 'Course', 'Status', 'Place', 'Trainer', 'Ordered by'];
         $upcomingReminder = ['Reminder before training'];
         $completedReminder = ['Reminder sent 18 months', 'Reminder sent 22 months'];
         $actions = ['Actions'];
 
+//        show the headers based on the status in the filter
         $extra = match ($this->filter) {
             'upcoming' => $upcomingReminder,
             'completed', 'expired' => $completedReminder,
@@ -55,6 +57,7 @@ class TrainingsTable extends Component
             default => [],
         };
 
+//        show the headers in the right order based on the filter
         return [...$base, ...$extra, ...$actions];
     }
 }
