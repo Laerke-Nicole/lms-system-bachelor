@@ -24,7 +24,7 @@ class TrainingsTable extends Component
         $this->filter = $value;
     }
 
-    //    return the filtering options
+    //    return the filtering btn options
     public function getTrainingsProperty()
     {
         return Training::when($this->filter === 'upcoming', fn($q) =>
