@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\AbInventech;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -11,7 +12,10 @@ class AuthSessionController extends Controller
 {
     //    login view
     public function showLogin() {
-        return view('auth.login');
+
+        $abInventech = AbInventech::first();
+
+        return view('auth.login', compact('abInventech'));
     }
 
     //    handle login form

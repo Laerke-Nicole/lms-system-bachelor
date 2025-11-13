@@ -7,7 +7,7 @@
             <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start auth-left">
                 <div class="p-4 d-flex flex-column w-100 auth-left__container">
                     <div class="mb-5">
-                        <img src="{{ asset('images/default-logo.png') }}" alt="Logo" class="logo">
+                        <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-25 img-fluid">
                     </div>
 
                     <div class="w-100">

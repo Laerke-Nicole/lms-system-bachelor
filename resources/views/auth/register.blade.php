@@ -5,10 +5,6 @@
         <div class="row h-100">
             <!-- left side with form -->
             <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start px-0 px-lg-5 bg-white">
-                <div class="mb-5">
-                    <img src="{{ asset('images/logo.png') }}" alt="AB Inventech" style="max-width: 160px;">
-                </div>
-
                 <div class="w-100" style="max-width: 320px;">
                     <h3 class="mb-4">Register</h3>
 
