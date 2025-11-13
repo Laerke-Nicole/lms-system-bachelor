@@ -34,9 +34,10 @@
     </div>
 
     <div class="col-3 d-flex justify-content-end">
-        <a href=""><i class="bi bi-pencil"></i></a>
+        <x-sections.modal id="changePasswordModal" modalLabel="changePasswordModalLabel" title="Change your password">
+            hej
+        </x-sections.modal>
     </div>
 </div>
-
 
 @endsection
