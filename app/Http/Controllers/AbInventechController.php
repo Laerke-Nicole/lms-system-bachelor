@@ -16,18 +16,7 @@ class AbInventechController extends Controller
     public function index()
     {
         $abInventechs = AbInventech::latest()->paginate(5);
-        return view('ab_inventechs.index', compact('abInventechs'))->with(request()->input('page'));
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('ab_inventechs.create');
+        return view('ab_inventech.index', compact('abInventechs'))->with(request()->input('page'));
     }
 
 
@@ -48,7 +37,7 @@ class AbInventechController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('ab_inventechs', 'public');
+            $logoPath = $request->file('logo')->store('ab_inventech', 'public');
             $validated['logo'] = $logoPath;
         }
 
@@ -56,7 +45,7 @@ class AbInventechController extends Controller
         AbInventech::create($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('ab_inventechs.index')->with('success', 'AB Inventech created successfully.');
+        return redirect()->route('ab_inventech.index')->with('success', 'AB Inventech created successfully.');
     }
 
 
@@ -68,7 +57,7 @@ class AbInventechController extends Controller
      */
     public function show(AbInventech $abInventech)
     {
-        return view('ab_inventechs.show', compact('abInventech'));
+        return view('ab_inventech.show', compact('abInventech'));
     }
 
 
@@ -80,7 +69,7 @@ class AbInventechController extends Controller
      */
     public function edit(AbInventech $abInventech)
     {
-        return view('ab_inventechs.edit', compact('abInventech'));
+        return view('ab_inventech.edit', compact('abInventech'));
     }
 
 
@@ -105,7 +94,7 @@ class AbInventechController extends Controller
             if ($abInventech->logo) {
                 Storage::delete('public/' . $abInventech->logo);
             }
-            $logoPath = $request->file('logo')->store('ab_inventechs', 'public');
+            $logoPath = $request->file('logo')->store('ab_inventech', 'public');
             $validated['logo'] = $logoPath;
         }
 
@@ -113,7 +102,7 @@ class AbInventechController extends Controller
         $abInventech->update($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('ab_inventechs.index')->with('success', 'AB Inventech updated successfully.');
+        return redirect()->route('ab_inventech.index')->with('success', 'AB Inventech updated successfully.');
     }
 
 
@@ -133,6 +122,6 @@ class AbInventechController extends Controller
         $abInventech->delete();
 
         //  redirect the user and send a success message
-        return redirect()->route('ab_inventechs.index')->with('success', 'AB Inventech deleted successfully.');
+        return redirect()->route('ab_inventech.index')->with('success', 'AB Inventech deleted successfully.');
     }
 }
