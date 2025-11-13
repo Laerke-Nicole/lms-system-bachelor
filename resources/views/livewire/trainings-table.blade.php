@@ -10,9 +10,8 @@
     <x-blocks.table-head :headers="$this->tableHeaders">
         @forelse ($this->trainings as $training)
             <tr>
-                <td>{{ $training->training_date->format('d M Y H:i') }}</td>
+                <td>{{ $training->training_date->format('d M Y, H:i') }}</td>
                 <td>{{ $training->course->title }}</td>
-                <td>{{ $training->status }}</td>
                 <td>{{ $training->place }}</td>
                 <td>{{ $training->trainer->first_name }} {{ $training->trainer->last_name }}</td>
                 <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
@@ -24,6 +23,9 @@
                 @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all')
                     <td>{{ $training->reminder_sent_18_m ? 'Yes' : 'No' }}</td>
                     <td>{{ $training->reminder_sent_22_m ? 'Yes' : 'No' }}</td>
+                @endif
+                @if($filter === 'all')
+                    <td>{{ $training->status }}</td>
                 @endif
                 <td>
                     <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"

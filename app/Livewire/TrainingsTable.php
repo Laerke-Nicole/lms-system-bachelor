@@ -44,7 +44,8 @@ class TrainingsTable extends Component
     public function getTableHeadersProperty()
     {
 //        store the different headers
-        $base = ['Date', 'Course', 'Status', 'Place', 'Trainer', 'Ordered by'];
+        $base = ['Date', 'Course', 'Place', 'Trainer', 'Ordered by'];
+        $status = ['Status'];
         $upcomingReminder = ['Reminder before training'];
         $completedReminder = ['Reminder sent 18 months', 'Reminder sent 22 months'];
         $actions = ['Actions'];
@@ -53,7 +54,7 @@ class TrainingsTable extends Component
         $extra = match ($this->filter) {
             'upcoming' => $upcomingReminder,
             'completed', 'expired' => $completedReminder,
-            'all' => [...$upcomingReminder, ...$completedReminder],
+            'all' => [...$upcomingReminder, ...$completedReminder, ...$status],
             default => [],
         };
 
