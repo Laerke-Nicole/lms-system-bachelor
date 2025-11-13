@@ -39,14 +39,14 @@ class CertificateController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'date' => 'required|date',
             'valid_until' => 'required|date',
         ]);
 
         // create a new certificate in the db
-        Certificate:: create($request->all());
+        Certificate:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('certificates.index')->with('success', 'Certificate created successfully.');
@@ -87,14 +87,14 @@ class CertificateController extends Controller
     public function update(Request $request, Certificate $certificate)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'date' => 'required|date',
             'valid_until' => 'required|date',
         ]);
 
         // update a new certificate in the db
-        $certificate->update($request->all());
+        $certificate->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('certificates.index')->with('success', 'Certificate updated successfully.');

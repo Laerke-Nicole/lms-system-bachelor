@@ -12,12 +12,13 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Title', 'Description', 'Duration months', 'Actions']">
+    <x-blocks.table-head :headers="['Name', 'Mail', 'Phone', 'Address', 'Actions']">
         @foreach ($abInventechs as $abInventech)
             <tr>
                 <td>{{ $abInventech->ab_inventech_name }}</td>
                 <td>{{ $abInventech->ab_inventech_mail }}</td>
                 <td>{{ $abInventech->ab_inventech_phone }}</td>
+                <td><x-blocks.index-address :table="$abInventech" /></td>
                 <td>
                     <x-blocks.table-actions :showRoute="route('ab_inventech.show', $abInventech->id)"
                                                 :editRoute="route('ab_inventech.edit', $abInventech->id)"

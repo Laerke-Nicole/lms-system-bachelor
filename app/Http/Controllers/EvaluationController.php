@@ -39,13 +39,13 @@ class EvaluationController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'evaluation_link' => 'required|url',
         ]);
 
         // create a new evaluation in the db
-        Evaluation:: create($request->all());
+        Evaluation:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('evaluations.index')->with('success', 'Evaluation created successfully.');
@@ -86,13 +86,13 @@ class EvaluationController extends Controller
     public function update(Request $request, Evaluation $evaluation)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'evaluation_link' => 'required|url',
         ]);
 
         // update a new evaluation in the db
-        $evaluation->update($request->all());
+        $evaluation->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('evaluations.index')->with('success', 'Evaluation updated successfully.');

@@ -41,7 +41,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'company_name' => 'required|string|max:255',
             'company_mail' => 'required|email|max:255',
             'company_phone' => 'required|string|max:50',
@@ -68,13 +68,7 @@ class CompanyController extends Controller
         ]);
 
         // create company including address id
-        Company::create([
-            'company_name' => $request->company_name,
-            'company_mail' => $request->company_mail,
-            'company_phone' => $request->company_phone,
-            'is_vestas' => $request->has('is_vestas') ? 1 : 0,
-            'address_id' => $address->id,
-        ]);
+        Address:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
@@ -119,7 +113,7 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'company_name' => 'required|string|max:255',
             'company_mail' => 'required|email|max:255',
             'company_phone' => 'required|string|max:50',
@@ -149,12 +143,7 @@ class CompanyController extends Controller
         }
 
         // update company
-        $company->update([
-            'company_name' => $request->company_name,
-            'company_mail' => $request->company_mail,
-            'company_phone' => $request->company_phone,
-            'is_vestas' => $request->has('is_vestas') ? 1 : 0,
-        ]);
+        $company->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('companies.index')->with('success', 'Company updated successfully.');

@@ -39,13 +39,13 @@ class GdprController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'valid_until' => 'required|date',
             'consent_date' => 'required|date',
         ]);
 
         // create a new gdpr in the db
-        Gdpr:: create($request->all());
+        Gdpr:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('gdprs.index')->with('success', 'GDPR created successfully.');
@@ -86,13 +86,13 @@ class GdprController extends Controller
     public function update(Request $request, Gdpr $gdpr)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'valid_until' => 'required|date',
             'consent_date' => 'required|date',
         ]);
 
         // update a new gdpr in the db
-        $gdpr->update($request->all());
+        $gdpr->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('gdprs.index')->with('success', 'GDPR updated successfully.');

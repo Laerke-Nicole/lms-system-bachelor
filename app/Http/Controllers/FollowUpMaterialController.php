@@ -39,14 +39,14 @@ class FollowUpMaterialController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'type' => 'required',
             'url' => 'required|url',
         ]);
 
         // create a new follow up material in the db
-        FollowUpMaterial:: create($request->all());
+        FollowUpMaterial:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('follow_up_materials.index')->with('success', 'Follow up material created successfully.');
@@ -87,14 +87,14 @@ class FollowUpMaterialController extends Controller
     public function update(Request $request, FollowUpMaterial $followUpMaterial)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'type' => 'required',
             'url' => 'required|url',
         ]);
 
         // update a new follow up material in the db
-        $followUpMaterial->update($request->all());
+        $followUpMaterial->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('follow_up_materials.index')->with('success', 'Follow up material updated successfully.');

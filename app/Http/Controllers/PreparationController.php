@@ -39,14 +39,14 @@ class PreparationController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'type' => 'required',
             'url' => 'required|url',
         ]);
 
         // create a new preparation in the db
-        Preparation:: create($request->all());
+        Preparation:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('preparations.index')->with('success', 'Preparation created successfully.');
@@ -87,14 +87,14 @@ class PreparationController extends Controller
     public function update(Request $request, Preparation $preparation)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'type' => 'required',
             'url' => 'required|url',
         ]);
 
         // update a new preparation in the db
-        $preparation->update($request->all());
+        $preparation->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('preparations.index')->with('success', 'Preparation updated successfully.');

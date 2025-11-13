@@ -40,7 +40,7 @@ class TrainingController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'place' => 'required',
             'status' => 'required|in:Upcoming,Completed,Expired',
             'training_date' => 'required|date',
@@ -60,7 +60,7 @@ class TrainingController extends Controller
         ]);
 
         // create a new training in the db
-        Training:: create($request->all());
+        Training:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training created successfully.');
@@ -106,14 +106,14 @@ class TrainingController extends Controller
     public function update(Request $request, Training $training)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'place' => 'required',
             'status' => 'required',
             'training_date' => 'required|date',
         ]);
 
         // update a new training in the db
-        $training->update($request->all());
+        $training->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training updated successfully.');

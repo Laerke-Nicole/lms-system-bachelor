@@ -39,12 +39,12 @@ class FollowUpTestController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'test_link' => 'required|url',
         ]);
 
         // create a new follow up test in the db
-        FollowUpTest:: create($request->all());
+        FollowUpTest:: create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('follow_up_tests.index')->with('success', 'Follow up test created successfully.');
@@ -85,12 +85,12 @@ class FollowUpTestController extends Controller
     public function update(Request $request, FollowUpTest $followUpTest)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'test_link' => 'required|url',
         ]);
 
         // update a new follow up test in the db
-        $followUpTest->update($request->all());
+        $followUpTest->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('follow_up_tests.index')->with('success', 'Follow up test updated successfully.');

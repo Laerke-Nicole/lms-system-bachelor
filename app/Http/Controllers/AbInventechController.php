@@ -34,6 +34,11 @@ class AbInventechController extends Controller
             'ab_inventech_mail' => 'required|email',
             'ab_inventech_phone' => 'required',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'street_name' => 'required|string|max:255',
+            'street_number' => 'required|string|max:10',
+            'postal_code' => 'required|string|max:10',
+            'city' => 'required|string|max:100',
+            'country' => 'required|string|max:100',
         ]);
 
         if ($request->hasFile('logo')) {
@@ -88,21 +93,39 @@ class AbInventechController extends Controller
             'ab_inventech_mail' => 'required|email',
             'ab_inventech_phone' => 'required',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'street_name' => 'required|string|max:255',
+            'street_number' => 'required|string|max:10',
+            'postal_code' => 'required|string|max:10',
+            'city' => 'required|string|max:100',
+            'country' => 'required|string|max:100',
+        ]);
+
+        // update postal code
+        $abInventech->address->postalCode->update([
+            'postal_code' => $request->postal_code,
+            'city'        => $request->city,
+            'country'     => $request->country,
+        ]);
+
+        // update address
+        $abInventech->address->update([
+            'street_name'   => $request->street_name,
+            'street_number' => $request->street_number,
         ]);
 
         if ($request->hasFile('logo')) {
-            if ($abInventech->logo) {
+
+           if ($abInventech->logo) {
                 Storage::delete('public/' . $abInventech->logo);
             }
-            $logoPath = $request->file('logo')->store('ab_inventech', 'public');
-            $validated['logo'] = $logoPath;
+            $validated['logo'] = $request->file('logo')->store('ab_inventech', 'public');
         }
 
-        // update a new ab inventech in the db
+//        updated ab inventech
         $abInventech->update($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('ab_inventech.index')->with('success', 'AB Inventech updated successfully.');
+        return redirect()->route('ab_inventech.index')->with('success', 'AB Inventech information updated successfully.');
     }
 
 

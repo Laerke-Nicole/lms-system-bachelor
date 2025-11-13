@@ -43,7 +43,7 @@ class SiteController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'site_name' => 'required',
             'site_mail' => 'required|email',
             'site_phone' => 'required',
@@ -70,13 +70,7 @@ class SiteController extends Controller
         ]);
 
         // create site including address id
-        Site::create([
-            'site_name' => $request->site_name,
-            'site_mail' => $request->site_mail,
-            'site_phone' => $request->site_phone,
-            'company_id' => $request->company_id,
-            'address_id' => $address->id,
-        ]);
+        Site::create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('sites.index')->with('success', 'Site created successfully.');
@@ -119,7 +113,7 @@ class SiteController extends Controller
     public function update(Request $request, Site $site)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'site_name' => 'required',
             'site_mail' => 'required|email',
             'site_phone' => 'required',
@@ -131,28 +125,20 @@ class SiteController extends Controller
         ]);
 
         // update postal code
-        if ($site->address && $site->address->postalCode) {
-            $site->address->postalCode->update([
-                'postal_code' => $request->postal_code,
-                'city' => $request->city,
-                'country' => $request->country,
-            ]);
-        }
+        $site->address->postalCode->update([
+            'postal_code' => $request->postal_code,
+            'city'        => $request->city,
+            'country'     => $request->country,
+        ]);
 
         // update address
-        if ($site->address) {
-            $site->address->update([
-                'street_name' => $request->street_name,
-                'street_number' => $request->street_number,
-            ]);
-        }
-
-        // update site
-        $site->update([
-            'site_name' => $request->site_name,
-            'site_mail' => $request->site_mail,
-            'site_phone' => $request->site_phone,
+        $site->address->update([
+            'street_name'   => $request->street_name,
+            'street_number' => $request->street_number,
         ]);
+
+//        update site
+        $site->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('sites.index')->with('success', 'Site updated successfully.');

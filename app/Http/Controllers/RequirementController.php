@@ -39,13 +39,13 @@ class RequirementController extends Controller
     public function store(Request $request)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
 
         // create a new requirement in the db
-        Requirement:: create($request->all());
+        Requirement::create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('requirements.index')->with('success', 'Requirement created successfully.');
@@ -86,13 +86,13 @@ class RequirementController extends Controller
     public function update(Request $request, Requirement $requirement)
     {
         // validate the user input
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
 
         // update a new requirement in the db
-        $requirement->update($request->all());
+        $requirement->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('requirements.index')->with('success', 'Requirement updated successfully.');
