@@ -2,8 +2,26 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('companies.index') }}" title="{{ $company->company_name }}"
-                    buttonText="Go back"></x-blocks.title>
+    <div class="row">
+        <div class="col-lg-6">
+            <x-blocks.title href="{{ route('companies.index') }}" title="{{ $company->company_name }}"
+                            buttonText="Go back"></x-blocks.title>
+        </div>
+
+        <div class="col-lg-6 d-flex flex-column justify-content-end align-items-end mb-5">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Company</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Users</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <div class="row">
         <x-blocks.detail field="Name" title="{{ $company->company_name }}"></x-blocks.detail>

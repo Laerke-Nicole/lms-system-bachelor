@@ -44,10 +44,7 @@
 {{--                        <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
-                    <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
-                        <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="bi bi-dot"></x-elements.link></li>
-    {{--                    <li><x-elements.link title="User groups" href="{{ route('training.users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
-                    </x-blocks.mmenu-dropdown>
+                    <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="bi bi-mortarboard"></x-elements.link></li>
 
                     <x-blocks.mmenu-dropdown title="Courses" icon="bi bi-journals">
                         <li><x-elements.link class="dropdown-item" title="Course" href="{{ route('courses.index') }}" icon="bi bi-dot"></x-elements.link></li>
