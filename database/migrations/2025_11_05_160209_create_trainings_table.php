@@ -17,8 +17,8 @@ return new class extends Migration
             $table->enum('status', ['Upcoming', 'Completed', 'Expired'])->default('Upcoming');
             $table->dateTime('training_date');
             $table->string('participation_link');
-            $table->boolean('reminder_sent_18_m')->default(false);
-            $table->boolean('reminder_sent_22_m')->default(false);
+            $table->boolean('reminder_sent_18_m')->default(false)->nullable();
+            $table->boolean('reminder_sent_22_m')->default(false)->nullable();
             $table->date('reminder_before_training')->nullable();
 
             $table->foreignId('course_id')

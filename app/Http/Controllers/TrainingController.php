@@ -42,8 +42,21 @@ class TrainingController extends Controller
         // validate the user input
         $request->validate([
             'place' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:Upcoming,Completed,Expired',
             'training_date' => 'required|date',
+
+            'reminder_before_training' => [
+                Rule::requiredIf($request->status === 'Upcoming'),
+                'date',
+            ],
+
+            'reminder_sent_18_m' => [
+                Rule::requiredIf(in_array($request->status === 'Completed','Expired'))
+            ],
+
+            'reminder_sent_22_m' => [
+                Rule::requiredIf(in_array($request->status === 'Completed','Expired'))
+            ],
         ]);
 
         // create a new training in the db

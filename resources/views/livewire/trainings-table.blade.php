@@ -7,18 +7,24 @@
         <button class="{{ $filter === 'expired' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('expired')">Expired</button>
     </div>
 
-    <x-blocks.table-head
-        :headers="['Date', 'Course', 'Place', 'Trainer', 'Ordered by', 'Reminder before training', 'Reminder sent 18 months', 'Reminder sent 22 months', 'Actions']">
+    <x-blocks.table-head :headers="$this->tableHeaders">
         @forelse ($this->trainings as $training)
             <tr>
                 <td>{{ $training->training_date->format('d M Y H:i') }}</td>
                 <td>{{ $training->course->title }}</td>
+                <td>{{ $training->status }}</td>
                 <td>{{ $training->place }}</td>
                 <td>{{ $training->trainer->first_name }} {{ $training->trainer->last_name }}</td>
                 <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
-                <td>{{ $training->reminder_before_training_formatted }}</td>
-                <td>{{ $training->reminder_sent_18_m ? 'True' : 'False' }}</td>
-                <td>{{ $training->reminder_sent_22_m ? 'True' : 'False' }}</td>
+
+                @if($training->status === 'Upcoming' || $filter === 'all')
+                    <td>{{ $training->reminder_before_training_formatted }}</td>
+                @endif
+
+                @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all')
+                    <td>{{ $training->reminder_sent_18_m ? 'Yes' : 'No' }}</td>
+                    <td>{{ $training->reminder_sent_22_m ? 'Yes' : 'No' }}</td>
+                @endif
                 <td>
                     <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"
                                             :editRoute="route('trainings.edit', $training->id)"
