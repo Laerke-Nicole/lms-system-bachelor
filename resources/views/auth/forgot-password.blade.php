@@ -18,7 +18,6 @@
                                 <button type="submit" class="btn btn-primary mb-0">Get reset email</button>
                             </div>
 
-                            <x-blocks.message />
                             <x-blocks.error-alert />
                         </x-blocks.form>
                     </div>

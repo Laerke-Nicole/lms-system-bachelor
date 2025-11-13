@@ -86,7 +86,7 @@ Route::post('/forgot-password', function (Request $request) {
     );
 
     return $status === Password::ResetLinkSent
-        ? back()->with(['status' => __($status)])
+        ? redirect()->route('password.reset.sent')
         : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
@@ -123,3 +123,7 @@ Route::post('/reset-password', function (Request $request) {
         ? redirect()->route('login')->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+Route::get('/password-reset-sent', function () {
+    return view('auth.password-reset-sent');
+})->middleware('guest')->name('password.reset.sent');
