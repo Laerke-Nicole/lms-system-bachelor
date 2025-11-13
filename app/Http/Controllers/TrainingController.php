@@ -17,33 +17,8 @@ class TrainingController extends Controller
     public function index()
     {
         $trainings = Training::latest()->paginate(5);
-
-        return view('trainings.index', [
-            'trainings' => $trainings,
-            'title' => 'All Trainings',
-        ]);
+        return view('trainings.index', compact('trainings'))->with(request()->input('page'));
     }
-
-    public function upcoming()
-    {
-        $trainings = Training::where('Status', 'Upcoming')->latest()->paginate(5);
-
-        return view('trainings.index', [
-            'trainings' => $trainings,
-            'title' => 'Upcoming Trainings',
-        ]);
-    }
-
-    public function past()
-    {
-        $trainings = Training::whereIn('status', ['Completed', 'Expired'])->latest()->paginate(5);
-
-        return view('trainings.index', [
-            'trainings' => $trainings,
-            'title' => 'Completed Trainings',
-        ]);
-    }
-
 
     /**
      * Show the form for creating a new resource.

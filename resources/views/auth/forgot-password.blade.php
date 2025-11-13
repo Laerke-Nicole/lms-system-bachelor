@@ -6,7 +6,6 @@
             <!-- left side with form -->
             <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start auth-left">
                 <div class="p-4 d-flex flex-column w-100 auth-left__container">
-
                     <div class="w-100">
                         <h3>Did you forget your password?</h3>
                         <p class="mb-4 fs-5">We will send you an email so you can reset your password.</p>
