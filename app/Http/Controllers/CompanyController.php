@@ -83,8 +83,10 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //        run one joined query
-        $company->load('address.postalCode');
+        $company->load([
+            'sites.users',
+            'address.postalCode'
+        ]);
         return view('companies.show', compact('company'));
     }
 
@@ -97,7 +99,6 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //        run one joined query
         $company->load('address.postalCode');
         return view('companies.edit', compact('company'));
     }

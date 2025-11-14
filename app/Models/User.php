@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'role',
-        'company_id',
+        'site_id',
     ];
 
     /**
@@ -51,9 +51,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function company()
+    public function site()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Site::class);
     }
 
     public function trainings()
@@ -97,9 +97,14 @@ class User extends Authenticatable
         return $this->hasMany(Training::class, 'ordered_by_id');
     }
 
-    public function trainingsAsTrainer()
+    public function trainingSlotsAsTrainer()
     {
-        return $this->hasMany(Training::class, 'trainer_id');
+        return $this->hasMany(TrainingSlot::class, 'trainer_id');
+    }
+
+    public function createdTrainingSlots()
+    {
+        return $this->hasMany(TrainingSlot::class, 'created_by_admin_id');
     }
 
     public function verifiedCertificates()

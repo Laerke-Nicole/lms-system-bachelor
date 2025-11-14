@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Company;
+use App\Models\Site;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $companies = Company::all();
+        $companies = Site::all();
         return view('auth.profiles.edit', compact('user', 'companies'));
     }
 

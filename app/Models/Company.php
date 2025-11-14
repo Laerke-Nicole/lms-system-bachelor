@@ -22,8 +22,15 @@ class Company extends Model
         return $this->belongsTo(Address::class);
     }
 
+//    get users through site
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasManyThrough(User::class, Site::class);
     }
+
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
+
 }
