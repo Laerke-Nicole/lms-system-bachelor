@@ -15,7 +15,7 @@
                 <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
                 <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
 
-                @if($filter === 'all' || 'Upcoming')
+                @if($filter === 'all' || $filter === 'upcoming')
                     <td>{{ $training->trainingSlot->place }}</td>
                 @endif
 
