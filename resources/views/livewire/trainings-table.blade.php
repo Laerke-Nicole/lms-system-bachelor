@@ -12,9 +12,12 @@
             <tr>
                 <td>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</td>
                 <td>{{ $training->trainingSlot->course->title }}</td>
-                <td>{{ $training->trainingSlot->place }}</td>
                 <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
                 <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
+
+                @if($filter === 'all' || 'Upcoming')
+                    <td>{{ $training->trainingSlot->place }}</td>
+                @endif
 
                 @if($training->status === 'Upcoming' || $filter === 'all')
                     <td>{{ $training->reminder_before_training_formatted }}</td>

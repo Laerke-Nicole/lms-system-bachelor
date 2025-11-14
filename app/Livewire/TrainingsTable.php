@@ -54,14 +54,14 @@ class TrainingsTable extends Component
     public function getTableHeadersProperty()
     {
 //        store the different standard headers
-        $base = ['Date', 'Course', 'Place', 'Trainer', 'Ordered by'];
+        $base = ['Date', 'Course', 'Trainer', 'Ordered by'];
         $actions = ['Actions'];
 
 //        show the headers based on the status in the filter in the right order
         return match ($this->filter) {
-            'upcoming' => [...$base, 'Reminder before training', ...$actions],
+            'upcoming' => [...$base, 'Place', 'Reminder before training', ...$actions],
             'completed', 'expired' => [...$base, 'Reminder 18m', 'Reminder 22m', ...$actions],
-            'all' => [...$base, 'Reminder before', 'Reminder 18m', 'Reminder 22m', 'Status', ...$actions],
+            'all' => [...$base, 'Place', 'Reminder before', 'Reminder 18m', 'Reminder 22m', 'Status', ...$actions],
             default => [...$base, ...$actions],
         };
     }
