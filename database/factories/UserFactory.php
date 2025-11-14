@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Company;
+use App\Models\Site;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'phone' => $this->faker->phoneNumber(),
             'role' => $this->faker->randomElement(['user', 'leader', 'admin']),
-            'company_id' => Company::inRandomOrder()->value('id'),
+            'site_id' => Site::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];
     }
