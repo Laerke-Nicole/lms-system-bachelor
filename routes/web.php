@@ -22,6 +22,7 @@ use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\TrainingSlotController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('evaluations', EvaluationController::class);
     Route::resource('follow_up_tests', FollowUpTestController::class);
     Route::resource('trainings', TrainingController::class);
-    Route::resource('trainings', TrainingController::class);
+    Route::resource('training_slots', TrainingSlotController::class);
     Route::resource('follow_up_materials', FollowUpMaterialController::class);
     Route::resource('preparations', PreparationController::class);
     Route::resource('requirements', RequirementController::class);
