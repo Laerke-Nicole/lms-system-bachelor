@@ -6,10 +6,10 @@
                     buttonText="Go back"></x-blocks.title>
 
     <div class="row">
-        <x-blocks.detail field="Date" title="{{ $training->training_date->format('d M Y H:i') }}"></x-blocks.detail>
-        <x-blocks.detail field="Course" title="{{ $training->course->title }}"></x-blocks.detail>
-        <x-blocks.detail field="Place" title="{{ $training->place }}"></x-blocks.detail>
-        <x-blocks.detail field="Trainer" title="{{ $training->trainer->first_name. ' ' . ($training->trainer)->last_name }}"></x-blocks.detail>
+        <x-blocks.detail field="Date" title="{{ $training->training_slot->training_date->format('d M Y H:i') }}"></x-blocks.detail>
+        <x-blocks.detail field="Course" title="{{ $training->training_slot->course->title }}"></x-blocks.detail>
+        <x-blocks.detail field="Place" title="{{ $training->training_slot->place }}"></x-blocks.detail>
+        <x-blocks.detail field="Trainer" title="{{ $training->training_slot->trainer->first_name. ' ' . ($training->trainer)->last_name }}"></x-blocks.detail>
         <x-blocks.detail field="Ordered by" title="{{ $training->orderedBy->first_name. ' ' . ($training->orderedBy)->last_name }}"></x-blocks.detail>
         <x-blocks.detail field="Whatsapp link" title="{{ $training->participation_link }}"></x-blocks.detail>
         @if($training->status === 'Upcoming')

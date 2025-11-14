@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Training;
-use Livewire\WithPagination;
+use App\Models\TrainingSlot;
 use Livewire\Component;
 
 class TrainingsTable extends Component
@@ -26,46 +26,43 @@ class TrainingsTable extends Component
     //    return the filtering btn options
     public function getTrainingsProperty()
     {
-        return Training::when($this->filter === 'upcoming', fn($q) =>
-            $q->where('status', 'Upcoming')
-            )
-            ->when($this->filter === 'completed', fn($q) =>
-            $q->where('status', 'Completed')
-            )
-            ->when($this->filter === 'expired', fn($q) =>
-            $q->where('status', 'Expired')
-            )
+        $query = Training::query()
+            ->with(['trainingSlot.course', 'trainingSlot.trainer', 'orderedBy'])
+            ->join('training_slots', 'training_slots.id', '=', 'trainings.training_slot_id')
+            ->select('trainings.*');
+
+        // filtering
+        match ($this->filter) {
+            'upcoming'  => $query->where('trainings.status', 'Upcoming'),
+            'completed' => $query->where('trainings.status', 'Completed'),
+            'expired'   => $query->where('trainings.status', 'Expired'),
+            default     => null,
+        };
 
 //            sort upcoming and all by training_date ascending
-            ->when(in_array($this->filter, ['upcoming', 'all']),
-                fn($q) => $q->orderBy('training_date', 'asc')
-            )
+        if (in_array($this->filter, ['upcoming', 'all'])) {
+            $query->orderBy('training_slots.training_date', 'asc');
+        } else {
 //            sort completed and expired by training_date descending
-            ->when(in_array($this->filter, ['completed', 'expired']),
-                fn($q) => $q->orderBy('training_date', 'desc')
-            )
-            ->paginate(5);
+            $query->orderBy('training_slots.training_date', 'desc');
+        }
+
+        return $query->paginate(5);
     }
 
     //    show table heads on training index based on which filtering is active
     public function getTableHeadersProperty()
     {
-//        store the different headers
+//        store the different standard headers
         $base = ['Date', 'Course', 'Place', 'Trainer', 'Ordered by'];
-        $status = ['Status'];
-        $upcomingReminder = ['Reminder before training'];
-        $completedReminder = ['Reminder sent 18 months', 'Reminder sent 22 months'];
         $actions = ['Actions'];
 
-//        show the headers based on the status in the filter
-        $extra = match ($this->filter) {
-            'upcoming' => $upcomingReminder,
-            'completed', 'expired' => $completedReminder,
-            'all' => [...$upcomingReminder, ...$completedReminder, ...$status],
-            default => [],
+//        show the headers based on the status in the filter in the right order
+        return match ($this->filter) {
+            'upcoming' => [...$base, 'Reminder before training', ...$actions],
+            'completed', 'expired' => [...$base, 'Reminder 18m', 'Reminder 22m', ...$actions],
+            'all' => [...$base, 'Reminder before', 'Reminder 18m', 'Reminder 22m', 'Status', ...$actions],
+            default => [...$base, ...$actions],
         };
-
-//        show the headers in the right order based on the filter
-        return [...$base, ...$extra, ...$actions];
     }
 }

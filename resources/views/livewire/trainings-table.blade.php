@@ -10,10 +10,10 @@
     <x-blocks.table-head :headers="$this->tableHeaders">
         @forelse ($this->trainings as $training)
             <tr>
-                <td>{{ $training->training_date->format('d M Y, H:i') }}</td>
-                <td>{{ $training->course->title }}</td>
-                <td>{{ $training->place }}</td>
-                <td>{{ $training->trainer->first_name }} {{ $training->trainer->last_name }}</td>
+                <td>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</td>
+                <td>{{ $training->trainingSlot->course->title }}</td>
+                <td>{{ $training->trainingSlot->place }}</td>
+                <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
                 <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
 
                 @if($training->status === 'Upcoming' || $filter === 'all')

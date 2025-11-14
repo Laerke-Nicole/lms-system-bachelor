@@ -8,24 +8,27 @@
     <x-blocks.error-alert/>
 
     <x-blocks.form action="{{ route('trainings.store') }}" method="POST">
-        <x-elements.select label="Place" name="place">
-            @foreach($trainings as $training)
-                <option value="{{ $training->id }}">{{ $training->place }}</option>
-            @endforeach
-        </x-elements.select>
-        <x-elements.select label="Status" name="status">
-            @foreach($trainings as $training)
-                <option value="{{ $training->id }}">{{ $training->status }}</option>
-            @endforeach
-        </x-elements.select>
-        <x-elements.input col="col-12 col-lg-4" label="Date" name="training_date" type="date" />
-        <x-elements.input col="col-12 col-lg-4" label="Whatsapp link" name="participation_link" />
-        <x-elements.input col="col-12 col-lg-4" label="Reminder sent 18 months" name="reminder_sent_18_m" type="checkbox" class="form-check-input" />
-        <x-elements.input col="col-12 col-lg-4" label="Reminder sent 22 months" name="reminder_sent_22_m" type="checkbox" class="form-check-input" />
-        <x-elements.input col="col-12 col-lg-4" label="Reminder before training" name="reminder_before_training" type="date" />
-        <x-elements.input col="col-12 col-lg-4" label="Course" name="course_id" />
-        <x-elements.input col="col-12 col-lg-4" label="Ordered by" name="ordered_by_id" />
-        <x-elements.input col="col-12 col-lg-4" label="Trainer" name="trainer_id" />
+{{--        <x-elements.input label="Date" name="training_date" type="datetime-local" />--}}
+
+{{--        <x-elements.select label="Course" name="course_id">--}}
+{{--            @foreach($courses as $course)--}}
+{{--                <option value="{{ $course->id }}">{{ $course->title }}</option>--}}
+{{--            @endforeach--}}
+{{--        </x-elements.select>--}}
+
+{{--        <x-elements.select label="Place" name="place">--}}
+{{--            @foreach($places as $place)--}}
+{{--                <option value="{{ $place }}">{{ $place }}</option>--}}
+{{--            @endforeach--}}
+{{--        </x-elements.select>--}}
+
+{{--        <x-elements.select label="Trainer" name="trainer_id">--}}
+{{--            @foreach($trainers as $trainer)--}}
+{{--                <option value="{{ $trainer->id }}">{{ $trainer->first_name }} {{ $trainer->last_name }}</option>--}}
+{{--            @endforeach--}}
+{{--        </x-elements.select>--}}
+
+{{--        <x-elements.input label="Whatsapp link (optional, can be added later)" placeholder="Whatsapp link" name="participation_link" type="url" :required="false" />--}}
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
