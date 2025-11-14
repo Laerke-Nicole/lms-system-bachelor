@@ -16,9 +16,9 @@ class Course extends Model
         'image',
     ];
 
-    public function trainings()
+    public function trainingSlots()
     {
-        return $this->hasMany(Training::class);
+        return $this->hasMany(TrainingSlot::class);
     }
 
     public function evaluations()
