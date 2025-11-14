@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('phone');
             $table->enum('role', ['user', 'leader', 'admin'])->default('user');
 
-            $table->foreignId('company_id')
-                ->constrained('companies')
+            $table->foreignId('site_id')
+                ->constrained('sites')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->rememberToken();
