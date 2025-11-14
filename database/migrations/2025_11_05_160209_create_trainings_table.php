@@ -13,26 +13,18 @@ return new class extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->enum('place', ['Online', 'On site']);
             $table->enum('status', ['Upcoming', 'Completed', 'Expired'])->default('Upcoming');
-            $table->dateTime('training_date');
-            $table->string('participation_link');
             $table->boolean('reminder_sent_18_m')->default(false)->nullable();
             $table->boolean('reminder_sent_22_m')->default(false)->nullable();
             $table->date('reminder_before_training')->nullable();
-
-            $table->foreignId('course_id')
-                ->constrained('courses')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
 
             $table->foreignId('ordered_by_id')
                 ->constrained('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->foreignId('trainer_id')
-                ->constrained('users')
+            $table->foreignId('training_slot_id')
+                ->constrained('training_slots')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
