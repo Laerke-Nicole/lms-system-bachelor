@@ -14,9 +14,9 @@
                         <x-elements.input label="Last name" placeholder="Enter your last name" name="last_name" type="text" :value="old('last_name')"  />
                         <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')"  />
                         <x-elements.input label="Phone" placeholder="Enter your phone number" name="phone" type="text" :value="old('phone')"  />
-                        <x-elements.select label="Company" name="company_id">
-                            @foreach($companies as $company)
-                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                        <x-elements.select label="Site" name="site_id">
+                            @foreach($sites as $site)
+                                <option value="{{ $site->id }}">{{ $site->site_name }}</option>
                             @endforeach
                         </x-elements.select>
                         <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" />
