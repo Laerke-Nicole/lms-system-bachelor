@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class TrainingController extends Controller
 {
@@ -41,26 +41,21 @@ class TrainingController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'place' => 'required',
-            'status' => 'required|in:Upcoming,Completed,Expired',
-            'training_date' => 'required|date',
-
-            'reminder_before_training' => [
-                Rule::requiredIf($request->status === 'Upcoming'),
-                'date',
-            ],
-
-            'reminder_sent_18_m' => [
-                Rule::requiredIf(in_array($request->status === 'Completed','Expired'))
-            ],
-
-            'reminder_sent_22_m' => [
-                Rule::requiredIf(in_array($request->status === 'Completed','Expired'))
-            ],
+            'training_slot_id' => 'required|exists:training_slots,id',
         ]);
 
+//        set standard values when creating
+        $validated['ordered_by_id'] = auth()->id();
+        $validated['status'] = 'Upcoming';
+        $validated['reminder_sent_18_m'] = false;
+        $validated['reminder_sent_22_m'] = false;
+        $validated['reminder_before_training'] = null;
+
         // create a new training in the db
-        Training:: create($validated);
+        $training = Training::create($validated);
+
+//        update the slot to unavailable
+        $training->trainingSlot->update(['status' => 'Unavailable']);
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training created successfully.');
@@ -87,12 +82,8 @@ class TrainingController extends Controller
      */
     public function edit(Training $training)
     {
-        $places = ['Online', 'On site'];
-        $statuses = ['Upcoming', 'Completed', 'Expired'];
-        $trainers = User::all();
-        $orderedBys = User::all();
-
-        return view('trainings.edit', compact('training', 'places', 'statuses', 'trainers', 'orderedBys'));
+        $slot = $training->trainingSlot;
+        return view('trainings.edit', compact('training', 'slot'));
     }
 
 
@@ -107,13 +98,16 @@ class TrainingController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'place' => 'required',
-            'status' => 'required',
-            'training_date' => 'required|date',
+            'training_date' => ['required', 'date'],
+        ]);
+
+//        update the training date on trainingslot
+        $training->trainingSlot->update([
+            'training_date' => $validated['training_date'],
         ]);
 
         // update a new training in the db
-        $training->update($validated);
+//        $training->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training updated successfully.');
