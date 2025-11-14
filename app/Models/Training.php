@@ -11,23 +11,15 @@ class Training extends Model
     use HasFactory;
 
     protected $fillable = [
-        'place',
         'status',
-        'training_date',
-        'participation_link',
         'reminder_sent_18_m',
         'reminder_sent_22_m',
         'reminder_before_training',
-        'course_id',
-        'created_by_id',
         'ordered_by_id',
-        'trainer_id',
-        'course_id',
-        'user_id',
+        'training_slot_id',
     ];
 
     protected $casts = [
-        'training_date' => 'datetime:Y m d H:i',
         'reminder_before_training' => 'date:Y-m-d',
     ];
 
@@ -37,19 +29,9 @@ class Training extends Model
         return $date->format('d M Y H:i');
     }
 
-    public function getTrainingDateFormattedAttribute()
-    {
-        return $this->training_date ? $this->training_date->format('d M Y H:i') : null;
-    }
-
     public function getReminderBeforeTrainingFormattedAttribute()
     {
         return $this->reminder_before_training ? $this->reminder_before_training->format('d M Y') : null;
-    }
-
-    public function course()
-    {
-        return $this->belongsTo(Course::class);
     }
 
     public function users()
@@ -62,13 +44,13 @@ class Training extends Model
         return $this->belongsTo(User::class, 'ordered_by_id');
     }
 
-    public function trainer()
-    {
-        return $this->belongsTo(User::class, 'trainer_id');
-    }
-
     public function certificates()
     {
         return $this->belongsToMany(Certificate::class)->withTimestamps();
+    }
+
+    public function trainingSlot()
+    {
+        return $this->belongsTo(TrainingSlot::class);
     }
 }
