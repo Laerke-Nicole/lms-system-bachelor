@@ -5,7 +5,7 @@
     @method('DELETE')
 
     <div class="dropdown">
-        <button class="btn mb-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn mb-0 p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-three-dots-vertical fs-4"></i>
         </button>
         <ul class="dropdown-menu">
