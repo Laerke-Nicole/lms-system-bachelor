@@ -14,9 +14,9 @@
                         <h3 class="mb-4">Log in</h3>
 
                         <x-blocks.form action="{{ route('login') }}" method="POST" class="mb-0">
-                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" />
+                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" col="col-12" />
 
-                            <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" />
+                            <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" col="col-12" />
 
                             <div class="d-flex flex-column mt-2">
                                 <a href="{{ route('password.request') }}" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
