@@ -10,10 +10,10 @@
     <x-blocks.form action="{{ route('courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
 
-        <x-elements.input col="col-12 col-lg-4" label="Title" name="title" value="{{ $course->title }}"/>
-        <x-elements.textarea col="col-12 col-lg-4" label="Description" name="description" value="{{ $course->description }}"/>
-        <x-elements.input col="col-12 col-lg-4" label="Duration months" name="duration_months" type="number" value="{{ $course->duration_months }}"/>
-        <x-elements.input col="col-12 col-lg-4" label="Image" name="image" type="file" :required="false" />
+        <x-elements.input label="Title" name="title" value="{{ $course->title }}"/>
+        <x-elements.textarea label="Description" name="description" value="{{ $course->description }}"/>
+        <x-elements.input label="Duration months" name="duration_months" type="number" value="{{ $course->duration_months }}"/>
+        <x-elements.input label="Image" name="image" type="file" :required="false" />
         <x-blocks.detail :isImage="true" :title="$course->image"></x-blocks.detail>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

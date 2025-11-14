@@ -8,10 +8,10 @@
     <x-blocks.error-alert/>
 
     <x-blocks.form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
-        <x-elements.input col="col-12 col-lg-4" label="Title" name="title" />
-        <x-elements.textarea col="col-12 col-lg-4" label="Description" name="description" />
-        <x-elements.input col="col-12 col-lg-4" label="Duration months" name="duration_months" type="number" />
-        <x-elements.input col="col-12 col-lg-4" label="Image" name="image" type="file" />
+        <x-elements.input label="Title" name="title" />
+        <x-elements.textarea label="Description" name="description" />
+        <x-elements.input label="Duration months" name="duration_months" type="number" />
+        <x-elements.input label="Image" name="image" type="file" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
