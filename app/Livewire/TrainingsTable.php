@@ -47,6 +47,7 @@ class TrainingsTable extends Component
             $query->orderBy('training_slots.training_date', 'desc');
         }
 
+//        return the sorting with 5 pagination
         return $query->paginate(5);
     }
 
