@@ -24,6 +24,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\TrainingSlotController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -67,6 +68,26 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profiles/certificates', [ProfileController::class, 'certificates'])->name('profiles.certificates');
     Route::get('/profiles/contacts', [ContactController::class, 'show'])->name('profiles.contacts');
 });
+
+
+Route::middleware(['auth'])->controller(BookingController::class)->name('bookings.')->group(function () {
+//    step 1 picking course
+    Route::get('/course', 'selectCourse')->name('course');
+    Route::post('/course', 'storeCourse')->name('course.store');
+
+//    step 2 picking slot
+    Route::get('/slot', 'selectSlot')->name('slot');
+    Route::post('/slot', 'storeSlot')->name('slot.store');
+
+//    step 3 picking the employees
+    Route::get('/employees', 'selectEmployees')->name('employees');
+    Route::post('/employees', 'storeEmployees')->name('employees.store');
+
+//    step 4 summary of booking
+    Route::get('/summary', 'summary')->name('summary');
+    Route::post('/confirm', 'confirm')->name('confirm');
+});
+
 
 
 //    request password reset link
