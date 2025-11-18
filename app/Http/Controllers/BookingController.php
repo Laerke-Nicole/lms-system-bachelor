@@ -32,7 +32,7 @@ class BookingController extends Controller
         ]);
 
 //        store the course_id in a session
-        session(['bookings.course_id' => 'course_id']);
+        session(['bookings.course_id' => $validated['course_id']]);
 
 //        clear all session data if user goes back on the page
         session()->forget(['booking.training_slot_id', 'booking.user_ids']);
@@ -117,7 +117,6 @@ class BookingController extends Controller
      */
     public function showSummary(Request $request)
     {
-
         $value = session(['course_id', 'training_slot_id', 'user_ids']);
 
 //        throw an 404 error if a course_id, training_slot_id and user_id arent in the session
@@ -130,6 +129,46 @@ class BookingController extends Controller
         $userIDs = session('user_ids');
 
         return view('trainings.bookings.step4-summary', compact('courseID', 'trainingSlotID', 'userIDs', 'trainer'));
+    }
+
+    /**
+     * Store and create the confirmed booking
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $value = session(['course_id', 'training_slot_id', 'user_ids']);
+
+//        throw an 404 error if a course_id, training_slot_id and user_id arent in the session
+        abort_if(!$value, 404);
+
+        // validate the user input
+        $validated = $request->validate([
+            'training_slot_id' => 'required|exists:training_slots,id',
+        ]);
+
+//        set standard values when creating
+//        add the logged in users id to put it as ordered by
+        $validated['ordered_by_id'] = auth()->id();
+        $validated = $training['status'] = 'Upcoming';
+        $validated['reminder_sent_18_m'] = false;
+        $validated['reminder_sent_22_m'] = false;
+        $validated['reminder_before_training'] = null;
+        $validated = $trainingSlot['status'] = 'Unavailable';
+
+//        create a new training in the db
+        $training = Training::create($validated);
+
+//        update the slot to unavailable
+        $training->trainingSlot->update(['status' => 'Unavailable']);
+
+//        remove all the data from the session
+        $request->session()->flush();
+
+        //  redirect the user and send a success message
+        return redirect()->route('trainings.bookings.step5-confirm')->with('Thank you, we have registered your booking.');
     }
 
 }
