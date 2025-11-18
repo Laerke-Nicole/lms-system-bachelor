@@ -40,5 +40,41 @@ class BookingController extends Controller
         return redirect()->route('bookings.slot');
     }
 
+    /**
+     * step 2 - select an available training slot
+     */
+    public function selectTrainingSlot()
+    {
+        $session = session('bookings.course_id');
+
+//        throw and 404 error if there's no session
+        abort_if(!$session, 404);
+
+        $trainingSlots = TrainingSlot::where('course_id', $session)
+            ->where('status', 'Available')
+            ->orderBy('training_date', 'asc')
+            ->get();
+
+        return view('trainings.bookings.step2-slot', compact('trainingSlots'));
+    }
+
+    /**
+     * step 2 - post the training slot choice
+     */
+    public function storeTrainingSlot(Request $request)
+    {
+        // validate the user input
+        $validated = $request->validate([
+            'training_slot_id' => 'required|exists:training_slots,id|status:Available',
+        ]);
+
+        session(['booking.training_slot_id' => 'training_slot_id']);
+
+        //        clear all session data if user goes back on the page
+        session()->forget(['booking.training_slot_id', 'booking.user_ids']);
+
+        return redirect()->route('trainings.bookings.step3-employees');
+    }
+
 
 }
