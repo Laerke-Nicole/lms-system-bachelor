@@ -76,5 +76,41 @@ class BookingController extends Controller
         return redirect()->route('trainings.bookings.step3-employees');
     }
 
+    /**
+     * step 3 - choosing the employees
+     */
+    public function selectEmployees()
+    {
+        $session = session('bookings.training_slot_id');
+
+//        throw and 404 error if there's no session
+        abort_if(!$session, 404);
+
+//        show only the users that are in the same site as the logged in user booking
+        $employees = User::where(Auth::user()->site);
+
+        return view('trainings.bookings.step3-employees', compact('employees'));
+    }
+
+    /**
+     * step 3 - post of the employees chosen
+     */
+    public function storeEmployees(Request $request)
+    {
+        // validate the user input
+        $validated = $request->validate([
+//            make sure they atleast picked one employee
+            'user_id' => 'required|exists:user,id|',
+        ]);
+
+//        save the employee choices in the session
+        session(['booking.employee_ids' => 'user_id']);
+
+//        Clear any progress from later steps (in case user goes backwards)
+        session()->forget(['booking.user_id', 'booking.user_ids']);
+
+        return redirect()->route('trainings.bookings.step4-summary');
+    }
+
 
 }
