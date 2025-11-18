@@ -15,7 +15,7 @@
                 <li><a href="{{ route('profiles.contacts') }}" class="text-decoration-underline-hover">Contact us</a></li>
                 <li>
                     <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
-                        <button type="submit" class="text-link text-label text-decoration-underline-hover p-0 border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">Logout</button>
+                        <button type="submit" class="text-link text-label text-decoration-underline-hover p-0 border-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">Logout</button>
                     </x-blocks.form>
                 </li>
             </ul>

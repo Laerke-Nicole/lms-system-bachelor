@@ -18,7 +18,7 @@
                             <x-elements.input labelFor="password_confirmation" label="Confirm password" placeholder="Confirm your password" name="password_confirmation" type="password" />
 
                             <div class="d-flex flex-column mt-2">
-                                <button type="submit" class="btn btn-primary mb-0">Reset password</button>
+                                <button type="submit" class="btn btn-primary">Reset password</button>
                             </div>
 
                             <x-blocks.message />

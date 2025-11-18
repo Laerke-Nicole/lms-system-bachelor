@@ -20,7 +20,7 @@
 
                             <div class="d-flex flex-column mt-2">
                                 <a href="{{ route('password.request') }}" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
-                                <button type="submit" class="btn btn-primary mb-0">Log in</button>
+                                <button type="submit" class="btn btn-primary">Log in</button>
                             </div>
 
                             <x-blocks.error-alert />
