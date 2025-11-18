@@ -76,15 +76,15 @@ Route::middleware(['auth'])->controller(BookingController::class)->name('booking
     Route::post('/course', 'storeCourse')->name('course.store');
 
 //    step 2 picking slot
-    Route::get('/slot', 'selectSlot')->name('slot');
-    Route::post('/slot', 'storeSlot')->name('slot.store');
+    Route::get('/slot', 'selectTrainingSlot')->name('slot');
+    Route::post('/slot', 'storeTrainingSlot')->name('slot.store');
 
 //    step 3 picking the employees
     Route::get('/employees', 'selectEmployees')->name('employees');
     Route::post('/employees', 'storeEmployees')->name('employees.store');
 
 //    step 4 summary of booking
-    Route::get('/summary', 'summary')->name('summary');
+    Route::get('/summary', 'showSummary')->name('summary');
     Route::post('/confirm', 'confirm')->name('confirm');
 });
 
