@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::middleware(['auth'])->controller(BookingController::class)->name('bookings.')->group(function () {
+Route::middleware(['auth'])->controller(BookingController::class)->name('trainings.bookings.')->group(function () {
 //    step 1 picking course
     Route::get('/course', 'selectCourse')->name('course');
     Route::post('/course', 'storeCourse')->name('course.store');

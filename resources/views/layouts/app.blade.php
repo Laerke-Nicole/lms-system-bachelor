@@ -48,7 +48,7 @@
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
                         <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
-                        <li><x-elements.link title="Book training" href="{{ route('trainings.create') }}" icon="i bi-dot"></x-elements.link></li>
+                        <li><x-elements.link title="Book training" href="{{ route('trainings.bookings.course') }}" icon="i bi-dot"></x-elements.link></li>
                         <li><x-elements.link title="Training slots" href="{{ route('training_slots.index') }}" icon="i bi-dot"></x-elements.link></li>
 
                         {{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
