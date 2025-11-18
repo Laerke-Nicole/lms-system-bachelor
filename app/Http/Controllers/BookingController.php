@@ -32,7 +32,7 @@ class BookingController extends Controller
         ]);
 
 //        store the course_id in a session
-        session(['bookings.course_id' => $validated['course_id']]);
+        session(['booking.course_id' => $validated['course_id']]);
 
 //        clear all session data if user goes back on the page
         session()->forget(['booking.training_slot_id', 'booking.user_ids']);
@@ -45,7 +45,8 @@ class BookingController extends Controller
      */
     public function selectTrainingSlot()
     {
-        $session = session('bookings.course_id');
+//        retrieve the session
+        $session = session('booking.course_id');
 
 //        throw and 404 error if there's no session
         abort_if(!$session, 404);
@@ -65,15 +66,16 @@ class BookingController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'training_slot_id' => 'required|exists:training_slots,id|status:Available',
+            'training_slot_id' => 'required|exists:training_slots,id',
         ]);
 
-        session(['booking.training_slot_id' => 'training_slot_id']);
+//        store the trainings slot id in the session
+        session(['booking.training_slot_id' => $validated['training_slot_id']]);
 
-        //        clear all session data if user goes back on the page
-        session()->forget(['booking.training_slot_id', 'booking.user_ids']);
+//        clear session data about the users chosen if user goes back to the last page
+        session()->forget(['booking.user_ids']);
 
-        return redirect()->route('trainings.bookings.step3-employees');
+        return redirect()->route('trainings.employees');
     }
 
     /**
@@ -81,13 +83,14 @@ class BookingController extends Controller
      */
     public function selectEmployees()
     {
-        $session = session('bookings.training_slot_id');
+//        retrieve the session
+        $session = session('booking.training_slot_id');
 
 //        throw an 404 error if there's no session
         abort_if(!$session, 404);
 
 //        show only the users that are in the same site as the logged in user booking
-        $employees = User::where(Auth::user()->site);
+        $employees = User::where('site_id', auth()->user()->site_id)->get();
 
         return view('trainings.bookings.step3-employees', compact('employees'));
     }
@@ -100,16 +103,14 @@ class BookingController extends Controller
         // validate the user input
         $validated = $request->validate([
 //            make sure they atleast picked one employee
-            'user_id' => 'required|exists:user,id|',
+            'user_ids'   => 'required|array|min:1',
+            'user_ids.*' => 'exists:users,id',
         ]);
 
 //        save the employee choices in the session
-        session(['booking.employee_ids' => 'user_id']);
+        session(['booking.user_ids' => $validated['user_ids']]);
 
-//        Clear any progress from later steps (in case user goes backwards)
-        session()->forget(['booking.user_id', 'booking.user_ids']);
-
-        return redirect()->route('trainings.bookings.step4-summary');
+        return redirect()->route('trainings.summary');
     }
 
     /**
@@ -117,18 +118,19 @@ class BookingController extends Controller
      */
     public function showSummary(Request $request)
     {
-        $value = session(['course_id', 'training_slot_id', 'user_ids']);
+//        retrieve the session
+        $session = session('booking');
 
 //        throw an 404 error if a course_id, training_slot_id and user_id arent in the session
-        abort_if(!$value, 404);
+        abort_if(!$session || !isset($session['course_id'], $session['training_slot_id'], $session['user_ids']), 404);
 
 //        get the ids that are in the chosen in the session
-        $courseID = session('course_id');
-        $trainingSlotID = session('training_slot_id');
-        $trainer = $trainingSlotID->trainer_id;
-        $userIDs = session('user_ids');
+        $course = Course::findOrFail($session['course_id']);
+        $trainingSlot = TrainingSlot::with('trainer')->findOrFail($session['training_slot_id']);
+        $trainer = $trainingSlot->trainer;
+        $employees = User::whereIn('id', $session['user_ids'])->get();
 
-        return view('trainings.bookings.step4-summary', compact('courseID', 'trainingSlotID', 'userIDs', 'trainer'));
+        return view('trainings.bookings.step4-summary', compact('course', 'trainingSlot', 'employees', 'trainer'));
     }
 
     /**
@@ -137,38 +139,35 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function confirm(Request $request)
     {
-        $value = session(['course_id', 'training_slot_id', 'user_ids']);
+        $session = session('booking');
 
 //        throw an 404 error if a course_id, training_slot_id and user_id arent in the session
-        abort_if(!$value, 404);
+        abort_if(!$session || !isset($session['course_id'], $session['training_slot_id'], $session['user_ids']), 404);
 
-        // validate the user input
-        $validated = $request->validate([
-            'training_slot_id' => 'required|exists:training_slots,id',
-        ]);
-
-//        set standard values when creating
-//        add the logged in users id to put it as ordered by
-        $validated['ordered_by_id'] = auth()->id();
-        $validated = $training['status'] = 'Upcoming';
-        $validated['reminder_sent_18_m'] = false;
-        $validated['reminder_sent_22_m'] = false;
-        $validated['reminder_before_training'] = null;
-        $validated = $trainingSlot['status'] = 'Unavailable';
+//        validate the confirmed data
+        $validated = [
+            'training_slot_id' => $session['training_slot_id'],
+            'ordered_by_id' => auth()->id(),
+            'status' => 'Upcoming',
+            'reminder_sent_18_m' => false,
+            'reminder_sent_22_m' => false,
+            'reminder_before_training' => null,
+        ];
 
 //        create a new training in the db
         $training = Training::create($validated);
 
+//        add the selected employees
+        $training->employees()->sync($session['user_ids']);
+
 //        update the slot to unavailable
-        $training->trainingSlot->update(['status' => 'Unavailable']);
+        TrainingSlot::where('id', $session['training_slot_id'])->update(['status' => 'Unavailable']);
 
 //        remove all the data from the session
-        $request->session()->flush();
+        session()->forget('booking');
 
-        //  redirect the user and send a success message
-        return redirect()->route('trainings.bookings.step5-confirm')->with('Thank you, we have registered your booking.');
+        return view('trainings.bookings.step5-confirmed', compact('training'));
     }
-
 }
