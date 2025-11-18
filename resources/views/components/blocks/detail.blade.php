@@ -9,7 +9,7 @@
             <p class="text-dark mb-1 fs-4 {{ $class }}">{{ $field }}</p>
             @if($isImage)
                 @if($title)
-                    <img src="{{ asset('storage/' . $title) }}" alt="{{ basename($title) }}" class="{{ $imageClass ?? 'w-25 img-fluid mb-4' }}">
+                    <img src="{{ asset('storage/' . $title) }}" alt="{{ basename($title) }}" class="{{ $imageClass ?? 'w-60 img-fluid mb-4' }}">
                 @endif
             @else
                 <p class="lh-md mb-4">{{ $title }} @if($secondTitle)<br>{{ $secondTitle }}@endif @if($thirdTitle)<br>{{ $thirdTitle }}@endif</p>
