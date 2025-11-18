@@ -37,7 +37,7 @@ class BookingController extends Controller
 //        clear all session data if user goes back on the page
         session()->forget(['booking.training_slot_id', 'booking.user_ids']);
 
-        return redirect()->route('bookings.slot');
+        return redirect()->route('trainings.bookings.slot');
     }
 
     /**
@@ -75,7 +75,7 @@ class BookingController extends Controller
 //        clear session data about the users chosen if user goes back to the last page
         session()->forget(['booking.user_ids']);
 
-        return redirect()->route('trainings.employees');
+        return redirect()->route('trainings.bookings.employees');
     }
 
     /**
@@ -110,7 +110,7 @@ class BookingController extends Controller
 //        save the employee choices in the session
         session(['booking.user_ids' => $validated['user_ids']]);
 
-        return redirect()->route('trainings.summary');
+        return redirect()->route('trainings.bookings.summary');
     }
 
     /**
