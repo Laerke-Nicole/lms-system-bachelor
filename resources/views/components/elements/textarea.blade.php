@@ -1,4 +1,4 @@
-<div class="{{ $col ?? 'col-12' }}">
+<div class="{{ $col ?? 'col-12 col-lg-4' }}">
     <div class="form-group mb-3">
         <label class="form-label ls-2 fs-6 text-uppercase" for="{{ $labelFor ?? null }}">{{ $label }}</label>
         <textarea
