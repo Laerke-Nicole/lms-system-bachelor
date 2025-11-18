@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('trainings.index') }}" title="Add new training"
+    <x-blocks.title href="{{ route('trainings.index') }}" title="Book a training"
                     buttonText="Go back"></x-blocks.title>
 
     <x-blocks.error-alert/>

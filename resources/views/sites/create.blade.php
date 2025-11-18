@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('sites.index') }}" title="Add new site"
+    <x-blocks.title href="{{ route('sites.index') }}" title="Create new site"
                     buttonText="Go back"></x-blocks.title>
 
     <x-blocks.error-alert/>
