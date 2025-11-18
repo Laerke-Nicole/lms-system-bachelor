@@ -112,5 +112,20 @@ class BookingController extends Controller
         return redirect()->route('trainings.bookings.step4-summary');
     }
 
+    /**
+     * step 4 - show a summary of the booking
+     */
+    public function showSummary(Request $request)
+    {
+        $session = session('bookings.training_slot_id');
+
+//        throw and 404 error if there's no session
+        abort_if(!$session, 404);
+
+//        show only the users that are in the same site as the logged in user booking
+        $employees = User::where(Auth::user()->site);
+
+        return view('trainings.bookings.step3-employees', compact('employees'));
+    }
 
 }
