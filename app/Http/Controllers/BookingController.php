@@ -83,7 +83,7 @@ class BookingController extends Controller
     {
         $session = session('bookings.training_slot_id');
 
-//        throw and 404 error if there's no session
+//        throw an 404 error if there's no session
         abort_if(!$session, 404);
 
 //        show only the users that are in the same site as the logged in user booking
@@ -117,15 +117,19 @@ class BookingController extends Controller
      */
     public function showSummary(Request $request)
     {
-        $session = session('bookings.training_slot_id');
 
-//        throw and 404 error if there's no session
-        abort_if(!$session, 404);
+        $value = session(['course_id', 'training_slot_id', 'user_ids']);
 
-//        show only the users that are in the same site as the logged in user booking
-        $employees = User::where(Auth::user()->site);
+//        throw an 404 error if a course_id, training_slot_id and user_id arent in the session
+        abort_if(!$value, 404);
 
-        return view('trainings.bookings.step3-employees', compact('employees'));
+//        get the ids that are in the chosen in the session
+        $courseID = session('course_id');
+        $trainingSlotID = session('training_slot_id');
+        $trainer = $trainingSlotID->trainer_id;
+        $userIDs = session('user_ids');
+
+        return view('trainings.bookings.step4-summary', compact('courseID', 'trainingSlotID', 'userIDs', 'trainer'));
     }
 
 }
