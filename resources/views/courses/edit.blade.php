@@ -14,7 +14,7 @@
         <x-elements.textarea label="Description" name="description" value="{{ $course->description }}"/>
         <x-elements.input label="Duration months" name="duration_months" type="number" value="{{ $course->duration_months }}"/>
         <x-elements.input label="Image" name="image" type="file" :required="false" />
-        <x-blocks.detail :isImage="true" :title="$course->image"></x-blocks.detail>
+        <x-blocks.detail :isImage="true" :title="$course->image ?? 'No image'"></x-blocks.detail>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
