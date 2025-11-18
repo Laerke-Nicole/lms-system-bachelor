@@ -53,7 +53,7 @@ class CourseController extends Controller
         }
 
         // create a new courses in the db
-        Course:: create($validated);
+        Course::create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('courses.index')->with('success', 'Course created successfully.');
