@@ -17,7 +17,7 @@ class TrainingSlotController extends Controller
      */
     public function index()
     {
-        $trainingSlots = TrainingSlot::latest()->paginate(5);
+        $trainingSlots = TrainingSlot::orderBy('training_date', 'asc')->paginate(5);
         return view('training_slots.index', compact('trainingSlots'))->with(request()->input('page'));
     }
 
