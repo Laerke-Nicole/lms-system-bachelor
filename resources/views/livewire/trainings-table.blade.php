@@ -20,7 +20,7 @@
                 @endif
 
                 @if($training->status === 'Upcoming' || $filter === 'all')
-                    <td>{{ $training->reminder_before_training_formatted }}</td>
+                    <td>{{ $training->reminder_before_training_formatted ?? '-' }}</td>
                 @endif
 
                 @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all')
