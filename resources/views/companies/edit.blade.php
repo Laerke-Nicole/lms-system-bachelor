@@ -2,7 +2,15 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('company', $company, 'Edit') }}
+    {{ Breadcrumbs::render(
+        'crud.show',
+        'Companies',
+        'companies.index',
+        'Edit',
+        'companies.edit',
+        $company
+    ) }}
+
 
     <x-blocks.title title="Edit {{ $company->company_name }}"></x-blocks.title>
 

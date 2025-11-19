@@ -2,7 +2,14 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('site', $site, 'Edit') }}
+    {{ Breadcrumbs::render(
+        'crud.show',
+        'Sites',
+        'sites.index',
+        'Edit',
+        'sites.edit',
+        $site
+    ) }}
 
     <x-blocks.title title="Edit {{ $site->site_name }}" tagline="Site for {{ $site->company->company_name }}"></x-blocks.title>
 

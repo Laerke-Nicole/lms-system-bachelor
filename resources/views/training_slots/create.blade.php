@@ -2,7 +2,13 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('training_slots.create') }}
+    {{ Breadcrumbs::render(
+        'crud.create',
+        'Training Slots',
+        'training_slots.index',
+        'Create',
+        'training_slots.create'
+    ) }}
 
     <x-blocks.title title="Create new training slot"></x-blocks.title>
 

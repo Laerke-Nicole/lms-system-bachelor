@@ -4,7 +4,15 @@
 
     <div class="row">
         <div class="col-lg-6">
-            {{ Breadcrumbs::render('company', $company, 'View') }}
+            {{ Breadcrumbs::render(
+                'crud.show',
+                'Companies',
+                'companies.index',
+                'View',
+                'companies.show',
+                $company
+            ) }}
+
 
             <x-blocks.title title="{{ $company->company_name }}"></x-blocks.title>
         </div>

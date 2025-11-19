@@ -2,7 +2,14 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('sites.create') }}
+    {{ Breadcrumbs::render(
+        'crud.create',
+        'Sites',
+        'sites.index',
+        'Create',
+        'sites.create'
+    ) }}
+
 
     <x-blocks.title title="Create new site"></x-blocks.title>
 

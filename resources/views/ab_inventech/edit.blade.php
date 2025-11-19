@@ -2,7 +2,14 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('ab_inventech', $abInventech, 'Edit') }}
+    {{ Breadcrumbs::render(
+        'crud.show',
+        'AB Inventech',
+        'ab_inventech.index',
+        'Edit',
+        'ab_inventech.edit',
+        $abInventech
+    ) }}
 
     <x-blocks.title title="Edit {{ $abInventech->ab_inventech_name }}'s information"></x-blocks.title>
 
