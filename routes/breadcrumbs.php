@@ -19,15 +19,24 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 /**
  * crud pages
  */
+
+//course
+// Home > Course
 Breadcrumbs::for('courses.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Courses', route('courses.index'));
 });
 
-// Home > Course
+// Home > Course > []
 Breadcrumbs::for('course', function (BreadcrumbTrail $trail, Course $course, $label) {
     $trail->parent('courses.index');
     $trail->push($label, route('courses.index', $course));
+});
+
+// Home > Course > Create
+Breadcrumbs::for('courses.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('courses.index');
+    $trail->push('Create Course', route('courses.create'));
 });
 
 
