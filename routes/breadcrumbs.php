@@ -19,7 +19,7 @@ Breadcrumbs::for('course', function (BreadcrumbTrail $trail) {
     $trail->push('Course', route('trainings.bookings.course'));
 });
 
-// Home > Course > [Slot]
+// Home > Course > [Time]
 Breadcrumbs::for('slot', function (BreadcrumbTrail $trail) {
     $trail->parent('course');
     $trail->push('Time', route('trainings.bookings.slot'));
