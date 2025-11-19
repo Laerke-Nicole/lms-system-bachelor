@@ -11,16 +11,16 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .text-label {
-    @extend .ls-2;
-    @extend .fs-6;
-    @extend .text-uppercase;
+    @extend .ls-2 !optional;
+    @extend .fs-6 !optional;
+    @extend .text-uppercase !optional;
     font-weight: 400;
 }
 
 .text-label-1 {
-    @extend .ls-1;
-    @extend .fs-6;
-    @extend .text-uppercase;
+    @extend .ls-1 !optional;
+    @extend .fs-6 !optional;
+    @extend .text-uppercase !optional;
     font-weight: 400;
 }
 
