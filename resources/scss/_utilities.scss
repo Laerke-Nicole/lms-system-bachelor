@@ -111,5 +111,12 @@ $utilities: map-merge(
                 md: 1.5,
             )
         ),
+        "font-size": (
+            property: font-size,
+            class: fs,
+            values: (
+                60: 60px,
+            )
+        ),
     )
 );
