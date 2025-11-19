@@ -44,5 +44,8 @@
         @endforeach
     </div>
 
-    <x-blocks.booking-progress-bar :step="2" />
     @endsection
+
+    @push('fixed-elements')
+        <x-blocks.booking-progress-bar :step="2" />
+    @endpush

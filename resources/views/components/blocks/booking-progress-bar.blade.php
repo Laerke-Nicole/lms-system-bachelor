@@ -1,9 +1,9 @@
 @props(['step'])
 
-<div class="booking-progress-bar position-fixed bottom-0 w-100 bg-white shadow-lg pt-3 pb-4 px-3">
+<div class="d-none d-md-block booking-progress-bar position-fixed bottom-0 start-0 end-0 bg-white shadow-lg pt-3 pb-4 px-4">
 
-    {{-- Main progress line --}}
-    <div class="position-relative mb-3 px-3">
+    {{-- progress line --}}
+    <div class="position-relative mb-3">
         <div class="progress-line bg-light"></div>
 
         <div class="progress-line-fill bg-dark"
@@ -11,8 +11,8 @@
         </div>
     </div>
 
-    {{-- Steps --}}
-    <div class="d-flex justify-content-between text-center px-3">
+    {{-- steps --}}
+    <div class="d-flex justify-content-between text-center">
 
         <a href="{{ route('trainings.bookings.course') }}"
            class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}">

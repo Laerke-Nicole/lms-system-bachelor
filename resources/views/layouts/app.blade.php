@@ -78,6 +78,8 @@
     </main>
 </div>
 
+@stack('fixed-elements')
+
 </body>
 
 </html>
