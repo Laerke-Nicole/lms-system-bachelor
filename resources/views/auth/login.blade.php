@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="vh-100 container-fluid auth">
+    <div class="vh-100 container-fluid">
         <div class="row h-100">
             <!-- left side with form -->
-            <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-start auth-left">
-                <div class="p-4 d-flex flex-column w-100 auth-left__container">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center align-items-start">
+                <div class="p-md-4 d-flex flex-column w-100">
                     <div class="mb-5">
-                        <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-25 img-fluid">
+                        <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
                     </div>
 
                     <div class="w-100">
@@ -30,10 +30,7 @@
             </div>
 
             <!-- right side with img -->
-            <div class="col-lg-8 p-0 d-none d-lg-block">
-{{--                <img src="{{ asset('images/login-bg.jpg') }}"--}}
-{{--                     alt="Wind turbines"--}}
-{{--                     class="img-fluid w-100 h-100 object-fit-cover">--}}
+            <div class="col-md-6 col-lg-8 p-0 d-none d-md-block">
                 <img src="https://cdn.pixabay.com/photo/2015/06/23/08/16/daegwallyeong-818420_1280.jpg" alt="" class="img-fluid w-100 h-100 object-fit-cover">
             </div>
         </div>
