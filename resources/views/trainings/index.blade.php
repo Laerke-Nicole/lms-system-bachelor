@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('trainings.create') }}" title="{{ $title ?? 'Trainings' }}" withoutButton />
+    <x-blocks.title title="{{ $title ?? 'Trainings' }}" withoutButton />
 
     <x-blocks.message/>
 
