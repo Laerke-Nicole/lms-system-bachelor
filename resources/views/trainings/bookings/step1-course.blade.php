@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="mb-4">Choose a course</h3>
+<h3 class="mb-5">Choose a course</h3>
 
 <div class="row g-3 step-cards">
     @foreach($courses as $course)
@@ -10,7 +10,7 @@
             <x-blocks.form action="{{ route('trainings.bookings.course.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
 
-                <button type="submit" class="step-cards__card w-100 border-0 bg-white rounded-3 shadow-sm text-start d-flex flex-column">
+                <button type="submit" class="step-cards__card w-100 border-0 bg-white rounded-3 shadow-sm text-start d-flex flex-column py-0">
 
                     <div class="row g-3">
                         <div class="col-12 col-sm-5 px-0">
