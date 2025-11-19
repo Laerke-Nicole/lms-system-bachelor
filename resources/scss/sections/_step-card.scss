@@ -1,4 +1,4 @@
-.step1 {
+.step-cards {
     button {
         flex: 1;
 
@@ -35,7 +35,9 @@
                 transform: scale(1.05);
             }
         }
-        &__image-wrapper {
+
+        //the image on step 1 with image and text on same row
+        &__image-wrapper1 {
             min-height: 140px;
             border-radius: 8px 0 0 8px;
             @include media-breakpoint-down(sm) {
@@ -47,6 +49,15 @@
                 @include media-breakpoint-down(sm) {
                     border-radius: 8px 8px 0 0;
                 }
+            }
+        }
+
+        //the image on step 2 with image top and text below
+        &__image-wrapper2 {
+            border-radius: 8px 8px 0 0;
+
+            &__image {
+                border-radius: 8px 8px 0 0;
             }
         }
     }

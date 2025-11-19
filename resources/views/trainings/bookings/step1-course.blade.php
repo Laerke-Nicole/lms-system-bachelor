@@ -4,20 +4,20 @@
 
 <h3 class="mb-4">Choose a course</h3>
 
-<div class="row g-3 step1">
+<div class="row g-3 step-cards">
     @foreach($courses as $course)
         <div class="col-md-6 d-flex">
             <x-blocks.form action="{{ route('trainings.bookings.course.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
 
-                <button type="submit" class="step1__card w-100 border-0 bg-white rounded-3 shadow-sm text-start d-flex flex-column">
+                <button type="submit" class="step-cards__card w-100 border-0 bg-white rounded-3 shadow-sm text-start d-flex flex-column">
 
                     <div class="row g-3">
                         <div class="col-12 col-sm-5 px-0">
-                            <div class="step1__card__image-wrapper h-100 img-hover-scale">
+                            <div class="step-cards__card__image-wrapper1 h-100 img-hover-scale">
                                 <img src="{{ asset('storage/' . $course->image) ?? '/placeholder.png' }}"
                                      alt="{{ $course->title }}"
-                                     class="h-100 w-100 object-fit-cover step1__card__image-wrapper__image">
+                                     class="h-100 w-100 object-fit-cover step-cards__card__image-wrapper1__image">
                             </div>
                         </div>
 
