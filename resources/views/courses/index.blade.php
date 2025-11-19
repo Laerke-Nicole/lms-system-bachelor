@@ -2,6 +2,8 @@
 
 @section('content')
 
+    {{ Breadcrumbs::render('courses.index') }}
+
     <x-blocks.title href="{{ route('courses.create') }}" title="Courses" buttonText="Create new course"/>
 
     <x-blocks.message/>

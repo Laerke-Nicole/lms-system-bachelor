@@ -2,7 +2,8 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('course') }}
+    {{ Breadcrumbs::render('bookings.course') }}
+
     <h3 class="mb-5">Choose a course</h3>
 
 <div class="row g-3 step-cards">
