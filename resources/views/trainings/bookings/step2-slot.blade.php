@@ -2,6 +2,7 @@
 
     @section('content')
 
+    {{ Breadcrumbs::render('slot') }}
     <h3 class="mb-5">When do you want to book for?</h3>
 
     <div class="row g-3 step-cards">

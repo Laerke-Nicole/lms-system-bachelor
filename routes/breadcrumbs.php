@@ -16,11 +16,12 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 // Home > Course
 Breadcrumbs::for('course', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Choose course', route('trainings.bookings.course'));
+    $trail->push('Course', route('trainings.bookings.course'));
 });
 
-//// Home > Blog > [Category]
-//Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-//    $trail->parent('blog');
-//    $trail->push($category->title, route('category', $category));
-//});
+// Home > Course > [Slot]
+Breadcrumbs::for('slot', function (BreadcrumbTrail $trail) {
+    $trail->parent('course');
+    $trail->push('Time', route('trainings.bookings.slot'));
+});
+
