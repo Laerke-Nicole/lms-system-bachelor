@@ -41,5 +41,7 @@
     @endforeach
 </div>
 
+<x-blocks.booking-progress-bar :step="1" />
+
 
 @endsection
