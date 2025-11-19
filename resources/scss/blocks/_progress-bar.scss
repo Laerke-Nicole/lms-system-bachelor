@@ -1,0 +1,17 @@
+.progress-line {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress-line-fill {
+    height: 4px;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width .35s ease-in-out;
+}
