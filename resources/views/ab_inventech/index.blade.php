@@ -2,13 +2,9 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div>
-                <h3>AB Inventech</h3>
-            </div>
-        </div>
-    </div>
+    {{ Breadcrumbs::render('to-home', 'AB Inventech', 'ab_inventech.index') }}
+
+    <x-blocks.title title="AB Inventech"/>
 
     <x-blocks.message/>
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('course', $course, 'Edit course') }}
+    {{ Breadcrumbs::render('course', $course, 'Edit') }}
 
     <x-blocks.title title="Edit {{ $course->title }}"></x-blocks.title>
 

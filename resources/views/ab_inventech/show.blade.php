@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('ab_inventech.index') }}" title="{{ $abInventech->ab_inventech_name }}"
-                    buttonText="Go back"></x-blocks.title>
+    {{ Breadcrumbs::render('ab_inventech', $abInventech, 'View') }}
+
+    <x-blocks.title title="{{ $abInventech->ab_inventech_name }}"></x-blocks.title>
 
     <div class="row">
         <x-blocks.detail field="Email" title="{{ $abInventech->ab_inventech_mail }}"></x-blocks.detail>

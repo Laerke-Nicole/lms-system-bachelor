@@ -6,7 +6,6 @@
         <div class="col-lg-3 d-flex flex-column gap-3 margin-screen">
             <div>
                 <h3>Hi, {{ Auth::user()->first_name }}</h3>
-                <p class="fs-5">{{ Auth::user()->email }}</p>
             </div>
 
             <ul class="text-label-1 list-unstyled d-flex flex-column gap-4">

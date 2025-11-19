@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('trainings.index') }}" title="Book a training"
-                    buttonText="Go back"></x-blocks.title>
+    {{ Breadcrumbs::render('trainings.create') }}
+
+    <x-blocks.title title="Book a training"></x-blocks.title>
 
     <x-blocks.error-alert/>
 

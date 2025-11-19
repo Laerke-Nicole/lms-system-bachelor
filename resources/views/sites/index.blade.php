@@ -2,7 +2,9 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('sites.create') }}" title="Sites" buttonText="Create new site"/>
+    {{ Breadcrumbs::render('to-home', 'Sites', 'sites.index') }}
+
+    <x-blocks.title href="{{ route('sites.create') }}" title="Sites" buttonText="Create"/>
 
     <x-blocks.message/>
 

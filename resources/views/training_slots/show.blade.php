@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('training_slots.index') }}" title="Training slot for: {{ $trainingSlot->course->title }}"
-                    buttonText="Go back"></x-blocks.title>
+    {{ Breadcrumbs::render('training_slot', $trainingSlot, 'View') }}
+
+    <x-blocks.title title="Training slot for: {{ $trainingSlot->course->title }}"></x-blocks.title>
 
     <div class="row">
         <x-blocks.detail field="Date & time" title="{{ $trainingSlot->training_date->format('d M Y H:i') }}"></x-blocks.detail>

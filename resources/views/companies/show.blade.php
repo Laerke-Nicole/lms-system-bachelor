@@ -4,8 +4,9 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <x-blocks.title href="{{ route('companies.index') }}" title="{{ $company->company_name }}"
-                            buttonText="Go back"></x-blocks.title>
+            {{ Breadcrumbs::render('company', $company, 'View') }}
+
+            <x-blocks.title title="{{ $company->company_name }}"></x-blocks.title>
         </div>
 
         <div class="col-lg-6 d-flex flex-column justify-content-end align-items-end mb-5">

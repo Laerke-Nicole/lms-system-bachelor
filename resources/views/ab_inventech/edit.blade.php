@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('ab_inventech.index') }}" title="Edit AB Inventech's information"
-                    buttonText="Go back"></x-blocks.title>
+    {{ Breadcrumbs::render('ab_inventech', $abInventech, 'Edit') }}
+
+    <x-blocks.title title="Edit {{ $abInventech->ab_inventech_name }}'s information"></x-blocks.title>
 
     <x-blocks.error-alert/>
 

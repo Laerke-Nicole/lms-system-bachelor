@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <x-blocks.title href="{{ route('sites.index') }}" title="Edit {{ $site->site_name }}" tagline="Site for {{ $site->company->company_name }}"
-                    buttonText="Go back"></x-blocks.title>
+    {{ Breadcrumbs::render('site', $site, 'Edit') }}
+
+    <x-blocks.title title="Edit {{ $site->site_name }}" tagline="Site for {{ $site->company->company_name }}"></x-blocks.title>
 
     <x-blocks.error-alert/>
 
