@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="col-12 col-sm-7 d-flex flex-column justify-content-between px-3 pb-3 py-sm-3">
-                            <div>
+                            <div class="me-sm-4">
                                 <h4>{{ $course->title }}</h4>
                                 <p class="text-muted small">
                                     {{ Str::limit($course->description, 70) }}
