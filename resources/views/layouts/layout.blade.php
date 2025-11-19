@@ -2,7 +2,7 @@
 <head>
     <title>AB Inventech</title>
 
-    <!-- Vite Assets -->
+    <!-- SCSS and JS -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
 </head>
