@@ -32,7 +32,7 @@
         <nav id="menu">
             <ul>
 
-                <li><x-elements.link href="/" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
+                <li><x-elements.link href="{{ route('home') }}" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
 
 {{--                @guest--}}
 {{--                @endguest--}}
