@@ -2,7 +2,10 @@
 
 @section('content')
 
-<h3 class="mb-5">Choose a course</h3>
+    {{ Breadcrumbs::render('course') }}
+
+
+    <h3 class="mb-5">Choose a course</h3>
 
 <div class="row g-3 step-cards">
     @foreach($courses as $course)
