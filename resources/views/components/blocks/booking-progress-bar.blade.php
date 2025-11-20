@@ -15,7 +15,7 @@
     <div class="d-flex justify-content-between text-center">
 
         <a href="{{ route('trainings.bookings.course') }}"
-           class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}">
+           class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}" >
             Course
         </a>
 
