@@ -69,9 +69,9 @@ Breadcrumbs::for('bookings.employees', function (BreadcrumbTrail $trail) {
     $trail->push('Participants', route('trainings.bookings.employees'));
 });
 
-// Home > Course > Time > [Summary]
+// Home > Course > Time > [Confirm]
 Breadcrumbs::for('bookings.summary', function (BreadcrumbTrail $trail) {
     $trail->parent('bookings.employees');
-    $trail->push('Summary', route('trainings.bookings.summary'));
+    $trail->push('Confirm', route('trainings.bookings.summary'));
 });
 
