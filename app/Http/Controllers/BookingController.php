@@ -171,7 +171,7 @@ class BookingController extends Controller
         $training = Training::create($validated);
 
 //        add the selected employees
-        $training->employees()->sync($session['user_ids']);
+        $training->users()->sync($session['user_ids']);
 
 //        update the slot to unavailable
         TrainingSlot::where('id', $session['training_slot_id'])->update(['status' => 'Unavailable']);
@@ -179,6 +179,6 @@ class BookingController extends Controller
 //        remove all the data from the session
         session()->forget('booking');
 
-        return view('trainings.bookings.step5-confirmed', compact('training'));
+        return view('trainings.bookings.step5-confirm', compact('training'));
     }
 }
