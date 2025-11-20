@@ -26,7 +26,7 @@
 
         <a href="{{ route('trainings.bookings.employees') }}"
            class="text-decoration-underline-hover small {{ $step >= 3 ? 'fw-bold' : 'text-muted' }}">
-            Employees
+            Participants
         </a>
 
         <a href="{{ route('trainings.bookings.summary') }}"
