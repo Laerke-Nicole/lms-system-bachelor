@@ -6,7 +6,7 @@
 <h3>Personal information</h3>
 <p class="mb-5">Here you can update your information so your details are up-to-date.</p>
 
-<div class="margin-screen">
+<div class="section-spacing">
     <x-blocks.form action="{{ route('profiles.update') }}" method="POST" class="mb-0">
         @method('PUT')
 
@@ -29,7 +29,7 @@
 
 <div class="row">
     <div class="col-9">
-        <label class="form-label text-label">Your password</label>
+        <label class="form-label text-label-1">Your password</label>
         <p>**************</p>
     </div>
 

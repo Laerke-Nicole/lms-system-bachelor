@@ -1,6 +1,6 @@
 <div class="{{ $col ?? 'col-12 col-lg-4' }}">
     <div class="form-group mb-3">
-        <label class="form-label text-label" for="{{ $labelFor ?? null }}">{{ $label }}</label>
+        <label class="form-label text-label-1" for="{{ $labelFor ?? null }}">{{ $label }}</label>
         <input
             type="{{ $type ?? 'text' }}"
             name="{{ $name }}"

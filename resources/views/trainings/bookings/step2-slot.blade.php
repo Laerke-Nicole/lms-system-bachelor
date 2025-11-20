@@ -6,7 +6,7 @@
 
     <h3 class="mb-5">When do you want to book for?</h3>
 
-    <div class="row g-3 step-cards">
+    <div class="row g-3 step-cards booking-section">
         @foreach($trainingSlots as $trainingSlot)
             <div class="col-12 col-md-6 col-lg-3">
                 <x-blocks.form action="{{ route('trainings.bookings.slot.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
@@ -16,7 +16,7 @@
 
                     <div class="position-relative">
                         <div class="position-absolute top-0 left-0 m-2 z-1">
-                            <p class="badge text-bg-light text-label">{{ $trainingSlot->place }}</p>
+                            <p class="badge text-bg-light text-label-2">{{ $trainingSlot->place }}</p>
                         </div>
                         <div class="step-cards__card__image-wrapper2 img-hover-scale">
                             <img src="{{ asset('storage/' . $trainingSlot->course->image) ?? '/placeholder.png' }}"
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="p-3">
-                        <p class="text-primary text-label mb-1">{{ $trainingSlot->course->title }}</p>
+                        <p class="text-primary text-label-2 mb-1">{{ $trainingSlot->course->title }}</p>
                         <h4 class="mb-3">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</h4>
 
                         <div class="d-flex justify-content-between">

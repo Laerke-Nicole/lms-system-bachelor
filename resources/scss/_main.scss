@@ -1,7 +1,7 @@
-.margin-screen {
-    margin-bottom: 80px;
+.section-spacing {
+    margin-bottom: 100px;
     @include media-breakpoint-down(lg) {
-        margin-bottom: 40px;
+        margin-bottom: 45px;
     }
 }
 
@@ -10,16 +10,16 @@ h1, h2, h3, h4, h5, h6,
     letter-spacing: $headings-letter-spacing;
 }
 
-.text-label {
+.text-label-2 {
     @extend .ls-2;
-    @extend .fs-6;
+    font-size: 10px;
     @extend .text-uppercase;
     font-weight: 400;
 }
 
 .text-label-1 {
     @extend .ls-1;
-    @extend .fs-6;
+    font-size: 12px;
     @extend .text-uppercase;
     font-weight: 400;
 }

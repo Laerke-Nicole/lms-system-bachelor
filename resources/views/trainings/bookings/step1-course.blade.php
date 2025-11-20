@@ -6,7 +6,7 @@
 
     <h3 class="mb-5">Choose a course</h3>
 
-<div class="row g-3 step-cards">
+<div class="row g-3 step-cards booking-section">
     @foreach($courses as $course)
         <div class="col-md-6 d-flex">
             <x-blocks.form action="{{ route('trainings.bookings.course.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
