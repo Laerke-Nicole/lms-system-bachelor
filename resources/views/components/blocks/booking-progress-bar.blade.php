@@ -7,7 +7,7 @@
         <div class="progress-line bg-light"></div>
 
         <div class="progress-line-fill bg-dark"
-             style="width: calc(({{ $step }} - 1) / 3.80 * 100%);">
+             style="width: calc(({{ $step }} - 1) / 4 * 100%);">
         </div>
     </div>
 

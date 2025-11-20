@@ -16,7 +16,7 @@
 
                     <div class="position-relative">
                         <div class="position-absolute top-0 left-0 m-2 z-1">
-                            <p class="p-1 bg-light text-label rounded-1">{{ $trainingSlot->place }}</p>
+                            <p class="badge text-bg-light text-label">{{ $trainingSlot->place }}</p>
                         </div>
                         <div class="step-cards__card__image-wrapper2 img-hover-scale">
                             <img src="{{ asset('storage/' . $trainingSlot->course->image) ?? '/placeholder.png' }}"
