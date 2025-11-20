@@ -1,0 +1,9 @@
+.booking-section {
+    margin-bottom: 100px;
+}
+
+.booking-section-small {
+    @include media-breakpoint-down(lg) {
+        margin-bottom: 40px;
+    }
+}
