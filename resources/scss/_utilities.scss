@@ -112,15 +112,15 @@ $utilities: map-merge(
             )
         ),
         "font-size": map-merge(
-                map-get($utilities, "font-size"),
-                (
-                    values: map-merge(
-                            map-get(map-get($utilities, "font-size"), "values"),
-                            (
-                                60: 60px,
-                            )
-                    )
+            map-get($utilities, "font-size"),
+            (
+                values: map-merge(
+                        map-get(map-get($utilities, "font-size"), "values"),
+                        (
+                            60: 60px,
+                        )
                 )
+            )
         ),
     )
 );
