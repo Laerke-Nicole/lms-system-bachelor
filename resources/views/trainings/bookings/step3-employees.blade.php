@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{--    {{ Breadcrumbs::render('bookings.employees') }}--}}
+    {{ Breadcrumbs::render('bookings.employees') }}
 
 <div class="row booking-section">
     <div class="col-12 col-lg-7 booking-section-small">
