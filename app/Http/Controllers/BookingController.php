@@ -53,7 +53,7 @@ class BookingController extends Controller
 
         $trainingSlots = TrainingSlot::where('course_id', $session)
             ->where('status', 'Available')
-            ->orderBy('training_date', 'asc')
+            ->orderBy('training_date')
             ->get();
 
         return view('trainings.bookings.step2-slot', compact('trainingSlots'));
@@ -83,16 +83,21 @@ class BookingController extends Controller
      */
     public function selectEmployees()
     {
-//        retrieve the session
-        $session = session('booking.training_slot_id');
+//        retrieve the session data
+        $slotId = session('booking.training_slot_id');
+        $courseId = session('booking.course_id');
 
 //        throw an 404 error if there's no session
-        abort_if(!$session, 404);
+        abort_if(!$slotId || !$courseId, 404);
 
-//        show only the users that are in the same site as the logged in user booking
-        $employees = User::where('site_id', auth()->user()->site_id)->get();
+//        fetch to show on the view
+        $course = Course::findOrFail($courseId);
+        $trainingSlot = TrainingSlot::with('trainer')->findOrFail($slotId);
 
-        return view('trainings.bookings.step3-employees', compact('employees'));
+//        show only the users that are in the same site as the logged in user booking ordered by names
+        $employees = User::where('site_id', auth()->user()->site_id)->orderBy('first_name')->orderBy('last_name')->get();
+
+        return view('trainings.bookings.step3-employees', compact('employees', 'course', 'trainingSlot'));
     }
 
     /**
@@ -105,6 +110,12 @@ class BookingController extends Controller
 //            make sure they atleast picked one employee
             'user_ids'   => 'required|array|min:1',
             'user_ids.*' => 'exists:users,id',
+        ], [
+//            customized error messages
+            'user_ids.required' => 'Please select at least one employee.',
+            'user_ids.array'    => 'Please select at least one employee.',
+            'user_ids.min'      => 'You must choose at least one employee.',
+            'user_ids.*.exists' => 'One of the selected employees does not exist.',
         ]);
 
 //        save the employee choices in the session
