@@ -41,38 +41,36 @@
     </div>
 
     <div class="col-12 col-lg-5">
-        <div class="small p-4 d-flex flex-column gap-2 bg-light rounded shadow-sm">
-            <h3>Booking overview</h3>
+        <div class="small p-4 d-flex flex-column gap-2 bg-white rounded shadow-sm">
+            <h3>Booking summary</h3>
             <div class="d-flex justify-content-between">
-                <p>Course</p>
-                <p>{{ $course->title }}</p>
+                <p class="text-muted">Course</p>
+                <p class="text-dark">{{ $course->title }}</p>
             </div>
 
             <div class="d-flex justify-content-between ">
-                <p>Duration</p>
-                <p>8 hrs</p>
+                <p class="text-muted">Duration</p>
+                <p class="text-dark">8 hrs</p>
                 {{--            <p>{{ $course->duration }}</p>--}}
             </div>
 
-            <div class="d-flex justify-content-between">
-                <p class="mb-0">{{ $course->description }}</p>
-            </div>
+            <p class="text-dark mb-0 text-end">{{ $course->description }}</p>
 
             <hr>
 
             <div class="d-flex justify-content-between">
-                <p>Date</p>
-                <p>{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                <p class="text-muted">Date</p>
+                <p class="text-dark">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
             </div>
 
             <div class="d-flex justify-content-between">
-                <p>Trainer</p>
-                <p>{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
+                <p class="text-muted">Trainer</p>
+                <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
             </div>
 
             <div class="d-flex justify-content-between">
-                <p>Location</p>
-                <p>{{ $trainingSlot->place }}</p>
+                <p class="text-muted">Location</p>
+                <p class="text-dark">{{ $trainingSlot->place }}</p>
             </div>
 
             <div class="d-flex">
