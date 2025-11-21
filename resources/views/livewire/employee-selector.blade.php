@@ -28,7 +28,7 @@
 {{--    the checkboxex with employee names and email --}}
     <div class="mb-4">
         @foreach($employees as $employee)
-            <label class="d-flex py-3 mx-3 border-bottom">
+            <label class="d-flex py-3 mx-3">
                 <div class="d-flex gap-3 align-items-center">
                     {{-- checkbox --}}
                     <input type="checkbox"

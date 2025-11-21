@@ -15,7 +15,7 @@
 
         <div class="col-12 col-lg-5">
             <div class="booking-summary">
-                <div class="small p-4 d-flex flex-column gap-2 bg-white rounded shadow-sm booking-section-small-always">
+                <div class="order-2 order-lg-1 small p-4 d-flex flex-column gap-2 bg-white rounded shadow-sm booking-section-small-always">
                     <h3>Booking summary</h3>
                     <div class="d-flex justify-content-between">
                         <p class="text-muted">Course</p>
@@ -28,7 +28,7 @@
                         {{--            <p>{{ $course->duration }}</p>--}}
                     </div>
 
-                    <p class="text-dark mb-0 text-end">{{ $course->description }}</p>
+                    <p class="mb-0">{{ $course->description }}</p>
 
                     <hr>
 
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="alert alert-primary small" role="alert">
+                <div class="order-1 order-lg-2 alert alert-primary small" role="alert">
                     Missing employees? <a href="#" class="fw-semibold text-decoration-underline">Register new employees here</a>.
                 </div>
             </div>

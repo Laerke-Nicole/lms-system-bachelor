@@ -1,67 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row step5">
+        <div class="col-lg-5 p-0 d-none d-lg-block">
+            <img src="https://cdn.pixabay.com/photo/2015/06/23/08/16/daegwallyeong-818420_1280.jpg" alt="windmill" class="img-fluid w-100 min-vh-100 h-100 object-fit-cover">
+        </div>
 
-{{--    {{ Breadcrumbs::render('bookings.summary') }}--}}
+        <div class="col-12 col-lg-7 booking-section">
+            <div class="p-lg-5">
+                <div>
+                    <p class="step5__eyebrow mb-2 text-primary text-label-1">Thank you for booking</p>
+                    <h1 class="step5__title mb-3">Booking successful</h1>
+                    <p class="step5__content mb-5 pb-2">We have received your booking. You can see it in your upcoming trainings tab.</p>
+                </div>
 
-    <p class="fs-5 mb-2 text-primary">Booking successful</p>
-    <h3 class="fs-60 mb-3">Thanks for booking</h3>
-    <p class="fs-4 mb-5">We have received your booking. You can see it in your upcoming trainings tab.</p>
+                <hr>
 
-    <div class="row booking-section">
-        <div class="col-12 col-lg-8 booking-section-small">
-            <div class="small p-4 d-flex flex-column bg-white rounded shadow-sm">
                 <div class="row mb-3 g-3">
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 col-lg-4">
                         <img src="{{ asset('storage/' . $training->trainingSlot->course->image) ?? '/placeholder.png' }}"
                              alt="{{ $training->trainingSlot->course->title }}"
                              class="h-100 w-100 object-fit-cover rounded">
                     </div>
 
-                    <div class="col-sm-9 d-flex flex-column justify-content-between">
+                    <div class="col-sm-9 col-lg-8 d-flex flex-column justify-content-between">
                         <div>
                             <h4 class="fw-semibold">{{ $training->trainingSlot->course->title }}</h4>
-                            <p>{{ $training->trainingSlot->course->description }}</p>
+                            <p class="small text-muted mb-5">{{ $training->trainingSlot->course->description }}</p>
                         </div>
-                        <div class="d-flex">
-                            <p class="mb-0"><strong>Date</strong>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</p>
-                            <p class="mb-0"><strong>Location</strong> {{ $training->trainingSlot->place }}</p>
+                        <div class="d-flex gap-4 align-items-center small">
+                            <p class="mb-0"><span class="text-dark">Date </span>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                            <span class="opacity-25">|</span>
+                            <p class="mb-0"><span class="text-dark">Location </span> {{ $training->trainingSlot->place }}</p>
                         </div>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="d-flex flex-column gap-2 mt-3">
-                    <h5 class="text-label-1">Training details</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">Trainer</p>
-                        <p class="text-dark">{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">Location</p>
-                        <p class="text-dark">{{ $training->trainingSlot->place }}</p>
                     </div>
                 </div>
 
                 <hr>
 
                 <div class="d-flex flex-column gap-2 mt-3 mb-3">
-                    <h5 class="text-label-1">Participants</h5>
                     <div class="d-flex justify-content-between">
-                        <div></div>
+                        <div>
+                            <p class="text-muted small">Participants</p>
+                        </div>
                         <div>
                             @foreach($training->users as $user)
-                                <p class="text-dark text-end">{{ $user->first_name }} {{ $user->last_name }}</p>
+                                <p class="step5__employees text-dark text-end small">{{ $user->first_name }} {{ $user->last_name }}</p>
                             @endforeach
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Confirm booking</button>
+                <hr class="mb-5">
+
+                <div class="col-lg-6">
+                    <h4 class="mb-3">What happens next?</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 small">The training will now appear under “Upcoming trainings” in your dashboard.</li>
+                        <li class="mb-3 small">You’ll receive a reminder to rebook this training 18 months before it expires.</li>
+                    </ul>
+                    <a href="{{ route('home') }}" class="btn btn-primary">Back to dashboard</a>
                 </div>
+
             </div>
         </div>
     </div>

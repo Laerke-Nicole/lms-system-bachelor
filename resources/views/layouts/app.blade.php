@@ -73,7 +73,7 @@
     </header>
 
 
-    <main class="container section-spacing">
+    <main class="container">
         @yield('content')
     </main>
 </div>

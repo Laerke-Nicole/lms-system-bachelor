@@ -30,7 +30,7 @@
                             <div class="me-sm-4">
                                 <h4>{{ $course->title }}</h4>
                                 <p class="text-muted small">
-                                    {{ Str::limit($course->description, 70) }}
+                                    {{ Str::limit($course->description, 80) }}
                                 </p>
                             </div>
 

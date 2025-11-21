@@ -14,7 +14,7 @@
             <x-blocks.form action="{{ route('trainings.bookings.confirm.store') }}" method="POST" class="mb-0">
 
                 <div class="small p-4 d-flex flex-column bg-white rounded shadow-sm">
-                    <div class="row mb-3 g-3">
+                    <div class="row mb-2 g-3">
                         <div class="col-sm-4">
                             <img src="{{ asset('storage/' . $course->image) ?? '/placeholder.png' }}"
                                                     alt="{{ $course->title }}"
@@ -22,15 +22,15 @@
                         </div>
 
                         <div class="col-sm-8">
-                            <h4 class="fw-semibold">{{ $course->title }}</h4>
-                            <p>{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                            <h4 class="fw-semibold mb-3">{{ $course->title }}</h4>
+                            <p class="mb-2">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
                             <p>8 hrs</p>
                         </div>
                     </div>
 
                     <hr>
 
-                    <div class="d-flex flex-column gap-2 mt-3">
+                    <div class="d-flex flex-column gap-2 mt-2">
                         <h5 class="text-label-1">Training details</h5>
                         <div class="d-flex justify-content-between">
                             <p class="text-muted">Trainer</p>
@@ -38,17 +38,18 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <p class="text-muted">Location</p>
-                            <p class="text-dark">{{ $trainingSlot->place }}</p>
+                            <p class="text-muted mb-2">Location</p>
+                            <p class="text-dark mb-2">{{ $trainingSlot->place }}</p>
                         </div>
                     </div>
 
                     <hr>
 
-                    <div class="d-flex flex-column gap-2 mt-3 mb-3">
-                        <h5 class="text-label-1">Participants</h5>
+                    <div class="d-flex flex-column gap-2 mt-2 mb-2">
                         <div class="d-flex justify-content-between">
-                            <div></div>
+                            <div>
+                                <p class="text-muted mb-2">Participants</p>
+                            </div>
                             <div>
                                 @foreach($employees as $employee)
                                     <p class="text-dark text-end">{{ $employee->first_name }} {{ $employee->last_name }}</p>
