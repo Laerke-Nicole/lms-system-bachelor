@@ -9,6 +9,9 @@
 <div class="row g-3 step-cards booking-section">
     @foreach($courses as $course)
         <div class="col-md-6 d-flex">
+
+            <x-blocks.error-alert />
+
             <x-blocks.form action="{{ route('trainings.bookings.course.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
 
@@ -19,7 +22,7 @@
                             <div class="step-cards__card__image-wrapper1 h-100 img-hover-scale">
                                 <img src="{{ asset('storage/' . $course->image) ?? '/placeholder.png' }}"
                                      alt="{{ $course->title }}"
-                                     class="h-100 w-100 object-fit-cover step-cards__card__image-wrapper1__image">
+                                     class="h-100 w-100 object-fit-cover step-cards__card__image-wrapper1__image" >
                             </div>
                         </div>
 
