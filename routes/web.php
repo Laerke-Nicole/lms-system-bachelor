@@ -84,8 +84,10 @@ Route::middleware(['auth'])->controller(BookingController::class)->name('trainin
     Route::post('/employees', 'storeEmployees')->name('employees.store');
 
 //    step 4 summary of booking
-    Route::get('/summary', 'showSummary')->name('summary');
-    Route::post('/confirm', 'confirm')->name('confirm');
+    Route::get('/confirm', 'showConfirm')->name('confirm');
+    Route::post('/confirm', 'storeConfirm')->name('confirm.store');
+
+    Route::get('/summary/{id}', 'showSummary')->name('summary');
 });
 
 

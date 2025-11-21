@@ -29,14 +29,22 @@
             Participants
         </a>
 
-        <a href="{{ route('trainings.bookings.summary') }}"
+        <a href="{{ route('trainings.bookings.confirm') }}"
            class="text-decoration-underline-hover small {{ $step >= 4 ? 'fw-bold' : 'text-muted' }}">
             Confirm
         </a>
 
-        <span class="text-decoration-underline-hover small {{ $step == 5 ? 'fw-bold' : 'text-muted' }}">
-            Done
-        </span>
+        @isset($training)
+            <a href="{{ route('trainings.bookings.summary', $training->id) }}"
+               class="text-decoration-underline-hover small {{ $step >= 5 ? 'fw-bold' : 'text-muted' }}">
+                Done
+            </a>
+        @else
+            <span class="small text-muted">
+                Done
+            </span>
+        @endisset
+
     </div>
 
 </div>
