@@ -2,15 +2,16 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('bookings.summary') }}
+    {{ Breadcrumbs::render('bookings.confirm') }}
 
     <h3 class="mb-4">Booking summary</h3>
 
     <div class="row booking-section">
         <div class="col-12 col-lg-8 booking-section-small">
+
             <x-blocks.error-alert />
 
-            <x-blocks.form action="{{ route('trainings.bookings.confirm') }}" method="POST" class="mb-0">
+            <x-blocks.form action="{{ route('trainings.bookings.confirm.store') }}" method="POST" class="mb-0">
 
                 <div class="small p-4 d-flex flex-column bg-white rounded shadow-sm">
                     <div class="row mb-3 g-3">
@@ -21,7 +22,7 @@
                         </div>
 
                         <div class="col-sm-8">
-                            <h5 class="fw-semibold">{{ $course->title }}</h5>
+                            <h4 class="fw-semibold">{{ $course->title }}</h4>
                             <p>{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
                             <p>8 hrs</p>
                         </div>
