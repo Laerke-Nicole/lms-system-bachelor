@@ -18,12 +18,12 @@
 
                             <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" col="col-12" />
 
+                            <x-blocks.error-alert />
+
                             <div class="d-flex flex-column mt-2">
                                 <a href="{{ route('password.request') }}" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
                                 <button type="submit" class="btn btn-primary">Log in</button>
                             </div>
-
-                            <x-blocks.error-alert />
                         </x-blocks.form>
                     </div>
                 </div>
