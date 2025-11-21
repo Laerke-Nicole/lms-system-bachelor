@@ -4,81 +4,64 @@
 
     {{ Breadcrumbs::render('bookings.employees') }}
 
-<div class="row booking-section">
-    <div class="col-12 col-lg-7 booking-section-small">
-        <div class="row">
+<x-blocks.form action="{{ route('trainings.bookings.employees.store') }}" method="POST" x-data="{ loading: false }" @submit="loading = true">
+    <div class="row booking-section">
+        <div class="col-12 col-lg-7 booking-section-small">
             <h3 class="mb-4">Who is attending?</h3>
 
-            <x-blocks.error-alert />
+{{--            search, selectAll, clear and list of employees --}}
+            @livewire('employee-selector', ['employees' => $employees])
+        </div>
 
-            <x-blocks.form action="{{ route('trainings.bookings.employees.store') }}" method="POST">
-                @foreach($employees as $employee)
-                    <div class="row g-3">
-                        <div class="col-12 col-lg-4">
-                            <label class="d-flex py-3">
-                                <div class="d-flex gap-3">
-                                    {{-- checkbox --}}
-                                    <input type="checkbox"
-                                           name="user_ids[]"
-                                           value="{{ $employee->id }}"
-                                           class="form-check-input">
-                                    {{-- name and email of the employee --}}
-                                    <div>
-                                        <h5 class="mb-1 fw-semibold">{{ $employee->first_name }} {{ $employee->last_name }}</h5>
-                                        <p class="text-muted small mb-0">{{ $employee->email }}</p>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
+        <div class="col-12 col-lg-5">
+            <div class="booking-summary">
+                <div class="small p-4 d-flex flex-column gap-2 bg-white rounded shadow-sm booking-section-small-always">
+                    <h3>Booking summary</h3>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted">Course</p>
+                        <p class="text-dark">{{ $course->title }}</p>
                     </div>
-                @endforeach
 
+                    <div class="d-flex justify-content-between ">
+                        <p class="text-muted">Duration</p>
+                        <p class="text-dark">8 hrs</p>
+                        {{--            <p>{{ $course->duration }}</p>--}}
+                    </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Continue</button>
+                    <p class="text-dark mb-0 text-end">{{ $course->description }}</p>
 
-            </x-blocks.form>
-        </div>
-    </div>
+                    <hr>
 
-    <div class="col-12 col-lg-5">
-        <div class="small p-4 d-flex flex-column gap-2 bg-white rounded shadow-sm">
-            <h3>Booking summary</h3>
-            <div class="d-flex justify-content-between">
-                <p class="text-muted">Course</p>
-                <p class="text-dark">{{ $course->title }}</p>
-            </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted">Date</p>
+                        <p class="text-dark">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                    </div>
 
-            <div class="d-flex justify-content-between ">
-                <p class="text-muted">Duration</p>
-                <p class="text-dark">8 hrs</p>
-                {{--            <p>{{ $course->duration }}</p>--}}
-            </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted">Trainer</p>
+                        <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
+                    </div>
 
-            <p class="text-dark mb-0 text-end">{{ $course->description }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-muted">Location</p>
+                        <p class="text-dark">{{ $trainingSlot->place }}</p>
+                    </div>
 
-            <hr>
+                    <div class="d-flex flex-column">
+                        <button type="submit" class="btn btn-primary" :disabled="loading">
+                            <span x-show="!loading">Continue</span>
+                            <span x-show="loading" class="spinner-border spinner-border-sm"></span>
+                        </button>
+                    </div>
+                </div>
 
-            <div class="d-flex justify-content-between">
-                <p class="text-muted">Date</p>
-                <p class="text-dark">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
-            </div>
-
-            <div class="d-flex justify-content-between">
-                <p class="text-muted">Trainer</p>
-                <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
-            </div>
-
-            <div class="d-flex justify-content-between">
-                <p class="text-muted">Location</p>
-                <p class="text-dark">{{ $trainingSlot->place }}</p>
-            </div>
-
-            <div class="d-flex">
-                <button type="submit" class="btn btn-primary">Continue</button>
+                <div class="alert alert-primary small" role="alert">
+                    Missing employees? <a href="#" class="fw-semibold text-decoration-underline">Register new employees here</a>.
+                </div>
             </div>
         </div>
     </div>
-</div>
+</x-blocks.form>
 
 
 @endsection
