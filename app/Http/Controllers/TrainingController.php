@@ -83,7 +83,9 @@ class TrainingController extends Controller
     public function edit(Training $training)
     {
         $slot = $training->trainingSlot;
-        return view('trainings.edit', compact('training', 'slot'));
+        $places = ['Online', 'On site'];
+
+        return view('trainings.edit', compact('training','places', 'slot'));
     }
 
 
@@ -99,15 +101,18 @@ class TrainingController extends Controller
         // validate the user input
         $validated = $request->validate([
             'training_date' => ['required', 'date'],
+            'place' => ['required'],
+            'participation_link' => ['nullable', 'url'],
         ]);
 
-//        update the training date on trainingslot
+//        update the training date and participation link on trainingslot
         $training->trainingSlot->update([
             'training_date' => $validated['training_date'],
+            'place' => $validated['place'],
+            'participation_link' => $validated['participation_link'] ?? null,
         ]);
 
         // update a new training in the db
-//        $training->update($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training updated successfully.');

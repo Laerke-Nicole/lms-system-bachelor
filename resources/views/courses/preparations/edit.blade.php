@@ -15,7 +15,7 @@
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('courses.preparations.update', [$course->id, $preparation->id]) }}" method="POST">
+    <x-blocks.form action="{{ route('courses.preparations.update', [$course, $preparation]) }}" method="POST">
         @method('PUT')
 
         <x-elements.input label="Title" name="title" value="{{ $preparation->title }}"/>
