@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Preparation;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,11 @@ class PreparationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        $preparations = Preparation::latest()->paginate(5);
-        return view('preparations.index', compact('preparations'))->with(request()->input('page'));
+        $preparations = $course->preparations()->latest()->paginate(5);
+
+        return view('courses.preparations.index', compact('course', 'preparations'))->with(request()->input('page'));
     }
 
 
@@ -24,9 +26,11 @@ class PreparationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('preparations.create');
+        $types = ['Quiz', 'Task'];
+
+        return view('courses.preparations.create', compact('course', 'types'));
     }
 
 
@@ -36,7 +40,7 @@ class PreparationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
         // validate the user input
         $validated = $request->validate([
@@ -46,22 +50,10 @@ class PreparationController extends Controller
         ]);
 
         // create a new preparation in the db
-        Preparation:: create($validated);
+        $course->preparations()->create($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('preparations.index')->with('success', 'Preparation created successfully.');
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Preparation  $preparation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Preparation $preparation)
-    {
-        return view('preparations.show', compact('preparation'));
+        return redirect()->route('courses.preparations.index', $course)->with('success', 'Preparation created successfully.');
     }
 
 
@@ -71,9 +63,11 @@ class PreparationController extends Controller
      * @param  \App\Models\Preparation  $preparation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Preparation $preparation)
+    public function edit(Course $course, Preparation $preparation)
     {
-        return view('preparations.edit', compact('preparation'));
+        $types = ['Quiz', 'Task'];
+
+        return view('courses.preparations.edit', compact('course', 'preparation', 'types'));
     }
 
 
@@ -84,7 +78,7 @@ class PreparationController extends Controller
      * @param  \App\Models\Preparation  $preparation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Preparation $preparation)
+    public function update(Request $request, Course $course, Preparation $preparation)
     {
         // validate the user input
         $validated = $request->validate([
@@ -97,7 +91,7 @@ class PreparationController extends Controller
         $preparation->update($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('preparations.index')->with('success', 'Preparation updated successfully.');
+        return redirect()->route('courses.preparations.index', $course)->with('success', 'Preparation updated successfully.');
     }
 
 
@@ -107,12 +101,12 @@ class PreparationController extends Controller
      * @param  \App\Models\Preparation  $preparation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Preparation $preparation)
+    public function destroy(Course $course, Preparation $preparation)
     {
         // delete the preparation from the db
         $preparation->delete();
 
         //  redirect the user and send a success message
-        return redirect()->route('preparations.index')->with('success', 'Preparation deleted successfully.');
+        return redirect()->route('courses.preparations.index', $course)->with('success', 'Preparation deleted successfully.');
     }
 }

@@ -1,4 +1,4 @@
-@props(['showRoute', 'editRoute', 'deleteRoute'])
+@props(['showRoute' => null, 'editRoute' => null, 'deleteRoute' => null])
 
 <form action="{{ $deleteRoute }}" method="POST" class="d-inline">
     @csrf
@@ -9,9 +9,19 @@
             <i class="bi bi-three-dots-vertical fs-4"></i>
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item fs-5" href="{{ $showRoute }}"><i class="bi bi-eye me-2"></i>View</a></li>
-            <li><a class="dropdown-item fs-5" href="{{ $editRoute }}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
-            <li><button type="submit" class="dropdown-item fs-5" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
+            @if($showRoute)
+                <li><a class="dropdown-item fs-5" href="{{ $showRoute }}"><i class="bi bi-eye me-2"></i>View</a></li>
+            @endif
+
+            @if($editRoute)
+                <li><a class="dropdown-item fs-5" href="{{ $editRoute }}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+            @endif
+
+            @if($deleteRoute)
+                <li><button type="submit" class="dropdown-item fs-5" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
+            @endif
+
+            {{ $slot }}
         </ul>
     </div>
 </form>

@@ -61,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('trainings', TrainingController::class);
     Route::resource('training_slots', TrainingSlotController::class);
     Route::resource('follow_up_materials', FollowUpMaterialController::class);
-    Route::resource('preparations', PreparationController::class);
+    Route::resource('courses.preparations', PreparationController::class);
     Route::resource('requirements', RequirementController::class);
     Route::get('/profiles', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');

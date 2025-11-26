@@ -31,4 +31,10 @@ class Course extends Model
     {
         return $this->hasMany(FollowUpTest::class);
     }
+
+    public function preparations()
+    {
+        return $this->hasMany(Preparation::class);
+    }
+
 }

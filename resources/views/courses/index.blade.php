@@ -17,11 +17,19 @@
                 <td>
                     <x-blocks.table-actions :showRoute="route('courses.show', $course->id)"
                                                 :editRoute="route('courses.edit', $course->id)"
-                                                :deleteRoute="route('courses.destroy', $course->id)"/>
+                                                :deleteRoute="route('courses.destroy', $course->id)">
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item fs-5" href="{{ route('courses.preparations.index', $course) }}">
+                                Preparation
+                            </a>
+                        </li>
+                    </x-blocks.table-actions>
                 </td>
             </tr>
         @endforeach
     </x-blocks.table-head>
+
 
 
     <x-elements.pagination :items="$courses"/>

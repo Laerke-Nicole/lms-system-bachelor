@@ -24,7 +24,7 @@
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="{{ route('sites.index') }}" class="btn btn-outline-secondary">Cancel</a>
+            <a href="{{ route('courses.index') }}" class="btn btn-outline-secondary">Cancel</a>
         </div>
     </x-blocks.form>
 
