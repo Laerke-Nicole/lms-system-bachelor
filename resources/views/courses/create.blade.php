@@ -18,6 +18,7 @@
     <x-blocks.form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
         <x-elements.input label="Title" name="title" />
         <x-elements.textarea label="Description" name="description" />
+        <x-elements.input label="Duration (in hours)" name="duration" type="number" />
         <x-elements.input label="Duration months" name="duration_months" type="number" />
         <x-elements.input label="Image" name="image" type="file" />
 

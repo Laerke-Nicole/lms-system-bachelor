@@ -12,6 +12,7 @@ class CourseSeeder extends Seeder
         $operator = Course::create([
             'title' => 'Operator',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'duration' => 8,
             'duration_months' => 24,
             'image' => 'courses/operator.png',
         ]);
@@ -19,6 +20,7 @@ class CourseSeeder extends Seeder
         $maintenance = Course::create([
             'title' => 'Maintenance',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'duration' => 8,
             'duration_months' => 24,
             'image' => 'courses/maintenance.jpg',
         ]);
@@ -26,6 +28,7 @@ class CourseSeeder extends Seeder
         $advancedMaintenance = Course::create([
             'title' => 'Advanced Maintenance',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'duration' => 8,
             'duration_months' => 24,
             'image' => 'courses/advanced_maintenance.jpg',
         ]);
@@ -33,6 +36,7 @@ class CourseSeeder extends Seeder
         $engineerRecipe = Course::create([
             'title' => 'Engineer/recipe',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'duration' => 8,
             'duration_months' => 24,
             'image' => 'courses/engineer.jpg',
         ]);

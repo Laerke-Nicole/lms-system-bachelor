@@ -24,7 +24,7 @@
                         <div class="col-sm-8">
                             <h4 class="fw-semibold mb-3">{{ $course->title }}</h4>
                             <p class="mb-2">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
-                            <p>8 hrs</p>
+                            <p>{{ $course->duration }} hrs</p>
                         </div>
                     </div>
 

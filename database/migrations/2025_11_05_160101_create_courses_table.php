@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->integer('duration');
             $table->integer('duration_months');
             $table->string('image')->nullable();
             $table->timestamps();

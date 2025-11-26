@@ -43,6 +43,7 @@ class CourseController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'duration' => 'required|integer',
             'duration_months' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -97,6 +98,7 @@ class CourseController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'duration' => 'required|integer',
             'duration_months' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

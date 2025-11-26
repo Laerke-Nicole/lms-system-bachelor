@@ -24,8 +24,7 @@
 
                     <div class="d-flex justify-content-between ">
                         <p class="text-muted">Duration</p>
-                        <p class="text-dark">8 hrs</p>
-                        {{--            <p>{{ $course->duration }}</p>--}}
+                        <p class="text-dark">{{ $course->duration }} hrs</p>
                     </div>
 
                     <p class="mb-0">{{ $course->description }}</p>
