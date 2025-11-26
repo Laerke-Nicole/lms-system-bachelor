@@ -15,8 +15,8 @@ class RequirementFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(4),
-            'content' => $this->faker->paragraphs(2, true),
+            'title' => $this->faker->optional()->sentence(4),
+            'content' => $this->faker->optional()->paragraphs(2, true),
             'course_id' => Course::inRandomOrder()->value('id'),
         ];
     }

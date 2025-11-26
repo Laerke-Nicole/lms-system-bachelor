@@ -13,12 +13,8 @@ return new class extends Migration
     {
         Schema::create('gdprs', function (Blueprint $table) {
             $table->id();
-            $table->date('valid_until');
-            $table->date('consent_date');
-
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->cascadeOnDelete();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
 
             $table->timestamps();
         });

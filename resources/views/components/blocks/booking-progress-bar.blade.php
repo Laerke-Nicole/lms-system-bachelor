@@ -1,6 +1,6 @@
 @props(['step'])
 
-<div class="d-none d-md-block booking-progress-bar position-fixed bottom-0 start-0 end-0 bg-white shadow-lg pt-3 pb-4 px-4">
+<div class="z-1 d-none d-md-block booking-progress-bar position-fixed bottom-0 start-0 end-0 bg-white shadow-lg pt-3 pb-4 px-4">
 
     {{-- progress line --}}
     <div class="position-relative mb-3">

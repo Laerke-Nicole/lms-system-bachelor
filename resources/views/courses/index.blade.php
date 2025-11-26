@@ -24,6 +24,11 @@
                                 <i class="bi bi-journal me-2"></i>Preparation
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item fs-5" href="{{ route('courses.requirements.index', $course) }}">
+                                <i class="bi bi-clipboard-check me-2"></i>Requirement
+                            </a>
+                        </li>
                     </x-blocks.table-actions>
                 </td>
             </tr>

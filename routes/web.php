@@ -43,6 +43,7 @@ Route::middleware(['guest'])->controller(AuthSessionController::class)->group(fu
     Route::post('/login', 'login')->name('login');
 });
 
+Route::get('gdprs/privacy-policy', [GdprController::class, 'privacyPolicy'])->name('gdprs.privacy-policy');
 
 
 //app
@@ -62,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('training_slots', TrainingSlotController::class);
     Route::resource('follow_up_materials', FollowUpMaterialController::class);
     Route::resource('courses.preparations', PreparationController::class);
-    Route::resource('requirements', RequirementController::class);
+    Route::resource('courses.requirements', RequirementController::class);
     Route::get('/profiles', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
     Route::get('/profiles/certificates', [ProfileController::class, 'certificates'])->name('profiles.certificates');

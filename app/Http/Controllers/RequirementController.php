@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Requirement;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,11 @@ class RequirementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        $requirements = Requirement::latest()->paginate(5);
-        return view('requirements.index', compact('requirements'))->with(request()->input('page'));
+        $requirements = $course->requirements()->latest()->paginate(5);
+
+        return view('courses.requirements.index', compact('course', 'requirements'))->with(request()->input('page'));
     }
 
 
@@ -24,9 +26,9 @@ class RequirementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('requirements.create');
+        return view('courses.requirements.create', compact('course'));
     }
 
 
@@ -36,7 +38,7 @@ class RequirementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
         // validate the user input
         $validated = $request->validate([
@@ -45,10 +47,10 @@ class RequirementController extends Controller
         ]);
 
         // create a new requirement in the db
-        Requirement::create($validated);
+        $course->requirements()->create($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('requirements.index')->with('success', 'Requirement created successfully.');
+        return redirect()->route('courses.requirements.index', $course)->with('success', 'Requirement created successfully.');
     }
 
 
@@ -58,9 +60,9 @@ class RequirementController extends Controller
      * @param  \App\Models\Requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function show(Requirement $requirement)
+    public function show(Course $course, Requirement $requirement)
     {
-        return view('requirements.show', compact('requirement'));
+        return view('courses.requirements.show', compact('course', 'requirement'));
     }
 
 
@@ -70,9 +72,9 @@ class RequirementController extends Controller
      * @param  \App\Models\Requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Requirement $requirement)
+    public function edit(Course $course, Requirement $requirement)
     {
-        return view('requirements.edit', compact('requirement'));
+        return view('courses.requirements.edit', compact('course', 'requirement'));
     }
 
 
@@ -83,7 +85,7 @@ class RequirementController extends Controller
      * @param  \App\Models\Requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Requirement $requirement)
+    public function update(Request $request, Course $course, Requirement $requirement)
     {
         // validate the user input
         $validated = $request->validate([
@@ -95,7 +97,7 @@ class RequirementController extends Controller
         $requirement->update($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('requirements.index')->with('success', 'Requirement updated successfully.');
+        return redirect()->route('courses.requirements.index', $course)->with('success', 'Requirement updated successfully.');
     }
 
 
@@ -105,12 +107,12 @@ class RequirementController extends Controller
      * @param  \App\Models\Requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requirement $requirement)
+    public function destroy(Course $course, Requirement $requirement)
     {
         // delete the requirement from the db
         $requirement->delete();
 
         //  redirect the user and send a success message
-        return redirect()->route('requirements.index')->with('success', 'Requirement deleted successfully.');
+        return redirect()->route('courses.requirements.index', $course)->with('success', 'Requirement deleted successfully.');
     }
 }

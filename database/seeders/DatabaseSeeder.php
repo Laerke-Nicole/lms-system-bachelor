@@ -10,7 +10,6 @@ use App\Models\EmailUser;
 use App\Models\Evaluation;
 use App\Models\FollowUpMaterial;
 use App\Models\FollowUpTest;
-use App\Models\Gdpr;
 use App\Models\PostalCode;
 use App\Models\Preparation;
 use App\Models\Requirement;
@@ -38,7 +37,6 @@ class DatabaseSeeder extends Seeder
         Company::factory(4)->create();
         Site::factory(5)->create();
         User::factory(300)->create();
-        Gdpr::factory(50)->create();
         Email::factory(20)->create();
         $this->call(CourseSeeder::class);
         Evaluation::factory(20)->create();
@@ -59,6 +57,7 @@ class DatabaseSeeder extends Seeder
             PostalCodeSeeder::class,
             AddressSeeder::class,
             AbInventechSeeder::class,
+            GdprSeeder::class,
         ]);
     }
 }

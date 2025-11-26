@@ -59,7 +59,10 @@
 {{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
-                    <li><x-elements.link title="Settings" href="{{ route('ab_inventech.index') }}" icon="bi bi-info-circle"></x-elements.link></li>
+                    <x-blocks.mmenu-dropdown title="Settings" icon="bi bi-info-circle">
+                        <li><x-elements.link class="dropdown-item" title="AB Inventech" href="{{ route('ab_inventech.index') }}" icon="bi bi-dot"></x-elements.link></li>
+                        <li><x-elements.link class="dropdown-item" title="GDPR" href="{{ route('gdprs.index') }}" icon="bi bi-dot"></x-elements.link></li>
+                    </x-blocks.mmenu-dropdown>
 
 {{--                    <li>--}}
 {{--                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">--}}

@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-12 col-lg-5">
-            <div class="booking-summary">
+            <div class="booking-sidebar">
                 <div class="order-2 order-lg-1 small p-4 d-flex flex-column gap-2 bg-white rounded shadow-sm booking-section-small-always">
                     <h3>Booking summary</h3>
                     <div class="d-flex justify-content-between">

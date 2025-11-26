@@ -40,8 +40,8 @@ class GdprController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'valid_until' => 'required|date',
-            'consent_date' => 'required|date',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
         // create a new gdpr in the db
@@ -87,8 +87,8 @@ class GdprController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'valid_until' => 'required|date',
-            'consent_date' => 'required|date',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
         // update a new gdpr in the db
@@ -112,5 +112,11 @@ class GdprController extends Controller
 
         //  redirect the user and send a success message
         return redirect()->route('gdprs.index')->with('success', 'GDPR deleted successfully.');
+    }
+
+    public function privacyPolicy()
+    {
+        $gdprs = Gdpr::all();
+        return view('gdprs.privacy-policy', compact('gdprs'))->with(request()->input('page'));
     }
 }

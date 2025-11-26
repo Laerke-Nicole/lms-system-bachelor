@@ -1,7 +1,0 @@
-.booking-summary {
-    position: sticky;
-    top: 1rem;
-    @include media-breakpoint-down(lg) {
-        position: static;
-    }
-}

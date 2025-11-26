@@ -11,3 +11,11 @@
 .booking-section-small-always {
     margin-bottom: 48px;
 }
+
+.booking-sidebar {
+    position: sticky;
+    top: 1rem;
+    @include media-breakpoint-down(lg) {
+        position: static;
+    }
+}

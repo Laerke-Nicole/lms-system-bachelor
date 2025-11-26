@@ -4,29 +4,24 @@
 
 {{--    {{ Breadcrumbs::render(--}}
 {{--        'crud.create',--}}
-{{--        'Preparations',--}}
-{{--        'preparations.index',--}}
+{{--        'Requirements',--}}
+{{--        'requirements.index',--}}
 {{--        'Create',--}}
-{{--        'preparations.create'--}}
+{{--        'requirements.create'--}}
 {{--    ) }}--}}
 
 
-    <x-blocks.title title="Create new preparation"></x-blocks.title>
+    <x-blocks.title title="Create new requirement"></x-blocks.title>
 
     <x-blocks.error-alert/>
 
-    <x-blocks.form action="{{ route('courses.preparations.store', $course) }}" method="POST">
+    <x-blocks.form action="{{ route('courses.requirements.store', $course) }}" method="POST">
         <x-elements.input label="Title" name="title" />
-        <x-elements.select label="Type" name="type">
-            @foreach($types as $type)
-                <option value="{{ $type }}">{{ $type }}</option>
-            @endforeach
-        </x-elements.select>
-        <x-elements.input label="URL link" name="url" />
+        <x-elements.textarea label="Content" name="content" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="{{ route('courses.preparations.index', $course) }}" class="btn btn-outline-secondary">Cancel</a>
+            <a href="{{ route('courses.requirements.index', $course) }}" class="btn btn-outline-secondary">Cancel</a>
         </div>
     </x-blocks.form>
 

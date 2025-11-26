@@ -10,13 +10,7 @@ class Gdpr extends Model
     use HasFactory;
 
     protected $fillable = [
-        'valid_until',
-        'consent_date',
-        'user_id',
+        'title',
+        'content',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

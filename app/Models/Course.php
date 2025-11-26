@@ -37,4 +37,9 @@ class Course extends Model
         return $this->hasMany(Preparation::class);
     }
 
+    public function requirements()
+    {
+        return $this->hasMany(Requirement::class);
+    }
+
 }

@@ -53,7 +53,10 @@ class BookingController extends Controller
 
         $trainingSlots = TrainingSlot::where('course_id', $session)->where('status', 'Available')->orderBy('training_date')->get();
 
-        return view('trainings.bookings.step2-slot', compact('trainingSlots'));
+//        get the requirements for this training slots, course
+        $course = Course::with('requirements')->findOrFail($session);
+
+        return view('trainings.bookings.step2-slot', compact('trainingSlots', 'course'));
     }
 
     /**
