@@ -21,7 +21,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item fs-5" href="{{ route('courses.preparations.index', $course) }}">
-                                Preparation
+                                <i class="bi bi-journal me-2"></i>Preparation
                             </a>
                         </li>
                     </x-blocks.table-actions>
