@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="section-spacing bg-light">
-        <div class="container">
+        <div class="container py-5">
             {{ Breadcrumbs::render('to-home', 'Privacy policy', 'gdprs.privacy-policy') }}
             <h1>Privacy policy</h1>
         </div>

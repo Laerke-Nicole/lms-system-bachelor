@@ -3,6 +3,7 @@
         <div>
             <h3>{{ $title }}</h3>
             <p>{{ $subTitle ?? null }}</p>
+            <p><a href="{{ $attributes->get('link') }}"><u>{{ $linkTitle ?? null }}</u></a></p>
         </div>
 
         @if($attributes->has('href'))

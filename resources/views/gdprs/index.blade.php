@@ -4,7 +4,7 @@
 
     {{ Breadcrumbs::render('to-home', 'GDPRS', 'gdprs.index') }}
 
-    <x-blocks.title href="{{ route('gdprs.create') }}" title="Text blocks about GDPR" buttonText="Create"/>
+    <x-blocks.title href="{{ route('gdprs.create') }}" title="Text blocks about GDPR" buttonText="Create" link="gdprs/privacy-policy" linkTitle="View privacy policy page" />
 
     <x-blocks.message/>
 

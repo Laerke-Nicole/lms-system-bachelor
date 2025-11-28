@@ -26,7 +26,7 @@ class EmployeeSelector extends Component
     {
         if (count($this->selected) > $this->maxParticipants) {
 
-            // Remove the last selected item
+            // remove the last selected item
             array_pop($this->selected);
         }
     }
