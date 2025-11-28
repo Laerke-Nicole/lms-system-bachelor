@@ -26,14 +26,16 @@
 {{--    the checkboxex with employee names and email --}}
     <div class="mb-4">
         @foreach($employees as $employee)
-            <label class="d-flex py-3 mx-3">
+{{--            disable input checkbox once user selected the max amount of partiticpants number --}}
+            <label class="d-flex py-3 mx-3 {{ count($selected) >= $maxParticipants && !in_array($employee->id, $selected) ? 'opacity-50' : '' }}">
                 <div class="d-flex gap-3 align-items-center">
                     {{-- checkbox --}}
                     <input type="checkbox"
                            value="{{ $employee->id }}"
                            name="user_ids[]"
-                           wire:model="selected"
-                           class="form-check-input">
+                           wire:model.live="selected"
+                           class="form-check-input"
+                           {{ count($selected) >= $maxParticipants && !in_array($employee->id, $selected) ? 'disabled' : '' }}>
 
                     {{-- name and email of the employee --}}
                     <div>

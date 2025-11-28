@@ -105,16 +105,21 @@ class BookingController extends Controller
      */
     public function storeEmployees(Request $request)
     {
+        // Get the course to check max participants
+        $courseId = session('booking.course_id');
+        $course = Course::findOrFail($courseId);
+
         // validate the user input
         $validated = $request->validate([
 //            make sure they atleast picked one employee
-            'user_ids'   => 'required|array|min:1',
+            'user_ids'   => 'required|array|min:1|max:' . $course->max_participants,
             'user_ids.*' => 'exists:users,id',
         ], [
 //            customized error messages
             'user_ids.required' => 'Please select at least one employee.',
             'user_ids.array'    => 'Please select at least one employee.',
             'user_ids.min'      => 'You must choose at least one employee.',
+            'user_ids.max'      => 'You can only select up to ' . $course->max_participants . ' employees for this course.',
             'user_ids.*.exists' => 'One of the selected employees does not exist.',
         ]);
 
