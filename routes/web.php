@@ -25,6 +25,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\TrainingSlotController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\PrivacyPolicyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,7 +44,7 @@ Route::middleware(['guest'])->controller(AuthSessionController::class)->group(fu
     Route::post('/login', 'login')->name('login');
 });
 
-Route::get('gdprs/privacy-policy', [GdprController::class, 'privacyPolicy'])->name('gdprs.privacy-policy');
+Route::get('gdprs/privacy-policy', [PrivacyPolicyController::class, 'privacyPolicy'])->name('gdprs.privacy-policy');
 
 
 //app

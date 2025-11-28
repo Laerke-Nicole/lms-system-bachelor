@@ -24,7 +24,7 @@ class GdprSeeder extends Seeder
         ]);
 
         Gdpr::create([
-            'content' => 'Account information: Name, email address, role (employee, leader or admin), company /site affiliation.',
+            'content' => 'Account information: First name, last name, email, phone number, role (employee, leader or admin), company /site affiliation.',
         ]);
 
         Gdpr::create([

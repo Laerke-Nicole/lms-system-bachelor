@@ -113,10 +113,4 @@ class GdprController extends Controller
         //  redirect the user and send a success message
         return redirect()->route('gdprs.index')->with('success', 'GDPR deleted successfully.');
     }
-
-    public function privacyPolicy()
-    {
-        $gdprs = Gdpr::all();
-        return view('gdprs.privacy-policy', compact('gdprs'))->with(request()->input('page'));
-    }
 }
