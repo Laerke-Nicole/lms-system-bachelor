@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('reminder_sent_18_m')->default(false)->nullable();
             $table->boolean('reminder_sent_22_m')->default(false)->nullable();
             $table->date('reminder_before_training')->nullable();
+            $table->dateTime('completed_at')->nullable();
 
             $table->foreignId('ordered_by_id')
                 ->constrained('users')

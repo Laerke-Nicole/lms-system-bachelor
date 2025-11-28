@@ -92,17 +92,17 @@ class TrainingController extends Controller
         }
 
 //        if training is today
-        if ($slot->training_date->isToday() ) {
+        elseif ($slot->training_date->isToday() ) {
             $statuses = ['Upcoming', 'Completed'];
         }
 
 //        if training date has passed and the status isnt already expired
-        if ($slot->training_date < now() && $slot->status != 'Expired' ) {
+        elseif ($slot->training_date < now() && $training->status != 'Expired') {
             $statuses = ['Completed'];
         }
 
 //        if training status is expired already
-        if ($training->status === 'Expired') {
+        else {
             $statuses = ['Expired'];
         }
 
@@ -134,12 +134,23 @@ class TrainingController extends Controller
             'participation_link' => $validated['participation_link'] ?? null,
         ]);
 
-//        update training status
-        $training->update([
-            'status' => $validated['status'],
-        ]);
 
-        // update a new training in the db
+//        update status of training
+//        update the status to the validated one
+        $training->status = $validated['status'];
+
+//        if training status is set to completed, then set the completed_at to the training date
+        if ($validated['status'] === 'Completed') {
+            $training->completed_at = $training->trainingSlot->training_date;
+        }
+
+//        if the status is set back to upcoming then make sure the completed_at is always null
+        if ($validated['status'] === 'Upcoming') {
+            $training->completed_at = null;
+        }
+
+//        save changes to training
+        $training->save();
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training updated successfully.');
