@@ -14,7 +14,7 @@ class PreparationFactory extends Factory
      */
     public function definition()
     {
-        $types = ['quiz', 'task'];
+        $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
         return [
             'title' => $this->faker->sentence(3),

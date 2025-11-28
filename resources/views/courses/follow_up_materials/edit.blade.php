@@ -24,7 +24,7 @@
                 <option value="{{ $type }}" {{ $followUpMaterial->type === $type ? 'selected' : '' }}>{{ $type }}</option>
             @endforeach
         </x-elements.select>
-        <x-elements.input label="Url" name="url" value="{{ $followUpMaterial->url }}"/>
+        <x-elements.input label="URL (optional)" placeholder="URL" name="url" value="{{ $followUpMaterial->url }}"/>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>

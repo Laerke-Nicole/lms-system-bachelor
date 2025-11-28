@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('preparations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->enum('type', ['Quiz', 'Task']);
+            $table->enum('type', ['Video', 'PDF', 'Task', 'Quiz', 'Other']);
             $table->string('url')->nullable();
 
             $table->foreignId('course_id')

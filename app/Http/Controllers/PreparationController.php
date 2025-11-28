@@ -28,7 +28,7 @@ class PreparationController extends Controller
      */
     public function create(Course $course)
     {
-        $types = ['Quiz', 'Task'];
+        $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
         return view('courses.preparations.create', compact('course', 'types'));
     }
@@ -65,7 +65,7 @@ class PreparationController extends Controller
      */
     public function edit(Course $course, Preparation $preparation)
     {
-        $types = ['Quiz', 'Task'];
+        $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
         return view('courses.preparations.edit', compact('course', 'preparation', 'types'));
     }

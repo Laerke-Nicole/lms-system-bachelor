@@ -22,7 +22,7 @@
                 <option value="{{ $type }}">{{ $type }}</option>
             @endforeach
         </x-elements.select>
-        <x-elements.input label="URL link" name="url" />
+        <x-elements.input label="URL (optional)" placeholder="URL" name="url" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
