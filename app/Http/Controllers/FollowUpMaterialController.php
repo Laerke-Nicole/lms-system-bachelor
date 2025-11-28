@@ -28,7 +28,7 @@ class FollowUpMaterialController extends Controller
      */
     public function create(Course $course)
     {
-        $types = ['Video', 'Article', 'Book', 'Document', 'Other'];
+        $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
         return view('courses.follow_up_materials.create', compact('course', 'types'));
     }
@@ -65,7 +65,7 @@ class FollowUpMaterialController extends Controller
      */
     public function edit(Course $course, FollowUpMaterial $followUpMaterial)
     {
-        $types = ['Video', 'Article', 'Book', 'Document', 'Other'];
+        $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
         return view('courses.follow_up_materials.edit', compact('course', 'followUpMaterial', 'types'));
     }

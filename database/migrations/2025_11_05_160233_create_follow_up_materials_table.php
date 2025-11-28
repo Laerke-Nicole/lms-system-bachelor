@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('follow_up_materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->enum('type', ['video', 'pdf', 'task', 'quiz']);
+            $table->enum('type', ['Video', 'PDF', 'Task', 'Quiz', 'Other']);
             $table->string('url')->nullable();
 
             $table->foreignId('course_id')

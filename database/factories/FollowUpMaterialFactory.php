@@ -14,7 +14,7 @@ class FollowUpMaterialFactory extends Factory
      */
     public function definition()
     {
-        $types = ['video', 'pdf', 'task', 'quiz'];
+        $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
         return [
             'title' => $this->faker->sentence(3),
