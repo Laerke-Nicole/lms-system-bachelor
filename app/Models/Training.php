@@ -53,4 +53,10 @@ class Training extends Model
     {
         return $this->belongsTo(TrainingSlot::class);
     }
+
+    public function course()
+    {
+        return $this->trainingSlot?->course;
+    }
+
 }

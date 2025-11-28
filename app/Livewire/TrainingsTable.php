@@ -27,7 +27,10 @@ class TrainingsTable extends Component
     public function getTrainingsProperty()
     {
         $query = Training::query()
-            ->with(['trainingSlot.course', 'trainingSlot.trainer', 'orderedBy'])
+            ->with(['trainingSlot.course.courseMaterials' => function ($query) {
+                $query->where('material_type', 'Preparation');
+            },
+                'trainingSlot.trainer', 'orderedBy'])
             ->join('training_slots', 'training_slots.id', '=', 'trainings.training_slot_id')
             ->select('trainings.*');
 

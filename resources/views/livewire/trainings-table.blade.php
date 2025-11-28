@@ -36,9 +36,10 @@
                                             :deleteRoute="route('trainings.destroy', $training->id)"/>
                 </td>
             </tr>
+            <x-blocks.preparation-materials :training="$training" :tableHeaders="$this->tableHeaders" />
         @empty
             <tr>
-                <td colspan="7">There are no trainings.</td>
+                <td colspan="{{ count($this->tableHeaders) }}">There are no trainings.</td>
             </tr>
         @endforelse
     </x-blocks.table-head>

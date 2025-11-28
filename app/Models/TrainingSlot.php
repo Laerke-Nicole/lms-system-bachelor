@@ -21,7 +21,7 @@ class TrainingSlot extends Model
     ];
 
     protected $casts = [
-        'training_date' => 'datetime:Y m d H:i',
+        'training_date' => 'datetime',
     ];
 
 //    format of dates to not show 2025-01-12 but 01 dec 2025
