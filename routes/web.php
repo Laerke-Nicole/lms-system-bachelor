@@ -62,9 +62,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('follow_up_tests', FollowUpTestController::class);
     Route::resource('trainings', TrainingController::class);
     Route::resource('training_slots', TrainingSlotController::class);
-    Route::resource('follow_up_materials', FollowUpMaterialController::class);
     Route::resource('courses.preparations', PreparationController::class);
     Route::resource('courses.requirements', RequirementController::class);
+    Route::resource('courses.follow_up_materials', FollowUpMaterialController::class);
     Route::get('/profiles', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
     Route::get('/profiles/certificates', [ProfileController::class, 'certificates'])->name('profiles.certificates');

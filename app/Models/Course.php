@@ -42,4 +42,9 @@ class Course extends Model
         return $this->hasMany(Requirement::class);
     }
 
+    public function followUpMaterials()
+    {
+        return $this->hasMany(FollowUpMaterial::class);
+    }
+
 }

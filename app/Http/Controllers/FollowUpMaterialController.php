@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\FollowUpMaterial;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,11 @@ class FollowUpMaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        $followUpMaterials = FollowUpMaterial::latest()->paginate(5);
-        return view('follow_up_materials.index', compact('followUpMaterials'))->with(request()->input('page'));
+        $followUpMaterials = $course->followUpMaterials()->latest()->paginate(5);
+
+        return view('courses.follow_up_materials.index', compact('course', 'followUpMaterials'))->with(request()->input('page'));
     }
 
 
@@ -24,9 +26,11 @@ class FollowUpMaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('follow_up_materials.create');
+        $types = ['Video', 'Article', 'Book', 'Document', 'Other'];
+
+        return view('courses.follow_up_materials.create', compact('course', 'types'));
     }
 
 
@@ -36,7 +40,7 @@ class FollowUpMaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
         // validate the user input
         $validated = $request->validate([
@@ -46,22 +50,10 @@ class FollowUpMaterialController extends Controller
         ]);
 
         // create a new follow up material in the db
-        FollowUpMaterial:: create($validated);
+        $course->followUpMaterials()->create($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('follow_up_materials.index')->with('success', 'Follow up material created successfully.');
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FollowUpMaterial  $followUpMaterial
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FollowUpMaterial $followUpMaterial)
-    {
-        return view('follow_up_materials.show', compact('followUpMaterial'));
+        return redirect()->route('courses.follow_up_materials.index', $course)->with('success', 'Follow up material created successfully.');
     }
 
 
@@ -71,9 +63,11 @@ class FollowUpMaterialController extends Controller
      * @param  \App\Models\FollowUpMaterial  $followUpMaterial
      * @return \Illuminate\Http\Response
      */
-    public function edit(FollowUpMaterial $followUpMaterial)
+    public function edit(Course $course, FollowUpMaterial $followUpMaterial)
     {
-        return view('follow_up_materials.edit', compact('followUpMaterial'));
+        $types = ['Video', 'Article', 'Book', 'Document', 'Other'];
+
+        return view('courses.follow_up_materials.edit', compact('course', 'followUpMaterial', 'types'));
     }
 
 
@@ -84,7 +78,7 @@ class FollowUpMaterialController extends Controller
      * @param  \App\Models\FollowUpMaterial  $followUpMaterial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FollowUpMaterial $followUpMaterial)
+    public function update(Request $request, Course $course, FollowUpMaterial $followUpMaterial)
     {
         // validate the user input
         $validated = $request->validate([
@@ -97,7 +91,7 @@ class FollowUpMaterialController extends Controller
         $followUpMaterial->update($validated);
 
         //  redirect the user and send a success message
-        return redirect()->route('follow_up_materials.index')->with('success', 'Follow up material updated successfully.');
+        return redirect()->route('courses.follow_up_materials.index', $course)->with('success', 'Follow up material updated successfully.');
     }
 
 
@@ -107,12 +101,12 @@ class FollowUpMaterialController extends Controller
      * @param  \App\Models\FollowUpMaterial  $followUpMaterial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FollowUpMaterial $followUpMaterial)
+    public function destroy(Course $course, FollowUpMaterial $followUpMaterial)
     {
         // delete the follow up material from the db
         $followUpMaterial->delete();
 
         //  redirect the user and send a success message
-        return redirect()->route('follow_up_materials.index')->with('success', 'Follow up material deleted successfully.');
+        return redirect()->route('courses.follow_up_materials.index', $course)->with('success', 'Follow up material deleted successfully.');
     }
 }

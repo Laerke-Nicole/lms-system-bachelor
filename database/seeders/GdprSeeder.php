@@ -62,6 +62,11 @@ class GdprSeeder extends Seeder
         ]);
 
         Gdpr::create([
+            'title' => 'International Transfers',
+            'content' => 'All personal data is stored in the EU/EEA, and no international transfers occur.',
+        ]);
+
+        Gdpr::create([
             'title' => 'Data Retention',
             'content' => 'We retain your data only for as long as necessary:',
         ]);

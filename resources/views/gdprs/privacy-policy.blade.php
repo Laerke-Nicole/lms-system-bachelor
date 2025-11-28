@@ -10,14 +10,24 @@
     </div>
     <div class="container section-spacing">
         <div class="row">
-            @foreach($gdprs as $gdpr)
-                <div class="col-12 col-md-8">
-                    <h3>{{ $gdpr->title }}</h3>
-                    <p>{{ $gdpr->content }}</p>
-                </div>
-            @endforeach
+            @if($gdprs)
+                @foreach($gdprs as $gdpr)
+                    <div class="col-12 col-md-8">
+                        <h3>{{ $gdpr->title }}</h3>
+                        <p>{{ $gdpr->content }}</p>
+                    </div>
+                @endforeach
+            @endif
 
             @if($abInventech)
+                <div class="col-12 col-md-8">
+                    <h3>Data controller</h3>
+                    <p>The Data Controller is the company that provides you access to the LMS—typically your employer (“Your Company”).</p>
+                    <p>LMS Provider (Data Processor):</p>
+                    <p>{{ $abInventech->ab_inventech_name }}</p>
+                    <p>{{ $abInventech->ab_inventech_mail }}</p>
+                </div>
+
                 <div class="col-12 col-md-8">
                     <h3>Contact us</h3>
                     <p>For questions, contact: </p>

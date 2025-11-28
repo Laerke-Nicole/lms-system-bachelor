@@ -29,6 +29,11 @@
                                 <i class="bi bi-clipboard-check me-2"></i>Requirement
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item fs-5" href="{{ route('courses.follow_up_materials.index', $course) }}">
+                                <i class="bi bi-file-earmark-text me-2"></i>Follow up material
+                            </a>
+                        </li>
                     </x-blocks.table-actions>
                 </td>
             </tr>
