@@ -7,7 +7,7 @@
 <x-blocks.form action="{{ route('trainings.bookings.employees.store') }}" method="POST" x-data="{ loading: false }" @submit="loading = true">
     <div class="row booking-section">
         <div class="col-12 col-lg-7 booking-section-small">
-            <h3 class="mb-4">Who is attending?</h3>
+            <x-blocks.title title="Who is attending?" subTitle="Max {{ $course->max_participants }} participants" />
 
 {{--            search, selectAll, clear and list of employees --}}
             @livewire('employee-selector', ['employees' => $employees])

@@ -20,6 +20,7 @@
         <x-elements.textarea label="Description" name="description" />
         <x-elements.input label="Duration (in hours)" name="duration" type="number" />
         <x-elements.input label="Duration months" name="duration_months" type="number" />
+        <x-elements.input label="Max participants" name="max_participants" type="number" />
         <x-elements.input label="Image" name="image" type="file" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

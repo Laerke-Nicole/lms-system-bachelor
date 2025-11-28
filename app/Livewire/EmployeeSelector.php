@@ -15,11 +15,6 @@ class EmployeeSelector extends Component
         $this->selected = [];
     }
 
-    public function selectAll()
-    {
-        $this->selected = collect($this->employees)->pluck('id')->toArray();
-    }
-
     public function clearAll()
     {
         $this->selected = [];

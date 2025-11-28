@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('duration');
             $table->integer('duration_months');
+            $table->integer('max_participants');
             $table->string('image')->nullable();
             $table->timestamps();
         });

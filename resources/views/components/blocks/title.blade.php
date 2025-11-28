@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-lg-12 margin-tb mb-5">
+    <div class="col-lg-12 margin-tb mb-4">
         <div>
             <h3>{{ $title }}</h3>
-            <p>{{ $tagline ?? null }}</p>
+            <p>{{ $subTitle ?? null }}</p>
         </div>
 
         @if($attributes->has('href'))

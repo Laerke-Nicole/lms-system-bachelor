@@ -45,6 +45,7 @@ class CourseController extends Controller
             'description' => 'required',
             'duration' => 'required|integer',
             'duration_months' => 'required|integer',
+            'max_participants' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -100,6 +101,7 @@ class CourseController extends Controller
             'description' => 'required',
             'duration' => 'required|integer',
             'duration_months' => 'required|integer',
+            'max_participants' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

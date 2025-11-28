@@ -12,14 +12,12 @@
         {{--    select all and clear btns --}}
         <div class="col-sm-7 col-md-6 col-lg-8">
             <div class="d-flex flex-wrap gap-2 justify-content-end align-items-center">
-                <button type="button" class="btn btn-outline-primary btn-sm" wire:click="selectAll">Select all</button>
                 <button type="button" class="btn btn-outline-primary btn-sm" wire:click="clearAll">Clear</button>
 
                 <span class="text-muted small">
                     {{ count($selected) }} selected
                 </span>
             </div>
-
         </div>
     </div>
 

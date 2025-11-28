@@ -8,12 +8,13 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Title', 'Description', 'Duration', 'Actions']">
+    <x-blocks.table-head :headers="['Title', 'Description', 'Duration', 'Max participants', 'Actions']">
         @foreach ($courses as $course)
             <tr>
                 <td>{{ $course->title }}</td>
                 <td>{{ $course->description }}</td>
                 <td>{{ $course->duration }} hrs</td>
+                <td>{{ $course->max_participants }}</td>
                 <td>
                     <x-blocks.table-actions :showRoute="route('courses.show', $course->id)"
                                                 :editRoute="route('courses.edit', $course->id)"

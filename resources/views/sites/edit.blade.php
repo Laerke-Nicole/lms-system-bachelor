@@ -11,7 +11,7 @@
         $site
     ) }}
 
-    <x-blocks.title title="Edit {{ $site->site_name }}" tagline="Site for {{ $site->company->company_name }}"></x-blocks.title>
+    <x-blocks.title title="Edit {{ $site->site_name }}" subTitle="Site for {{ $site->company->company_name }}"></x-blocks.title>
 
     <x-blocks.error-alert/>
 

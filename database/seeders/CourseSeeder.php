@@ -9,43 +9,40 @@ class CourseSeeder extends Seeder
 {
     public function run()
     {
-        $operator = Course::create([
+        Course::create([
             'title' => 'Operator',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'duration' => 8,
             'duration_months' => 24,
-            'image' => 'courses/operator.png',
+            'max_participants' => 5,
+            'image' => 'storage/courses/operator.png',
         ]);
 
-        $maintenance = Course::create([
+        Course::create([
             'title' => 'Maintenance',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'duration' => 8,
             'duration_months' => 24,
-            'image' => 'courses/maintenance.jpg',
+            'max_participants' => 4,
+            'image' => 'storage/courses/maintenance.png',
         ]);
 
-        $advancedMaintenance = Course::create([
+        Course::create([
             'title' => 'Advanced Maintenance',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'duration' => 8,
             'duration_months' => 24,
-            'image' => 'courses/advanced_maintenance.jpg',
+            'max_participants' => 4,
+            'image' => 'storage/courses/advanced_maintenance.jpg',
         ]);
 
-        $engineerRecipe = Course::create([
+        Course::create([
             'title' => 'Engineer/recipe',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'duration' => 8,
             'duration_months' => 24,
-            'image' => 'courses/engineer.jpg',
+            'max_participants' => 5,
+            'image' => 'storage/courses/engineer.jpg',
         ]);
-
-        return [
-            $operator,
-            $maintenance,
-            $advancedMaintenance,
-            $engineerRecipe,
-        ];
     }
 }

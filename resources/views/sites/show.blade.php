@@ -11,7 +11,7 @@
         $site
     ) }}
 
-    <x-blocks.title title="{{ $site->site_name }}" tagline="Site for {{ $site->company->company_name }}"></x-blocks.title>
+    <x-blocks.title title="{{ $site->site_name }}" subTitle="Site for {{ $site->company->company_name }}"></x-blocks.title>
 
     <div class="row">
         <x-blocks.detail field="Name" title="{{ $site->site_name }}"></x-blocks.detail>

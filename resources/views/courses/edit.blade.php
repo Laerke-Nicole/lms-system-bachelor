@@ -22,6 +22,7 @@
         <x-elements.textarea label="Description" name="description" value="{{ $course->description }}"/>
         <x-elements.input label="Duration (in hours)" name="duration" type="number" value="{{ $course->duration }}"/>
         <x-elements.input label="Duration months" name="duration_months" type="number" value="{{ $course->duration_months }}"/>
+        <x-elements.input label="Max participants" name="max_participants" type="number" value="{{ $course->max_participants }}"/>
         <x-elements.input label="Image" name="image" type="file" :required="false" />
         <x-blocks.detail :isImage="true" :title="$course->image ?? 'No image'"></x-blocks.detail>
 
