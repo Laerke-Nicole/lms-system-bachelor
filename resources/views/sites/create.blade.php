@@ -11,7 +11,7 @@
     ) }}
 
 
-    <x-blocks.title title="Create new site"></x-blocks.title>
+    <x-blocks.title title="Create new site" />
 
     <x-blocks.error-alert/>
 

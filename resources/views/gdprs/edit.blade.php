@@ -11,7 +11,7 @@
         $gdpr
     ) }}
 
-    <x-blocks.title title="Edit"></x-blocks.title>
+    <x-blocks.title title="Edit" />
 
     <x-blocks.error-alert/>
 

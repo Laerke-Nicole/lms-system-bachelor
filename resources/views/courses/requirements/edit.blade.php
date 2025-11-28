@@ -11,7 +11,7 @@
 {{--        $course--}}
 {{--    ) }}--}}
 
-    <x-blocks.title title="Edit requirement {{ $requirement->title }}"></x-blocks.title>
+    <x-blocks.title title="Edit requirement {{ $requirement->title }}" />
 
     <x-blocks.error-alert/>
 

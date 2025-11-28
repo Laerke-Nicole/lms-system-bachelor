@@ -11,7 +11,7 @@
     ) }}
 
 
-    <x-blocks.title title="Create new gdpr text"></x-blocks.title>
+    <x-blocks.title title="Create new gdpr text" />
 
     <x-blocks.error-alert/>
 

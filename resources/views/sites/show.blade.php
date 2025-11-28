@@ -11,13 +11,13 @@
         $site
     ) }}
 
-    <x-blocks.title title="{{ $site->site_name }}" subTitle="Site for {{ $site->company->company_name }}"></x-blocks.title>
+    <x-blocks.title title="{{ $site->site_name }}" subTitle="Site for {{ $site->company->company_name }}" />
 
     <div class="row">
-        <x-blocks.detail field="Name" title="{{ $site->site_name }}"></x-blocks.detail>
-        <x-blocks.detail field="Mail" title="{{ $site->site_mail }}"></x-blocks.detail>
-        <x-blocks.detail field="Phone" title="{{ $site->site_phone }}"></x-blocks.detail>
-        <x-blocks.detail field="Company" title="{{ $site->company->company_name }}"></x-blocks.detail>
+        <x-blocks.detail field="Name" title="{{ $site->site_name }}" />
+        <x-blocks.detail field="Mail" title="{{ $site->site_mail }}" />
+        <x-blocks.detail field="Phone" title="{{ $site->site_phone }}" />
+        <x-blocks.detail field="Company" title="{{ $site->company->company_name }}" />
         <x-blocks.show-address :table="$site" />
     </div>
 

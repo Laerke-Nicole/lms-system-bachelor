@@ -10,7 +10,7 @@
         'training_slots.create'
     ) }}
 
-    <x-blocks.title title="Create new training slot"></x-blocks.title>
+    <x-blocks.title title="Create new training slot" />
 
     <x-blocks.error-alert/>
 

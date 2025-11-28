@@ -11,11 +11,11 @@
         $abInventech
     ) }}
 
-    <x-blocks.title title="{{ $abInventech->ab_inventech_name }}"></x-blocks.title>
+    <x-blocks.title title="{{ $abInventech->ab_inventech_name }}" />
 
     <div class="row">
-        <x-blocks.detail field="Email" title="{{ $abInventech->ab_inventech_mail }}"></x-blocks.detail>
-        <x-blocks.detail field="Phone" title="{{ $abInventech->ab_inventech_phone }}"></x-blocks.detail>
+        <x-blocks.detail field="Email" title="{{ $abInventech->ab_inventech_mail }}" />
+        <x-blocks.detail field="Phone" title="{{ $abInventech->ab_inventech_phone }}" />
         <x-blocks.show-address :table="$abInventech" />
     </div>
 

@@ -11,7 +11,7 @@
     ) }}
 
 
-    <x-blocks.title title="Create new company"></x-blocks.title>
+    <x-blocks.title title="Create new company" />
 
     <x-blocks.error-alert/>
 

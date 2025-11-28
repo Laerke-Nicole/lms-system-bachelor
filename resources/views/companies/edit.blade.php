@@ -12,7 +12,7 @@
     ) }}
 
 
-    <x-blocks.title title="Edit {{ $company->company_name }}"></x-blocks.title>
+    <x-blocks.title title="Edit {{ $company->company_name }}" />
 
     <x-blocks.error-alert/>
 

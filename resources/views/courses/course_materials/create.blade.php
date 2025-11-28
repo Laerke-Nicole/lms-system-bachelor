@@ -11,7 +11,7 @@
 {{--    ) }}--}}
 
 
-    <x-blocks.title title="Create new course material"></x-blocks.title>
+    <x-blocks.title title="Create new course material" />
 
     <x-blocks.error-alert/>
 

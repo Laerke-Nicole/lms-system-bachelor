@@ -11,7 +11,7 @@
 {{--        $course--}}
 {{--    ) }}--}}
 
-    <x-blocks.title title="Edit course material {{ $courseMaterial->title }}"></x-blocks.title>
+    <x-blocks.title title="Edit course material {{ $courseMaterial->title }}" />
 
     <x-blocks.error-alert/>
 
@@ -31,7 +31,7 @@
         </x-elements.select>
         <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" value="{{ $courseMaterial->url }}"/>
         <x-elements.input label="PDF" name="pdf" type="file" :required="false" />
-        <x-blocks.detail :isImage="true" :title="$course->image ?? 'No image'"></x-blocks.detail>
+        <x-blocks.detail :isImage="true" :title="$course->image ?? 'No image'" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>

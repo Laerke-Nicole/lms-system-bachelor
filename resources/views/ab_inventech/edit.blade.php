@@ -11,7 +11,7 @@
         $abInventech
     ) }}
 
-    <x-blocks.title title="Edit {{ $abInventech->ab_inventech_name }}'s information"></x-blocks.title>
+    <x-blocks.title title="Edit {{ $abInventech->ab_inventech_name }}'s information" />
 
     <x-blocks.error-alert/>
 
@@ -22,7 +22,7 @@
         <x-elements.input label="Email" name="ab_inventech_mail" value="{{ $abInventech->ab_inventech_mail }}"/>
         <x-elements.input label="Phone" name="ab_inventech_phone" value="{{ $abInventech->ab_inventech_phone }}"/>
         <x-elements.input label="Logo" name="logo" type="file" :required="false" />
-        <x-blocks.detail :isImage="true" :title="$abInventech->logo"></x-blocks.detail>
+        <x-blocks.detail :isImage="true" :title="$abInventech->logo" />
         <x-blocks.edit-address :table="$abInventech" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

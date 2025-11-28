@@ -33,7 +33,16 @@
                 <td>
                     <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"
                                             :editRoute="route('trainings.edit', $training->id)"
-                                            :deleteRoute="route('trainings.destroy', $training->id)"/>
+                                            :deleteRoute="route('trainings.destroy', $training->id)">
+                        @if($training->status === 'Upcoming' && $training->trainingSlot->training_date->isToday())
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->participation_link }}" target="_blank">
+                                    <i class="bi bi-clipboard-check me-2"></i>Participate in training
+                                </a>
+                            </li>
+                        @endif
+                    </x-blocks.table-actions>
                 </td>
             </tr>
             <x-blocks.preparation-materials :training="$training" :tableHeaders="$this->tableHeaders" />

@@ -14,7 +14,7 @@
             ) }}
 
 
-            <x-blocks.title title="{{ $company->company_name }}"></x-blocks.title>
+            <x-blocks.title title="{{ $company->company_name }}" />
         </div>
 
         <div class="col-lg-6 d-flex flex-column justify-content-end align-items-end mb-5">
@@ -33,9 +33,9 @@
     </div>
 
     <div class="row">
-        <x-blocks.detail field="Name" title="{{ $company->company_name }}"></x-blocks.detail>
-        <x-blocks.detail field="Mail" title="{{ $company->company_mail }}"></x-blocks.detail>
-        <x-blocks.detail field="Phone" title="{{ $company->company_phone }}"></x-blocks.detail>
+        <x-blocks.detail field="Name" title="{{ $company->company_name }}" />
+        <x-blocks.detail field="Mail" title="{{ $company->company_mail }}" />
+        <x-blocks.detail field="Phone" title="{{ $company->company_phone }}" />
         <x-blocks.show-address :table="$company" />
     </div>
 

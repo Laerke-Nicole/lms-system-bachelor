@@ -11,7 +11,7 @@
         $training
     ) }}
 
-    <x-blocks.title title="Edit training for: {{ $training->trainingSlot->course->title }}"></x-blocks.title>
+    <x-blocks.title title="Edit training for: {{ $training->trainingSlot->course->title }}" />
 
     <x-blocks.error-alert/>
 

@@ -11,7 +11,7 @@
 {{--    ) }}--}}
 
 
-    <x-blocks.title title="Create new requirement"></x-blocks.title>
+    <x-blocks.title title="Create new requirement" />
 
     <x-blocks.error-alert/>
 

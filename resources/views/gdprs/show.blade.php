@@ -11,11 +11,11 @@
         $gdpr
     ) }}
 
-    <x-blocks.title title="{{ $gdpr->title }}"></x-blocks.title>
+    <x-blocks.title title="{{ $gdpr->title }}" />
 
     <div class="row">
-        <x-blocks.detail field="Title" title="{{ $gdpr->title }}"></x-blocks.detail>
-        <x-blocks.detail field="Content" title="{{ $gdpr->content }}"></x-blocks.detail>
+        <x-blocks.detail field="Title" title="{{ $gdpr->title }}" />
+        <x-blocks.detail field="Content" title="{{ $gdpr->content }}" />
     </div>
 
 @endsection
