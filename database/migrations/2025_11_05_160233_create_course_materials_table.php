@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('preparations', function (Blueprint $table) {
+        Schema::create('course_materials', function (Blueprint $table) {
             $table->id();
+            $table->enum('material_type', ['Preparation', 'Follow up']);
             $table->string('title');
             $table->enum('type', ['Video', 'PDF', 'Task', 'Quiz', 'Other']);
             $table->string('url')->nullable();
+            $table->string('pdf')->nullable();
 
             $table->foreignId('course_id')
                 ->constrained('courses')
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('preparations');
+        Schema::dropIfExists('course_materials');
     }
 };

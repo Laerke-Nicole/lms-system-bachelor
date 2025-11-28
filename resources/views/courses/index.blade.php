@@ -20,18 +20,13 @@
                                                 :deleteRoute="route('courses.destroy', $course->id)">
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item fs-5" href="{{ route('courses.preparations.index', $course) }}">
-                                <i class="bi bi-journal me-2"></i>Preparation
-                            </a>
-                        </li>
-                        <li>
                             <a class="dropdown-item fs-5" href="{{ route('courses.requirements.index', $course) }}">
                                 <i class="bi bi-clipboard-check me-2"></i>Requirement
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item fs-5" href="{{ route('courses.follow_up_materials.index', $course) }}">
-                                <i class="bi bi-file-earmark-text me-2"></i>Follow up material
+                            <a class="dropdown-item fs-5" href="{{ route('courses.course_materials.index', $course) }}">
+                                <i class="bi bi-file-earmark-text me-2"></i>Course material
                             </a>
                         </li>
                     </x-blocks.table-actions>

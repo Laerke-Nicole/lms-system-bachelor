@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Preparation extends Model
+class CourseMaterial extends Model
 {
     use HasFactory;
 
+    protected $table = 'course_materials';
+
     protected $fillable = [
+        'material_type',
         'title',
         'type',
         'url',
+        'pdf',
         'course_id',
     ];
 

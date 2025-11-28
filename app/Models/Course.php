@@ -32,19 +32,14 @@ class Course extends Model
         return $this->hasMany(FollowUpTest::class);
     }
 
-    public function preparations()
-    {
-        return $this->hasMany(Preparation::class);
-    }
-
     public function requirements()
     {
         return $this->hasMany(Requirement::class);
     }
 
-    public function followUpMaterials()
+    public function courseMaterials()
     {
-        return $this->hasMany(FollowUpMaterial::class);
+        return $this->hasMany(CourseMaterial::class);
     }
 
 }
