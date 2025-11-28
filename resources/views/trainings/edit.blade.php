@@ -28,6 +28,14 @@
 
         <x-elements.input label="Whatsapp link (optional, can be added later)" placeholder="Whatsapp link" name="participation_link" type="url" value="{{ $training->trainingSlot->participation_link }}" />
 
+        <x-elements.select label="Status" name="status">
+            @foreach($statuses as $status)
+                <option value="{{ $status }}" {{ $training->status === $status ? 'selected' : '' }}>{{ $status }}</option>
+            @endforeach
+        </x-elements.select>
+
+{{--        <x-elements.input label="Is training completed?" name="status" type="checkbox" class="form-check-input" :required="false" />--}}
+
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
             <a href="{{ route('trainings.index') }}" class="btn btn-outline-secondary">Cancel</a>

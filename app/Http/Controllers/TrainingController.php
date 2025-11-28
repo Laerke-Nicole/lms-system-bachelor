@@ -84,8 +84,29 @@ class TrainingController extends Controller
     {
         $slot = $training->trainingSlot;
         $places = ['Online', 'On site'];
+        $statuses = [];
 
-        return view('trainings.edit', compact('training','places', 'slot'));
+//        if training is in the future
+        if ($slot->training_date > now() ) {
+            $statuses = ['Upcoming'];
+        }
+
+//        if training is today
+        if ($slot->training_date->isToday() ) {
+            $statuses = ['Upcoming', 'Completed'];
+        }
+
+//        if training date has passed and the status isnt already expired
+        if ($slot->training_date < now() && $slot->status != 'Expired' ) {
+            $statuses = ['Completed'];
+        }
+
+//        if training status is expired already
+        if ($training->status === 'Expired') {
+            $statuses = ['Expired'];
+        }
+
+        return view('trainings.edit', compact('training','places', 'slot', 'statuses'));
     }
 
 
@@ -100,9 +121,10 @@ class TrainingController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'training_date' => ['required', 'date'],
-            'place' => ['required'],
-            'participation_link' => ['nullable', 'url'],
+            'training_date' => 'required|date',
+            'place' => 'required',
+            'status' => 'required',
+            'participation_link' => 'nullable|url',
         ]);
 
 //        update the training date and participation link on trainingslot
@@ -110,6 +132,11 @@ class TrainingController extends Controller
             'training_date' => $validated['training_date'],
             'place' => $validated['place'],
             'participation_link' => $validated['participation_link'] ?? null,
+        ]);
+
+//        update training status
+        $training->update([
+            'status' => $validated['status'],
         ]);
 
         // update a new training in the db
