@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         Evaluation::factory(20)->create();
         FollowUpTest::factory(4)->create();
         TrainingSlot::factory(50)->create();
-        Training::factory(3)->create();
+        Training::factory(10)->create();
         Certificate::factory(10)->create();
         CourseMaterial::factory(20)->create();
         Requirement::factory(10)->create();

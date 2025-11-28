@@ -9,7 +9,7 @@
     <x-blocks.message/>
 
     <x-blocks.table-head :headers="['Date & time', 'Course', 'Place', 'Trainer', 'Actions']">
-        @foreach ($trainingSlots as $trainingSlot)
+        @forelse ($trainingSlots as $trainingSlot)
             <tr>
                 <td>{{ $trainingSlot->training_date->format('d M Y, H:i') }}</td>
                 <td>{{ $trainingSlot->course->title }}</td>
@@ -21,7 +21,11 @@
                                             :deleteRoute="route('training_slots.destroy', $trainingSlot->id)"/>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="5">There are no training slots.</td>
+            </tr>
+        @endforelse
     </x-blocks.table-head>
 
 

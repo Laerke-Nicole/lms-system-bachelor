@@ -9,7 +9,7 @@
     <x-blocks.message/>
 
     <x-blocks.table-head :headers="['Material Type', 'Title', 'Type', 'URL', 'Actions']">
-        @foreach ($courseMaterials as $courseMaterial)
+        @forelse ($courseMaterials as $courseMaterial)
             <tr>
                 <td>{{ $courseMaterial->material_type }}</td>
                 <td>{{ $courseMaterial->title }}</td>
@@ -21,7 +21,11 @@
                                                 :deleteRoute="route('courses.course_materials.destroy', [$course, $courseMaterial])"/>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="5">There are no course materials.</td>
+            </tr>
+        @endforelse
     </x-blocks.table-head>
 
 

@@ -38,7 +38,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6">There are no upcoming trainings.</td>
+                <td colspan="7">There are no trainings.</td>
             </tr>
         @endforelse
     </x-blocks.table-head>

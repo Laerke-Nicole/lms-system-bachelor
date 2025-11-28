@@ -9,7 +9,7 @@
     <x-blocks.message/>
 
     <x-blocks.table-head :headers="['Title', 'Content', 'Actions']">
-        @foreach ($requirements as $requirement)
+        @forelse ($requirements as $requirement)
             <tr>
                 <td>{{ $requirement->title }}</td>
                 <td>{{ Str::limit($requirement->content, 80) }}</td>
@@ -19,7 +19,11 @@
                                                 :deleteRoute="route('courses.requirements.destroy', [$course, $requirement])"/>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="3">There are no requirements.</td>
+            </tr>
+        @endforelse
     </x-blocks.table-head>
 
 

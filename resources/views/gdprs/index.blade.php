@@ -9,7 +9,7 @@
     <x-blocks.message/>
 
     <x-blocks.table-head :headers="['Title', 'Content', 'Actions']">
-        @foreach ($gdprs as $gdpr)
+        @forelse ($gdprs as $gdpr)
             <tr>
                 <td>{{ $gdpr->title }}</td>
                 <td>{{ Str::limit($gdpr->content, 80) }}</td>
@@ -19,7 +19,11 @@
                                                 :deleteRoute="route('gdprs.destroy', $gdpr->id)"/>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="3">There are no GDPR text blocks.</td>
+            </tr>
+        @endforelse
     </x-blocks.table-head>
 
 

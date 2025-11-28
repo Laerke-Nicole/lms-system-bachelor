@@ -9,7 +9,7 @@
     <x-blocks.message/>
 
     <x-blocks.table-head :headers="['Company name', 'Mail', 'Phone', 'Address', 'Actions']">
-        @foreach ($companies as $company)
+        @forelse ($companies as $company)
             <tr>
                 <td>{{ $company->company_name }}</td>
                 <td>{{ $company->company_mail }}</td>
@@ -22,7 +22,11 @@
                                                 :deleteRoute="route('companies.destroy', $company->id)"/>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="5">There are no companies.</td>
+            </tr>
+        @endforelse
     </x-blocks.table-head>
 
 
