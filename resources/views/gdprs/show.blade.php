@@ -4,7 +4,7 @@
 
     {{ Breadcrumbs::render(
         'crud.show',
-        'Gdprs',
+        'GDPR',
         'gdprs.index',
         'View',
         'gdprs.show',
