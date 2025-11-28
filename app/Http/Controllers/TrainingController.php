@@ -87,7 +87,7 @@ class TrainingController extends Controller
         $statuses = [];
 
 //        if training is in the future
-        if ($slot->training_date > now() ) {
+        if ($slot->training_date->isFuture() ) {
             $statuses = ['Upcoming'];
         }
 
@@ -97,7 +97,7 @@ class TrainingController extends Controller
         }
 
 //        if training date has passed and the status isnt already expired
-        elseif ($slot->training_date < now() && $training->status != 'Expired') {
+        elseif ($slot->training_date->isPast() && $training->status != 'Expired') {
             $statuses = ['Completed'];
         }
 
