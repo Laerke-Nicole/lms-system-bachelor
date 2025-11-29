@@ -42,10 +42,43 @@
                                 </a>
                             </li>
                         @endif
+
+{{--                        show link to test and evaluation if the status is completed or expired --}}
+                        @if(in_array($training->status, ['Completed', 'Expired']))
+                            <li><hr class="dropdown-divider"></li>
+
+{{--                            show evaluation --}}
+                            @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->evaluation)
+                                <li>
+                                    <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->course->evaluation->evaluation_link }}" target="_blank">
+                                        <i class="bi bi-clipboard-check me-2"></i>Take evaluation
+                                    </a>
+                                </li>
+                            @endif
+
+{{--                            show test --}}
+                            @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->followUpTest)
+                                <li>
+                                    <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->course->followUpTest->test_link }}" target="_blank">
+                                        <i class="bi bi-journal me-2"></i>Take test
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
                     </x-blocks.table-actions>
                 </td>
             </tr>
-            <x-blocks.preparation-materials :training="$training" :tableHeaders="$this->tableHeaders" />
+
+{{--        show preparation materials if status is upcoming --}}
+            @if ($training->status === 'Upcoming')
+                <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />
+            @endif
+
+{{--        show follow up materials if status is completed or expired --}}
+            @if (in_array($training->status, ['Completed', 'Expired']))
+                <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />
+            @endif
+
         @empty
             <tr>
                 <td colspan="{{ count($this->tableHeaders) }}">There are no trainings.</td>

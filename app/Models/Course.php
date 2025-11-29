@@ -22,14 +22,14 @@ class Course extends Model
         return $this->hasMany(TrainingSlot::class);
     }
 
-    public function evaluations()
+    public function evaluation()
     {
-        return $this->hasMany(Evaluation::class);
+        return $this->hasOne(Evaluation::class);
     }
 
-    public function followUpTests()
+    public function followUpTest()
     {
-        return $this->hasMany(FollowUpTest::class);
+        return $this->hasOne(FollowUpTest::class);
     }
 
     public function requirements()

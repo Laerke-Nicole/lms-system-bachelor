@@ -26,11 +26,14 @@ class TrainingsTable extends Component
     //    return the filtering btn options
     public function getTrainingsProperty()
     {
+//        get trainings table information with the relations where its filtered by status
         $query = Training::query()
-            ->with(['trainingSlot.course.courseMaterials' => function ($query) {
-                $query->where('material_type', 'Preparation');
-            },
-                'trainingSlot.trainer', 'orderedBy'])
+            ->with([
+                'trainingSlot.course.courseMaterials',
+                'trainingSlot.course.evaluation',
+                'trainingSlot.course.followUpTest',
+                'trainingSlot.trainer',
+                'orderedBy'])
             ->join('training_slots', 'training_slots.id', '=', 'trainings.training_slot_id')
             ->select('trainings.*');
 
@@ -44,7 +47,7 @@ class TrainingsTable extends Component
 
 //            sort upcoming and all by training_date ascending
         if (in_array($this->filter, ['upcoming', 'all'])) {
-            $query->orderBy('training_slots.training_date', 'asc');
+            $query->orderBy('training_slots.training_date');
         } else {
 //            sort completed and expired by training_date descending
             $query->orderBy('training_slots.training_date', 'desc');
