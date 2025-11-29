@@ -98,7 +98,7 @@ class TrainingController extends Controller
 
 //        if training date has passed and the status isnt already expired
         elseif ($slot->training_date->isPast() && $training->status != 'Expired') {
-            $statuses = ['Completed'];
+            $statuses = ['Upcoming', 'Completed'];
         }
 
 //        if training status is expired already
