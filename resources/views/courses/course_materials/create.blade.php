@@ -11,7 +11,7 @@
 {{--    ) }}--}}
 
 
-    <x-blocks.title title="Create new course material" />
+    <x-blocks.title title="Create new course material" subTitle="Please fill out either a URL or upload a PDF." />
 
     <x-blocks.error-alert/>
 
@@ -27,7 +27,7 @@
                 <option value="{{ $type }}">{{ $type }}</option>
             @endforeach
         </x-elements.select>
-        <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" />
+        <x-elements.input label="URL (optional)" placeholder="For video, task, quiz, or other" name="url" :required="false" />
         <x-elements.input label="PDF" name="pdf" type="file" :required="false" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
