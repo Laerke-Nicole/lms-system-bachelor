@@ -1,6 +1,6 @@
 @props(['isImage' => false, 'class' => null, 'title' => null, 'field' => null, 'secondTitle' => null, 'thirdTitle' => null, 'valueClass' => null])
 
-<div class="col-12">
+<div class="{{ $col ?? 'col-12'}}">
     <div class="form-group d-flex">
 
         {{ $slot }}

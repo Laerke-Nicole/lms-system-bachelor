@@ -9,6 +9,11 @@ class TrainingUser extends Pivot
 {
     use HasFactory;
 
-    protected $table = 'training_user';
-    protected $fillable = ['user_id', 'training_id'];
+    protected $fillable = [
+        'user_id',
+        'training_id',
+        'completed_test_at',
+        'completed_evaluation_at',
+        'signed_at',
+    ];
 }

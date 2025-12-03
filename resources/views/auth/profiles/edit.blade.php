@@ -18,11 +18,11 @@
             <x-elements.input col="col-12" label="Email" name="email" value="{{ $user->email }}"/>
             <x-elements.input col="col-12" label="Phone" name="phone" value="{{ $user->phone }}"/>
 
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-12">
                     <input type="hidden" name="leader_can_view_info" value="0">
 
-                    <x-elements.input label="Allow your leader to view your information?" name="leader_can_view_info" type="checkbox" value="1" class="form-check-input" :required="false" :checked="(bool) $user->leader_can_view_info" />
+                    <x-elements.input label="Allow your leader to view your information? (Needed for them to book you)" name="leader_can_view_info" type="checkbox" value="1" class="form-check-input" col="col-5" :required="false" :checked="(bool) $user->leader_can_view_info" />
                 </div>
             </div>
 

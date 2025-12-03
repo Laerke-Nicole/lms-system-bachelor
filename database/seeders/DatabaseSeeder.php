@@ -17,8 +17,6 @@ use App\Models\Training;
 use App\Models\TrainingSlot;
 use App\Models\TrainingUser;
 use App\Models\User;
-use Database\Factories\SignatureFactory;
-use Database\Factories\UserTestResultFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -38,15 +36,13 @@ class DatabaseSeeder extends Seeder
         User::factory(300)->create();
         Email::factory(20)->create();
         $this->call(CourseSeeder::class);
-//        Evaluation::factory(4)->create();
-//        FollowUpTest::factory(4)->create();
+        Evaluation::factory(4)->create();
+        FollowUpTest::factory(4)->create();
         TrainingSlot::factory(50)->create();
         Training::factory(10)->create();
         Certificate::factory(10)->create();
         CourseMaterial::factory(20)->create();
         Requirement::factory(10)->create();
-        SignatureFactory::new()->count(50)->create();
-        UserTestResultFactory::new()->count(50)->create();
         EmailUser::factory(100)->create();
         TrainingUser::factory(100)->create();
 

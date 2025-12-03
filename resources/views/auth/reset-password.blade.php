@@ -13,9 +13,9 @@
                         <x-blocks.form action="{{ route('password.update') }}" method="POST" class="mb-0">
                             <input type="hidden" name="token" value="{{ $token }}">
 
-                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" class="mb-4 form-control box-shadow-inset" />
-                            <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" />
-                            <x-elements.input labelFor="password_confirmation" label="Confirm password" placeholder="Confirm your password" name="password_confirmation" type="password" />
+                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" class="mb-4 form-control box-shadow-inset" col="col-12" />
+                            <x-elements.input label="Password" placeholder="Enter your password" name="password" type="password" col="col-12" />
+                            <x-elements.input labelFor="password_confirmation" label="Confirm password" placeholder="Confirm your password" name="password_confirmation" type="password" col="col-12" />
 
                             <div class="d-flex flex-column mt-2">
                                 <button type="submit" class="btn btn-primary">Reset password</button>

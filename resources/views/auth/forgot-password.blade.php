@@ -11,7 +11,7 @@
                         <p class="mb-4 fs-5">We will send you an email so you can reset your password.</p>
 
                         <x-blocks.form action="{{ route('password.email') }}" method="POST" class="mb-0">
-                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" class="mb-4 form-control box-shadow-inset" />
+                            <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" col="col-12" class="mb-4 form-control box-shadow-inset" />
 
                             <div class="d-flex flex-column mt-2">
                                 <button type="submit" class="btn btn-primary">Get reset email</button>

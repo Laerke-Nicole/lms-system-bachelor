@@ -15,13 +15,14 @@ class TrainingUserFactory extends Factory
      * @return array
      */
 
-    protected $model = TrainingUser::class;
-
     public function definition()
     {
         return [
             'user_id'  => User::inRandomOrder()->value('id'),
             'training_id' => Training::inRandomOrder()->value('id'),
+            'completed_test_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'completed_evaluation_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'signed_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
         ];
     }
 }
