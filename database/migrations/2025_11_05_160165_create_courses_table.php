@@ -19,6 +19,17 @@ return new class extends Migration
             $table->integer('duration_months');
             $table->integer('max_participants');
             $table->string('image')->nullable();
+
+            $table->foreignId('evaluation_id')
+                ->constrained('evaluations')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->foreignId('follow_up_test_id')
+                ->constrained('follow_up_tests')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }

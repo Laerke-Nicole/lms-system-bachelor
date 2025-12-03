@@ -69,13 +69,8 @@
                 </td>
             </tr>
 
-{{--        show preparation materials if status is upcoming --}}
-            @if ($training->status === 'Upcoming')
-                <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />
-            @endif
-
-{{--        show follow up materials if status is completed or expired --}}
-            @if (in_array($training->status, ['Completed', 'Expired']))
+{{--        show course material if status is upcoming, completed or expired --}}
+            @if (in_array($training->status, ['Upcoming', 'Completed', 'Expired']))
                 <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />
             @endif
 

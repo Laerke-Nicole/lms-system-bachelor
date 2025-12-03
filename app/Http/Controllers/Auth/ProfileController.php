@@ -41,10 +41,11 @@ class ProfileController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|email',
             'phone' => 'required|string|max:255',
+            'leader_can_view_info' => 'nullable|boolean',
         ]);
 
         // update user info in the db
-        $user->update($request->only(['first_name', 'last_name', 'email', 'phone']));
+        $user->update($request->only(['first_name', 'last_name', 'email', 'phone', 'leader_can_view_info']));
 
         //  redirect the user and send a success message
         return redirect()->route('profiles.edit')->with('success', 'Updated your info successfully.');

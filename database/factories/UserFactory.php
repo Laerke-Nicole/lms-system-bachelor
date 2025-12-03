@@ -32,6 +32,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'phone' => $this->faker->phoneNumber(),
             'role' => $this->faker->randomElement(['user', 'leader', 'admin']),
+            'leader_can_view_info' => $this->faker->boolean(),
             'site_id' => Site::inRandomOrder()->value('id'),
             'remember_token' => Str::random(10),
         ];

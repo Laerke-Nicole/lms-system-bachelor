@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="order-1 order-lg-2 alert alert-primary small" role="alert">
-                    Missing employees? <a href="#" class="fw-semibold text-decoration-underline">Register new employees here</a>.
+                    Missing employees? <a href="#" class="fw-semibold text-decoration-underline">Register new employees here</a>. Or make sure they've given consent for you to access their information (via their profile).
                 </div>
             </div>
         </div>

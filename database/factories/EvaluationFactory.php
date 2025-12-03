@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EvaluationFactory extends Factory
@@ -15,9 +14,7 @@ class EvaluationFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(3),
             'evaluation_link' => $this->faker->url(),
-            'course_id' => Course::inRandomOrder()->value('id'),
         ];
     }
 }

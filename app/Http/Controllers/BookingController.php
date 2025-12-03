@@ -95,7 +95,7 @@ class BookingController extends Controller
         $trainingSlot = TrainingSlot::with('trainer')->findOrFail($slotId);
 
 //        show only the users that are in the same site as the logged in user booking ordered by names
-        $employees = User::where('site_id', auth()->user()->site_id)->orderBy('first_name')->orderBy('last_name')->get();
+        $employees = User::where('site_id', auth()->user()->site_id)->where('leader_can_view_info', 1)->orderBy('first_name')->orderBy('last_name')->get();
 
         return view('trainings.bookings.step3-employees', compact('employees', 'course', 'trainingSlot'));
     }

@@ -38,8 +38,8 @@ class DatabaseSeeder extends Seeder
         User::factory(300)->create();
         Email::factory(20)->create();
         $this->call(CourseSeeder::class);
-        Evaluation::factory(20)->create();
-        FollowUpTest::factory(4)->create();
+//        Evaluation::factory(4)->create();
+//        FollowUpTest::factory(4)->create();
         TrainingSlot::factory(50)->create();
         Training::factory(10)->create();
         Certificate::factory(10)->create();

@@ -13,13 +13,7 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
             $table->string('evaluation_link');
-
-            $table->foreignId('course_id')
-                ->constrained('courses')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
 
             $table->timestamps();
         });

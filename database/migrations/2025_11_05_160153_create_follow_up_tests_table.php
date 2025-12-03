@@ -15,11 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('test_link');
 
-            $table->foreignId('course_id')
-                ->constrained('courses')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->enum('role', ['user', 'leader', 'admin'])->default('user');
+            $table->boolean('leader_can_view_info')->default(false);
 
             $table->foreignId('site_id')
                 ->constrained('sites')

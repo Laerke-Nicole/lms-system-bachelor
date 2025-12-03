@@ -24,7 +24,7 @@
 
                         <div class="d-flex flex-column mt-2">
                             <a href="#" class="small mb-4 text-decoration-none text-secondary opacity-75 fs-5"><u>Forgot your password?</u></a>
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary mb-3">Register</button>
                         </div>
 
                         <x-blocks.message />

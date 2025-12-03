@@ -14,7 +14,10 @@ class Course extends Model
         'description',
         'duration',
         'duration_months',
+        'max_participants',
         'image',
+        'evaluation_id',
+        'follow_up_test_id',
     ];
 
     public function trainingSlots()
@@ -24,12 +27,12 @@ class Course extends Model
 
     public function evaluation()
     {
-        return $this->hasOne(Evaluation::class);
+        return $this->belongsTo(Evaluation::class);
     }
 
     public function followUpTest()
     {
-        return $this->hasOne(FollowUpTest::class);
+        return $this->belongsTo(FollowUpTest::class);
     }
 
     public function requirements()

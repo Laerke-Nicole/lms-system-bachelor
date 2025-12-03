@@ -11,12 +11,11 @@ class FollowUpTest extends Model
 
     protected $fillable = [
         'test_link',
-        'course_id',
     ];
 
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo(Course::class);
+        return $this->hasMany(Course::class);
     }
 
     public function users()

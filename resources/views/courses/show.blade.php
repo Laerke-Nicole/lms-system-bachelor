@@ -20,6 +20,8 @@
         <x-blocks.detail field="Duration" title="{{ $course->duration }} hrs" />
         <x-blocks.detail field="Duration months" title="{{ $course->duration_months }}" />
         <x-blocks.detail field="Max participants" title="{{ $course->max_participants }}" />
+        <x-blocks.detail field="Evaluation link" title="{{ $course->evaluation->evaluation_link }}" />
+        <x-blocks.detail field="Follow up test link" title="{{ $course->followUpTest->test_link }}" />
         <x-blocks.detail field="Image" :isImage="true" :title="$course->image" />
     </div>
 

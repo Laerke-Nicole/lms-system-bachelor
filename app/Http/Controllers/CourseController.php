@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Evaluation;
+use App\Models\FollowUpTest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,13 +48,29 @@ class CourseController extends Controller
             'duration' => 'required|integer',
             'duration_months' => 'required|integer',
             'max_participants' => 'required|integer',
+            'evaluation_link' => 'required|url',
+            'test_link' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // create evaluation
+        $evaluation = Evaluation::create([
+            'evaluation_link' => $request->evaluation_link,
+        ]);
+
+        // create follow-up test
+        $followUpTest = FollowUpTest::create([
+            'test_link' => $request->test_link,
         ]);
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('courses', 'public');
             $validated['image'] = $imagePath;
         }
+
+        // add evaluation_id and follow_up_test_id to validated data
+        $validated['evaluation_id'] = $evaluation->id;
+        $validated['follow_up_test_id'] = $followUpTest->id;
 
         // create a new courses in the db
         Course::create($validated);
@@ -82,6 +100,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        $course->load(['evaluation', 'followUpTest']);
         return view('courses.edit', compact('course'));
     }
 
@@ -102,8 +121,24 @@ class CourseController extends Controller
             'duration' => 'required|integer',
             'duration_months' => 'required|integer',
             'max_participants' => 'required|integer',
+            'evaluation_link' => 'required|url',
+            'test_link' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        // update evaluation
+        if ($course->evaluation) {
+            $course->evaluation->update([
+                'evaluation_link' => $request->evaluation_link,
+            ]);
+        }
+
+        // update follow-up test
+        if ($course->followUpTest) {
+            $course->followUpTest->update([
+                'test_link' => $request->test_link,
+            ]);
+        }
 
         if ($request->hasFile('image')) {
             if ($course->image) {

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'role',
+        'leader_can_view_info',
         'site_id',
     ];
 
