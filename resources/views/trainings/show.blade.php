@@ -24,7 +24,7 @@
         @foreach($training->users as $user)
             <x-blocks.detail title="{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}" col="col-md-6"/>
             <div class="col-md-6">
-                <input type="hidden" name="leader_can_view_info" value="0">
+                <input type="hidden" name="completed_test_at" value="0">
 
                 <x-elements.input label="Allow your leader to view your information? (Needed for them to book you)" name="leader_can_view_info" type="checkbox" value="1" class="form-check-input" col="col-5" :required="false" :checked="(bool) $user->leader_can_view_info" />
             </div>

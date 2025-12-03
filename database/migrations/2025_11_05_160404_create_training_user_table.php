@@ -21,9 +21,9 @@ return new class extends Migration
                 ->constrained('trainings')
                 ->cascadeOnDelete();
 
-            $table->datetime('completed_test_at');
-            $table->datetime('completed_evaluation_at');
-            $table->datetime('signed_at');
+            $table->datetime('completed_test_at')->nullable();
+            $table->datetime('completed_evaluation_at')->nullable();
+            $table->datetime('signed_at')->nullable();
             $table->timestamps();
         });
     }
