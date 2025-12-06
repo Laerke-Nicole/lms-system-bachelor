@@ -19,37 +19,29 @@ class TrainingParticipantsCompletion extends Component
     public function render()
     {
         return view('livewire.training-participants-completion', [
-            'trainingUsers' => $this->training->trainingUsers()->with('user')->get(),
+            'trainingUsers' => $this->training->trainingUsers()->with('user')->paginate(5),
         ]);
     }
 
-    public function markTestCompleted($trainingUser)
+    public function markTestCompleted($trainingUserId)
     {
-//        if the signed at already has a value then prevent the admin from making changes
-        if ($trainingUser->signed_at) {
-            return back()->withErrors(['signed_at' => 'The user has already signed.']);
-        }
+        $trainingUser = TrainingUser::findOrFail($trainingUserId);
 
-        TrainingUser::all();
-
-        // set the datetime of completed_test_at when the admin marks it
+        // toggle
         $trainingUser->update([
-            'completed_test_at' => now(),
+            'completed_test_at' =>
+                $trainingUser->completed_test_at ? null : now(),
         ]);
     }
 
-    public function markEvaluationCompleted($trainingUser)
+    public function markEvaluationCompleted($trainingUserId)
     {
-//        if the signed at already has a value then prevent the admin from making changes
-        if ($trainingUser->signed_at) {
-            return back()->withErrors(['signed_at' => 'The user has already signed.']);
-        }
+        $trainingUser = TrainingUser::findOrFail($trainingUserId);
 
-        TrainingUser::all();
-
-        // set the datetime of completed_evaluation_at when the admin marks it
+        // toggle
         $trainingUser->update([
-            'completed_evaluation_at' => now(),
+            'completed_evaluation_at' =>
+                $trainingUser->completed_evaluation_at ? null : now(),
         ]);
     }
 }

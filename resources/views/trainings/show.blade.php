@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Training for {{ $training->trainingSlot->course->title }}" />
 
-    <div class="row">
+    <div class="row section-spacing">
         <x-blocks.detail field="Date" title="{{ $training->trainingSlot->training_date->format('d M Y H:i') }}" />
         <x-blocks.detail field="Course" title="{{ $training->trainingSlot->course->title }}" />
         <x-blocks.detail field="Place" title="{{ $training->trainingSlot->place }}" />
