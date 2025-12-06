@@ -3,7 +3,7 @@
 use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->controller(BookingController::class)->name('trainings.bookings.')->group(function () {
+Route::middleware(['auth', 'role:leader'])->controller(BookingController::class)->name('trainings.bookings.')->group(function () {
 //    step 1 picking course
     Route::get('/course', 'selectCourse')->name('course');
     Route::post('/course', 'storeCourse')->name('course.store');
