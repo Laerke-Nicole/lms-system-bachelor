@@ -45,7 +45,7 @@ class GdprController extends Controller
         ]);
 
         // create a new gdpr in the db
-        Gdpr:: create($validated);
+        Gdpr::create($validated);
 
         //  redirect the user and send a success message
         return redirect()->route('gdprs.index')->with('success', 'GDPR created successfully.');
