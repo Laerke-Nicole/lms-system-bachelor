@@ -117,4 +117,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Certificate::class);
     }
+
+    public function trainingUsers()
+    {
+        return $this->hasMany(TrainingUser::class);
+    }
 }

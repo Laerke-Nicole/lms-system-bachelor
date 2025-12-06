@@ -59,4 +59,9 @@ class Training extends Model
         return $this->trainingSlot?->course;
     }
 
+    public function trainingUsers()
+    {
+        return $this->hasMany(TrainingUser::class);
+    }
+
 }

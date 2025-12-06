@@ -18,12 +18,7 @@
         <x-blocks.detail field="Course" title="{{ $training->trainingSlot->course->title }}" />
         <x-blocks.detail field="Place" title="{{ $training->trainingSlot->place }}" />
         <x-blocks.detail field="Trainer" title="{{ $training->trainingSlot->trainer->first_name}} {{$training->trainingSlot->trainer->last_name }}" />
-        <x-blocks.detail field="Ordered by" title="{{ $training->orderedBy->first_name. ' ' . ($training->orderedBy)->last_name }}" />
-
-        <p class="text-dark mb-1 fs-4">Participants</p>
-        @foreach($training->users as $user)
-            <x-blocks.detail title="{{ $user->first_name }} {{ $user->last_name }}" col="col-md-6"/>
-        @endforeach
+        <x-blocks.detail field="Ordered by" title="{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}" />
 
         <x-blocks.detail field="Whatsapp link" title="{{ $training->trainingSlot->participation_link }}" />
         @if($training->status === 'Upcoming')
@@ -34,6 +29,10 @@
             <x-blocks.detail field="Reminder sent 22 months" title="{{ $training->reminder_sent_22_m ? 'Yes' : 'No' }}" />
         @endif
         <x-blocks.detail field="Status" title="{{ $training->status }}" />
+
+{{--        table with users where you can say if the user has completed the test, evaluation or signed --}}
+        <livewire:training-participants-completion :training="$training" />
+
     </div>
 
 @endsection
