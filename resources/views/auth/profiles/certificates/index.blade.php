@@ -11,7 +11,7 @@
             <tr>
                 <td>{{ $certificate->training->course->title ?? 'No course' }}</td>
                 <td>{{ $certificate->training->training_date->format('d M Y H:i') }}</td>
-                <td>{{ $certificate->valid_until->format('d M Y') }}</td>
+                <td>{{ $certificate->training->date->format('d M Y') }}</td>
                 <td>
                     @if($certificate->url)
                         <a href="{{ $certificate->url }}" target="_blank">Download</a>
