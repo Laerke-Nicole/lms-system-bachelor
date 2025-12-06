@@ -17,12 +17,17 @@ class TrainingUserFactory extends Factory
 
     public function definition()
     {
+        $user = User::inRandomOrder()->first();
+        $date = $this->faker->optional()->dateTimeBetween('-1 month', 'now');
+
         return [
-            'user_id'  => User::inRandomOrder()->value('id'),
+            'user_id'  => $user->id,
             'training_id' => Training::inRandomOrder()->value('id'),
-            'completed_test_at' => $this->faker->optional()->dateTimeBetween('-1 month', 'now'),
-            'completed_evaluation_at' => $this->faker->optional()->dateTimeBetween('-1 month', 'now'),
-            'signed_at' => $this->faker->optional()->dateTimeBetween('-1 month', 'now'),
+            'completed_test_at' => $date,
+            'completed_evaluation_at' => $date,
+            'signature' => $user->first_name . ' ' . $user->last_name,
+            'signature_confirmed' => true,
+            'signed_at' => $date,
         ];
     }
 }

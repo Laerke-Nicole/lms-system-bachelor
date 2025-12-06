@@ -16,13 +16,14 @@ class CourseMaterialFactory extends Factory
     {
         $materialType = ['Preparation', 'Follow up'];
         $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
+        $url = $this->faker->optional()->url();
 
         return [
             'material_type' => $this->faker->randomElement($materialType),
             'title' => $this->faker->sentence(3),
             'type' => $this->faker->randomElement($types),
-            'url' => $this->faker->optional()->url(),
-            'pdf' => $this->faker->optional()->url(),
+            'url' => $url,
+            'pdf' => $url,
             'course_id' => Course::inRandomOrder()->value('id'),
         ];
     }
