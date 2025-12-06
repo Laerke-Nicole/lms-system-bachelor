@@ -31,7 +31,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('companies', CompanyController::class);
     Route::resource('ab_inventech', AbInventechController::class);
     Route::resource('gdprs', GdprController::class);
-    Route::resource('certificates', CertificateController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('evaluations', EvaluationController::class);
     Route::resource('follow_up_tests', FollowUpTestController::class);
