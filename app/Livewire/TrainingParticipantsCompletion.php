@@ -30,7 +30,7 @@ class TrainingParticipantsCompletion extends Component
         // toggle
         $trainingUser->update([
             'completed_test_at' =>
-                $trainingUser->completed_test_at ? null : now(),
+                $trainingUser->completed_test_at ?? now(),
         ]);
     }
 
@@ -41,7 +41,7 @@ class TrainingParticipantsCompletion extends Component
         // toggle
         $trainingUser->update([
             'completed_evaluation_at' =>
-                $trainingUser->completed_evaluation_at ? null : now(),
+                $trainingUser->completed_evaluation_at ?? now(),
         ]);
     }
 }
