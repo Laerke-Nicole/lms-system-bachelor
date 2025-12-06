@@ -33,7 +33,9 @@ class TrainingsTable extends Component
                 'trainingSlot.course.evaluation',
                 'trainingSlot.course.followUpTest',
                 'trainingSlot.trainer',
-                'orderedBy'])
+                'orderedBy',
+                'trainingUsers.user',
+            ])
             ->join('training_slots', 'training_slots.id', '=', 'trainings.training_slot_id')
             ->select('trainings.*');
 

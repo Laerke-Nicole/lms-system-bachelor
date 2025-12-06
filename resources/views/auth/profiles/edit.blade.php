@@ -22,14 +22,17 @@
                 <div class="col-12">
                     <input type="hidden" name="leader_can_view_info" value="0">
 
-                    <x-elements.input label="Allow your leader to view your information? (Needed for them to book you)"
+                    <x-elements.input label="Allow your leader to view your information? (Needed for them to book you and gives them access to seeing your certificates)"
                                       name="leader_can_view_info"
                                       type="checkbox"
                                       value="1"
                                       class="form-check-input"
-                                      col="col-5"
+                                      col="col-12 col-md-6"
+                                      labelClass=""
+                                      formGroupClass="d-flex flex-row-reverse gap-2"
                                       :required="false"
-                                      :checked="(bool) $user->leader_can_view_info" />
+                                      :checked="(bool) $user->leader_can_view_info"
+                    />
                 </div>
             </div>
 
