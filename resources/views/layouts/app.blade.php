@@ -16,6 +16,22 @@
             </a>
 
             <ul class="list-unstyled d-flex mb-0">
+                <x-blocks.dropdown dropdownTitle="" icon="bi bi-plus" class="fs-5 d-flex align-items-center dropdown">
+                    <li><x-elements.link title="Personal information" href="{{ route('profiles.edit') }}" class="dropdown-item fs-5"></x-elements.link></li>
+                    <li><x-elements.link title="Certificates" href="{{ route('profiles.certificates') }}" class="dropdown-item fs-5"></x-elements.link></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">
+                            <button type="submit" class="dropdown-item fs-5">Logout</button>
+                        </x-blocks.form>
+                    </li>
+                </x-blocks.dropdown>
+            </ul>
+
+            <i class="bi bi-bell"></i>
+
+{{--            dropdown when hovering user name --}}
+            <ul class="list-unstyled d-flex mb-0">
                 <x-blocks.dropdown dropdownTitle="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" icon="bi bi-person" class="fs-5 d-flex align-items-center dropdown">
                     <li><x-elements.link title="Personal information" href="{{ route('profiles.edit') }}" class="dropdown-item fs-5"></x-elements.link></li>
                     <li><x-elements.link title="Certificates" href="{{ route('profiles.certificates') }}" class="dropdown-item fs-5"></x-elements.link></li>

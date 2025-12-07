@@ -119,7 +119,7 @@
 
     <div class="certificate__signature-block">
         <div class="certificate__signature-line"></div>
-        <p class="certificate__verified-name">John Doe</p>
+        <p class="certificate__verified-name">{{ $trainingUser->signature }}</p>
         <p class="certificate__verified-label">Participant</p>
     </div>
 

@@ -11,14 +11,14 @@
     @endif
 
     <x-blocks.table-head
-        :headers="['Course', 'Training date', 'Valid Until', 'Download']">
+        :headers="['Course', 'Training date', 'Valid Until', 'PDF']">
         @forelse ($certificates as $certificate)
             <tr>
                 <td>{{ $certificate->training->course->title ?? 'No course' }}</td>
                 <td>{{ $certificate->training->trainingSlot->training_date->format('d M Y') }}</td>
                 <td>{{ $certificate->valid_until->format('d M Y') }}</td>
                 <td>
-                    <a href="{{ route('certificates.showCertificate', $certificate->training_id) }}" class="btn btn-sm btn-primary">Download PDF</a>
+                    <a href="{{ route('certificates.certificatePdf', $certificate->training_id) }}"><i class="bi bi-download me-2"></i>Download</a>
                 </td>
             </tr>
         @empty

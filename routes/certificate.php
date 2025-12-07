@@ -9,5 +9,5 @@ Route::get('/signatures', [SignatureController::class, 'index'])->name('signatur
 Route::post('/signatures/{trainingUserId}', [SignatureController::class, 'sign'])->name('signatures.sign');
 Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
 Route::get('/certificates/{training_id}/view', [CertificateController::class, 'viewCertificate'])->name('certificates.viewCertificate');
-Route::get('/certificates/{training_id}', [CertificateController::class, 'showCertificate'])->name('certificates.showCertificate');
+Route::get('/certificates/{training_id}', [CertificateController::class, 'certificatePdf'])->name('certificates.certificatePdf');
 });
