@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AbInventech;
 use App\Models\Certificate;
 use App\Models\TrainingUser;
 use Illuminate\Http\Request;
@@ -14,7 +15,9 @@ class CertificateController extends Controller
             ->where('training_id', $training_id)
             ->firstOrFail();
 
-        return view('certificates.certificate', compact('certificate'));
+        $abInventech = AbInventech::first();
+
+        return view('certificates.certificate', compact('certificate', 'abInventech'));
     }
 
     /**

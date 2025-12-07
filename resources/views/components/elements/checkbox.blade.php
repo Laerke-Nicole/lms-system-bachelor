@@ -6,6 +6,7 @@
             value="{{ $value ?? 1 }}"
             class="form-check-input {{ $class ?? '' }}"
             {{ $attributes }}
+            {{ $attributes->merge(['required' => true]) }}
         >
         <label class="form-label">{{ $label }}</label>
     </div>

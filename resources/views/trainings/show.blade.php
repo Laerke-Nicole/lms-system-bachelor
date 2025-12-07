@@ -18,7 +18,7 @@
         <x-blocks.detail field="Course" title="{{ $training->trainingSlot->course->title }}" />
         <x-blocks.detail field="Place" title="{{ $training->trainingSlot->place }}" />
         <x-blocks.detail field="Trainer" title="{{ $training->trainingSlot->trainer->first_name}} {{$training->trainingSlot->trainer->last_name }}" />
-        <x-blocks.detail field="Ordered by" title="{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}" />
+        <x-blocks.detail field="Ordered by" title="{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}" secondTitle="{{ $training->orderedBy->email }}" />
 
         <x-blocks.detail field="Whatsapp link" title="{{ $training->trainingSlot->participation_link }}" />
         @if($training->status === 'Upcoming')
