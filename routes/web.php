@@ -15,6 +15,6 @@ Route::get('gdprs/privacy-policy', [PrivacyPolicyController::class, 'privacyPoli
 Route::middleware(['auth', 'role:user,leader'])->group(function () {
     Route::get('/signatures', [SignatureController::class, 'index'])->name('signatures.index');
     Route::post('/signatures/{trainingUserId}', [SignatureController::class, 'sign'])->name('signatures.sign');
-    Route::get('/certificates/{training_id}', [CertificateController::class, 'certificate'])->name('certificates.certificate');
-    Route::resource('certificates', CertificateController::class);
+    Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
+    Route::get('/certificates/{training_id}', [CertificateController::class, 'showCertificate'])->name('certificates.showCertificate');
 });

@@ -16,11 +16,11 @@
                         </div>
 
 {{--                        title --}}
-                        <h1 class="certificate__title">Certificate</h1>
-                        <p class="certificate__subtitle text-uppercase text-primary">of completion</p>
+                        <h1 class="certificate__title">{{ $title }}</h1>
+                        <p class="certificate__subtitle text-uppercase text-primary">{{ $subtitle }}</p>
 
 {{--                        recipient --}}
-                        <p class="certificate__presented">presented to</p>
+                        <p class="certificate__presented">{{ $presented }}</p>
                         <h2 class="certificate__recipient">
                             {{ $certificate->user->first_name }} {{ $certificate->user->last_name }}
                         </h2>

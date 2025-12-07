@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Training;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\AbInventech;
 use App\Models\Certificate;
 use App\Models\TrainingUser;
@@ -9,7 +11,7 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
-    public function certificate($training_id)
+    public function showCertificate($training_id)
     {
         $certificate = Certificate::where('user_id', auth()->id())
             ->where('training_id', $training_id)
@@ -17,7 +19,18 @@ class CertificateController extends Controller
 
         $abInventech = AbInventech::first();
 
-        return view('certificates.certificate', compact('certificate', 'abInventech'));
+        $data = [
+            'title'     => 'Certificate',
+            'subtitle'  => 'of completion',
+            'presented' => 'presented to',
+            'certificate' => $certificate,
+            'abInventech' => $abInventech,
+        ];
+
+        $pdf = Pdf::loadView('certificates.showCertificate', $data);
+
+//        download file name
+        return $pdf->download('certificate_'.$certificate->id.'.pdf');
     }
 
     /**
@@ -25,20 +38,9 @@ class CertificateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function certificates()
     {
-        $certificates = Certificate::latest()->paginate(5);
-        return view('profiles.certificates.index', compact('certificates'))->with(request()->input('page'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Certificate $certificate
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Certificate $certificate)
-    {
-        return view('profiles.certificates.show', compact('certificate'));
+        $certificates = Certificate::where('user_id', auth()->id())->latest()->paginate(5);
+        return view('auth.profiles.certificates', compact('certificates'))->with(request()->input('page'));
     }
 }
