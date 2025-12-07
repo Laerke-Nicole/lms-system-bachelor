@@ -43,9 +43,16 @@
                             </li>
                         @endif
 
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+                            <a class="dropdown-item fs-5" href="{{ route('courses.course_materials.index', $training->course) }}">
+                                <i class="bi bi-file-earmark-text me-2"></i>Course material
+                            </a>
+                        </li>
+
 {{--                        show link to test and evaluation if the status is completed or expired --}}
                         @if(in_array($training->status, ['Completed', 'Expired']))
-                            <li><hr class="dropdown-divider"></li>
 
 {{--                            show evaluation --}}
                             @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->evaluation)
