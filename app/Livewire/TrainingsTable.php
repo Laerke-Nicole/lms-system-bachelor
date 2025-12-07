@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Course;
 use App\Models\Training;
 use App\Models\TrainingSlot;
 use Livewire\Component;

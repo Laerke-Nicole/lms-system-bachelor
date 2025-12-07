@@ -14,12 +14,10 @@ class CourseMaterialFactory extends Factory
      */
     public function definition()
     {
-        $materialType = ['Preparation', 'Follow up'];
         $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
         $url = $this->faker->optional()->url();
 
         return [
-            'material_type' => $this->faker->randomElement($materialType),
             'title' => $this->faker->sentence(3),
             'type' => $this->faker->randomElement($types),
             'url' => $url,

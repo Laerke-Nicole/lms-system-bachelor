@@ -8,13 +8,16 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Material Type', 'Title', 'Type', 'URL', 'Actions']">
+    <x-blocks.table-head :headers="['Title', 'Type', 'View material', 'Actions']">
         @forelse ($courseMaterials as $courseMaterial)
             <tr>
-                <td>{{ $courseMaterial->material_type }}</td>
                 <td>{{ $courseMaterial->title }}</td>
                 <td>{{ $courseMaterial->type }}</td>
-                <td>{{ $courseMaterial->url }}</td>
+                @if($courseMaterial->url)
+                    <td><a href="{{ $courseMaterial->url }}" target="_blank">View material<i class="bi bi-arrow-up-right ms-2"></i></a></td>
+                    @elseif ($courseMaterial->pdf)
+                    <td><a href="{{ $courseMaterial->pdf }}">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a></td>
+                @endif
                 <td>
                     <x-blocks.table-actions
                                                 :editRoute="route('courses.course_materials.edit', [$course, $courseMaterial])"

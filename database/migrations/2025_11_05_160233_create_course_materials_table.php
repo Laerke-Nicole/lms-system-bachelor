@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('course_materials', function (Blueprint $table) {
             $table->id();
-            $table->enum('material_type', ['Preparation', 'Follow up']);
             $table->string('title');
             $table->enum('type', ['Video', 'PDF', 'Task', 'Quiz', 'Other']);
             $table->string('url')->nullable();

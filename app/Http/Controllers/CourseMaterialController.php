@@ -46,7 +46,6 @@ class CourseMaterialController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'material_type' => 'required',
             'title' => 'required',
             'type' => 'required',
             'url' => 'nullable|url',
@@ -92,7 +91,6 @@ class CourseMaterialController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'material_type' => 'required',
             'title' => 'required',
             'type' => 'required',
             'url' => 'nullable|url',

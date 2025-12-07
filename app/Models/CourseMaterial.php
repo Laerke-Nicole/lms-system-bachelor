@@ -12,7 +12,6 @@ class CourseMaterial extends Model
     protected $table = 'course_materials';
 
     protected $fillable = [
-        'material_type',
         'title',
         'type',
         'url',

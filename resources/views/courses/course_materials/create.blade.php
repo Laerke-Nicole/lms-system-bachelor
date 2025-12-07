@@ -16,11 +16,6 @@
     <x-blocks.error-alert/>
 
     <x-blocks.form action="{{ route('courses.course_materials.store', $course) }}" method="POST" enctype="multipart/form-data">
-        <x-elements.select label="Material Type" name="material_type">
-            @foreach($materialTypes as $material)
-                <option value="{{ $material }}">{{ $material }}</option>
-            @endforeach
-        </x-elements.select>
         <x-elements.input label="Title" name="title" />
         <x-elements.select label="Type" name="type">
             @foreach($types as $type)

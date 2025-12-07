@@ -18,11 +18,6 @@
     <x-blocks.form action="{{ route('courses.course_materials.update', [$course, $courseMaterial]) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
 
-        <x-elements.select label="Material Type" name="material_type">
-            @foreach($materialTypes as $material)
-                <option value="{{ $material }}" {{ $courseMaterial->material_type === $material ? 'selected' : '' }}>{{ $material }}</option>
-            @endforeach
-        </x-elements.select>
         <x-elements.input label="Title" name="title" value="{{ $courseMaterial->title }}"/>
         <x-elements.select label="Type" name="type">
             @foreach($types as $type)
