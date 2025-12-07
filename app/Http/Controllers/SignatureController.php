@@ -60,6 +60,6 @@ class SignatureController extends Controller
             'date' => now(),
         ]);
 
-        return redirect()->route('certificates.index')->with('success', 'Training signed successfully! Your certificate is ready to download.');
+        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
     }
 }

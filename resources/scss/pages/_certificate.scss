@@ -1,7 +1,11 @@
 .certificate {
+    border: 2px solid #e5e5e5;
+    padding: 60px 40px;
+    max-width: 750px;
+
     &__image {
-        max-width: 90px;
-        opacity: 0.9;
+        max-width: 100px;
+        margin-bottom: 10px;
     }
 
     &__title {
@@ -14,11 +18,13 @@
     &__subtitle {
         font-size: 14px;
         letter-spacing: 1.5px;
+        margin-top: 2px;
         margin-bottom: 40px;
+        text-transform: uppercase;
     }
 
     &__presented {
-        margin-bottom: 6px;
+        margin-bottom: 20px;
         font-size: 14px;
         color: #777;
     }
@@ -30,7 +36,7 @@
     }
 
     &__training {
-        max-width: 450px;
+        max-width: 520px;
         margin: 0 auto 60px;
         font-size: 15px;
         line-height: 1.6;
@@ -57,13 +63,12 @@
     &__verified-label {
         font-size: 13px;
         color: #666;
-        margin-bottom: 0;
     }
 
     &__valid-until {
         font-size: 11px;
-        letter-spacing: 1px;
         margin-top: 30px;
         color: #666;
+        letter-spacing: 1px;
     }
 }

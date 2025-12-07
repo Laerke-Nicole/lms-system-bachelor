@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Certificate;
 use App\Models\Site;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -55,8 +56,8 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $user->load('certificates.training.course');
+        $certificates = Certificate::where('user_id', auth()->id())->get();
 
-        return view('auth.profiles.certificates', compact('user'));
+        return view('auth.profiles.certificates', compact('user', 'certificates'));
     }
 }

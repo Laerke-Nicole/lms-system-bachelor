@@ -11,6 +11,17 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
+    public function viewCertificate($training_id)
+    {
+        $certificate = Certificate::where('user_id', auth()->id())
+            ->where('training_id', $training_id)
+            ->firstOrFail();
+
+        $abInventech = AbInventech::first();
+
+        return view('certificates.certificate', compact('certificate', 'abInventech'));
+    }
+
     public function showCertificate($training_id)
     {
         $certificate = Certificate::where('user_id', auth()->id())
@@ -29,8 +40,8 @@ class CertificateController extends Controller
 
         $pdf = Pdf::loadView('certificates.showCertificate', $data);
 
-//        download file name
-        return $pdf->download('certificate_'.$certificate->id.'.pdf');
+//        pdf file name
+        return $pdf->download('certificate_for_'.$certificate->training->course->title.'.pdf');
     }
 
     /**
