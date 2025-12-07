@@ -18,8 +18,9 @@
                                       col="col-5"
                                       :required="false"
                                       :checked="(bool) $participant->completed_evaluation_at"
+                                      :disabled="(bool) $participant->completed_evaluation_at"
                                       wire:click="markEvaluationCompleted({{ $participant->id }})"
-                                      wire:confirm="Are you sure you want to update if the participant completed the evaluation?"
+                                      wire:confirm="Are you sure you want to update if the participant completed the evaluation? (this cannot be undone)"
                     />
                 </td>
                 <td>
@@ -33,8 +34,9 @@
                                       col="col-5"
                                       :required="false"
                                       :checked="(bool) $participant->completed_test_at"
+                                      :disabled="(bool) $participant->completed_test_at"
                                       wire:click="markTestCompleted({{ $participant->id }})"
-                                      wire:confirm="Are you sure you want to update if the participant completed the test?"
+                                      wire:confirm="Are you sure you want to update if the participant completed the test? (this cannot be undone)"
                     />
                 </td>
             </tr>

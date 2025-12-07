@@ -27,6 +27,11 @@ class TrainingParticipantsCompletion extends Component
     {
         $trainingUser = TrainingUser::findOrFail($trainingUserId);
 
+//        if the update is already made
+        if ($trainingUser->completed_test_at) {
+            return;
+        }
+
         // toggle
         $trainingUser->update([
             'completed_test_at' =>
@@ -37,6 +42,11 @@ class TrainingParticipantsCompletion extends Component
     public function markEvaluationCompleted($trainingUserId)
     {
         $trainingUser = TrainingUser::findOrFail($trainingUserId);
+
+//        if the update is already made
+        if ($trainingUser->evaluation_completed) {
+            return;
+        }
 
         // toggle
         $trainingUser->update([
