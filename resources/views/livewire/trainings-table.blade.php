@@ -43,17 +43,20 @@
                             </li>
                         @endif
 
-                        <li><hr class="dropdown-divider"></li>
-
-                        <li>
-                            <a class="dropdown-item fs-5" href="{{ route('courses.course_materials.index', $training->course) }}">
-                                <i class="bi bi-file-earmark-text me-2"></i>Course material
-                            </a>
-                        </li>
+{{--                       show course material if status is upcoming, completed or expired --}}
+                        @if (in_array($training->status, ['Upcoming', 'Completed', 'Expired']))
+                            <li><hr class="dropdown-divider"></li>
+{{--                            <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />--}}
+                            <li>
+                                <a class="dropdown-item fs-5" href="{{ route('sections.course-materials', $training->id) }}">
+                                    <i class="bi bi-file-earmark-text me-2"></i>Course material
+                                </a>
+                            </li>
+                        @endif
 
 {{--                        show link to test and evaluation if the status is completed or expired --}}
                         @if(in_array($training->status, ['Completed', 'Expired']))
-
+                            <li><hr class="dropdown-divider"></li>
 {{--                            show evaluation --}}
                             @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->evaluation)
                                 <li>
@@ -85,11 +88,6 @@
                     </x-blocks.table-actions>
                 </td>
             </tr>
-
-{{--        show course material if status is upcoming, completed or expired --}}
-            @if (in_array($training->status, ['Upcoming', 'Completed', 'Expired']))
-                <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />
-            @endif
 
         @empty
             <tr>

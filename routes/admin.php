@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AbInventechController;
 use App\Http\Controllers\Auth\AuthSessionController;
-use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
