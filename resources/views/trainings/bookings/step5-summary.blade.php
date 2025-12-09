@@ -16,40 +16,56 @@
 
                 <hr>
 
-                <div class="row mb-3 g-3">
-                    <div class="col-sm-3 col-lg-4">
-                        <img src="{{ asset('storage/' . $training->trainingSlot->course->image) ?? '/placeholder.png' }}"
-                             alt="{{ $training->trainingSlot->course->title }}"
-                             class="h-100 w-100 object-fit-cover rounded">
-                    </div>
+                @if($training->trainingSlot && $training->trainingSlot->course)
+                    <div class="row mb-3 g-3">
+                        <div class="col-sm-3 col-lg-4">
+                            @if($training->trainingSlot->course->image)
+                                <img src="{{ asset('storage/' . $training->trainingSlot->course->image) }}"
+                                     alt="{{ $training->trainingSlot->course->title }}"
+                                     class="h-100 w-100 object-fit-cover rounded">
+                            @else
+                                <img src="/placeholder.png" alt="Course" class="h-100 w-100 object-fit-cover rounded">
+                            @endif
+                        </div>
 
-                    <div class="col-sm-9 col-lg-8 d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="fw-semibold">{{ $training->trainingSlot->course->title }}</h4>
-                            <p class="small text-muted mb-5">{{ $training->trainingSlot->course->description }}</p>
-                        </div>
-                        <div class="d-flex gap-4 align-items-center small">
-                            <p class="mb-0"><span class="text-dark">Date </span>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</p>
-                            <span class="opacity-25">|</span>
-                            <p class="mb-0"><span class="text-dark">Location </span> {{ $training->trainingSlot->place }}</p>
+                        <div class="col-sm-9 col-lg-8 d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="fw-semibold">{{ $training->trainingSlot->course->title }}</h4>
+                                @if($training->trainingSlot->course->description)
+                                    <p class="small text-muted mb-5">{{ $training->trainingSlot->course->description }}</p>
+                                @endif
+                            </div>
+                            <div class="d-flex gap-4 align-items-center small">
+                                @if($training->trainingSlot->training_date)
+                                    <p class="mb-0"><span class="text-dark">Date </span>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                                @endif
+                                @if($training->trainingSlot->place)
+                                    <span class="opacity-25">|</span>
+                                    <p class="mb-0"><span class="text-dark">Location </span> {{ $training->trainingSlot->place }}</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <hr>
 
-                <div class="d-flex flex-column gap-2 mt-3 mb-3">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p class="text-muted small">Participants</p>
-                        </div>
-                        <div>
-                            @foreach($training->users as $user)
-                                <p class="step5__employees text-dark text-end small">{{ $user->first_name }} {{ $user->last_name }}</p>
-                            @endforeach
+                @if($training->users && $training->users->count() > 0)
+                    <div class="d-flex flex-column gap-2 mt-3 mb-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="text-muted small">Participants</p>
+                            </div>
+                            <div>
+                                @foreach($training->users as $user)
+                                    @if($user->first_name || $user->last_name)
+                                        <p class="step5__employees text-dark text-end small">{{ $user->first_name }} {{ $user->last_name }}</p>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <hr class="mb-5">
 

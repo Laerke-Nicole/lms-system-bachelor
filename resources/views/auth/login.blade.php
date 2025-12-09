@@ -9,9 +9,11 @@
 
                 <div class="p-md-4 d-flex flex-column w-100">
                     <div>
-                        <div class="mb-5">
-                            <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
-                        </div>
+                        @if($abInventech->logo)
+                            <div class="mb-5">
+                                <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
+                            </div>
+                        @endif
 
                         <div class="w-100">
                             <h3 class="mb-4">Log in</h3>

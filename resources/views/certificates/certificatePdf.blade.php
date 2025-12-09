@@ -98,32 +98,42 @@
 <body>
 <div class="certificate-container">
 
-    <div class="certificate__logo">
-        <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
-    </div>
+    @if($abInventech && $abInventech->logo)
+        <div class="certificate__logo">
+            <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
+        </div>
+    @endif
 
     <h1 class="certificate__title">Certificate</h1>
     <p class="certificate__subtitle">OF COMPLETION</p>
 
     <p class="certificate__presented">presented to</p>
 
-    <h2 class="certificate__recipient">
-        {{ $certificate->user->first_name }} {{ $certificate->user->last_name }}
-    </h2>
+    @if($certificate && $certificate->user)
+        <h2 class="certificate__recipient">
+            {{ $certificate->user->first_name }} {{ $certificate->user->last_name }}
+        </h2>
+    @endif
 
-    <p class="certificate__training">
-        for completing the training
-        {{ $certificate->training->course->title }}
-        on {{ $certificate->training->trainingSlot->training_date->format('d M Y') }}.
-    </p>
+    @if($certificate && $certificate->training && $certificate->training->course && $certificate->training->trainingSlot && $certificate->training->trainingSlot->training_date)
+        <p class="certificate__training">
+            for completing the training
+            {{ $certificate->training->course->title }}
+            on {{ $certificate->training->trainingSlot->training_date->format('d M Y') }}.
+        </p>
+    @endif
 
-    <div class="certificate__signature-block">
-        <div class="certificate__signature-line"></div>
-        <p class="certificate__verified-name">{{ $trainingUser->signature }}</p>
-        <p class="certificate__verified-label">Participant</p>
-    </div>
+    @if($trainingUser && $trainingUser->signature)
+        <div class="certificate__signature-block">
+            <div class="certificate__signature-line"></div>
+            <p class="certificate__verified-name">{{ $trainingUser->signature }}</p>
+            <p class="certificate__verified-label">Participant</p>
+        </div>
+    @endif
 
-    <p class="certificate__valid-until">Certificate is valid until {{ $certificate->valid_until->format('d M Y') }}.</p>
+    @if($certificate && $certificate->valid_until)
+        <p class="certificate__valid-until">Certificate is valid until {{ $certificate->valid_until->format('d M Y') }}.</p>
+    @endif
 
 </div>
 </body>

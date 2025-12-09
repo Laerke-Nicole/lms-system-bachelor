@@ -12,8 +12,8 @@
         @forelse ($companies as $company)
             <tr>
                 <td>{{ $company->company_name }}</td>
-                <td>{{ $company->company_mail }}</td>
-                <td>{{ $company->company_phone }}</td>
+                <td>{{ $company->company_mail ?? '-' }}</td>
+                <td>{{ $company->company_phone ?? '-' }}</td>
                 <td><x-blocks.index-address :table="$company" /></td>
 
                 <td>

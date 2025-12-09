@@ -4,10 +4,15 @@
 
     {{--    {{ Breadcrumbs::render('to-home', 'Course Materials', 'courses.course_materials.index') }}--}}
 
-    <x-blocks.title title="Course materials for {{ $course->title }}"/>
+    @if($course)
+        <x-blocks.title title="Course materials for {{ $course->title }}"/>
+    @else
+        <x-blocks.title title="Course Materials"/>
+    @endif
 
         <div class="row g-4 px-xl-5 course-materials">
-    @forelse ($training->trainingSlot->course->courseMaterials as $material)
+    @if($training->trainingSlot && $training->trainingSlot->course)
+        @forelse ($training->trainingSlot->course->courseMaterials as $material)
             <div class="col-lg-4">
                 <div class="d-flex flex-row">
                     <div>
@@ -35,7 +40,7 @@
                             <a href="{{ asset('storage/' . $material->pdf) }}" target="_blank" class="text-primary">
                                 Download PDF
                             </a>
-                        @else
+                        @elseif($material->url)
                             <a href="{{ $material->url }}" target="_blank" class="text-primary">
                                 Open Material
                                 <i class="bi bi-arrow-up-right ms-1"></i>
@@ -44,9 +49,12 @@
                     </div>
                 </div>
             </div>
-            @empty
-                <p class="text-muted">No course materials available.</p>
-            @endforelse
-        </div>
+        @empty
+            <p class="text-muted">No course materials available.</p>
+        @endforelse
+    @else
+        <p class="text-muted">No course materials available.</p>
+    @endif
+    </div>
 
 @endsection

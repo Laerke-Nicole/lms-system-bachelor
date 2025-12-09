@@ -12,9 +12,9 @@
         @forelse ($courses as $course)
         <tr>
             <td>{{ $course->title }}</td>
-            <td>{{ $course->description }}</td>
-            <td>{{ $course->duration }} hrs</td>
-            <td>{{ $course->max_participants }}</td>
+            <td>{{ $course->description ?? '-' }}</td>
+            <td>{{ $course->duration ? $course->duration . ' hrs' : '-' }}</td>
+            <td>{{ $course->max_participants ?? '-' }}</td>
             <td>
                 <x-blocks.table-actions :showRoute="route('courses.show', $course->id)"
                                             :editRoute="route('courses.edit', $course->id)"

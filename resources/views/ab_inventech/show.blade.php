@@ -14,8 +14,12 @@
     <x-blocks.title title="{{ $abInventech->ab_inventech_name }}" />
 
     <div class="row">
-        <x-blocks.detail field="Email" title="{{ $abInventech->ab_inventech_mail }}" />
-        <x-blocks.detail field="Phone" title="{{ $abInventech->ab_inventech_phone }}" />
+        @if($abInventech->ab_inventech_mail)
+            <x-blocks.detail field="Email" title="{{ $abInventech->ab_inventech_mail }}" />
+        @endif
+        @if($abInventech->ab_inventech_phone)
+            <x-blocks.detail field="Phone" title="{{ $abInventech->ab_inventech_phone }}" />
+        @endif
         <x-blocks.show-address :table="$abInventech" />
     </div>
 

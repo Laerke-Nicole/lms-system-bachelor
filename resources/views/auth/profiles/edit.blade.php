@@ -12,11 +12,20 @@
 
         <div class="section-spacing">
             <div class="row">
-                <x-elements.input col="col-lg-6" label="First name" name="first_name" value="{{ $user->first_name }}"/>
-                <x-elements.input col="col-lg-6" label="Last name" name="last_name" value="{{ $user->last_name }}"/>
+                @if($user->first_name)
+                    <x-elements.input col="col-lg-6" label="First name" name="first_name" value="{{ $user->first_name }}"/>
+                @endif
+                @if($user->last_name)
+                    <x-elements.input col="col-lg-6" label="Last name" name="last_name" value="{{ $user->last_name }}"/>
+                @endif
             </div>
-            <x-elements.input col="col-12" label="Email" name="email" value="{{ $user->email }}"/>
-            <x-elements.input col="col-12" label="Phone" name="phone" value="{{ $user->phone }}"/>
+
+            @if($user->email)
+                <x-elements.input col="col-12" label="Email" name="email" value="{{ $user->email }}"/>
+            @endif
+            @if($user->phone)
+                <x-elements.input col="col-12" label="Phone" name="phone" value="{{ $user->phone }}"/>
+            @endif
 
             <div class="row mb-2">
                 <div class="col-12">
@@ -47,6 +56,7 @@
     </x-blocks.form>
 
     <div class="row mb-3">
+{{--        change your password --}}
         <div class="col-9">
             <label class="form-label text-label-1">Your password</label>
             <p>**************</p>

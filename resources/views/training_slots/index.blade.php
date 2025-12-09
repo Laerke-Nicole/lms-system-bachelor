@@ -11,10 +11,16 @@
     <x-blocks.table-head :headers="['Date & time', 'Course', 'Place', 'Trainer', 'Actions']">
         @forelse ($trainingSlots as $trainingSlot)
             <tr>
-                <td>{{ $trainingSlot->training_date->format('d M Y, H:i') }}</td>
-                <td>{{ $trainingSlot->course->title }}</td>
-                <td>{{ $trainingSlot->place }}</td>
-                <td>{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</td>
+                <td>{{ $trainingSlot->training_date ? $trainingSlot->training_date->format('d M Y, H:i') : '-' }}</td>
+                <td>{{ $trainingSlot->course->title ?? '-' }}</td>
+                <td>{{ $trainingSlot->place ?? '-' }}</td>
+                <td>
+                    @if($trainingSlot->trainer)
+                        {{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}
+                    @else
+                        -
+                    @endif
+                </td>
                 <td>
                     <x-blocks.table-actions :showRoute="route('training_slots.show', $trainingSlot->id)"
                                             :editRoute="route('training_slots.edit', $trainingSlot->id)"
