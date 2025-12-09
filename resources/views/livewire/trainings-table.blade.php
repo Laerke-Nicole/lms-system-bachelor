@@ -47,7 +47,7 @@
 {{--                         show evaluation --}}
                         <x-blocks.training-evaluation-link :training="$training" />
 
-{{--                         show signature page if the user completed  evalution and didnt sign yet --}}
+{{--                         show signature page if the user completed evalution and didnt sign yet --}}
                         <x-blocks.training-signature-link :training="$training" />
 
                     </x-blocks.table-actions>

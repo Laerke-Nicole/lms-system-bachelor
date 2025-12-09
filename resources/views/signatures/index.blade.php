@@ -13,8 +13,12 @@
                         {{-- Training Summary --}}
                         <div class="mb-4">
                             <div class="d-flex flex-column gap-1">
-                                <div><span class="text-dark">Course:</span> {{ $trainingUser->training->trainingSlot->course->title }}</div>
-                                <div><span class="text-dark">Training date:</span> {{ $trainingUser->training->trainingSlot->training_date->format('d M Y') }}</div>
+                                @if($trainingUser->training->trainingSlot->course->title)
+                                    <div><span class="text-dark">Course:</span> {{ $trainingUser->training->trainingSlot->course->title }}</div>
+                                @endif
+                                @if($trainingUser->training->trainingSlot->training_date)
+                                    <div><span class="text-dark">Training date:</span> {{ $trainingUser->training->trainingSlot->training_date->format('d M Y') }}</div>
+                                @endif
                             </div>
                         </div>
 

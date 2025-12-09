@@ -1,4 +1,4 @@
-@props(['isImage' => false, 'class' => null, 'title' => null, 'field' => null, 'secondTitle' => null, 'thirdTitle' => null, 'valueClass' => null])
+@props(['isImage' => false, 'class' => null, 'title' => null, 'field' => null, 'secondTitle' => null, 'thirdTitle' => null, 'valueClass' => null, 'isUrl' => null, 'target' => null])
 
 <div class="{{ $col ?? 'col-12'}}">
     <div class="form-group">
@@ -16,6 +16,12 @@
                         <img src="{{ asset('storage/' . $title) }}"
                              alt="{{ basename($title) }}"
                              class="{{ $imageClass ?? 'w-60 img-fluid' }}">
+                    @endif
+                @elseif($isUrl)
+                    @if($title)
+                        <a href="{{ $title }}" @if($target) target="{{ $target }}" @endif>
+                            {{ $UrlTitle ?? $title }}
+                        </a>
                     @endif
                 @else
                         {{ $title }}
