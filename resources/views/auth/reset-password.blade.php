@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+    @guest
     <div class="vh-100 container-fluid auth">
         <div class="row h-100">
             <!-- left side with form -->
@@ -34,4 +35,5 @@
             </div>
         </div>
     </div>
+    @endguest
 @endsection

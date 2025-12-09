@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+    @guest
     <div class="container">
         <div class="row">
             <div class="vh-100 col-12 d-flex flex-column justify-content-center align-items-center">
@@ -14,4 +15,5 @@
             </div>
         </div>
     </div>
+    @endguest
 @endsection

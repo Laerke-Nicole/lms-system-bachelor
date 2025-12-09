@@ -34,57 +34,22 @@
                     <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"
                                             :editRoute="route('trainings.edit', $training->id)"
                                             :deleteRoute="route('trainings.destroy', $training->id)">
-                        @if($training->status === 'Upcoming' && $training->trainingSlot->training_date->isToday())
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->participation_link }}" target="_blank">
-                                    <i class="bi bi-person-workspace me-2"></i>Participate in training
-                                </a>
-                            </li>
-                        @endif
 
-{{--                       show course material if status is upcoming, completed or expired --}}
-                        @if (in_array($training->status, ['Upcoming', 'Completed', 'Expired']))
-                            <li><hr class="dropdown-divider"></li>
-{{--                            <x-blocks.course-materials :training="$training" :tableHeaders="$this->tableHeaders" />--}}
-                            <li>
-                                <a class="dropdown-item fs-5" href="{{ route('sections.course-materials', $training->id) }}">
-                                    <i class="bi bi-file-earmark-text me-2"></i>Course material
-                                </a>
-                            </li>
-                        @endif
+{{--                        the button to participate in training --}}
+                        <x-blocks.training-participation-link :training="$training" />
 
-{{--                        show link to test and evaluation if the status is completed or expired --}}
-                        @if(in_array($training->status, ['Completed', 'Expired']))
-                            <li><hr class="dropdown-divider"></li>
-{{--                            show evaluation --}}
-                            @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->evaluation)
-                                <li>
-                                    <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->course->evaluation->evaluation_link }}" target="_blank">
-                                        <i class="bi bi-clipboard-check me-2"></i>Take evaluation
-                                    </a>
-                                </li>
-                            @endif
+{{--                        show course material --}}
+                        <x-blocks.training-course-materials-link :training="$training" />
 
-{{--                            show test --}}
-                            @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->followUpTest)
-                                <li>
-                                    <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->course->followUpTest->test_link }}" target="_blank">
-                                        <i class="bi bi-journal me-2"></i>Take test
-                                    </a>
-                                </li>
-                            @endif
+{{--                         show test --}}
+                        <x-blocks.training-test-link :training="$training" />
 
-{{--                            show signature page if the user completed test and evalution and didnt sign yet --}}
-{{--                                @if($training->trainingUsers->completed_test_at && $training->trainingUsers->completed_evaluation_at && !$training->trainingUsers->signed_at)--}}
-                                    <li>
-{{--                                        pass the training id to the signature page --}}
-                                        <a class="dropdown-item fs-5" href="{{ route('signatures.index', ['training_id' => $training->id]) }}">
-                                            <i class="bi bi-pencil me-2"></i>Sign to get certificate
-                                        </a>
-                                    </li>
-{{--                                @endif--}}
-                        @endif
+{{--                         show evaluation --}}
+                        <x-blocks.training-evaluation-link :training="$training" />
+
+{{--                         show signature page if the user completed  evalution and didnt sign yet --}}
+                        <x-blocks.training-signature-link :training="$training" />
+
                     </x-blocks.table-actions>
                 </td>
             </tr>

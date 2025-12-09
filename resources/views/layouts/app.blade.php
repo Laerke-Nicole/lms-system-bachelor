@@ -8,6 +8,7 @@
 </head>
 <body>
 
+@auth
 <div id="app">
     <header>
         <div class="container py-3 d-flex align-items-center justify-content-between justify-content-lg-end">
@@ -50,10 +51,7 @@
 
                 <li><x-elements.link href="{{ route('home') }}" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
 
-{{--                @guest--}}
-{{--                @endguest--}}
 
-                @auth
 
                     @if( auth()->user()->role === 'admin' || auth()->user()->role === 'leader' )
                     <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building">
@@ -97,18 +95,19 @@
 {{--                                <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>--}}
 {{--                        </x-blocks.form>--}}
 {{--                    </li>--}}
-                @endauth
             </ul>
         </nav>
     </header>
 
-
     <main class="container">
         @yield('content')
     </main>
+
 </div>
 
 @stack('fixed-elements')
+
+@endauth
 
 </body>
 
