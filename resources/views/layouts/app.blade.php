@@ -11,7 +11,7 @@
 @auth
 <div id="app">
     <header>
-        <div class="container py-3 d-flex align-items-center justify-content-between justify-content-lg-end">
+        <div class="container py-3 mb-5 d-flex align-items-center justify-content-between justify-content-lg-end navbar">
 {{--            left side of navbar with menu bar--}}
             <a href="#menu" class="btn fs-3 p-0 d-lg-none">
                 <span><i class="bi bi-list"></i></span>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <nav id="menu">
+        <nav id="menu" class="sidebar">
             <ul>
 
                 <li><x-elements.link href="{{ route('home') }}" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
