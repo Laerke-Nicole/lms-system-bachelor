@@ -7,6 +7,10 @@
 <p class="mb-5">Here you can update your information so your details are up-to-date.</p>
 
 <div>
+    <x-blocks.message />
+
+    <x-blocks.error-alert/>
+
     <x-blocks.form action="{{ route('profiles.update') }}" method="POST" class="mb-0">
         @method('PUT')
 
@@ -48,10 +52,6 @@
             <div class="d-flex flex-wrap align-items-baseline gap-2 mb-3">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
-
-            <x-blocks.message />
-
-            <x-blocks.error-alert/>
         </div>
     </x-blocks.form>
 

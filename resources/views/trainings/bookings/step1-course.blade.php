@@ -20,7 +20,7 @@
                     <div class="row g-3">
                         <div class="col-12 col-sm-5 px-0">
                             <div class="step-cards__card__image-wrapper1 h-100 img-hover-scale">
-                                <img src="{{ asset('storage/' . $course->image) ?? '/placeholder.png' }}"
+                                <img src="{{ asset('storage/' . $course->image) ?? 'storage/placeholder.png' }}"
                                      alt="{{ $course->title }}"
                                      class="h-100 w-100 object-fit-cover step-cards__card__image-wrapper1__image" >
                             </div>

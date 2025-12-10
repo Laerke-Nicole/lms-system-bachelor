@@ -24,7 +24,7 @@
                                 <p class="badge text-bg-light text-label-2">{{ $trainingSlot->place }}</p>
                             </div>
                             <div class="step-cards__card__image-wrapper2 img-hover-scale">
-                                <img src="{{ asset('storage/' . $trainingSlot->course->image) ?? '/placeholder.png' }}"
+                                <img src="{{ asset('storage/' . $trainingSlot->course->image) ?? 'storage/placeholder.png' }}"
                                      alt="{{ $trainingSlot->course->title }}"
                                      class="step-cards__card__image-wrapper2__image object-fit-cover position-relative h-34 w-100">
                             </div>

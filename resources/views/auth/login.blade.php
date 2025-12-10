@@ -41,7 +41,7 @@
 
             <!-- right side with img -->
             <div class="col-md-6 col-lg-8 p-0 d-none d-md-block">
-                <img src="https://cdn.pixabay.com/photo/2015/06/23/08/16/daegwallyeong-818420_1280.jpg" alt="windmill" class="img-fluid w-100 h-100 object-fit-cover">
+                <img src="storage/standard-windmill-image.jpg" alt="windmill" class="img-fluid w-100 h-100 object-fit-cover">
             </div>
         </div>
     </div>

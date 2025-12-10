@@ -24,7 +24,7 @@
                                      alt="{{ $training->trainingSlot->course->title }}"
                                      class="h-100 w-100 object-fit-cover rounded">
                             @else
-                                <img src="/placeholder.png" alt="Course" class="h-100 w-100 object-fit-cover rounded">
+                                <img src="storage/placeholder.png" alt="Course" class="h-100 w-100 object-fit-cover rounded">
                             @endif
                         </div>
 

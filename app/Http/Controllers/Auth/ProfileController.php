@@ -8,13 +8,14 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-        /**
+    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -28,8 +29,8 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -59,5 +60,40 @@ class ProfileController extends Controller
         $certificates = Certificate::where('user_id', auth()->id())->get();
 
         return view('auth.profiles.certificates', compact('user', 'certificates'));
+    }
+
+    public function editPassword()
+    {
+        return view('auth.profiles.password-edit');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        $user = auth()->user();
+
+        // make sure the current password matches the input of their current password
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors([
+                'current_password' => 'Your current password is incorrect.',
+            ]);
+        }
+
+        // make sure they cant use the same password
+        if (Hash::check($request->password, $user->password)) {
+            return back()->withErrors([
+                'password' => 'Your new password cannot be the same as your current password.',
+            ]);
+        }
+
+        // save the new password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('profiles.edit')->with('success', 'Your password has been updated successfully.');
     }
 }

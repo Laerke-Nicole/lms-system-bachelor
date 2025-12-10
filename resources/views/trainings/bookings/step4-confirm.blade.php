@@ -16,7 +16,7 @@
                 <div class="small p-4 d-flex flex-column bg-white rounded shadow-sm">
                     <div class="row mb-2 g-3">
                         <div class="col-sm-4">
-                            <img src="{{ asset('storage/' . $course->image) ?? '/placeholder.png' }}"
+                            <img src="{{ asset('storage/' . $course->image) ?? 'storage/placeholder.png' }}"
                                                     alt="{{ $course->title }}"
                                                     class="h-100 w-100 object-fit-cover rounded">
                         </div>
