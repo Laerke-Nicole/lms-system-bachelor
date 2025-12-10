@@ -25,7 +25,7 @@ class TrainingUserFactory extends Factory
             'training_id' => Training::inRandomOrder()->value('id'),
             'completed_test_at' => $date,
             'completed_evaluation_at' => $date,
-            'signature' => $user->first_name . ' ' . $user->last_name,
+            'signature_image' => $this->faker->imageUrl(),
             'signature_confirmed' => true,
             'signed_at' => $date,
         ];

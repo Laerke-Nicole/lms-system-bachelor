@@ -20,9 +20,9 @@ class SignatureController extends Controller
             ->where('training_id', $request->training_id)
             ->firstOrFail();
 
-//        if the user hasn't completed the test OR evaluation
-        if (!$trainingUser->completed_test_at || !$trainingUser->completed_evaluation_at) {
-            abort(403, 'You must complete the test and evaluation before you can sign.');
+//        if the user hasn't completed the evaluation
+        if (!$trainingUser->completed_evaluation_at) {
+            abort(403, 'You must complete the evaluation before you can sign.');
         }
 
 //        if the user already signed
@@ -35,10 +35,9 @@ class SignatureController extends Controller
 
     public function sign(Request $request, $trainingUserId)
     {
-
         // validate the user input
         $validated = $request->validate([
-            'signature' => 'required|string|min:2|max:255',
+            'signature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'signature_confirmed' => 'accepted',
         ]);
 
@@ -46,6 +45,11 @@ class SignatureController extends Controller
         $trainingUser = TrainingUser::where('id', $trainingUserId)
             ->where('user_id', auth()->id())
             ->firstOrFail();
+
+        if ($request->hasFile('signature_image')) {
+            $imagePath = $request->file('signature_image')->store('signatures', 'public');
+            $validated['signature_image'] = $imagePath;
+        }
 
         // store the time now as signed at
         $trainingUser->update([

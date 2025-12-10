@@ -8,7 +8,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 bg-white rounded-3">
 
-                        <x-blocks.title title="Training completion signature" subTitle="Please review the information and provide your signature to confirm that you completed this training." />
+                        <x-blocks.title title="Training completion signature" subTitle="Please review the information and sign by upload an image of your signature to confirm that you completed this training." />
 
                         {{-- Training Summary --}}
                         <div class="mb-4">
@@ -26,8 +26,10 @@
 
                         <x-blocks.form action="{{ route('signatures.sign', $trainingUser->id) }}" method="POST" class="mb-0">
 
+
                             <div class="mb-3">
-                                <x-elements.input label="Sign with your full name" name="signature" placeholder="John Doe" col="col-12" />
+                                <x-elements.input label="Upload an image of your signature" name="signature_image" type="file" col="col-md-6" />
+{{--                                <x-elements.input label="Sign with your full name" name="signature" placeholder="John Doe" col="col-12" />--}}
                             </div>
 
                             <x-blocks.error-alert/>

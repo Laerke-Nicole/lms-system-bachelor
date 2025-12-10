@@ -14,7 +14,7 @@ class TrainingUser extends Pivot
         'training_id',
         'completed_test_at',
         'completed_evaluation_at',
-        'signature',
+        'signature_image',
         'signature_confirmed',
         'signed_at',
     ];

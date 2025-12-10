@@ -66,19 +66,19 @@
 
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
-                        <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
+                        @if( auth()->user()->role === 'admin' )
+                            <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
+                        @elseif(auth()->user()->role === 'user' || auth()->user()->role === 'leader')
+                            <li><x-elements.link title="My trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
+                        @endif
                         @if( auth()->user()->role === 'leader' )
                             <li><x-elements.link title="Book training" href="{{ route('trainings.bookings.course') }}" icon="i bi-dot"></x-elements.link></li>
                         @endif
-{{--                        <li><x-elements.link title="Training slots" href="{{ route('training_slots.index') }}" icon="i bi-dot"></x-elements.link></li>--}}
-
-                        {{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                     </x-blocks.mmenu-dropdown>
 
                     @if( auth()->user()->role === 'admin' )
                         <x-blocks.mmenu-dropdown title="Courses" icon="bi bi-journals">
                             <li><x-elements.link class="dropdown-item" title="Course" href="{{ route('courses.index') }}" icon="bi bi-dot"></x-elements.link></li>
-    {{--                        <li><x-elements.link class="dropdown-item" title="Certificate" href="{{ route('certificate') }}" icon="bi bi-dot"></x-elements.link></li>--}}
                         </x-blocks.mmenu-dropdown>
                     @endif
 

@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->datetime('completed_test_at')->nullable();
             $table->datetime('completed_evaluation_at')->nullable();
-            $table->string('signature')->nullable();
+            $table->string('signature_image')->nullable();
             $table->boolean('signature_confirmed')->nullable();
             $table->datetime('signed_at')->nullable();
             $table->timestamps();

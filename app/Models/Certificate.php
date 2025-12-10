@@ -10,12 +10,7 @@ class Certificate extends Model
     use HasFactory;
 
     protected $fillable = [
-//        'title',
         'date',
-//        'valid_until',
-//        'vestas_format',
-//        'url',
-//        'content',
         'user_id',
         'training_id',
     ];
