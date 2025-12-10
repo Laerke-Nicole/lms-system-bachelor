@@ -66,9 +66,9 @@
 
 
                     <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
-                        @if( auth()->user()->role === 'admin' )
+                        @if( auth()->user()->role === 'admin' || auth()->user()->role === 'leader' )
                             <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
-                        @elseif(auth()->user()->role === 'user' || auth()->user()->role === 'leader')
+                        @elseif(auth()->user()->role === 'user')
                             <li><x-elements.link title="My trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
                         @endif
                         @if( auth()->user()->role === 'leader' )

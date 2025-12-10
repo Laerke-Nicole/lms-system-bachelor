@@ -2,7 +2,13 @@ import 'mmenu-js/dist/mmenu.css';
 import Mmenu from 'mmenu-js';
 
 export const initMmenu = () => {
-    const menu = new Mmenu("#menu", {
+    const menuElement = document.querySelector("#menu");
+
+    if (!menuElement) {
+        return;
+    }
+
+    new Mmenu(menuElement, {
         navbar: {
             add: true,
             title: "AB Inventech",
