@@ -17,15 +17,15 @@
             @forelse ($certificates as $certificate)
                 <tr>
                     <td>
-                        @if($certificate->training && $certificate->training->course)
-                            {{ $certificate->training->course->title }}
+                        @if($certificate->trainingUser && $certificate->trainingUser->training->course)
+                            {{ $certificate->trainingUser->training->course->title }}
                         @else
                             No course
                         @endif
                     </td>
                     <td>
-                        @if($certificate->training && $certificate->training->trainingSlot && $certificate->training->trainingSlot->training_date)
-                            {{ $certificate->training->trainingSlot->training_date->format('d M Y') }}
+                        @if($certificate->trainingUser && $certificate->trainingUser->training->trainingSlot && $certificate->trainingUser->training->trainingSlot->training_date)
+                            {{ $certificate->trainingUser->training->trainingSlot->training_date->format('d M Y') }}
                         @else
                             No training date
                         @endif
@@ -38,8 +38,8 @@
                         @endif
                     </td>
                     <td>
-                        @if($certificate->training_id)
-                            <a href="{{ route('certificates.certificatePdf', $certificate->training_id) }}"><i class="bi bi-download me-2"></i>Download</a>
+                        @if($certificate->trainingUser->training_id)
+                            <a href="{{ route('certificates.certificatePdf', $certificate->trainingUser->training_id) }}"><i class="bi bi-download me-2"></i>Download</a>
                         @endif
                     </td>
                 </tr>

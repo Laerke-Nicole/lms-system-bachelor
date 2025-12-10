@@ -44,11 +44,6 @@ class Training extends Model
         return $this->belongsTo(User::class, 'ordered_by_id');
     }
 
-    public function certificates()
-    {
-        return $this->belongsToMany(Certificate::class)->withTimestamps();
-    }
-
     public function trainingSlot()
     {
         return $this->belongsTo(TrainingSlot::class);

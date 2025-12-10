@@ -6,10 +6,16 @@
         <div class="col-md-9 col-lg-7 col-xl-7 mx-auto text-center">
             <h2 class="mb-3">Your certificate is ready to be downloaded!</h2>
             <p class="lead fs-lg mb-6 px-xl-10 px-xxl-15">You can find all your certificates under <a href="{{ route('profiles.certificates') }}" class="text-decoration-underline">your profile</a> and in your <a href="{{ route('trainings.index') }}" class="text-decoration-underline">training history</a>.</p>
-            @if($certificate && $certificate->training_id)
-                <div class="mt-4">
-                    <a href="{{ route('certificates.certificatePdf', $certificate->training_id) }}" class="btn btn-primary">Download certificate<i class="bi bi-download ms-2"></i></a>
-                </div>
+            @if($certificate && $certificate->signature)
+                @if($certificate->signature->signature_image)
+                    <div class="mt-4">
+                        <a href="{{ route('certificates.certificatePdf', $certificate->trainingUser->training_id) }}" class="btn btn-primary">Download certificate<i class="bi bi-download ms-2"></i></a>
+                    </div>
+                @elseif($certificate->signature->signed_certificate_pdf)
+                    <div class="mt-4">
+                        <a href="{{ asset('storage/' . $certificate->signature->signed_certificate_pdf) }}" class="btn btn-primary" download>Download certificate<i class="bi bi-download ms-2"></i></a>
+                    </div>
+                @endif
             @endif
         </div>
     </div>
@@ -30,24 +36,24 @@
 
                 <p class="certificate__presented">presented to</p>
 
-                @if($certificate && $certificate->user)
+                @if($certificate && $certificate->trainingUser && $certificate->trainingUser->user)
                     <h2 class="certificate__recipient">
-                        {{ $certificate->user->first_name }} {{ $certificate->user->last_name }}
+                        {{ $certificate->trainingUser->user->first_name }} {{ $certificate->trainingUser->user->last_name }}
                     </h2>
                 @endif
 
-                @if($certificate && $certificate->training && $certificate->training->course && $certificate->training->trainingSlot)
+                @if($certificate && $certificate->trainingUser && $certificate->trainingUser->training->course && $certificate->trainingUser->training->trainingSlot)
                     <p class="certificate__training">
                         for completing the training
-                        {{ $certificate->training->course->title }}
-                        on {{ $certificate->training->trainingSlot->training_date->format('d M Y') }}.
+                        {{ $certificate->trainingUser->training->course->title }}
+                        on {{ $certificate->trainingUser->training->trainingSlot->training_date->format('d M Y') }}.
                     </p>
                 @endif
 
-                @if($trainingUser && $trainingUser->signature)
+                @if($certificate && $certificate->signature)
                     <div class="certificate__signature-block mx-auto">
+                        <img src="{{ asset('storage/' . $certificate->signature->signature_image) }}" alt="{{ basename($certificate->signature->signature_image) }}" class="mb-1 w-100 object-fit-cover">
                         <div class="certificate__signature-line"></div>
-                        <p class="certificate__verified-name text-black">{{ $trainingUser->signature }}</p>
                         <p class="certificate__verified-label">Participant</p>
                     </div>
                 @endif

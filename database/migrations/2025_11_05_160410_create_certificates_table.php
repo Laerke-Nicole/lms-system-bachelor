@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->string('file_path')->nullable();
             $table->boolean('vestas_format')->default(false);
 
             $table->foreignId('training_user_id')

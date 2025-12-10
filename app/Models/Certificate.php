@@ -11,7 +11,6 @@ class Certificate extends Model
 
     protected $fillable = [
         'training_user_id',
-        'file_path',
         'vestas_format',
     ];
 
@@ -28,6 +27,6 @@ class Certificate extends Model
 
     public function signature()
     {
-        return $this->hasOne(Signature::class);
+        return $this->hasOne(Signature::class, 'certificate_id');
     }
 }

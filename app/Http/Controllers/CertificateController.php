@@ -14,17 +14,16 @@ class CertificateController extends Controller
 //    the view the user gets directed to after signing
     public function viewCertificate($training_id)
     {
-//        get the specific certicate for this training and this user
-        $certificate = Certificate::where('user_id', auth()->id())
-            ->where('training_id', $training_id)
-            ->firstOrFail();
-
-        $abInventech = AbInventech::first();
-
 //        get the traininguser info to get the signature
         $trainingUser = TrainingUser::where('user_id', auth()->id())
             ->where('training_id', $training_id)
-            ->first();
+            ->firstOrFail();
+
+//        get the specific certicate for this training and this user
+        $certificate = Certificate::where('training_user_id', $trainingUser->id)
+            ->firstOrFail();
+
+        $abInventech = AbInventech::first();
 
         return view('certificates.certificate', compact('certificate', 'abInventech', 'trainingUser'));
     }
@@ -32,14 +31,14 @@ class CertificateController extends Controller
 //    the actual pdf of the certificate
     public function certificatePdf($training_id)
     {
-        $certificate = Certificate::where('user_id', auth()->id())
-            ->where('training_id', $training_id)
-            ->firstOrFail();
-
 //        get the traininguser info to get the signature
         $trainingUser = TrainingUser::where('user_id', auth()->id())
             ->where('training_id', $training_id)
-            ->first();
+            ->firstOrFail();
+
+//        get the certificate for this training
+        $certificate = Certificate::where('training_user_id', $trainingUser->id)
+            ->firstOrFail();
 
         $abInventech = AbInventech::first();
 
@@ -55,7 +54,7 @@ class CertificateController extends Controller
         $pdf = Pdf::loadView('certificates.certificatePdf', $data);
 
 //        pdf file name
-        return $pdf->download('certificate_for_'.$certificate->training->course->title.'.pdf');
+        return $pdf->download('certificate_for_'.$certificate->trainingUser->training->course->title.'.pdf');
     }
 
     /**
@@ -65,7 +64,9 @@ class CertificateController extends Controller
      */
     public function certificates()
     {
-        $certificates = Certificate::where('user_id', auth()->id())->latest()->paginate(5);
+        $certificates = Certificate::whereHas('trainingUser', function($query) {
+            $query->where('user_id', auth()->id());
+        })->latest()->paginate(5);
         return view('auth.profiles.certificates', compact('certificates'))->with(request()->input('page'));
     }
 }

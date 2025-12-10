@@ -69,6 +69,12 @@
             margin: 0 auto 60px;
         }
 
+        .certificate__signature-image {
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 4px;
+        }
+
         .certificate__signature-line {
             width: 100%;
             height: 1px;
@@ -123,10 +129,12 @@
         </p>
     @endif
 
-    @if($trainingUser && $trainingUser->signature)
+    @if($certificate->signature)
         <div class="certificate__signature-block">
+            @if($certificate->signature->signature_image)
+                <img src="{{ asset('storage/' . $certificate->signature->signature_image) }}" class="certificate__signature-image">
+            @endif
             <div class="certificate__signature-line"></div>
-            <p class="certificate__verified-name">{{ $trainingUser->signature }}</p>
             <p class="certificate__verified-label">Participant</p>
         </div>
     @endif

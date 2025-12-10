@@ -1,10 +1,15 @@
 @props(['training'])
 
-{{--@if($training->trainingUsers->completed_evaluation_at && !$training->trainingUsers->signed_at)--}}
+@php
+// since the training model has a many relation to trainingusers i need to get the specific user from the traininguser
+    $trainingUser = $training->trainingUsers()->where('user_id', auth()->id())->first();
+@endphp
+
+@if($trainingUser && $trainingUser->completed_evaluation_at && !$trainingUser->certificate?->signature)
     <li>
-        {{--  pass the training id to the signature page --}}
-        <a class="dropdown-item fs-5" href="{{ route('signatures.index', ['training_id' => $training->id]) }}">
+        {{--  pass the trainingUser to the signature page --}}
+        <a class="dropdown-item fs-5" href="{{ route('signatures.choose', ['trainingUser' => $trainingUser]) }}">
             <i class="bi bi-pencil me-2"></i>Sign to get certificate
         </a>
     </li>
-{{--@endif--}}
+@endif

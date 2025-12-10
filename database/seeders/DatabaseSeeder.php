@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         Address::factory(50)->create();
         Company::factory(4)->create();
         Site::factory(5)->create();
-        User::factory(300)->create();
+        User::factory(100)->create();
         Email::factory(20)->create();
         $this->call(CourseSeeder::class);
         Evaluation::factory(4)->create();
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         CourseMaterial::factory(20)->create();
         Requirement::factory(10)->create();
         EmailUser::factory(100)->create();
-        TrainingUser::factory(100)->create();
+        TrainingUser::factory(10)->create();
         Certificate::factory(10)->create();
         Signature::factory(10)->create();
 

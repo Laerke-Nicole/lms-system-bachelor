@@ -4,21 +4,95 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
+use App\Models\Signature;
 use App\Models\TrainingUser;
 use Illuminate\Http\Request;
 
 class SignatureController extends Controller
 {
-    public function index(Request $request)
+//    first user chooses the way to submit their signature
+    public function choose(TrainingUser $trainingUser)
     {
-        // make sure the training id exists on this user
+        return view('signatures.choose', compact('trainingUser'));
+    }
+
+//    if they wish to sign digitally
+    public function digitalForm(TrainingUser $trainingUser)
+    {
+        $this->authorizedAccess($trainingUser);
+
+        return view('signatures.digital', compact('trainingUser'));
+    }
+
+    public function digitalSubmit(Request $request, TrainingUser $trainingUser)
+    {
+        // validate the user input
         $request->validate([
-            'training_id' => 'required|exists:trainings,id',
+            'signature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'signature_confirmed' => 'accepted',
         ]);
 
-        $trainingUser = TrainingUser::where('user_id', auth()->id())
-            ->where('training_id', $request->training_id)
-            ->firstOrFail();
+        $signaturePath = $request->file('signature_image')->store('signature_image', 'public');
+
+        // create the certificate
+        $certificate = Certificate::create([
+            'training_user_id' => $trainingUser->id,
+            'vestas_format' => false,
+        ]);
+
+        Signature::create([
+            'training_user_id' => $trainingUser->id,
+            'certificate_id' => $certificate->id,
+            'signature_image' => $signaturePath,
+            'signature_confirmed' => true,
+            'signed_at' => now(),
+        ]);
+
+        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
+    }
+
+    //    if they wish to sign printed
+    public function printedForm(TrainingUser $trainingUser)
+    {
+        $this->authorizedAccess($trainingUser);
+
+        return view('signatures.printed', compact('trainingUser'));
+    }
+
+    public function printedSubmit(Request $request, TrainingUser $trainingUser)
+    {
+        // validate the user input
+        $validated = $request->validate([
+            'signed_certificate' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'signature_confirmed' => 'accepted',
+        ]);
+
+        $signaturePath = $request->file('signed_certificate')->store('signed_certificate', 'public');
+
+        // create the certificate
+        $certificate = Certificate::create([
+            'training_user_id' => $trainingUser->id,
+            'vestas_format' => false,
+        ]);
+
+        Signature::create([
+            'training_user_id' => $trainingUser->id,
+            'certificate_id' => $certificate->id,
+            'signed_certificate_pdf' => $signaturePath,
+            'signature_confirmed' => true,
+            'signed_at' => now(),
+        ]);
+
+        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
+    }
+
+//    store the checks for cleaner code
+    public function authorizedAccess(TrainingUser $trainingUser)
+    {
+        //        if user isnt authed
+        if ($trainingUser->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized access to this training.');
+        }
 
 //        if the user hasn't completed the evaluation
         if (!$trainingUser->completed_evaluation_at) {
@@ -26,44 +100,8 @@ class SignatureController extends Controller
         }
 
 //        if the user already signed
-        if ($trainingUser->signed_at) {
+        if ($trainingUser->certificate()->exists()) {
             abort(403, 'You have already signed the training.');
         }
-
-        return view('signatures.index', compact('trainingUser'));
-    }
-
-    public function sign(Request $request, $trainingUserId)
-    {
-        // validate the user input
-        $validated = $request->validate([
-            'signature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'signature_confirmed' => 'accepted',
-        ]);
-
-//        only signed in users belonging to this training id can sign
-        $trainingUser = TrainingUser::where('id', $trainingUserId)
-            ->where('user_id', auth()->id())
-            ->firstOrFail();
-
-        if ($request->hasFile('signature_image')) {
-            $imagePath = $request->file('signature_image')->store('signatures', 'public');
-            $validated['signature_image'] = $imagePath;
-        }
-
-        // store the time now as signed at
-        $trainingUser->update([
-            'signature' => $validated['signature'],
-            'signature_confirmed' => true,
-            'signed_at' => now(),
-        ]);
-
-        Certificate::create([
-            'user_id' => auth()->id(),
-            'training_id' => $trainingUser->training_id,
-            'date' => now(),
-        ]);
-
-        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
     }
 }

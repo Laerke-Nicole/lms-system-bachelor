@@ -75,14 +75,6 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
-    public function followUpTests()
-    {
-        return $this->belongsToMany(FollowUpTest::class, 'user_test_result')
-            ->using(UserTestResult::class)
-            ->withPivot('is_passed', 'complete_date')
-            ->withTimestamps();
-    }
-
     public function sentEmails()
     {
         return $this->hasMany(Email::class, 'sender_id');
@@ -111,11 +103,6 @@ class User extends Authenticatable
     public function verifiedCertificates()
     {
         return $this->hasMany(Training::class, 'verified_by_id');
-    }
-
-    public function certificates()
-    {
-        return $this->hasMany(Certificate::class);
     }
 
     public function trainingUsers()

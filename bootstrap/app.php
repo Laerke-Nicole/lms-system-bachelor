@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
             __DIR__.'/../routes/admin.php',
             __DIR__.'/../routes/booking.php',
             __DIR__.'/../routes/courses.php',
+            __DIR__.'/../routes/signature.php',
             __DIR__.'/../routes/certificate.php',
             __DIR__.'/../routes/profile.php',
             __DIR__.'/../routes/password.php',

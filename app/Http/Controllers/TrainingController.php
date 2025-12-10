@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificate;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
@@ -71,8 +70,7 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        $certificate = Certificate::where('user_id', auth()->id())->get();
-        return view('trainings.show', compact('training', 'certificate'));
+        return view('trainings.show', compact('training'));
     }
 
 

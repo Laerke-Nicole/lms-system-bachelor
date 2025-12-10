@@ -57,7 +57,10 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $certificates = Certificate::where('user_id', auth()->id())->get();
+        $certificates = Certificate::whereHas('trainingUser', function ($query) {
+            $query->where('user_id', auth()->id());
+        })->get();
+
 
         return view('auth.profiles.certificates', compact('user', 'certificates'));
     }

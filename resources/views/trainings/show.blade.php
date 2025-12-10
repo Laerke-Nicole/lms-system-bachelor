@@ -48,7 +48,7 @@
         @endif
 
 {{--        show the certificate of this training --}}
-        @if($certificate)
+        @if($training->certificate)
             <x-blocks.download-certificate :training="$training" />
         @endif
 

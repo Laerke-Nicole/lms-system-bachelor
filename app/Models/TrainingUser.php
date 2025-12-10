@@ -9,6 +9,8 @@ class TrainingUser extends Pivot
 {
     use HasFactory;
 
+    public $incrementing = true;
+
     protected $fillable = [
         'user_id',
         'training_id',
@@ -28,11 +30,11 @@ class TrainingUser extends Pivot
 
     public function signature()
     {
-        return $this->hasOne(Signature::class);
+        return $this->hasOne(Signature::class, 'training_user_id');
     }
 
     public function certificate()
     {
-        return $this->hasOne(Certificate::class);
+        return $this->hasOne(Certificate::class, 'training_user_id');
     }
 }
