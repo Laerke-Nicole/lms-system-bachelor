@@ -12,13 +12,10 @@ use Illuminate\Support\Facades\Route;
 
 
 // change password through profile
-Route::get('/profile/password', [ProfileController::class, 'editPassword'])
-    ->name('profiles.password.edit')
-    ->middleware('auth');
-
-Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
-    ->name('profiles.password.update')
-    ->middleware('auth');
+Route::middleware(['auth'])->controller(ProfileController::class)->group(function () {
+    Route::get('/profile/password', 'editPassword')->name('profiles.password.edit');
+    Route::put('/profile/password', 'updatePassword')->name('profiles.password.update');
+});
 
 
 
