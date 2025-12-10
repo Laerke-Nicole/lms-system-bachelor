@@ -63,7 +63,9 @@
         </div>
 
         <div class="col-3 d-flex justify-content-end">
-            <a href=""><i class="bi bi-pencil"></i></a>
+            <a href="{{ route('profiles.password.edit') }}">
+                <i class="bi bi-pencil"></i>
+            </a>
         </div>
     </div>
 </div>

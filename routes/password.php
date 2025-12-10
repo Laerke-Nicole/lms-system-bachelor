@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
@@ -7,6 +8,18 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+
+
+
+// change password through profile
+Route::get('/profile/password', [ProfileController::class, 'editPassword'])
+    ->name('profiles.password.edit')
+    ->middleware('auth');
+
+Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+    ->name('profiles.password.update')
+    ->middleware('auth');
+
 
 
 //    request password reset link
