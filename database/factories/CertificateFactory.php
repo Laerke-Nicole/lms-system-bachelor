@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Training;
-use App\Models\User;
+use App\Models\TrainingUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CertificateFactory extends Factory
@@ -16,15 +15,9 @@ class CertificateFactory extends Factory
     public function definition()
     {
         return [
-//            'title' => $this->faker->sentence(3),
-            'date' => $this->faker->dateTimeBetween('-1 year', 'now'),
-//            'valid_until' => $this->faker->dateTimeBetween($issueDate, '+2 years'),
-//            'vestas_format' => $this->faker->boolean(30),
-//            'url' => $this->faker->url(),
-//            'content' => $this->faker->paragraph(),
-//            'verified_by_id' => User::inRandomOrder()->value('id'),
-            'user_id' => User::inRandomOrder()->value('id'),
-            'training_id' => Training::inRandomOrder()->value('id'),
+            'training_user_id' => TrainingUser::whereNotNull('completed_evaluation_at')->inRandomOrder()->value('id'),
+            'file_path' => null,
+            'vestas_format' => $this->faker->boolean(5),
         ];
     }
 }

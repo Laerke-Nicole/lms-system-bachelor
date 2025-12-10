@@ -23,22 +23,6 @@ class TrainingParticipantsCompletion extends Component
         ]);
     }
 
-    public function markTestCompleted($trainingUserId)
-    {
-        $trainingUser = TrainingUser::findOrFail($trainingUserId);
-
-//        if the update is already made
-        if ($trainingUser->completed_test_at) {
-            return;
-        }
-
-        // toggle
-        $trainingUser->update([
-            'completed_test_at' =>
-                $trainingUser->completed_test_at ?? now(),
-        ]);
-    }
-
     public function markEvaluationCompleted($trainingUserId)
     {
         $trainingUser = TrainingUser::findOrFail($trainingUserId);

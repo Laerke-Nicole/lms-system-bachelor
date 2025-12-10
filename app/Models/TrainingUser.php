@@ -12,11 +12,8 @@ class TrainingUser extends Pivot
     protected $fillable = [
         'user_id',
         'training_id',
-        'completed_test_at',
+//        'completed_test_at',
         'completed_evaluation_at',
-        'signature_image',
-        'signature_confirmed',
-        'signed_at',
     ];
 
     public function user()
@@ -27,5 +24,15 @@ class TrainingUser extends Pivot
     public function training()
     {
         return $this->belongsTo(Training::class);
+    }
+
+    public function signature()
+    {
+        return $this->hasOne(Signature::class);
+    }
+
+    public function certificate()
+    {
+        return $this->hasOne(Certificate::class);
     }
 }

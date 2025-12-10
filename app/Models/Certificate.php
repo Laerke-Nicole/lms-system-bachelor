@@ -10,29 +10,24 @@ class Certificate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
-        'user_id',
-        'training_id',
+        'training_user_id',
+        'file_path',
+        'vestas_format',
     ];
 
 //    calculate the training_date plus 24 months till its not valid anymore
     public function getValidUntilAttribute()
     {
-        return $this->training->trainingSlot->training_date->addMonths(24);
+        return $this->trainingUser->training->trainingSlot->training_date->addMonths(24);
     }
 
-    public function user()
+    public function trainingUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(TrainingUser::class);
     }
 
-    public function training()
+    public function signature()
     {
-        return $this->belongsTo(Training::class);
-    }
-
-    public function verifiedBy()
-    {
-        return $this->belongsTo(User::class, 'verified_by_id');
+        return $this->hasOne(Signature::class);
     }
 }

@@ -12,6 +12,7 @@ use App\Models\Evaluation;
 use App\Models\FollowUpTest;
 use App\Models\PostalCode;
 use App\Models\Requirement;
+use App\Models\Signature;
 use App\Models\Site;
 use App\Models\Training;
 use App\Models\TrainingSlot;
@@ -40,11 +41,12 @@ class DatabaseSeeder extends Seeder
         FollowUpTest::factory(4)->create();
         TrainingSlot::factory(50)->create();
         Training::factory(10)->create();
-        Certificate::factory(10)->create();
         CourseMaterial::factory(20)->create();
         Requirement::factory(10)->create();
         EmailUser::factory(100)->create();
         TrainingUser::factory(100)->create();
+        Certificate::factory(10)->create();
+        Signature::factory(10)->create();
 
         //  seeders
         $this->call([
