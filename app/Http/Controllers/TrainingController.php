@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Training;
-use App\Models\TrainingUser;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
@@ -171,32 +170,5 @@ class TrainingController extends Controller
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training deleted successfully.');
-    }
-
-    /**
-     * Upload assessment file for a training participant.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $trainingUserId
-     * @return \Illuminate\Http\Response
-     */
-    public function uploadAssessment(Request $request, $trainingUserId)
-    {
-        // validate the uploaded file
-        $validated = $request->validate([
-            'assessment' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
-        ]);
-
-        // find the training user
-        $trainingUser = TrainingUser::findOrFail($trainingUserId);
-
-        // store the file in public/assessments
-        $path = $request->file('assessment')->store('assessments', 'public');
-
-        // update the training user with the assessment path
-        $trainingUser->update(['assessment' => $path]);
-
-        // redirect back with success message
-        return back()->with('success', 'Assessment uploaded successfully.');
     }
 }

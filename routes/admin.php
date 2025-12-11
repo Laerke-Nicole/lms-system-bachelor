@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbInventechController;
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\AuthSessionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
@@ -18,7 +19,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('trainings', TrainingController::class);
-    Route::post('trainings/participants/{trainingUserId}/upload-assessment', [TrainingController::class, 'uploadAssessment'])->name('trainings.upload-assessment');
 });
 
 // user role leader
@@ -34,6 +34,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('courses', CourseController::class);
     Route::resource('evaluations', EvaluationController::class);
     Route::resource('follow_up_tests', FollowUpTestController::class);
+    Route::post('assessments/{trainingUserId}/upload', [AssessmentController::class, 'upload'])->name('assessments.upload');
+    Route::delete('/trainings/assessment/{trainingUser}', [AssessmentController::class, 'destroy'])->name('trainings.assessment.destroy');
 });
 
 Route::middleware(['auth', 'role:admin,leader'])->group(function () {
