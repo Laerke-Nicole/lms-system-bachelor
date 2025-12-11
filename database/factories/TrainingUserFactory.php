@@ -23,8 +23,8 @@ class TrainingUserFactory extends Factory
         return [
             'user_id'  => $user->id,
             'training_id' => Training::inRandomOrder()->value('id'),
-//            'completed_test_at' => $date,
             'completed_evaluation_at' => $date,
+            'assessment' => $this->faker->imageUrl(),
         ];
     }
 }

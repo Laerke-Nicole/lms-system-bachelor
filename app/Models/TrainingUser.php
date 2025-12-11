@@ -14,8 +14,8 @@ class TrainingUser extends Pivot
     protected $fillable = [
         'user_id',
         'training_id',
-//        'completed_test_at',
         'completed_evaluation_at',
+        'assessment',
     ];
 
     public function user()

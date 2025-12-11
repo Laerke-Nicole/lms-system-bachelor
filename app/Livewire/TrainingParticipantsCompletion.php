@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Training;
 use App\Models\TrainingUser;
-use Illuminate\Http\Request;
 use Livewire\Component;
 
 class TrainingParticipantsCompletion extends Component

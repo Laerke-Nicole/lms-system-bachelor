@@ -63,7 +63,7 @@ class SignatureController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'signed_certificate' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'signed_certificate' => 'nullable|image|mimes:jpeg,png,jpg,pdf|max:2048',
             'signature_confirmed' => 'accepted',
         ]);
 

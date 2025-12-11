@@ -24,7 +24,7 @@
 
                         <hr>
 
-                        <x-blocks.form action="{{ route('signatures.sign', $trainingUser->id) }}" method="POST" class="mb-0">
+                        <x-blocks.form action="{{ route('signatures.printed', $trainingUser->id) }}" method="POST" class="mb-0">
 
 
                             <div class="mb-3">

@@ -18,6 +18,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('trainings', TrainingController::class);
+    Route::post('trainings/participants/{trainingUserId}/upload-assessment', [TrainingController::class, 'uploadAssessment'])->name('trainings.upload-assessment');
 });
 
 // user role leader
