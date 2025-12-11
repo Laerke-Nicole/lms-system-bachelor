@@ -26,20 +26,27 @@
 
                         <x-blocks.form action="{{ route('signatures.digital', $trainingUser->id) }}" method="POST" class="mb-0">
 
-
                             <div class="mb-3">
                                 <x-elements.input label="Upload an image of your signature" name="signature_image" type="file" col="col-md-6" />
-{{--                                <x-elements.input label="Sign with your full name" name="signature" placeholder="John Doe" col="col-12" />--}}
                             </div>
 
                             <x-blocks.error-alert/>
 
 {{--                        confirmation checkbox --}}
-                            <x-elements.checkbox
-                                label="I hereby confirm I completed the required training, test, and evaluation. And I confirm my signature is correct."
-                                name="signature_confirmed"
-                                formGroupClass="d-flex gap-2"
-                            />
+                            <div class="col-12">
+                                <div class="form-check mb-3 d-flex gap-2">
+                                    <input
+                                        type="checkbox"
+                                        name="signature_confirmed"
+                                        value="1"
+                                        class="form-check-input"
+                                        required
+                                    >
+                                    <label class="form-label">I hereby confirm I completed the required training, evaluation, and have
+                                        <a href="{{ asset('storage/' . $trainingUser->assessment) }}" download class="text-primay text-decoration-underline">read my assessment evaluation</a>.
+                                        I confirm my signature is correct.</label>
+                                </div>
+                            </div>
 
                             <button type="submit" class="btn btn-primary w-100">Submit signature</button>
                         </x-blocks.form>
