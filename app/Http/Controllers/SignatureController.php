@@ -99,6 +99,11 @@ class SignatureController extends Controller
             abort(403, 'You must complete the evaluation before you can sign.');
         }
 
+//        if the admin hasnt given the user their assessment evaluation yet
+        if (!$trainingUser->assessment) {
+            abort(403, 'You must wait for your assessment evaluation.');
+        }
+
 //        if the user already signed
         if ($trainingUser->certificate()->exists()) {
             abort(403, 'You have already signed the training.');

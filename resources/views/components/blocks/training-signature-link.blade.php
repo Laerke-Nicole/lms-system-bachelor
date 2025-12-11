@@ -5,7 +5,7 @@
     $trainingUser = $training->trainingUsers()->where('user_id', auth()->id())->first();
 @endphp
 
-@if($trainingUser && $trainingUser->completed_evaluation_at && !$trainingUser->certificate?->signature)
+@if($trainingUser && $trainingUser->completed_evaluation_at && !$trainingUser->certificate?->signature && $trainingUser->assessment)
     <li>
         {{--  pass the trainingUser to the signature page --}}
         <a class="dropdown-item fs-5" href="{{ route('signatures.choose', ['trainingUser' => $trainingUser]) }}">
