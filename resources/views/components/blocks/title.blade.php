@@ -1,4 +1,5 @@
 @props([
+    'col',
     'title',
     'subTitle' => null,
     'linkTitle' => null,
@@ -7,9 +8,9 @@
 
 
 <div class="row">
-    <div class="col-lg-12 margin-tb mb-4">
+    <div class="margin-tb mb-4 {{ $col ?? 'col-lg-8' }}">
         <div>
-            <h3>{{ $title }}</h3>
+            <h2>{{ $title }}</h2>
 
             @if($subTitle)
                 <p>{{ $subTitle ?? null }}</p>

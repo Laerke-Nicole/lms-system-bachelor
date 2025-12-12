@@ -7,13 +7,15 @@
             <h2 class="mb-3">Your certificate is ready to be downloaded!</h2>
             <p class="lead fs-lg mb-6 px-xl-10 px-xxl-15">You can find all your certificates under <a href="{{ route('profiles.certificates') }}" class="text-decoration-underline">your profile</a> and in your <a href="{{ route('trainings.index') }}" class="text-decoration-underline">training history</a>.</p>
             @if($certificate && $certificate->signature)
+{{--                if user signed with uploading signature image --}}
                 @if($certificate->signature->signature_image)
                     <div class="mt-4">
-                        <a href="{{ route('certificates.certificatePdf', $certificate->trainingUser->training_id) }}" class="btn btn-primary">Download certificate<i class="bi bi-download ms-2"></i></a>
+                        <a href="{{ route('certificates.certificatePdf', $certificate->trainingUser->training_id) }}" class="btn btn-primary" target="_blank">Get certificate<i class="bi bi-download ms-2"></i></a>
                     </div>
+{{--                    if user signed by printing --}}
                 @elseif($certificate->signature->signed_certificate_pdf)
                     <div class="mt-4">
-                        <a href="{{ asset('storage/' . $certificate->signature->signed_certificate_pdf) }}" class="btn btn-primary" download>Download certificate<i class="bi bi-download ms-2"></i></a>
+                        <a href="{{ asset('storage/' . $certificate->signature->signed_certificate_pdf) }}" class="btn btn-primary" target="_blank">Get certificate<i class="bi bi-download ms-2"></i></a>
                     </div>
                 @endif
             @endif

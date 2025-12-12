@@ -5,41 +5,60 @@
     <x-blocks.title title="Choose how you wish to sign your certificate" />
 
     <div class="row">
-        <div class="col-md-6">
-            <a href="{{ route('signatures.digital', $trainingUser) }}">
-                <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
-                    <div>
-                        <h4>Upload an image of your signature</h4>
-                    </div>
-                    <div>
-                        <div class="d-flex justify-content-between">
-                            <p>Upload image</p>
-                            <div class="pe-none bg-primary text-light p-2 me-4 rounded-circle">
-                                <i class="bi bi-arrow-up-right"></i>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="{{ route('signatures.digital', $trainingUser) }}">
+                        <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
+                            <div class="col-lg-7">
+                                <div class="mb-3">
+                                    <i class="bi bi-laptop fs-1"></i>
+                                </div>
+                                <h3>Digital signing</h3>
+                                <p>Simply upload an image of your signature.</p>
+                                <button class="btn btn-outline-primary d-flex gap-2 align-items-center">
+                                    Upload image
+                                    <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </div>
+                            <div class="col-lg-5">
+                                <img src="" alt="">
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
+
+                <div class="col-lg-6">
+                    <a href="{{ route('signatures.printed', $trainingUser) }}">
+                        <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
+                            <div class="col-lg-7">
+                                <div class="mb-3">
+                                    <i class="bi bi-printer fs-1"></i>
+                                </div>
+                                <h3>Printed signing</h3>
+                                <p>Print out an unsigned certificate, sign it by hand and then upload your signed copy.</p>
+                                <button class="btn btn-outline-primary d-flex gap-2 align-items-center">
+                                    Print, scan, upload
+                                    <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </div>
+                            <div class="col-lg-5">
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-6">
-            <a href="{{ route('signatures.printed', $trainingUser) }}">
-                <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
-                    <div>
-                        <h4>Print out an unsigned certificate, sign it by hand and then upload your signed copy</h4>
-                    </div>
-                    <div>
-                        <div class="d-flex justify-content-between">
-                            <p>Print, scan, upload</p>
-                            <div class="pe-none bg-primary text-light p-2 me-4 rounded-circle">
-                                <i class="bi bi-arrow-up-right"></i>
-                            </div>
-                        </div>
-                    </div>
+        @if($trainingUser->assessment)
+            <div class="col-lg-4">
+                <div class="alert alert-primary" role="alert">
+                    Please review your assessment before continuing.
+                    <a href="{{ asset('storage/' . $trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">You can open the PDF here</a>.
                 </div>
-            </a>
-        </div>
+            </div>
+        @endif
     </div>
 
 @endsection

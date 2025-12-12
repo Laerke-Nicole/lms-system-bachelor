@@ -8,7 +8,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 bg-white rounded-3">
 
-                        <x-blocks.title title="Training completion signature" subTitle="Please review the information and sign by upload an image of your signature to confirm that you completed this training." />
+                        <x-blocks.title col="col-12" title="Training completion signature" subTitle="Please review the information and sign by upload an image of your signature to confirm that you completed this training." />
 
                         {{-- Training Summary --}}
                         <div class="mb-4">
@@ -42,9 +42,9 @@
                                         class="form-check-input"
                                         required
                                     >
-                                    <label class="form-label">I hereby confirm I completed the required training, evaluation, and have
-                                        <a href="{{ asset('storage/' . $trainingUser->assessment) }}" download class="text-primay text-decoration-underline">read my assessment evaluation</a>.
-                                        I confirm my signature is correct.</label>
+                                    <label class="form-label">I hereby confirm my signature is correct, I completed the required training and evaluation, and have
+                                        <a href="{{ asset('storage/' . $trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">read my assessment evaluation</a>.
+                                    </label>
                                 </div>
                             </div>
 
