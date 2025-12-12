@@ -14,25 +14,31 @@
     {{-- steps --}}
     <div class="d-flex justify-content-between text-center">
 
-        <a href="{{ route('signatures.choose', ['trainingUser' => $trainingUser]) }}"
-           class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}" >
-            Choose
-        </a>
-
-        <a href="{{ route('signatures.printed.printed', ['trainingUser' => $trainingUser]) }}"
-           class="text-decoration-underline-hover small {{ $step >= 2 ? 'fw-bold' : 'text-muted' }}">
-            Print, sign and upload
-        </a>
-
-        @isset($trainingUser)
-            <a class="text-decoration-underline-hover small {{ $step >= 3 ? 'fw-bold' : 'text-muted' }}">
-                Done
+        @if($step >= 1)
+            <a href="{{ route('signatures.choose', ['trainingUser' => $trainingUser]) }}"
+               class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}" >
+                Choose
             </a>
         @else
             <span class="small text-muted">
-                Done
+                Choose
             </span>
-        @endisset
+        @endif
+
+        @if($step >= 2)
+            <a href="{{ route('signatures.printed.printed', ['trainingUser' => $trainingUser]) }}"
+               class="text-decoration-underline-hover small {{ $step >= 2 ? 'fw-bold' : 'text-muted' }}">
+                Print, sign and upload
+            </a>
+        @else
+            <span class="small text-muted">
+                Print, sign and upload
+            </span>
+        @endif
+
+        <span class="small {{ $step >= 3 ? 'fw-bold' : 'text-muted' }}">
+            Done
+        </span>
 
     </div>
 

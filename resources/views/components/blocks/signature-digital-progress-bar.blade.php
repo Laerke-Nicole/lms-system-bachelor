@@ -14,30 +14,42 @@
     {{-- steps --}}
     <div class="d-flex justify-content-between text-center">
 
-        <a href="{{ route('signatures.choose', ['trainingUser' => $trainingUser]) }}"
-           class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}" >
-            Choose
-        </a>
-
-        <a href="{{ route('signatures.digital.digital', ['trainingUser' => $trainingUser]) }}"
-           class="text-decoration-underline-hover small {{ $step >= 2 ? 'fw-bold' : 'text-muted' }}">
-            Upload signature
-        </a>
-
-        <a href="{{ route('signatures.digital.digital-confirm', ['trainingUser' => $trainingUser]) }}"
-           class="text-decoration-underline-hover small {{ $step >= 3 ? 'fw-bold' : 'text-muted' }}">
-            Confirm
-        </a>
-
-        @isset($trainingUser)
-            <a class="text-decoration-underline-hover small {{ $step >= 4 ? 'fw-bold' : 'text-muted' }}">
-                Done
+        @if($step >= 1)
+            <a href="{{ route('signatures.choose', ['trainingUser' => $trainingUser]) }}"
+               class="text-decoration-underline-hover small {{ $step >= 1 ? 'fw-bold' : 'text-muted' }}" >
+                Choose
             </a>
         @else
             <span class="small text-muted">
-                Done
+                Choose
             </span>
-        @endisset
+        @endif
+
+        @if($step >= 2)
+            <a href="{{ route('signatures.digital.digital', ['trainingUser' => $trainingUser]) }}"
+               class="text-decoration-underline-hover small {{ $step >= 2 ? 'fw-bold' : 'text-muted' }}">
+                Upload signature
+            </a>
+        @else
+            <span class="small text-muted">
+                Upload signature
+            </span>
+        @endif
+
+        @if($step >= 3)
+            <a href="{{ route('signatures.digital.digital-confirm', ['trainingUser' => $trainingUser]) }}"
+               class="text-decoration-underline-hover small {{ $step >= 3 ? 'fw-bold' : 'text-muted' }}">
+                Confirm
+            </a>
+        @else
+            <span class="small text-muted">
+                Confirm
+            </span>
+        @endif
+
+        <span class="small {{ $step >= 4 ? 'fw-bold' : 'text-muted' }}">
+            Done
+        </span>
 
     </div>
 
