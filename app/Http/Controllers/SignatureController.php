@@ -7,6 +7,7 @@ use App\Models\Certificate;
 use App\Models\Signature;
 use App\Models\TrainingUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SignatureController extends Controller
 {
