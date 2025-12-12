@@ -36,7 +36,7 @@ class CertificateController extends Controller
     }
 
 //    the view the user gets directed to after signing
-    public function viewCertificate($training_id)
+    public function certificateConfirmation($training_id)
     {
 //        get the traininguser info to get the signature
         $trainingUser = TrainingUser::where('user_id', auth()->id())

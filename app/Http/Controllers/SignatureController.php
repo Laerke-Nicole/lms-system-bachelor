@@ -84,7 +84,7 @@ class SignatureController extends Controller
             'temporary_signature' => null,
         ]);
 
-        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile and in your trainings history.');
+        return redirect()->route('certificates.certificate-confirmation', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile and in your trainings history.');
     }
 
     //    if they wish to sign printed
@@ -119,7 +119,7 @@ class SignatureController extends Controller
             'signed_at' => now(),
         ]);
 
-        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
+        return redirect()->route('certificates.certificate-confirmation', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
     }
 
 //    store the checks for cleaner code
