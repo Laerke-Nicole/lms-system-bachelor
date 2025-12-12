@@ -2,20 +2,59 @@
 
 @section('content')
 
-    <div class="row">
-        <x-blocks.title col="col-12" title="Are you satisfied with the certificate?" />
+    <div class="row justify-content-center section-spacing">
+        <div class="col-lg-10">
 
-        <img src="{{ asset('storage/' . $trainingUser->temp_signature) }}" class="mb-3" />
+            {{-- Page Title --}}
+            <x-blocks.title
+                col="col-12"
+                title="Review your certificate"
+                subTitle="Please ensure the information and your signature look correct before finalizing it."
+            />
 
-        <div class="d-flex gap-2">
-            <a href="{{ route('signatures.digital.digital', $trainingUser) }}" class="btn btn-outline-primary">
-                Upload new signature
-            </a>
+            <div class="row mt-4">
 
-            <form action="{{ route('signatures.digital.digital-submit', $trainingUser) }}" method="POST" class="mb-0">
-                @csrf
-                <button type="submit" class="btn btn-primary">Confirm signature</button>
-            </form>
+                {{-- Certificate Preview --}}
+                <div class="col-lg-8 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-white border-0">
+                            <h5 class="mb-0">Certificate Preview</h5>
+                            <p class="text-muted small mb-0">This is how your certificate is going to appear once finalized.</p>
+                        </div>
+
+                        <div class="card-body p-0">
+                            <iframe src="{{ route('certificates.certificate-preview', ['trainingUser' => $trainingUser, 'stream' => true]) }}#toolbar=0&navpanes=0&scrollbar=0" class="w-100 certificate__preview" title="Certificate Preview"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Action Panel --}}
+                <div class="col-lg-4">
+                    <div class="card shadow-sm border-0 bg-white booking-sidebar">
+                        <div class="card-body">
+
+                            <h5 class="mb-3 fw-bold">Next step</h5>
+                            <p class="text-muted small">If you're satisfied with your signature on the certificate, confirm signature. Otherwise, you can upload a new signature image.</p>
+
+                            <div class="d-flex flex-column gap-3 mt-4">
+
+                                <a href="{{ route('signatures.digital.digital', $trainingUser) }}"
+                                   class="btn btn-outline-primary w-100">
+                                    Upload new signature
+                                </a>
+
+                                <form action="{{ route('signatures.digital.digital-submit', $trainingUser) }}"
+                                      method="POST" class="mb-0">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        Confirm
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

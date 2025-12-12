@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-7">
             <div class="alert alert-primary" role="alert">
-                <x-blocks.title col="col-12" title="1. Download your certificate" buttonText="Download unsigned certificate" target="_blank" href="{{ route('certificates.unsigned', $trainingUser) }}" subTitle="Please sign this unsigned certificate." />
+                <x-blocks.title col="col-12" title="1. Download your certificate" buttonText="Download unsigned certificate" target="_blank" href="{{ route('certificates.certificate-preview', $trainingUser) }}" subTitle="Please sign this unsigned certificate." />
             </div>
         </div>
     </div>

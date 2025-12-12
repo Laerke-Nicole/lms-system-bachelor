@@ -11,21 +11,28 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
-//    get an unsigned copy of the certificate
-    public function unsigned(TrainingUser $trainingUser)
+//    get a copy of the certificate before its the actual certificate
+    public function preview(TrainingUser $trainingUser)
     {
         $training = $trainingUser->training;
         $user = $trainingUser->user;
         $abInventech = AbInventech::first();
 
-        $pdf = \PDF::loadView('certificates.unsigned', [
+//        get the different values in the view
+        $pdf = \PDF::loadView('certificates.certificate-preview', [
             'trainingUser' => $trainingUser,
             'training' => $training,
             'user' => $user,
             'abInventech' => $abInventech,
         ]);
 
-        return $pdf->download('unsigned-certificate.pdf');
+        // if the method is stream to display the pdf in an iframe for digital version
+        if (request()->query('stream')) {
+            return $pdf->stream('certificate-preview.pdf');
+        }
+
+//        download the certificate preview for printed version
+        return $pdf->download('certificate-preview.pdf');
     }
 
 //    the view the user gets directed to after signing

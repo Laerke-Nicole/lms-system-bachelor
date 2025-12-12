@@ -131,6 +131,9 @@
 
     @if($trainingUser)
         <div class="certificate__signature-block">
+            @if($trainingUser->temporary_signature)
+                <img src="{{ asset('storage/' . $trainingUser->temporary_signature) }}" class="certificate__signature-image">
+            @endif
             <div class="certificate__signature-line"></div>
             <p class="certificate__verified-label">Participant</p>
         </div>
