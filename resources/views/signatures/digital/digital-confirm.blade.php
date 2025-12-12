@@ -43,13 +43,11 @@
                                     Upload new signature
                                 </a>
 
-                                <form action="{{ route('signatures.digital.digital-submit', $trainingUser) }}"
-                                      method="POST" class="mb-0">
-                                    @csrf
+                                <x-blocks.form action="{{ route('signatures.digital.digital-submit', $trainingUser) }}" method="POST" class="mb-0">
                                     <button type="submit" class="btn btn-primary w-100">
                                         Confirm
                                     </button>
-                                </form>
+                                </x-blocks.form>
                             </div>
                         </div>
                     </div>
