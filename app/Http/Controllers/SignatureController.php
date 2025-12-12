@@ -27,7 +27,7 @@ class SignatureController extends Controller
     public function digitalImage(Request $request, TrainingUser $trainingUser)
     {
         $request->validate([
-            'signature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'signature_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 //        save the temporary signature image
@@ -98,10 +98,10 @@ class SignatureController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'signed_certificate' => 'nullable|image|mimes:jpeg,png,jpg,pdf|max:2048',
+            'signed_certificate_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
-        $signaturePath = $request->file('signed_certificate')->store('signed_certificate', 'public');
+        $signaturePath = $request->file('signed_certificate_image')->store('signed_certificate', 'public');
 
         // create the certificate
         $certificate = Certificate::firstOrCreate([
@@ -113,7 +113,7 @@ class SignatureController extends Controller
         Signature::updateOrCreate([
             'training_user_id' => $trainingUser->id,
             'certificate_id' => $certificate->id,
-            'signed_certificate_pdf' => $signaturePath,
+            'signed_certificate_image' => $signaturePath,
             'signature_confirmed' => true,
             'signed_at' => now(),
         ]);

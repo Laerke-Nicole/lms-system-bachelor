@@ -11,8 +11,7 @@ class Signature extends Model
 
     protected $fillable = [
         'signature_image',
-        'signed_certificate_pdf',
-        'final_certificate_pdf',
+        'signed_certificate_image',
         'signature_confirmed',
         'signed_at',
         'certificate_id',

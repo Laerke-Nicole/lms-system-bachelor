@@ -11,8 +11,8 @@
 
         <li>
             <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->course->evaluation->evaluation_link }}" target="_blank">
-                <i class="bi bi-clipboard-check me-2"></i>T
-                ake evaluation (required)
+                <i class="bi bi-clipboard-check me-2"></i>
+                Take evaluation (required)
             </a>
         </li>
     @endif

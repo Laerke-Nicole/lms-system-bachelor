@@ -28,9 +28,13 @@
                 @else
                     <td>-</td>
                 @endif
-                <td>
-                    <x-blocks.assessment-upload :participant="$participant" :participantId="$participant->id" />
-                </td>
+                @if(in_array($training->status, ['Completed', 'Expired']))
+                    <td>
+                        <x-blocks.assessment-upload :participant="$participant" :participantId="$participant->id" />
+                    </td>
+                @else
+                    <td>-</td>
+                @endif
             </tr>
         @empty
             <tr>

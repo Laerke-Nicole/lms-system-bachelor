@@ -18,7 +18,7 @@ class AssessmentController extends Controller
     public function upload(Request $request, $trainingUserId)
     {
         $request->validate([
-            'assessment' => 'required|mimes:pdf|max:2048',
+            'assessment' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         // find the training user

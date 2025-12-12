@@ -38,8 +38,14 @@
                         @endif
                     </td>
                     <td>
-                        @if($certificate->trainingUser->training_id)
-                            <a href="{{ route('certificates.certificatePdf', $certificate->trainingUser->training_id) }}"><i class="bi bi-download me-2"></i>Download</a>
+                        @if($certificate->trainingUser->signature->signature_image)
+                            <div>
+                                <a href="{{ route('certificates.certificatePdf', $certificate->trainingUser->training_id) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
+                            </div>
+                        @elseif($certificate->trainingUser->signature->signed_certificate_image)
+                            <div>
+                                <a href="{{ asset('storage/' . $certificate->trainingUser->signature->signed_certificate_image) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
+                            </div>
                         @endif
                     </td>
                 </tr>

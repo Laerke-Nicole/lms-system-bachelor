@@ -26,7 +26,7 @@
                     <x-blocks.form action="{{ route('signatures.printed.printed', $trainingUser->id) }}" method="POST" class="mb-0">
 
                         <div class="mb-4">
-                            <x-elements.input label="Upload an image or pdf of your printed and signed certificate" name="signature_image" type="file" col="col-md-6" />
+                            <x-elements.input label="Upload an image or pdf of your printed and signed certificate" name="signed_certificate_image" type="file" col="col-md-6" />
                         </div>
 
                         <x-blocks.error-alert/>

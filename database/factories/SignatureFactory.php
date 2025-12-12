@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Certificate;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -17,12 +18,11 @@ class SignatureFactory extends Factory
     public function definition(): array
     {
         $date = $this->faker->optional()->dateTimeBetween('-1 month', 'now');
-        $certificate = \App\Models\Certificate::inRandomOrder()->first();
+        $certificate = Certificate::inRandomOrder()->first();
 
         return [
             'signature_image' => 'signatures/fake_signature.png',
-            'signed_certificate_pdf' => null,
-            'final_certificate_pdf' => 'certificates/final_fake.pdf',
+            'signed_certificate_image' => null,
             'signature_confirmed' => true,
             'signed_at' => $date,
             'certificate_id' => $certificate->id,
