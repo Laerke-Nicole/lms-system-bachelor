@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-7">
 
-                <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body p-4 bg-white rounded-3">
 
                         <x-blocks.title col="col-12" title="Training completion signature" subTitle="Please sign by uploading an image of your signature to confirm that you completed this training." />
@@ -40,7 +40,15 @@
                     </div>
                 </div>
 
+                <div class="alert alert-primary" role="alert">
+                    <strong>Note:</strong> For the best result leave as little empty space around the signature as possible.
+                </div>
+
             </div>
         </div>
     </div>
 @endsection
+
+@push('fixed-elements')
+    <x-blocks.signature-digital-progress-bar :step="2" :trainingUser="$trainingUser" />
+@endpush

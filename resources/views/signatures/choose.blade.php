@@ -62,3 +62,7 @@
     </div>
 
 @endsection
+
+@push('fixed-elements')
+    <x-blocks.signature-digital-progress-bar :step="1" :trainingUser="$trainingUser" />
+@endpush

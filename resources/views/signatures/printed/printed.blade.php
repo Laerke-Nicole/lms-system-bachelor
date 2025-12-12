@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-7">
             <div class="alert alert-primary" role="alert">
-                <x-blocks.title col="col-12" title="Download your certificate" buttonText="Download unsigned certificate" target="_blank" href="{{ route('certificates.unsigned', $trainingUser) }}" subTitle="Please sign this unsigned certificate." />
+                <x-blocks.title col="col-12" title="1. Download your certificate" buttonText="Download unsigned certificate" target="_blank" href="{{ route('certificates.unsigned', $trainingUser) }}" subTitle="Please sign this unsigned certificate." />
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
                     <div class="row">
                         <div class="mb-4">
-                            <h3>Training completion signature</h3>
+                            <h3>2. Training completion printed signature</h3>
                             <p>Please sign by uploading a copy of your signed certificate to confirm that you completed this training and have <a href="{{ asset('storage/' . $trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">read your assessment evaluation</a>.</p>
                         </div>
                     </div>
@@ -40,3 +40,7 @@
         </div>
     </div>
 @endsection
+
+@push('fixed-elements')
+    <x-blocks.signature-printed-progress-bar :step="2" :trainingUser="$trainingUser" />
+@endpush

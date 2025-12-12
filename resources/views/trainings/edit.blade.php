@@ -20,19 +20,25 @@
 
         <x-elements.input label="Date" name="training_date" type="datetime-local" value="{{ $training->trainingSlot->training_date }}" />
 
-        <x-elements.select label="Place" name="place">
-            @foreach($places as $place)
-                <option value="{{ $place }}" {{ $training->trainingSlot->place === $place ? 'selected' : '' }}>{{ $place }}</option>
-            @endforeach
-        </x-elements.select>
+        @if(auth()->user()->role === 'admin')
+            <x-elements.select label="Place" name="place">
+                @foreach($places as $place)
+                    <option value="{{ $place }}" {{ $training->trainingSlot->place === $place ? 'selected' : '' }}>{{ $place }}</option>
+                @endforeach
+            </x-elements.select>
+        @endif
 
-        <x-elements.input label="Whatsapp link (optional, can be added later)" placeholder="Whatsapp link" name="participation_link" type="url" value="{{ $training->trainingSlot->participation_link }}" />
+        @if(auth()->user()->role === 'admin')
+            <x-elements.input label="Whatsapp link (optional, can be added later)" placeholder="Whatsapp link" name="participation_link" type="url" value="{{ $training->trainingSlot->participation_link }}" />
+        @endif
 
-        <x-elements.select label="Status" name="status">
-            @foreach($statuses as $status)
-                <option value="{{ $status }}" {{ $training->status === $status ? 'selected' : '' }}>{{ $status }}</option>
-            @endforeach
-        </x-elements.select>
+        @if(auth()->user()->role === 'admin')
+            <x-elements.select label="Status" name="status">
+                @foreach($statuses as $status)
+                    <option value="{{ $status }}" {{ $training->status === $status ? 'selected' : '' }}>{{ $status }}</option>
+                @endforeach
+            </x-elements.select>
+        @endif
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
