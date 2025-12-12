@@ -9,7 +9,7 @@
             required
         />
 
-        <button type="submit" class="btn btn-primary">Upload assessment</button>
+        <button type="submit" class="btn btn-primary">Save assessment</button>
     </div>
 
 </x-blocks.form>
