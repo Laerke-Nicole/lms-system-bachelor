@@ -44,7 +44,6 @@
         }
 
         .certificate__presented {
-            margin-bottom: 6px;
             font-size: 14px;
             color: #777;
         }
@@ -106,7 +105,7 @@
 
     @if($abInventech && $abInventech->logo)
         <div class="certificate__logo">
-            <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
+            <img src="{{ public_path('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
         </div>
     @endif
 
@@ -132,7 +131,7 @@
     @if($trainingUser)
         <div class="certificate__signature-block">
             @if($trainingUser->temporary_signature)
-                <img src="{{ asset('storage/' . $trainingUser->temporary_signature) }}" class="certificate__signature-image">
+                <img src="{{ public_path('storage/' . $trainingUser->temporary_signature) }}" class="certificate__signature-image">
             @endif
             <div class="certificate__signature-line"></div>
             <p class="certificate__verified-label">Participant</p>

@@ -44,7 +44,6 @@
         }
 
         .certificate__presented {
-            margin-bottom: 6px;
             font-size: 14px;
             color: #777;
         }
@@ -106,7 +105,7 @@
 
     @if($abInventech && $abInventech->logo)
         <div class="certificate__logo">
-            <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
+            <img src="{{ public_path('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
         </div>
     @endif
 
@@ -115,24 +114,24 @@
 
     <p class="certificate__presented">presented to</p>
 
-    @if($certificate && $certificate->user)
+    @if($certificate && $certificate->trainingUser->user)
         <h2 class="certificate__recipient">
-            {{ $certificate->user->first_name }} {{ $certificate->user->last_name }}
+            {{ $certificate->trainingUser->user->first_name }} {{ $certificate->trainingUser->user->last_name }}
         </h2>
     @endif
 
-    @if($certificate && $certificate->training && $certificate->training->course && $certificate->training->trainingSlot && $certificate->training->trainingSlot->training_date)
+    @if($certificate && $certificate->trainingUser && $certificate->trainingUser->training->course && $certificate->trainingUser->training->trainingSlot && $certificate->trainingUser->training->trainingSlot->training_date)
         <p class="certificate__training">
             for completing the training
-            {{ $certificate->training->course->title }}
-            on {{ $certificate->training->trainingSlot->training_date->format('d M Y') }}.
+            {{ $certificate->trainingUser->training->course->title }}
+            on {{ $certificate->trainingUser->training->trainingSlot->training_date->format('d M Y') }}.
         </p>
     @endif
 
     @if($certificate->signature)
         <div class="certificate__signature-block">
             @if($certificate->signature->signature_image)
-                <img src="{{ asset('storage/' . $certificate->signature->signature_image) }}" class="certificate__signature-image">
+                <img src="{{ public_path('storage/' . $certificate->signature->signature_image) }}" class="certificate__signature-image">
             @endif
             <div class="certificate__signature-line"></div>
             <p class="certificate__verified-label">Participant</p>
