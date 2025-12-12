@@ -16,7 +16,7 @@
                 @if($courseMaterial->url)
                     <td><a href="{{ $courseMaterial->url }}" target="_blank">View material<i class="bi bi-arrow-up-right ms-2"></i></a></td>
                 @elseif ($courseMaterial->pdf)
-                    <td><a href="{{ asset('storage/' . $courseMaterial->pdf) }}" download="">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a></td>
+                    <td><a href="{{ asset('storage/' . $courseMaterial->pdf) }}" target="_blank">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a></td>
                 @elseif (!$courseMaterial->pdf || !$courseMaterial->url)
                     <td>No URL or PDF linked</td>
                 @endif

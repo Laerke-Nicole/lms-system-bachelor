@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>AB Inventech</title>
+    <title>AB Inventech - Innovating Wind Power</title>
 
     <!-- SCSS and JS -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
