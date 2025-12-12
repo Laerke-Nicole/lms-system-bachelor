@@ -62,27 +62,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Training::class)->withTimestamps();
     }
 
-    public function emails()
-    {
-        return $this->belongsToMany(Email::class)->withTimestamps();
-    }
-
     public function evaluations()
     {
         return $this->belongsToMany(Evaluation::class, 'signature')
             ->using(Signature::class)
             ->withPivot('signed_date', 'is_signed')
             ->withTimestamps();
-    }
-
-    public function sentEmails()
-    {
-        return $this->hasMany(Email::class, 'sender_id');
-    }
-
-    public function receivedEmails()
-    {
-        return $this->hasMany(Email::class, 'recipient_id');
     }
 
     public function orderedTrainings()

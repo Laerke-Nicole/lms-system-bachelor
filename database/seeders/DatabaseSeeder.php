@@ -6,8 +6,6 @@ use App\Models\Address;
 use App\Models\Certificate;
 use App\Models\Company;
 use App\Models\CourseMaterial;
-use App\Models\Email;
-use App\Models\EmailUser;
 use App\Models\Evaluation;
 use App\Models\FollowUpTest;
 use App\Models\PostalCode;
@@ -35,7 +33,6 @@ class DatabaseSeeder extends Seeder
         Company::factory(4)->create();
         Site::factory(5)->create();
         User::factory(100)->create();
-        Email::factory(20)->create();
         $this->call(CourseSeeder::class);
         Evaluation::factory(4)->create();
         FollowUpTest::factory(4)->create();
@@ -43,7 +40,6 @@ class DatabaseSeeder extends Seeder
         Training::factory(10)->create();
         CourseMaterial::factory(20)->create();
         Requirement::factory(10)->create();
-        EmailUser::factory(100)->create();
         TrainingUser::factory(10)->create();
         Certificate::factory(10)->create();
         Signature::factory(10)->create();
