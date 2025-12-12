@@ -6,7 +6,7 @@
         {{ $dropdownTitle }}
     </a>
 
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu dropdown-menu-end">
         {{ $slot }}
     </ul>
 </li>
