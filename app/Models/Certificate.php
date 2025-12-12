@@ -17,7 +17,7 @@ class Certificate extends Model
 //    calculate the training_date plus 24 months till its not valid anymore
     public function getValidUntilAttribute()
     {
-        return $this->trainingUser->training->trainingSlot->training_date->addMonths(24);
+        return $this->trainingUser->training->trainingSlot->training_date->copy()->addMonths(24);
     }
 
     public function trainingUser()

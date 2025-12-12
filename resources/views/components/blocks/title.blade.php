@@ -23,7 +23,7 @@
 
         @if($attributes->has('href'))
             <div>
-                <a class="btn btn-primary" href="{{ $attributes->get('href') }}">{{ $buttonText ?? 'Submit' }}</a>
+                <a class="btn btn-primary" href="{{ $attributes->get('href') }}" target="{{ $target ?? null }}">{{ $buttonText ?? 'Submit' }}</a>
             </div>
         @endif
     </div>

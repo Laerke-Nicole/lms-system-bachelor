@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <div class="row">
                 <div class="col-lg-6">
-                    <a href="{{ route('signatures.digital', $trainingUser) }}">
+                    <a href="{{ route('signatures.digital.digital', $trainingUser) }}">
                         <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
                             <div class="col-lg-7">
                                 <div class="mb-3">
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <a href="{{ route('signatures.printed', $trainingUser) }}">
+                    <a href="{{ route('signatures.printed.printed', $trainingUser) }}">
                         <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
                             <div class="col-lg-7">
                                 <div class="mb-3">

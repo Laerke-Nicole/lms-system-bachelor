@@ -21,18 +21,47 @@ class SignatureController extends Controller
     {
         $this->authorizedAccess($trainingUser);
 
-        return view('signatures.digital', compact('trainingUser'));
+        return view('signatures.digital.digital', compact('trainingUser'));
+    }
+
+    public function digitalImage(Request $request, TrainingUser $trainingUser)
+    {
+        $request->validate([
+            'signature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+//        save the temporary signature image
+        $signaturePath = $request->file('signature_image')->store('signature_image/temp', 'public');
+
+        $trainingUser->update([
+            'temporary_signature' => $signaturePath,
+        ]);
+
+        return redirect()->route('signatures.digital.digital-confirm', $trainingUser);
+    }
+
+    public function digitalConfirm(TrainingUser $trainingUser)
+    {
+        $this->authorizedAccess($trainingUser);
+
+//        if they dont have a temporary signature go back
+        if (!$trainingUser->temporary_signature) {
+            return redirect()->route('signatures.digital', $trainingUser)->with('error', 'Please upload your signature first.');
+        }
+
+        return view('signatures.digital.digital-confirm', compact('trainingUser'));
     }
 
     public function digitalSubmit(Request $request, TrainingUser $trainingUser)
     {
-        // validate the user input
-        $request->validate([
-            'signature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'signature_confirmed' => 'accepted',
-        ]);
+//        if they dont have a temporary signature go back
+        if (!$trainingUser->temporary_signature) {
+            return redirect()->route('signatures.digital.digital', $trainingUser)->with('error', 'Please upload your signature first.');
+        }
 
-        $signaturePath = $request->file('signature_image')->store('signature_image', 'public');
+//        replace the temporary signature with the real one
+        $signature = str_replace('signatures/temp', 'signatures/final', $trainingUser->temporary_signature);
+        Storage::disk('public')->move($trainingUser->temporary_signature, $signature);
 
         // create the certificate
         $certificate = Certificate::create([
@@ -40,15 +69,21 @@ class SignatureController extends Controller
             'vestas_format' => false,
         ]);
 
+//        create the signature
         Signature::create([
             'training_user_id' => $trainingUser->id,
             'certificate_id' => $certificate->id,
-            'signature_image' => $signaturePath,
+            'signature_image' => $signature,
             'signature_confirmed' => true,
             'signed_at' => now(),
         ]);
 
-        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
+//        set the temporary signat
+        $trainingUser->update([
+            'temporary_signature' => null,
+        ]);
+
+        return redirect()->route('certificates.viewCertificate', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile and in your trainings history.');
     }
 
     //    if they wish to sign printed
@@ -56,7 +91,7 @@ class SignatureController extends Controller
     {
         $this->authorizedAccess($trainingUser);
 
-        return view('signatures.printed', compact('trainingUser'));
+        return view('signatures.printed.printed', compact('trainingUser'));
     }
 
     public function printedSubmit(Request $request, TrainingUser $trainingUser)
@@ -64,18 +99,18 @@ class SignatureController extends Controller
         // validate the user input
         $validated = $request->validate([
             'signed_certificate' => 'nullable|image|mimes:jpeg,png,jpg,pdf|max:2048',
-            'signature_confirmed' => 'accepted',
         ]);
 
         $signaturePath = $request->file('signed_certificate')->store('signed_certificate', 'public');
 
         // create the certificate
-        $certificate = Certificate::create([
+        $certificate = Certificate::firstOrCreate([
             'training_user_id' => $trainingUser->id,
             'vestas_format' => false,
         ]);
 
-        Signature::create([
+//        create the signature
+        Signature::updateOrCreate([
             'training_user_id' => $trainingUser->id,
             'certificate_id' => $certificate->id,
             'signed_certificate_pdf' => $signaturePath,
@@ -106,6 +141,10 @@ class SignatureController extends Controller
 
 //        if the user already signed
         if ($trainingUser->certificate()->exists()) {
+            abort(403, 'You have already signed the training.');
+        }
+
+        if ($trainingUser->signature && $trainingUser->signature->signature_confirmed) {
             abort(403, 'You have already signed the training.');
         }
     }

@@ -8,27 +8,12 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 bg-white rounded-3">
 
-                        <x-blocks.title col="col-12" title="Training completion signature" subTitle="Please review the information and sign by upload a copied pdf of your certificate signed to confirm that you completed this training." />
+                        <x-blocks.title col="col-12" title="Training completion signature" subTitle="Please sign by uploading an image of your signature to confirm that you completed this training." />
 
-                        {{-- Training Summary --}}
-                        <div class="mb-4">
-                            <div class="d-flex flex-column gap-1">
-                                @if($trainingUser->training->trainingSlot->course->title)
-                                    <div><span class="text-dark">Course:</span> {{ $trainingUser->training->trainingSlot->course->title }}</div>
-                                @endif
-                                @if($trainingUser->training->trainingSlot->training_date)
-                                    <div><span class="text-dark">Training date:</span> {{ $trainingUser->training->trainingSlot->training_date->format('d M Y') }}</div>
-                                @endif
-                            </div>
-                        </div>
+                        <x-blocks.form action="{{ route('signatures.digital.digital', $trainingUser->id) }}" method="POST" class="mb-0">
 
-                        <hr>
-
-                        <x-blocks.form action="{{ route('signatures.printed', $trainingUser->id) }}" method="POST" class="mb-0">
-
-
-                            <div class="mb-3">
-                                <x-elements.input label="Upload a pdf of your printed and signed certificate" name="signature_image" type="file" col="col-md-6" />
+                            <div class="mb-4">
+                                <x-elements.input label="Upload an image of your signature" name="signature_image" type="file" col="col-md-6" />
                             </div>
 
                             <x-blocks.error-alert/>
@@ -49,7 +34,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100">Submit signature</button>
+                            <button type="submit" class="btn btn-primary w-100">Continue</button>
                         </x-blocks.form>
 
                     </div>

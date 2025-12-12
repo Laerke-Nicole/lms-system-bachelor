@@ -16,6 +16,7 @@ class TrainingUser extends Pivot
         'training_id',
         'completed_evaluation_at',
         'assessment',
+        'temporary_signature',
     ];
 
     public function user()
@@ -36,5 +37,11 @@ class TrainingUser extends Pivot
     public function certificate()
     {
         return $this->hasOne(Certificate::class, 'training_user_id');
+    }
+
+//    calculate the training_date plus 24 months till its not valid anymore
+    public function getValidUntilAttribute()
+    {
+        return $this->training->trainingSlot->training_date->copy()->addMonths(24);
     }
 }

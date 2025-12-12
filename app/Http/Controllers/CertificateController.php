@@ -11,6 +11,23 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
+//    get an unsigned copy of the certificate
+    public function unsigned(TrainingUser $trainingUser)
+    {
+        $training = $trainingUser->training;
+        $user = $trainingUser->user;
+        $abInventech = AbInventech::first();
+
+        $pdf = \PDF::loadView('certificates.unsigned', [
+            'trainingUser' => $trainingUser,
+            'training' => $training,
+            'user' => $user,
+            'abInventech' => $abInventech,
+        ]);
+
+        return $pdf->download('unsigned-certificate.pdf');
+    }
+
 //    the view the user gets directed to after signing
     public function viewCertificate($training_id)
     {
