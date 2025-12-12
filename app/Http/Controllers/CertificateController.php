@@ -42,14 +42,12 @@ class CertificateController extends Controller
         $trainingUser = TrainingUser::where('user_id', auth()->id())
             ->where('training_id', $training_id)
             ->firstOrFail();
-
+//
 //        get the specific certicate for this training and this user
         $certificate = Certificate::where('training_user_id', $trainingUser->id)
             ->firstOrFail();
 
-        $abInventech = AbInventech::first();
-
-        return view('certificates.certificate', compact('certificate', 'abInventech', 'trainingUser'));
+        return view('certificates.certificate-confirmation', compact('certificate', 'trainingUser'));
     }
 
 //    the actual pdf of the certificate
@@ -78,7 +76,7 @@ class CertificateController extends Controller
         $pdf = Pdf::loadView('certificates.certificatePdf', $data);
 
 //        pdf file name
-        return $pdf->download('certificate_for_'.$certificate->trainingUser->training->course->title.'.pdf');
+        return $pdf->stream('certificate_for_'.$certificate->trainingUser->training->course->title.'.pdf');
     }
 
     /**
