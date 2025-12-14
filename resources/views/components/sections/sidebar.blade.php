@@ -1,41 +1,51 @@
-<nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Offcanvas navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </div>
+<nav id="menu" class="sidebar">
+    <ul>
+
+        <li><x-elements.link href="{{ route('home') }}" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
+
+
+
+        @if( auth()->user()->role === 'admin' || auth()->user()->role === 'leader' )
+            <x-blocks.mmenu-dropdown title="Clients" icon="bi bi-building">
+                @if( auth()->user()->role === 'admin' )
+                    <li><x-elements.link title="Companies" href="{{ route('companies.index') }}" icon="bi bi-dot"></x-elements.link></li>
+                @endif
+
+                <li><x-elements.link title="Sites" href="{{ route('sites.index') }}" icon="bi bi-dot"></x-elements.link></li>
+                {{--                        <li><x-elements.link title="Users" href="{{ route('users') }}" icon="bi bi-dot"></x-elements.link></li>--}}
+            </x-blocks.mmenu-dropdown>
+        @endif
+
+
+        <x-blocks.mmenu-dropdown title="Trainings" icon="bi bi-mortarboard">
+            @if( auth()->user()->role === 'admin' || auth()->user()->role === 'leader' )
+                <li><x-elements.link title="Trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
+            @elseif(auth()->user()->role === 'user')
+                <li><x-elements.link title="My trainings" href="{{ route('trainings.index') }}" icon="i bi-dot"></x-elements.link></li>
+            @endif
+            @if( auth()->user()->role === 'leader' )
+                <li><x-elements.link title="Book training" href="{{ route('trainings.bookings.course') }}" icon="i bi-dot"></x-elements.link></li>
+            @endif
+        </x-blocks.mmenu-dropdown>
+
+        @if( auth()->user()->role === 'admin' )
+            <x-blocks.mmenu-dropdown title="Courses" icon="bi bi-journals">
+                <li><x-elements.link class="dropdown-item" title="Course" href="{{ route('courses.index') }}" icon="bi bi-dot"></x-elements.link></li>
+            </x-blocks.mmenu-dropdown>
+        @endif
+
+        @if( auth()->user()->role === 'admin' )
+            <x-blocks.mmenu-dropdown title="Settings" icon="bi bi-gear">
+                <li><x-elements.link class="dropdown-item" title="AB Inventech" href="{{ route('ab_inventech.index') }}" icon="bi bi-dot"></x-elements.link></li>
+                <li><x-elements.link class="dropdown-item" title="GDPR" href="{{ route('gdprs.index') }}" icon="bi bi-dot"></x-elements.link></li>
+            </x-blocks.mmenu-dropdown>
+        @endif
+
+        {{--                    <li>--}}
+        {{--                        <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">--}}
+        {{--                            <button type="submit" class="border-0 mb-0 mm-listitem__btn mm-listitem__text w-100 d-flex align-items-start">--}}
+        {{--                                <span><i class="bi bi-box-arrow-left me-2"></i></span> Logout</button>--}}
+        {{--                        </x-blocks.form>--}}
+        {{--                    </li>--}}
+    </ul>
 </nav>

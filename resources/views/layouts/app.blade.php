@@ -13,7 +13,7 @@
     <header>
         @include('components/sections/navigation')
 
-        @include('components/sections/mmenu')
+        @include('components/sections/sidebar')
     </header>
 
     <main class="container">
