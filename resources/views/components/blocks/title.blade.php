@@ -10,7 +10,7 @@
 <div class="row">
     <div class="margin-tb mb-4 {{ $col ?? 'col-lg-8' }}">
         <div>
-            <h2>{{ $title }}</h2>
+            <h2 class="@if((!$subTitle || !$linkTitle) && $attributes->has('href'))mb-3 @endif">{{ $title }}</h2>
 
             @if($subTitle)
                 <p>{{ $subTitle ?? null }}</p>
