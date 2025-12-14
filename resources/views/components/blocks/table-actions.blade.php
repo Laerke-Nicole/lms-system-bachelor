@@ -14,11 +14,16 @@
             @endif
 
             @if($editRoute)
-                <li><a class="dropdown-item fs-5" href="{{ $editRoute }}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+                @if(auth()->user()->role === 'admin' || auth()->user()->role === 'leader')
+                    <li><a class="dropdown-item fs-5" href="{{ $editRoute }}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+                @endif
             @endif
 
+
             @if($deleteRoute)
-                <li><button type="submit" class="dropdown-item fs-5" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
+                @if(auth()->user()->role === 'admin')
+                    <li><button type="submit" class="dropdown-item fs-5" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
+                @endif
             @endif
 
             {{ $slot }}
