@@ -9,6 +9,7 @@
         {{--                        link to sections on profile page--}}
         <li><x-elements.link title="Personal information" href="{{ route('profiles.edit') }}" class="dropdown-item fs-5"></x-elements.link></li>
         <li><x-elements.link title="Certificates" href="{{ route('profiles.certificates') }}" class="dropdown-item fs-5"></x-elements.link></li>
+        <li><x-elements.link title="Change password" href="{{ route('profiles.password.edit') }}" class="dropdown-item fs-5"></x-elements.link></li>
 
         <li><hr class="dropdown-divider"></li>
 
