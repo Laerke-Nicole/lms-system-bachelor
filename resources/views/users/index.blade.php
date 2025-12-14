@@ -4,10 +4,10 @@
 
     @if(auth()->user()->role === 'admin')
         {{ Breadcrumbs::render('to-home', 'Participants', 'users.index') }}
-        <x-blocks.title title="Participants" />
+        <x-blocks.title title="Participants" buttonText="Register a leader" href="{{ route('register') }}" />
     @elseif(auth()->user()->role === 'leader')
         {{ Breadcrumbs::render('to-home', 'Employees', 'users.index') }}
-        <x-blocks.title title="Employees" buttonText="Register employees" />
+        <x-blocks.title title="Employees" buttonText="Register employees" href="{{ route('register') }}" />
     @endif
 
     <x-blocks.message/>
