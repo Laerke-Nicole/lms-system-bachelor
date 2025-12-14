@@ -13,17 +13,14 @@
                 <li><a class="dropdown-item fs-5" href="{{ $showRoute }}"><i class="bi bi-eye me-2"></i>View</a></li>
             @endif
 
-            @if($editRoute)
-                @if(auth()->user()->role === 'admin' || auth()->user()->role === 'leader')
+            @if(auth()->user()->role === 'admin' || auth()->user()->role === 'leader')
+                @if($editRoute)
                     <li><a class="dropdown-item fs-5" href="{{ $editRoute }}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
                 @endif
-            @endif
 
-
-            @if($deleteRoute)
-                @if(auth()->user()->role === 'admin')
+                @if($deleteRoute)
                     <li><button type="submit" class="dropdown-item fs-5" onclick="return confirm('Delete this item?')"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
-                @endif
+               @endif
             @endif
 
             {{ $slot }}
