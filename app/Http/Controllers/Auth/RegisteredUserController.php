@@ -7,33 +7,70 @@ use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
     //    register view
     public function showRegister() {
+        $user = auth()->user();
+
+//        if user isnt leader or admin send 403
+        abort_unless(in_array($user->role, ['admin', 'leader']), 403);
+
         $sites = Site::all();
         return view('auth.register', compact('sites'));
     }
 
     //    handle register form
     public function Register(Request $request) {
+        $user = auth()->user();
+
+//        if user isnt leader or admin send 403
+        abort_unless(in_array($user->role, ['admin', 'leader']), 403);
+
         //        validate user inputs
-        $validated = $request->validate([
+        $userInfo = [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'site_id' => 'required|exists:sites,id',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+            'password' => 'nullable|string|min:8|confirmed',
+        ];
 
-        //        create user and store it
-        $user = User::create($validated);
+//        if user is admin be able to choose the site themselves and make the user a leader
+        if ($user->role === 'admin') {
+            $userInfo['site_id'] = 'required|exists:sites,id';
+        }
 
-        //        start session and save in cookie
-        Auth::login($user);
+        $validated = $request->validate($userInfo);
 
-        return redirect()->route('home');
+//        make the user role leader when an admin creates a user
+        if ($user->role === 'admin') {
+            $validated['role'] = 'leader';
+        }
+
+//        if user is leader submit the site_id as the users site_id
+        if ($user->role === 'leader') {
+            $validated['site_id'] = $user->site_id;
+        }
+
+//        if password input field is empty then make a random password
+        if (!$validated['password']) {
+            $validated['password'] = Str::random(8);
+        }
+
+        //        create user
+        User::create($validated);
+
+//        return view message depending on the users role
+        if ($user->role === 'admin') {
+            return redirect()->route('users.index')->with('success', 'Leader created successfully.');
+        }
+
+        if ($user->role === 'leader') {
+            return redirect()->route('users.index')->with('success', 'Employee created successfully.');
+        }
     }
 }
