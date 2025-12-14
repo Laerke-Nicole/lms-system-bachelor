@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Training;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,6 +18,10 @@ class HomeController extends Controller
             ->with('trainingSlot')
             ->get();
 
-        return view('home', compact('participateTraining'));
+//        get the number of trainings with the upcoming/completed status
+        $upcomingTrainingCount = Training::where('status', 'Upcoming')->count();
+        $completedTrainingCount = Training::where('status', 'Completed')->count();
+
+        return view('home', compact('participateTraining', 'upcomingTrainingCount', 'completedTrainingCount'));
     }
 }
