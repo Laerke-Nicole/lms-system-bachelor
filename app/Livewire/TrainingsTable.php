@@ -27,6 +27,8 @@ class TrainingsTable extends Component
     //    return the filtering btn options
     public function getTrainingsProperty()
     {
+        $user = auth()->user();
+
 //        get trainings table information with the relations where its filtered by status
         $query = Training::query()
             ->with([
@@ -39,6 +41,19 @@ class TrainingsTable extends Component
             ])
             ->join('training_slots', 'training_slots.id', '=', 'trainings.training_slot_id')
             ->select('trainings.*');
+
+        // show the trainings based on user role
+        if ($user->role === 'user') {
+            // users see only their own trainings
+            $query->when($user->role === 'user', function ($q) use ($user) {
+                $q->whereHas('trainingUsers', fn($t) => $t->where('user_id', $user->id));
+            });
+        } elseif ($user->role === 'leader') {
+            // leader see trainings where the users are in their site
+            $query->when($user->role === 'leader', function ($q) use ($user) {
+                $q->whereHas('trainingUsers.user', fn($u) => $u->where('site_id', $user->site_id));
+            });
+        }
 
         // filtering
         match ($this->filter) {
