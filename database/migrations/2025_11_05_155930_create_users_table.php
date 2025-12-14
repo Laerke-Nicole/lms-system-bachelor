@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('leader_can_view_info')->default(false);
 
             $table->foreignId('site_id')
+                ->nullable()
                 ->constrained('sites')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

@@ -33,7 +33,10 @@ class DatabaseSeeder extends Seeder
         Company::factory(4)->create();
         Site::factory(5)->create();
         User::factory(100)->create();
-        $this->call(CourseSeeder::class);
+        $this->call([
+            AdminUserSeeder::class,
+            CourseSeeder::class,
+        ]);
         Evaluation::factory(4)->create();
         FollowUpTest::factory(4)->create();
         TrainingSlot::factory(50)->create();
