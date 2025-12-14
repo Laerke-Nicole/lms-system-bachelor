@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -17,7 +15,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(8);
+        $user = auth()->user();
+
+        $users = User::query()->latest()
+//            dont show admins
+            ->where('role', '!=', 'admin')
+//            when the user is leader show only the users based on their site otherwise show all users
+            ->when($user->role === 'leader', function ($q) use ($user) {
+                $q->where('site_id', $user->site_id);
+            })
+            ->paginate(8)
+            ->withQueryString();
+
         return view('users.index', compact('users'))->with(request()->input('page'));
     }
 
@@ -32,29 +41,6 @@ class UserController extends Controller
         return view('users.show', compact('user'));
     }
 
-//    public function showRegister() {
-//        $sites = Site::all();
-//        return view('auth.register', compact('sites'));
-//    }
-//
-//    public function Register(Request $request) {
-//        //        validate user inputs
-//        $validated = $request->validate([
-//            'first_name' => 'required|string|max:255',
-//            'last_name' => 'required|string|max:255',
-//            'phone' => 'required|string|max:255',
-//            'email' => 'required|email|unique:users',
-//            'site_id' => 'required|exists:sites,id',
-//            'password' => 'required|string|min:8|confirmed',
-//        ]);
-//
-//        //        create user and store it
-//        User::create($validated);
-//
-//        //  redirect the user and send a success message
-//        return redirect()->route('users.index')->with('success', 'User account created successfully.');
-//    }
-
     /**
      * Remove the user based on the id from the db.
      *
@@ -66,7 +52,16 @@ class UserController extends Controller
         // delete the user from the db
         $user->delete();
 
-        //  redirect the user and send a success message
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+//        get the logged in user (admin or leader)
+        $authUser = auth()->user();
+
+        //        redirect view message depending on the users role
+        if ($authUser->role === 'admin') {
+            return redirect()->route('users.index')->with('success', 'Leader deleted successfully.');
+        }
+
+        if ($authUser->role === 'leader') {
+            return redirect()->route('users.index')->with('success', 'Employee deleted successfully.');
+        }
     }
 }
