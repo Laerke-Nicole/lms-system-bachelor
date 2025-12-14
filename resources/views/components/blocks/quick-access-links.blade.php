@@ -5,5 +5,10 @@
         @include('components/elements/quick-access-links-admin')
     @endif
 
+{{--    for leaders --}}
+    @if(auth()->user()->role === 'leader')
+        @include('components/elements/quick-access-links-leader')
+    @endif
+
 
 </x-blocks.dropdown>

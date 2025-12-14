@@ -5,7 +5,9 @@
     {{--            right side of navbar --}}
     <div class="d-flex gap-2">
         {{--            quick access to booking, cruds etc --}}
-        @include('components/blocks/quick-access-links')
+        @if(auth()->user()->role === 'leader' || auth()->user()->role === 'admin')
+            @include('components/blocks/quick-access-links')
+        @endif
 
         {{--        notifications--}}
         @include('components/blocks/notification-dropdown')

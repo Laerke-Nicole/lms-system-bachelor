@@ -1,8 +1,6 @@
-@props(['participateTraining'])
-
 @if( auth()->user()->role === 'user' || auth()->user()->role === 'leader' )
     @if($participateTraining->isNotEmpty())
-        <div class="px-12">
+        <div class="px-12 mb-5">
             <div class="row">
                 @foreach($participateTraining as $training)
                     @if($training->trainingSlot && $training->trainingSlot->course && $training->trainingSlot->training_date)
