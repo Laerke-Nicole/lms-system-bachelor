@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbInventechController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\AuthSessionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
@@ -29,6 +30,7 @@ Route::middleware(['auth', 'role:leader'])->group(function () {
 // user role admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('companies', CompanyController::class);
+    Route::resource('sites', SiteController::class);
     Route::resource('ab_inventech', AbInventechController::class);
     Route::resource('gdprs', GdprController::class);
     Route::resource('courses', CourseController::class);
@@ -39,6 +41,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin,leader'])->group(function () {
-    Route::resource('sites', SiteController::class);
+    Route::resource('users', UserController::class);
     Route::resource('training_slots', TrainingSlotController::class);
 });
