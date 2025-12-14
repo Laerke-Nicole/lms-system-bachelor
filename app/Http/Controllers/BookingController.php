@@ -51,7 +51,9 @@ class BookingController extends Controller
 //        throw and 404 error if there's no session
         abort_if(!$session, 404);
 
-        $trainingSlots = TrainingSlot::where('course_id', $session)->where('status', 'Available')->orderBy('training_date')->get();
+        $trainingSlots = TrainingSlot::where('course_id', $session)
+            ->where('status', 'Available')
+            ->orderBy('training_date')->get();
 
 //        get the requirements for this training slots, course
         $course = Course::with('requirements')->findOrFail($session);
