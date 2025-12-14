@@ -25,7 +25,11 @@
             </tr>
         @empty
             <tr>
-                <td colspan="3">There are no users.</td>
+                @if(auth()->user()->role === 'admin')
+                    <td colspan="3">There are no participants.</td>
+                @elseif(auth()->user()->role === 'leader')
+                    <td colspan="3">There are no employees.</td>
+                @endif
             </tr>
         @endforelse
     </x-blocks.table-head>
