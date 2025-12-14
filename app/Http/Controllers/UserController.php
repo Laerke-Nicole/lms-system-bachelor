@@ -17,8 +17,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(5);
+        $users = User::latest()->paginate(8);
         return view('users.index', compact('users'))->with(request()->input('page'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
     }
 
 //    public function showRegister() {

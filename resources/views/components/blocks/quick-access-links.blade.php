@@ -1,12 +1,10 @@
 <x-blocks.dropdown dropdownTitle="" icon="bi bi-plus-circle" class="fs-5 d-flex align-items-center dropdown">
 
-{{--    for admins --}}
     @if(auth()->user()->role === 'admin')
+        {{--    for admins --}}
         @include('components/elements/quick-access-links-admin')
-    @endif
-
-{{--    for leaders --}}
-    @if(auth()->user()->role === 'leader')
+    @elseif(auth()->user()->role === 'leader')
+        {{--    for leaders --}}
         @include('components/elements/quick-access-links-leader')
     @endif
 
