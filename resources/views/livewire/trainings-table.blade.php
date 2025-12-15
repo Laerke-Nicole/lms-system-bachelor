@@ -30,7 +30,18 @@
                     @endif
                 @endif
                 @if($filter === 'all')
-                    <td>{{ $training->status }}</td>
+                    <td>
+                        <span
+{{--                            change the btn color based on what status the training has--}}
+                            @class([
+                                'btn btn-sm',
+                                'btn-primary' => $training->status === 'Upcoming',
+                                'btn-success' => $training->status === 'Completed',
+                                'btn-danger'  => $training->status === 'Expired',
+                            ])>
+                            {{ $training->status }}
+                        </span>
+                    </td>
                 @endif
                 <td>
                     <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"
