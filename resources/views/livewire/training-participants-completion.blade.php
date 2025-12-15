@@ -1,5 +1,5 @@
 <div>
-    <p class="text-dark fw-bold">Participants (Required to get certificate)</p>
+    <p class="text-dark fw-bold">Participants</p>
 
     <x-blocks.message/>
     <x-blocks.error-alert/>

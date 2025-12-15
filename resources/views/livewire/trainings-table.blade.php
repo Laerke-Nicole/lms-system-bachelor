@@ -19,15 +19,15 @@
                     @endif
                 @endif
 
-                <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
-
-                @if($training->status === 'Upcoming' || $filter === 'all')
-                    <td>{{ $training->reminder_before_training_formatted ?? '-' }}</td>
-                @endif
-
-                @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all' && auth()->user()->role === 'admin')
-                    <td>{{ $training->reminder_sent_18_m ? '✔' : '-' }}</td>
-                    <td>{{ $training->reminder_sent_22_m ? '✔' : '-' }}</td>
+                @if(auth()->user()->role === 'admin')
+                    <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
+                    @if($training->status === 'Upcoming' || $filter === 'all')
+                        <td>{{ $training->reminder_before_training_formatted ?? '-' }}</td>
+                    @endif
+                    @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all')
+                        <td>{{ $training->reminder_sent_18_m ? '✔' : '-' }}</td>
+                        <td>{{ $training->reminder_sent_22_m ? '✔' : '-' }}</td>
+                    @endif
                 @endif
                 @if($filter === 'all')
                     <td>{{ $training->status }}</td>
