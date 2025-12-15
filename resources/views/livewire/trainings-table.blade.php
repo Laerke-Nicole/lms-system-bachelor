@@ -7,25 +7,27 @@
         <button class="{{ $filter === 'expired' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('expired')">Expired</button>
     </div>
 
-    <x-blocks.table-head :headers="$this->tableHeaders">
+    <x-blocks.trainings-table-head :filter="$filter">
         @forelse ($this->trainings as $training)
             <tr>
                 <td>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</td>
                 <td>{{ $training->trainingSlot->course->title }}</td>
-                <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
-                <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
-
-                @if($filter === 'all' || $filter === 'upcoming')
-                    <td>{{ $training->trainingSlot->place }}</td>
+                @if(auth()->user()->role === 'user' || auth()->user()->role === 'leader')
+                    <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
+                    @if($filter === 'all' || $filter === 'upcoming')
+                        <td>{{ $training->trainingSlot->place }}</td>
+                    @endif
                 @endif
+
+                <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
 
                 @if($training->status === 'Upcoming' || $filter === 'all')
                     <td>{{ $training->reminder_before_training_formatted ?? '-' }}</td>
                 @endif
 
-                @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all')
-                    <td>{{ $training->reminder_sent_18_m ? 'Yes' : 'No' }}</td>
-                    <td>{{ $training->reminder_sent_22_m ? 'Yes' : 'No' }}</td>
+                @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all' && auth()->user()->role === 'admin')
+                    <td>{{ $training->reminder_sent_18_m ? '✔' : '-' }}</td>
+                    <td>{{ $training->reminder_sent_22_m ? '✔' : '-' }}</td>
                 @endif
                 @if($filter === 'all')
                     <td>{{ $training->status }}</td>
@@ -35,19 +37,19 @@
                                             :editRoute="route('trainings.edit', $training->id)"
                                             :deleteRoute="route('trainings.destroy', $training->id)">
 
-{{--                        the button to participate in training --}}
+                        {{--                        the button to participate in training --}}
                         <x-blocks.training-participation-link :training="$training" />
 
-{{--                        show course material --}}
+                        {{--                        show course material --}}
                         <x-blocks.training-course-materials-link :training="$training" />
 
-{{--                         show test --}}
+                        {{--                         show test --}}
                         <x-blocks.training-test-link :training="$training" />
 
-{{--                         show evaluation --}}
+                        {{--                         show evaluation --}}
                         <x-blocks.training-evaluation-link :training="$training" />
 
-{{--                         show signature page if the user completed evalution and didnt sign yet --}}
+                        {{--                         show signature page if the user completed evalution and didnt sign yet --}}
                         <x-blocks.training-signature-link :training="$training" />
 
                     </x-blocks.table-actions>
@@ -59,7 +61,7 @@
                 <td colspan="{{ count($this->tableHeaders) }}">There are no trainings.</td>
             </tr>
         @endforelse
-    </x-blocks.table-head>
+    </x-blocks.trainings-table-head>
 
 
     <x-elements.pagination :items="$this->trainings"/>
