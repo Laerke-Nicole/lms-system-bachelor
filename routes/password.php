@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\Auth\UpdatePassController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 // change password through profile
 Route::middleware(['auth'])->controller(ProfileController::class)->group(function () {
     Route::get('/profile/password', 'editPassword')->name('profiles.password.edit');
+});
+// change password through profile
+Route::middleware(['auth'])->controller(UpdatePassController::class)->group(function () {
     Route::put('/profile/password', 'updatePassword')->name('profiles.password.update');
 });
 
