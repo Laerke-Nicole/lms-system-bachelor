@@ -70,19 +70,19 @@
             <div class="small p-4 d-flex flex-column bg-white rounded shadow-sm">
                 <div class="d-flex justify-content-between">
                     <h4 class="mb-3">Customer information</h4>
-                    <a href=""><i class="bi bi-pencil"></i></a>
+                    <a href="{{ route('profiles.edit') }}"><i class="bi bi-pencil"></i></a>
                 </div>
                 <div class="d-flex gap-2 flex-wrap mb-2">
                     <i class="bi bi-person"></i>
-                    <span>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+                    <span>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
                 </div>
                 <div class="d-flex gap-2 flex-wrap mb-2">
                     <i class="bi bi-envelope"></i>
-                    <span>{{ Auth::user()->email }}</span>
+                    <span>{{ auth()->user()->email }}</span>
                 </div>
                 <div class="d-flex gap-2 flex-wrap mb-2">
                     <i class="bi bi-telephone"></i>
-                    <span>{{ Auth::user()->phone }}</span>
+                    <span>{{ auth()->user()->phone }}</span>
                 </div>
             </div>
         </div>
