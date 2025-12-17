@@ -11,4 +11,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 //the list showing the courses
-Route::get('trainings/{training}/sections/course-materials', [CourseMaterialListController::class, 'courseMaterialList'])->name('sections.course-materials');
+Route::middleware(['auth'])->group(function () {
+    Route::get('trainings/{training}/sections/course-materials', [CourseMaterialListController::class, 'courseMaterialList'])->name('sections.course-materials');
+});
