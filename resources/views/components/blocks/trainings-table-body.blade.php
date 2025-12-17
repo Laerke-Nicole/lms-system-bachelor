@@ -2,6 +2,7 @@
     <tr>
         <td>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</td>
         <td>{{ $training->trainingSlot->course->title }}</td>
+
         @if(auth()->user()->role === 'user' || auth()->user()->role === 'leader')
             <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
             @if($filter === 'all' || $filter === 'upcoming')
@@ -22,6 +23,7 @@
                     @endif
                 </td>
             @endif
+
             @if(in_array($training->status, ['Completed','Expiring']) || $filter === 'all')
                 <td>
                     @if($training->reminder_sent_18_m)
@@ -41,6 +43,7 @@
 
             @endif
         @endif
+
         @if($filter === 'all')
             <td>
                 <span
@@ -57,6 +60,7 @@
             </td>
         @endif
 
+{{--        trainings actions --}}
         <td>
             @include('components/elements/trainings-actions')
         </td>
