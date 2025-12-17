@@ -1,5 +1,5 @@
 {{--    filtering btns with active and inactive state --}}
-<div class="d-flex gap-2 mb-3">
+<div class="d-flex gap-2 mb-3 flex-wrap">
     <button class="{{ $filter === 'all' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('all')">All</button>
     <button class="{{ $filter === 'pending' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('pending')">Pending</button>
     <button class="{{ $filter === 'upcoming' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('upcoming')">Upcoming</button>

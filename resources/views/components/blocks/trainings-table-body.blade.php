@@ -1,21 +1,21 @@
 @forelse ($this->trainings as $training)
     <tr>
         <td>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</td>
-        <td>{{ $training->trainingSlot->course->title }}</td>
+        <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->course->title }}</td>
 
         @if(auth()->user()->role === 'user' || auth()->user()->role === 'leader')
-            <td>{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
+            <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
             @if($filter === 'all' || $filter === 'upcoming')
-                <td>{{ $training->trainingSlot->place }}</td>
+                <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->place }}</td>
             @endif
         @endif
 
         @if(auth()->user()->role === 'admin')
-            <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}
+            <td class="d-none d-md-table-cell">{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}
                 <br><span class="text-muted">{{ $training->orderedBy->email }}</span>
             </td>
             @if($training->status === 'Upcoming' || $filter === 'all')
-                <td>
+                <td class="d-none d-lg-table-cell">
                     @if($training->reminder_before_training_formatted)
                         {{ $training->reminder_before_training_formatted }}
                     @else
@@ -25,7 +25,7 @@
             @endif
 
             @if(in_array($training->status, ['Completed','Expiring']) || $filter === 'all')
-                <td>
+                <td class="d-none d-xl-table-cell">
                     @if($training->reminder_sent_18_m)
                         <i class="bi bi-check-lg"></i>
                     @else
@@ -33,7 +33,7 @@
                     @endif
                 </td>
 
-                <td>
+                <td class="d-none d-xl-table-cell">
                     @if($training->reminder_sent_22_m)
                         <i class="bi bi-check-lg"></i>
                     @else
@@ -45,7 +45,7 @@
         @endif
 
         @if($filter === 'all')
-            <td>
+            <td class="d-none d-lg-table-cell">
                 <span
 {{--                 change the btn color based on what status the training has--}}
                     @class([

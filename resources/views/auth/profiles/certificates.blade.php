@@ -12,8 +12,12 @@
 
 {{--    list of the users certificates--}}
     @if($certificates)
-        <x-blocks.table-head
-            :headers="['Course', 'Training date', 'Valid Until', 'PDF']">
+        <x-blocks.table-head :headers="[
+        ['label' => 'Course'],
+        ['label' => 'Training date', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'Valid Until', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'PDF'],
+        ]">
             @forelse ($certificates as $certificate)
                 <tr>
                     <td>
@@ -23,14 +27,14 @@
                             No course
                         @endif
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         @if($certificate->trainingUser && $certificate->trainingUser->training->trainingSlot && $certificate->trainingUser->training->trainingSlot->training_date)
                             {{ $certificate->trainingUser->training->trainingSlot->training_date->format('d M Y') }}
                         @else
                             No training date
                         @endif
                     </td>
-                    <td>
+                    <td class="d-none d-lg-table-cell">
                         @if($certificate->valid_until)
                             {{ $certificate->valid_until->format('d M Y') }}
                         @else

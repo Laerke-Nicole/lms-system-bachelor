@@ -8,11 +8,15 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Title', 'Content', 'Actions']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Title'],
+        ['label' => 'Content', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'Actions'],
+        ]">
         @forelse ($requirements as $requirement)
             <tr>
                 <td>{{ $requirement->title }}</td>
-                <td>{{ Str::limit($requirement->content, 80) }}</td>
+                <td class="d-none d-md-table-cell">{{ Str::limit($requirement->content, 80) }}</td>
                 <td>
                     <x-blocks.table-actions     :showRoute="route('courses.requirements.show', [$course, $requirement])"
                                                 :editRoute="route('courses.requirements.edit', [$course, $requirement])"

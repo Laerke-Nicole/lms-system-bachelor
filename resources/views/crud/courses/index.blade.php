@@ -8,13 +8,19 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Title', 'Description', 'Duration', 'Max participants', 'Actions']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Title'],
+        ['label' => 'Description', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'Duration', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Max participants', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Actions'],
+        ]">
         @forelse ($courses as $course)
         <tr>
             <td>{{ $course->title }}</td>
-            <td>{{ $course->description ?? '-' }}</td>
-            <td>{{ $course->duration ? $course->duration . ' hrs' : '-' }}</td>
-            <td>{{ $course->max_participants ?? '-' }}</td>
+            <td class="d-none d-md-table-cell">{{ $course->description ?? '-' }}</td>
+            <td class="d-none d-lg-table-cell">{{ $course->duration ? $course->duration . ' hrs' : '-' }}</td>
+            <td class="d-none d-lg-table-cell">{{ $course->max_participants ?? '-' }}</td>
             <td>
                 <x-blocks.table-actions :showRoute="route('courses.show', $course->id)"
                                             :editRoute="route('courses.edit', $course->id)"

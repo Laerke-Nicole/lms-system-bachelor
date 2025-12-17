@@ -8,13 +8,19 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Company name', 'Mail', 'Phone', 'Address', 'Actions']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Company name'],
+        ['label' => 'Mail', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'Phone', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Address', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Actions'],
+        ]">
         @forelse ($companies as $company)
             <tr>
                 <td>{{ $company->company_name }}</td>
-                <td>{{ $company->company_mail ?? '-' }}</td>
-                <td>{{ $company->company_phone ?? '-' }}</td>
-                <td><x-blocks.index-address :table="$company" /></td>
+                <td class="d-none d-md-table-cell">{{ $company->company_mail ?? '-' }}</td>
+                <td class="d-none d-lg-table-cell">{{ $company->company_phone ?? '-' }}</td>
+                <td class="d-none d-lg-table-cell"><x-blocks.index-address :table="$company" /></td>
 
                 <td>
                     <x-blocks.table-actions :showRoute="route('companies.show', $company->id)"

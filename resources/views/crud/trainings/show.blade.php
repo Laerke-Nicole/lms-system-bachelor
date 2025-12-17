@@ -37,11 +37,11 @@
             <x-blocks.detail field="Link to call" title="{{ $training->trainingSlot->participation_link }}" :isUrl="true" target="_blank" />
         @endif
         @if($training->status === 'Upcoming')
-            <x-blocks.detail field="Reminder before training" title="{{ $training->reminder_before_training ?? 'No' }}" />
+            <x-blocks.detail field="Reminder before training" title="{{ $training->reminder_before_training ?? 'Not sent' }}" />
         @endif
         @if(in_array($training->status, ['Completed', 'Expiring']))
-            <x-blocks.detail field="Reminder sent 18 months" title="{{ $training->reminder_sent_18_m ? 'Yes' : 'No' }}" />
-            <x-blocks.detail field="Reminder sent 22 months" title="{{ $training->reminder_sent_22_m ? 'Yes' : 'No' }}" />
+            <x-blocks.detail field="Reminder sent 18 months" title="{{ $training->reminder_sent_18_m ? 'Reminder sent' : 'Not sent' }}" />
+            <x-blocks.detail field="Reminder sent 22 months" title="{{ $training->reminder_sent_22_m ? 'Reminder sent' : 'Not sent' }}" />
         @endif
         @if($training->status)
             <x-blocks.detail field="Status" title="{{ $training->status }}" />

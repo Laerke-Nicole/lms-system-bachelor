@@ -8,17 +8,22 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Title', 'Type', 'View material', 'Actions']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Title'],
+        ['label' => 'Type', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'View material', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Actions'],
+        ]">
         @forelse ($courseMaterials as $courseMaterial)
             <tr>
                 <td>{{ $courseMaterial->title }}</td>
-                <td>{{ $courseMaterial->type }}</td>
+                <td class="d-none d-md-table-cell">{{ $courseMaterial->type }}</td>
                 @if($courseMaterial->url)
-                    <td><a href="{{ $courseMaterial->url }}" target="_blank">View material<i class="bi bi-arrow-up-right ms-2"></i></a></td>
+                    <td class="d-none d-lg-table-cell"><a href="{{ $courseMaterial->url }}" target="_blank">View material<i class="bi bi-arrow-up-right ms-2"></i></a></td>
                 @elseif ($courseMaterial->pdf)
-                    <td><a href="{{ asset('storage/' . $courseMaterial->pdf) }}" target="_blank">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a></td>
+                    <td class="d-none d-lg-table-cell"><a href="{{ asset('storage/' . $courseMaterial->pdf) }}" target="_blank">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a></td>
                 @elseif (!$courseMaterial->pdf || !$courseMaterial->url)
-                    <td>No URL or PDF linked</td>
+                    <td class="d-none d-lg-table-cell">No URL or PDF linked</td>
                 @endif
                 <td>
                     <x-blocks.table-actions

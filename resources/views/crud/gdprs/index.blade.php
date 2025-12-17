@@ -8,10 +8,14 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Title', 'Content', 'Actions']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Title', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'Content'],
+        ['label' => 'Actions'],
+        ]">
         @forelse ($gdprs as $gdpr)
             <tr>
-                <td>{{ $gdpr->title }}</td>
+                <td class="d-none d-md-table-cell">{{ $gdpr->title }}</td>
                 <td>{{ Str::limit($gdpr->content, 80) }}</td>
                 <td>
                     <x-blocks.table-actions :showRoute="route('gdprs.show', $gdpr->id)"
