@@ -17,7 +17,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $sites = Site::latest()->paginate(5);
+        $sites = Site::orderBy('company_id')->orderBy('site_name')->paginate(5);
         return view('crud.sites.index', compact('sites'));
     }
 

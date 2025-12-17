@@ -16,7 +16,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::latest()->paginate(5);
+        $companies = Company::orderBy('company_name')->paginate(5);
         return view('crud.companies.index', compact('companies'));
     }
 
