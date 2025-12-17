@@ -1,17 +1,17 @@
 <div>
-    <div class="row booking-section-small-always g-4">
-        <div class="col-sm-5 col-md-6 col-lg-4">
-            <div class="input-group flex-nowrap">
-                    <span class="input-group-text border-end-0" id="addon-wrapping">
-                        <i class="bi bi-search"></i>
-                    </span>
-                <input type="text" class="form-control border-start-0 ps-0" placeholder="Search employees" aria-label="Username" aria-describedby="addon-wrapping" id="employeeSearch">
-            </div>
-        </div>
+    <div class="row mb-3 g-4">
+{{--        <div class="col-sm-5 col-md-6 col-lg-4">--}}
+{{--            <div class="input-group flex-nowrap">--}}
+{{--                    <span class="input-group-text border-end-0" id="addon-wrapping">--}}
+{{--                        <i class="bi bi-search"></i>--}}
+{{--                    </span>--}}
+{{--                <input type="text" class="form-control border-start-0 ps-0" placeholder="Search employees" aria-label="Username" aria-describedby="addon-wrapping" id="employeeSearch">--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
         {{--    select all and clear btns --}}
-        <div class="col-sm-7 col-md-6 col-lg-8">
-            <div class="d-flex flex-wrap gap-2 justify-content-end align-items-center">
+        <div class="col-12">
+            <div class="d-flex flex-wrap gap-2 justify-content-start align-items-center">
                 <button type="button" class="btn btn-outline-primary btn-sm" wire:click="clearAll">Clear</button>
 
                 <span class="text-muted small">
