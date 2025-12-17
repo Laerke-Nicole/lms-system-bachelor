@@ -180,7 +180,7 @@ class BookingController extends Controller
         $validated = [
             'training_slot_id' => $session['training_slot_id'],
             'ordered_by_id' => auth()->id(),
-            'status' => 'Upcoming',
+            'status' => 'Pending',
             'reminder_sent_18_m' => false,
             'reminder_sent_22_m' => false,
             'reminder_before_training' => null,

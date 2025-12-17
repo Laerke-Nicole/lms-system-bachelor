@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-//        get the trainings that the user has today or starting within 24 hours
+//        get the trainings that the user has today or starting within 24 hours to show participate in the training
         $participateTraining = auth()->user()->trainings()
             ->where('status', 'Upcoming')
             ->whereHas('trainingSlot', function($query) {
@@ -18,10 +18,11 @@ class HomeController extends Controller
             ->with('trainingSlot')
             ->get();
 
-//        get the number of trainings with the upcoming/completed status
+//        get the number of trainings with the pending/upcoming/completed status
+        $pendingTrainingCount = Training::where('status', 'Pending')->count();
         $upcomingTrainingCount = Training::where('status', 'Upcoming')->count();
         $completedTrainingCount = Training::where('status', 'Completed')->count();
 
-        return view('home', compact('participateTraining', 'upcomingTrainingCount', 'completedTrainingCount'));
+        return view('home', compact('participateTraining', 'pendingTrainingCount', 'upcomingTrainingCount', 'completedTrainingCount'));
     }
 }

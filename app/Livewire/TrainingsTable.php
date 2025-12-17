@@ -57,14 +57,15 @@ class TrainingsTable extends Component
 
         // filtering
         match ($this->filter) {
+            'pending'  => $query->where('trainings.status', 'Pending'),
             'upcoming'  => $query->where('trainings.status', 'Upcoming'),
             'completed' => $query->where('trainings.status', 'Completed'),
             'expired'   => $query->where('trainings.status', 'Expiring'),
             default     => null,
         };
 
-//            sort upcoming and all by training_date ascending
-        if (in_array($this->filter, ['upcoming', 'all'])) {
+//            sort pending, upcoming and all by training_date ascending
+        if (in_array($this->filter, ['pending', 'upcoming', 'all'])) {
             $query->orderBy('training_slots.training_date');
         } else {
 //            sort completed and expiring by training_date descending

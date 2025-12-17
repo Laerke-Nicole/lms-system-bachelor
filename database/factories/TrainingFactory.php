@@ -15,7 +15,7 @@ class TrainingFactory extends Factory
      */
     public function definition()
     {
-        $statuses = ['Upcoming', 'Completed', 'Expiring'];
+        $statuses = ['Pending', 'Upcoming', 'Completed', 'Expiring'];
 
         $status = $this->faker->randomElement($statuses);
 

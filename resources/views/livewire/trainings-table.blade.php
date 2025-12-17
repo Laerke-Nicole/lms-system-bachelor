@@ -2,6 +2,7 @@
 {{--    filtering btns with active and inactive state --}}
     <div class="d-flex gap-2 mb-3">
         <button class="{{ $filter === 'all' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('all')">All</button>
+        <button class="{{ $filter === 'pending' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('pending')">Pending</button>
         <button class="{{ $filter === 'upcoming' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('upcoming')">Upcoming</button>
         <button class="{{ $filter === 'completed' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('completed')">Completed</button>
         <button class="{{ $filter === 'expired' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('expired')">Expiring</button>
@@ -20,7 +21,9 @@
                 @endif
 
                 @if(auth()->user()->role === 'admin')
-                    <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
+                    <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}
+                        <br><span class="text-muted">{{ $training->orderedBy->email }}</span>
+                    </td>
                     @if($training->status === 'Upcoming' || $filter === 'all')
                         <td>
                             @if($training->reminder_before_training_formatted)
@@ -55,6 +58,7 @@
 {{--                            change the btn color based on what status the training has--}}
                             @class([
                                 'btn btn-sm',
+                                'btn-secondary' => $training->status === 'Pending',
                                 'btn-primary' => $training->status === 'Upcoming',
                                 'btn-success' => $training->status === 'Completed',
                                 'btn-danger'  => $training->status === 'Expiring',
@@ -65,8 +69,8 @@
                 @endif
                 <td>
                     <x-blocks.table-actions :showRoute="route('trainings.show', $training->id)"
-                                            :editRoute="route('trainings.edit', $training->id)"
-                                            :deleteRoute="route('trainings.destroy', $training->id)">
+                                            :editRoute="!in_array($training->status, ['Completed', 'Expiring']) ? route('trainings.edit', $training->id) : null"
+                                            :deleteRoute="auth()->user()->role === 'admin' && !in_array($training->status, ['Completed', 'Expiring']) ? route('trainings.destroy', $training->id) : null">
 
                         {{--                        the button to participate in training --}}
                         <x-blocks.training-participation-link :training="$training" />

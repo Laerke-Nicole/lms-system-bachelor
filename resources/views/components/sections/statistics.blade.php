@@ -2,6 +2,14 @@
         <div class="col-12 bg-light rounded-3 d-flex align-items-center gap-4 py-12 px-12">
             <i class="bi bi-journals fs-2"></i>
             <div>
+                <h2 class="mb-0">{{ $pendingTrainingCount }}</h2>
+                <p class="mb-0 text-muted">Pending trainings</p>
+            </div>
+        </div>
+
+        <div class="col-12 bg-light rounded-3 d-flex align-items-center gap-4 py-12 px-12">
+            <i class="bi bi-journals fs-2"></i>
+            <div>
                 <h2 class="mb-0">{{ $upcomingTrainingCount }}</h2>
                 <p class="mb-0 text-muted">Upcoming trainings</p>
             </div>

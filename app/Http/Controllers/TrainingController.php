@@ -35,7 +35,7 @@ class TrainingController extends Controller
 
 //        set standard values when creating
         $validated['ordered_by_id'] = auth()->id();
-        $validated['status'] = 'Upcoming';
+        $validated['status'] = 'Pending';
         $validated['reminder_sent_18_m'] = false;
         $validated['reminder_sent_22_m'] = false;
         $validated['reminder_before_training'] = null;
@@ -71,26 +71,33 @@ class TrainingController extends Controller
      */
     public function edit(Training $training)
     {
+//       cant edit a training that is expiring or completed
+        if ($training->status === 'Expiring' || $training->status === 'Completed') {
+            return redirect()->route('trainings.index')->with('error', 'Cannot edit trainings with this status.');
+        }
+
         $slot = $training->trainingSlot;
         $places = ['Online', 'On site'];
         $statuses = [];
 
-//        if training is in the future
-        if ($slot->training_date->isFuture() ) {
-            $statuses = ['Upcoming'];
+//        if status is pending admin can change it to upcoming
+        if ($training->status === 'Pending') {
+            $statuses = ['Pending', 'Upcoming'];
         }
 
-//        if training is today
-        elseif ($slot->training_date->isToday() ) {
-            $statuses = ['Upcoming', 'Completed'];
+//        if status is already upcoming admin cant change back to pending
+        elseif ($training->status === 'Upcoming') {
+//            if training is today or in the past admin can choose upcoming or completed
+            if ($slot->training_date->isToday() || $slot->training_date->isPast()) {
+                $statuses = ['Upcoming', 'Completed'];
+            }
+//            if training is in the future it says as upcoming
+            else {
+                $statuses = ['Upcoming'];
+            }
         }
 
-//        if training date has passed and the status isnt already expiring
-        elseif ($slot->training_date->isPast() && $training->status != 'Expiring') {
-            $statuses = ['Upcoming', 'Completed'];
-        }
-
-//        if training status is expiring already
+//        if training status is expiring
         else {
             $statuses = ['Expiring'];
         }
@@ -108,6 +115,11 @@ class TrainingController extends Controller
      */
     public function update(Request $request, Training $training)
     {
+//        cant update a training that is completed or expiring
+        if ($training->status === 'Expiring' || $training->status === 'Completed') {
+            return redirect()->route('trainings.index')->with('error', 'Cannot update trainings with this status.');
+        }
+
         // validate the user input
         $validated = $request->validate([
             'training_date' => 'required|date',
@@ -154,6 +166,16 @@ class TrainingController extends Controller
      */
     public function destroy(Training $training)
     {
+//        only admins can delete trainings
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('trainings.index')->with('error', 'Only administrators can delete trainings.');
+        }
+
+//        cant delete if the training is completed or expiring
+        if ($training->status === 'Completed' || $training->status === 'Expiring') {
+            return redirect()->route('trainings.index')->with('error', 'Cannot delete trainings with this status.');
+        }
+
         // delete the training from the db
         $training->delete();
 
