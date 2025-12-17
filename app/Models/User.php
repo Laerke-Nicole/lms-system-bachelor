@@ -62,34 +62,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Training::class)->withTimestamps();
     }
 
-    public function evaluations()
-    {
-        return $this->belongsToMany(Evaluation::class, 'signature')
-            ->using(Signature::class)
-            ->withPivot('signed_date', 'is_signed')
-            ->withTimestamps();
-    }
-
-    public function orderedTrainings()
-    {
-        return $this->hasMany(Training::class, 'ordered_by_id');
-    }
-
-    public function trainingSlotsAsTrainer()
-    {
-        return $this->hasMany(TrainingSlot::class, 'trainer_id');
-    }
-
-    public function createdTrainingSlots()
-    {
-        return $this->hasMany(TrainingSlot::class, 'created_by_admin_id');
-    }
-
-    public function verifiedCertificates()
-    {
-        return $this->hasMany(Training::class, 'verified_by_id');
-    }
-
     public function trainingUsers()
     {
         return $this->hasMany(TrainingUser::class);

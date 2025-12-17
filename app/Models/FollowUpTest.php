@@ -17,12 +17,4 @@ class FollowUpTest extends Model
     {
         return $this->hasMany(Course::class);
     }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'user_test_result')
-                    ->using(UserTestResult::class)
-                    ->withPivot('signed_date', 'is_signed')
-                    ->withTimestamps();
-    }
 }

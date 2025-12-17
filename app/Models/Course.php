@@ -20,11 +20,6 @@ class Course extends Model
         'follow_up_test_id',
     ];
 
-    public function trainingSlots()
-    {
-        return $this->hasMany(TrainingSlot::class);
-    }
-
     public function evaluation()
     {
         return $this->belongsTo(Evaluation::class);
