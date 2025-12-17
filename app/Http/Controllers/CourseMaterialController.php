@@ -18,7 +18,7 @@ class CourseMaterialController extends Controller
     {
         $courseMaterials = $course->courseMaterials()->latest()->paginate(5);
 
-        return view('courses.course_materials.index', compact('course', 'courseMaterials'))->with(request()->input('page'));
+        return view('crud.courses.course_materials.index', compact('course', 'courseMaterials'))->with(request()->input('page'));
     }
 
 
@@ -32,7 +32,7 @@ class CourseMaterialController extends Controller
         $materialTypes = ['Preparation', 'Follow up'];
         $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
-        return view('courses.course_materials.create', compact('course', 'materialTypes', 'types'));
+        return view('crud.courses.course_materials.create', compact('course', 'materialTypes', 'types'));
     }
 
 
@@ -76,7 +76,7 @@ class CourseMaterialController extends Controller
         $materialTypes = ['Preparation', 'Follow up'];
         $types = ['Video', 'PDF', 'Task', 'Quiz', 'Other'];
 
-        return view('courses.course_materials.edit', compact('course', 'courseMaterial', 'materialTypes', 'types'));
+        return view('crud.courses.course_materials.edit', compact('course', 'courseMaterial', 'materialTypes', 'types'));
     }
 
 

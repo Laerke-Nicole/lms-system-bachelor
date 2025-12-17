@@ -17,7 +17,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::latest()->paginate(5);
-        return view('companies.index', compact('companies'))->with(request()->input('page'));
+        return view('crud.companies.index', compact('companies'))->with(request()->input('page'));
     }
 
 
@@ -28,7 +28,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies.create');
+        return view('crud.companies.create');
     }
 
 
@@ -86,7 +86,7 @@ class CompanyController extends Controller
             'sites.users',
             'address.postalCode'
         ]);
-        return view('companies.show', compact('company'));
+        return view('crud.companies.show', compact('company'));
     }
 
 
@@ -99,7 +99,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         $company->load('address.postalCode');
-        return view('companies.edit', compact('company'));
+        return view('crud.companies.edit', compact('company'));
     }
 
 

@@ -18,7 +18,7 @@ class TrainingSlotController extends Controller
     public function index()
     {
         $trainingSlots = TrainingSlot::orderBy('training_date', 'asc')->paginate(5);
-        return view('training_slots.index', compact('trainingSlots'))->with(request()->input('page'));
+        return view('crud.training_slots.index', compact('trainingSlots'))->with(request()->input('page'));
     }
 
     /**
@@ -33,7 +33,7 @@ class TrainingSlotController extends Controller
         $statuses = ['Available', 'Unavailable'];
         $trainers = User::where('role', 'admin')->get();
 
-        return view('training_slots.create', compact('courses', 'places', 'statuses', 'trainers'));
+        return view('crud.training_slots.create', compact('courses', 'places', 'statuses', 'trainers'));
     }
 
     /**
@@ -71,7 +71,7 @@ class TrainingSlotController extends Controller
      */
     public function show(TrainingSlot $trainingSlot)
     {
-        return view('training_slots.show', compact('trainingSlot'));
+        return view('crud.training_slots.show', compact('trainingSlot'));
     }
 
 
@@ -88,7 +88,7 @@ class TrainingSlotController extends Controller
         $statuses = ['Available', 'Unavailable'];
         $trainers = User::where('role', 'admin')->get();
 
-        return view('training_slots.edit', compact('trainingSlot', 'courses', 'places', 'statuses', 'trainers'));
+        return view('crud.training_slots.edit', compact('trainingSlot', 'courses', 'places', 'statuses', 'trainers'));
     }
 
     /**

@@ -15,7 +15,7 @@ class GdprController extends Controller
     public function index()
     {
         $gdprs = Gdpr::latest()->paginate(5);
-        return view('gdprs.index', compact('gdprs'))->with(request()->input('page'));
+        return view('crud.gdprs.index', compact('gdprs'))->with(request()->input('page'));
     }
 
 
@@ -26,7 +26,7 @@ class GdprController extends Controller
      */
     public function create()
     {
-        return view('gdprs.create');
+        return view('crud.gdprs.create');
     }
 
 
@@ -60,7 +60,7 @@ class GdprController extends Controller
      */
     public function show(Gdpr $gdpr)
     {
-        return view('gdprs.show', compact('gdpr'));
+        return view('crud.gdprs.show', compact('gdpr'));
     }
 
 
@@ -72,7 +72,7 @@ class GdprController extends Controller
      */
     public function edit(Gdpr $gdpr)
     {
-        return view('gdprs.edit', compact('gdpr'));
+        return view('crud.gdprs.edit', compact('gdpr'));
     }
 
 

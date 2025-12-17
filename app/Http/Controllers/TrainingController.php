@@ -17,7 +17,7 @@ class TrainingController extends Controller
     public function index()
     {
         $trainings = Training::latest()->paginate(5);
-        return view('trainings.index', compact('trainings'))->with(request()->input('page'));
+        return view('crud.trainings.index', compact('trainings'))->with(request()->input('page'));
     }
 
     /**
@@ -59,7 +59,7 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        return view('trainings.show', compact('training'));
+        return view('crud.trainings.show', compact('training'));
     }
 
 
@@ -102,7 +102,7 @@ class TrainingController extends Controller
             $statuses = ['Expiring'];
         }
 
-        return view('trainings.edit', compact('training','places', 'slot', 'statuses'));
+        return view('crud.trainings.edit', compact('training','places', 'slot', 'statuses'));
     }
 
 

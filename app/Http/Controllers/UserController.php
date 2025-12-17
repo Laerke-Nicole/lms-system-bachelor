@@ -27,7 +27,7 @@ class UserController extends Controller
             ->paginate(8)
             ->withQueryString();
 
-        return view('users.index', compact('users'))->with(request()->input('page'));
+        return view('crud.users.index', compact('users'))->with(request()->input('page'));
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        return view('crud.users.show', compact('user'));
     }
 
     /**

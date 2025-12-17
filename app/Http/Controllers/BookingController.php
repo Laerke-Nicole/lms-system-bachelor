@@ -18,7 +18,7 @@ class BookingController extends Controller
     {
         $courses = Course::all();
 
-        return view('trainings.bookings.step1-course', compact('courses'));
+        return view('bookings.step1-course', compact('courses'));
     }
 
     /**
@@ -58,7 +58,7 @@ class BookingController extends Controller
 //        get the requirements for this training slots, course
         $course = Course::with('requirements')->findOrFail($session);
 
-        return view('trainings.bookings.step2-slot', compact('trainingSlots', 'course'));
+        return view('bookings.step2-slot', compact('trainingSlots', 'course'));
     }
 
     /**
@@ -99,7 +99,7 @@ class BookingController extends Controller
 //        show only the users that are in the same site as the logged in user booking ordered by names
         $employees = User::where('site_id', auth()->user()->site_id)->where('leader_can_view_info', 1)->orderBy('first_name')->orderBy('last_name')->get();
 
-        return view('trainings.bookings.step3-employees', compact('employees', 'course', 'trainingSlot'));
+        return view('bookings.step3-employees', compact('employees', 'course', 'trainingSlot'));
     }
 
     /**
@@ -148,7 +148,7 @@ class BookingController extends Controller
         $trainer = $trainingSlot->trainer;
         $employees = User::whereIn('id', $session['user_ids'])->get();
 
-        return view('trainings.bookings.step4-confirm', compact('course', 'trainingSlot', 'employees', 'trainer'));
+        return view('bookings.step4-confirm', compact('course', 'trainingSlot', 'employees', 'trainer'));
     }
 
     /**
@@ -208,6 +208,6 @@ class BookingController extends Controller
     {
         $training = Training::with(['trainingSlot.trainer', 'users', 'trainingSlot.course'])->findOrFail($id);
 
-        return view('trainings.bookings.step5-summary', compact('training'));
+        return view('bookings.step5-summary', compact('training'));
     }
 }

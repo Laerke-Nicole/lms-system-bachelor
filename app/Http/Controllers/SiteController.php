@@ -18,7 +18,7 @@ class SiteController extends Controller
     public function index()
     {
         $sites = Site::latest()->paginate(5);
-        return view('sites.index', compact('sites'))->with(request()->input('page'));
+        return view('crud.sites.index', compact('sites'))->with(request()->input('page'));
     }
 
 
@@ -30,7 +30,7 @@ class SiteController extends Controller
     public function create()
     {
         $companies = Company::all();
-        return view('sites.create', compact('companies'));
+        return view('crud.sites.create', compact('companies'));
     }
 
 
@@ -85,7 +85,7 @@ class SiteController extends Controller
      */
     public function show(Site $site)
     {
-        return view('sites.show', compact('site'));
+        return view('crud.sites.show', compact('site'));
     }
 
 
@@ -99,7 +99,7 @@ class SiteController extends Controller
     {
         $companies = Company::all();
 
-        return view('sites.edit', compact('site'), compact('companies'));
+        return view('crud.sites.edit', compact('site'), compact('companies'));
     }
 
 

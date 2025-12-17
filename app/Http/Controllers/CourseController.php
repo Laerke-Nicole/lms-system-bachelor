@@ -18,7 +18,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::latest()->paginate(5);
-        return view('courses.index', compact('courses'))->with(request()->input('page'));
+        return view('crud.courses.index', compact('courses'))->with(request()->input('page'));
     }
 
 
@@ -29,7 +29,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        return view('crud.courses.create');
     }
 
 
@@ -88,7 +88,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return view('courses.show', compact('course'));
+        return view('crud.courses.show', compact('course'));
     }
 
 
@@ -101,7 +101,7 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $course->load(['evaluation', 'followUpTest']);
-        return view('courses.edit', compact('course'));
+        return view('crud.courses.edit', compact('course'));
     }
 
 

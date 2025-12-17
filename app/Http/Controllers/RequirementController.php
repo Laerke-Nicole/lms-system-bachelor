@@ -17,7 +17,7 @@ class RequirementController extends Controller
     {
         $requirements = $course->requirements()->latest()->paginate(5);
 
-        return view('courses.requirements.index', compact('course', 'requirements'))->with(request()->input('page'));
+        return view('crud.courses.requirements.index', compact('course', 'requirements'))->with(request()->input('page'));
     }
 
 
@@ -28,7 +28,7 @@ class RequirementController extends Controller
      */
     public function create(Course $course)
     {
-        return view('courses.requirements.create', compact('course'));
+        return view('crud.courses.requirements.create', compact('course'));
     }
 
 
@@ -62,7 +62,7 @@ class RequirementController extends Controller
      */
     public function show(Course $course, Requirement $requirement)
     {
-        return view('courses.requirements.show', compact('course', 'requirement'));
+        return view('crud.courses.requirements.show', compact('course', 'requirement'));
     }
 
 
@@ -74,7 +74,7 @@ class RequirementController extends Controller
      */
     public function edit(Course $course, Requirement $requirement)
     {
-        return view('courses.requirements.edit', compact('course', 'requirement'));
+        return view('crud.courses.requirements.edit', compact('course', 'requirement'));
     }
 
 
