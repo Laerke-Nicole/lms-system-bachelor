@@ -1,4 +1,4 @@
-<div class="container py-3 mb-5 d-flex align-items-center justify-content-between justify-content-lg-end navbar">
+<div class="container py-3 mb-5 d-flex align-items-center justify-content-between justify-content-lg-end navbar-top">
     {{--            left side of navbar with menu bar--}}
     @include('components/blocks/mmenu-menubar')
 

@@ -1,4 +1,22 @@
-.navbar {
+.navbar-top {
     border-bottom: 1px solid rgb(0 0 0 / 0.15);
     overflow: visible !important;
+}
+
+.profile-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.profile-nav li {
+    flex: 0 0 auto;
+    @include media-breakpoint-down(lg) {
+        border: 1px solid $dark;
+        padding: 7px;
+    }
+}
+
+.profile-nav::-webkit-scrollbar {
+    display: none;
 }
