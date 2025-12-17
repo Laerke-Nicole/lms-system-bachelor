@@ -32,7 +32,6 @@
                     {{-- checkbox --}}
                     <input type="checkbox"
                            value="{{ $employee->id }}"
-                           name="user_ids[]"
                            wire:model.live="selected"
                            class="form-check-input"
                            {{ count($selected) >= $maxParticipants && !in_array($employee->id, $selected) ? 'disabled' : '' }}>
