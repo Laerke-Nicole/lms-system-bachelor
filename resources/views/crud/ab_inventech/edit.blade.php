@@ -22,7 +22,9 @@
         <x-elements.input label="Email" name="ab_inventech_mail" value="{{ $abInventech->ab_inventech_mail }}"/>
         <x-elements.input label="Phone" name="ab_inventech_phone" value="{{ $abInventech->ab_inventech_phone }}"/>
         <x-elements.input label="Logo" name="logo" type="file" :required="false" />
-        <x-blocks.detail :isImage="true" :title="$abInventech->logo" />
+        <div class="w-50 mb-3">
+            <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="'w-50 img-fluid">
+        </div>
         <x-blocks.edit-address :table="$abInventech" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

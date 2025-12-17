@@ -26,7 +26,9 @@
         <x-elements.input label="Evaluation link" name="evaluation_link" type="url" value="{{ $course->evaluation_link }}"/>
         <x-elements.input label="Follow up test link" name="test_link" type="url" value="{{ $course->test_link }}"/>
         <x-elements.input label="Image" name="image" type="file" :required="false" />
-        <x-blocks.detail :isImage="true" :title="$course->image ?? 'No image'" />
+        <div class="w-50 mb-5">
+            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ basename($course->image) }}" class="'w-50 img-fluid">
+        </div>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
