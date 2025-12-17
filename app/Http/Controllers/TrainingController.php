@@ -17,7 +17,7 @@ class TrainingController extends Controller
     public function index()
     {
         $trainings = Training::latest()->paginate(5);
-        return view('crud.trainings.index', compact('trainings'))->with(request()->input('page'));
+        return view('crud.trainings.index', compact('trainings'));
     }
 
     /**

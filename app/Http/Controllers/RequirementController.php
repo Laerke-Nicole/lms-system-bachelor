@@ -17,7 +17,7 @@ class RequirementController extends Controller
     {
         $requirements = $course->requirements()->latest()->paginate(5);
 
-        return view('crud.courses.requirements.index', compact('course', 'requirements'))->with(request()->input('page'));
+        return view('crud.courses.requirements.index', compact('course', 'requirements'));
     }
 
 

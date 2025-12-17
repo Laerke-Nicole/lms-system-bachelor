@@ -15,7 +15,7 @@ class FollowUpTestController extends Controller
     public function index()
     {
         $followUpTests = FollowUpTest::latest()->paginate(5);
-        return view('follow_up_tests.index', compact('followUpTests'))->with(request()->input('page'));
+        return view('follow_up_tests.index', compact('followUpTests'));
     }
 
 

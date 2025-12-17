@@ -18,7 +18,7 @@ class SiteController extends Controller
     public function index()
     {
         $sites = Site::latest()->paginate(5);
-        return view('crud.sites.index', compact('sites'))->with(request()->input('page'));
+        return view('crud.sites.index', compact('sites'));
     }
 
 

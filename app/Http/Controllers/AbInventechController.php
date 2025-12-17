@@ -16,7 +16,7 @@ class AbInventechController extends Controller
     public function index()
     {
         $abInventechs = AbInventech::latest()->paginate(5);
-        return view('crud.ab_inventech.index', compact('abInventechs'))->with(request()->input('page'));
+        return view('crud.ab_inventech.index', compact('abInventechs'));
     }
 
 

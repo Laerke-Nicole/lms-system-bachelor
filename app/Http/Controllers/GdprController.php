@@ -15,7 +15,7 @@ class GdprController extends Controller
     public function index()
     {
         $gdprs = Gdpr::latest()->paginate(5);
-        return view('crud.gdprs.index', compact('gdprs'))->with(request()->input('page'));
+        return view('crud.gdprs.index', compact('gdprs'));
     }
 
 

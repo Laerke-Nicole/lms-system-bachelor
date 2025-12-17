@@ -14,6 +14,6 @@ class PrivacyPolicyController extends Controller
         $gdprs = Gdpr::orderBy('created_at')->get();
         $abInventech = AbInventech::latest()->first();
 
-        return view('crud.gdprs.privacy-policy', compact('gdprs', 'abInventech'))->with(request()->input('page'));
+        return view('crud.gdprs.privacy-policy', compact('gdprs', 'abInventech'));
     }
 }

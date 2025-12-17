@@ -27,7 +27,7 @@ class UserController extends Controller
             ->paginate(8)
             ->withQueryString();
 
-        return view('crud.users.index', compact('users'))->with(request()->input('page'));
+        return view('crud.users.index', compact('users'));
     }
 
     /**

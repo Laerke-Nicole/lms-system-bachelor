@@ -15,7 +15,7 @@ class EvaluationController extends Controller
     public function index()
     {
         $evaluations = Evaluation::latest()->paginate(5);
-        return view('evaluations.index', compact('evaluations'))->with(request()->input('page'));
+        return view('evaluations.index', compact('evaluations'));
     }
 
 

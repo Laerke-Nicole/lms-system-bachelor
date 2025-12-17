@@ -18,7 +18,7 @@ class CourseMaterialController extends Controller
     {
         $courseMaterials = $course->courseMaterials()->latest()->paginate(5);
 
-        return view('crud.courses.course_materials.index', compact('course', 'courseMaterials'))->with(request()->input('page'));
+        return view('crud.courses.course_materials.index', compact('course', 'courseMaterials'));
     }
 
 

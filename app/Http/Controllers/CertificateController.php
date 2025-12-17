@@ -89,6 +89,6 @@ class CertificateController extends Controller
         $certificates = Certificate::whereHas('trainingUser', function($query) {
             $query->where('user_id', auth()->id());
         })->latest()->paginate(5);
-        return view('auth.profiles.certificates', compact('certificates'))->with(request()->input('page'));
+        return view('auth.profiles.certificates', compact('certificates'));
     }
 }
