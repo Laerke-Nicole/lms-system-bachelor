@@ -20,7 +20,6 @@
         <x-elements.input label="Mail" name="company_mail" />
         <x-elements.input label="Phone" name="company_phone" />
         <x-blocks.create-address />
-        <x-elements.input label="Is Vestas?" name="is_vestas" type="checkbox" class="form-check-input" :required="false" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>

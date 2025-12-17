@@ -16,7 +16,6 @@ class CertificateFactory extends Factory
     {
         return [
             'training_user_id' => TrainingUser::whereNotNull('completed_evaluation_at')->inRandomOrder()->value('id'),
-            'vestas_format' => $this->faker->boolean(5),
         ];
     }
 }

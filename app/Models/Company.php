@@ -13,7 +13,6 @@ class Company extends Model
         'company_name',
         'company_mail',
         'company_phone',
-        'is_vestas',
         'address_id',
     ];
 

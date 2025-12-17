@@ -67,7 +67,6 @@ class SignatureController extends Controller
         // create the certificate
         $certificate = Certificate::create([
             'training_user_id' => $trainingUser->id,
-            'vestas_format' => false,
         ]);
 
 //        create the signature
@@ -107,7 +106,6 @@ class SignatureController extends Controller
         // create the certificate
         $certificate = Certificate::firstOrCreate([
             'training_user_id' => $trainingUser->id,
-            'vestas_format' => false,
         ]);
 
 //        create the signature

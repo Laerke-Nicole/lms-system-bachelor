@@ -11,7 +11,6 @@ class Certificate extends Model
 
     protected $fillable = [
         'training_user_id',
-        'vestas_format',
     ];
 
 //    calculate the training_date plus 24 months till its not valid anymore

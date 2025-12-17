@@ -29,7 +29,7 @@
         @endif
 
         @if(auth()->user()->role === 'admin')
-            <x-elements.input label="Whatsapp link (optional, can be added later)" placeholder="Whatsapp link" name="participation_link" type="url" value="{{ $training->trainingSlot->participation_link }}" />
+            <x-elements.input label="Link to call (optional, can be added later)" placeholder="Whatsapp link" name="participation_link" type="url" value="{{ $training->trainingSlot->participation_link }}" />
         @endif
 
         @if(auth()->user()->role === 'admin')

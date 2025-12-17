@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Prunable;
 
 class TrainingSlot extends Model
 {
-    use HasFactory;
+    use HasFactory, Prunable;
 
     protected $fillable = [
         'training_date',
@@ -55,4 +57,11 @@ class TrainingSlot extends Model
         return $this->hasOne(Training::class);
     }
 
+    /**
+     * 24 months after the training_date delete the training data
+     */
+    public function prunable(): Builder
+    {
+        return static::where('training_date', '<=', now()->subMonths(24));
+    }
 }

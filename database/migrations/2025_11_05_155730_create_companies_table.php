@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('company_mail')->unique();
             $table->string('company_phone')->nullable()->unique();
-            $table->boolean('is_vestas')->default(false);
 
             $table->foreignId('address_id')
                 ->constrained('addresses')

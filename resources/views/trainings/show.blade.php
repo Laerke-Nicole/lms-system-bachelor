@@ -34,7 +34,7 @@
             <x-blocks.detail field="Ordered by" title="{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}" secondTitle="{{ $training->orderedBy->email }}" />
         @endif
         @if($training->trainingSlot && $training->trainingSlot->participation_link)
-            <x-blocks.detail field="Whatsapp link" title="{{ $training->trainingSlot->participation_link }}" :isUrl="true" target="_blank" />
+            <x-blocks.detail field="Link to call" title="{{ $training->trainingSlot->participation_link }}" :isUrl="true" target="_blank" />
         @endif
         @if($training->status === 'Upcoming')
             <x-blocks.detail field="Reminder before training" title="{{ $training->reminder_before_training ?? 'No' }}" />

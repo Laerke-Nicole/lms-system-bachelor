@@ -28,7 +28,7 @@ class GdprSeeder extends Seeder
         ]);
 
         Gdpr::create([
-            'content' => 'Training Data: Courses you are booked on, attendance information, training history, training status (completed, missed, upcoming), certificates, your test results.',
+            'content' => 'Training Data: Courses you are booked on, training history, training status (completed, expired, upcoming), certificates.',
         ]);
 
         Gdpr::create([
@@ -36,7 +36,7 @@ class GdprSeeder extends Seeder
         ]);
 
         Gdpr::create([
-            'content' => 'We do not collect sensitive data unless required by the training provider (e.g. medical requirements for certain safety courses). When necessary, such data is processed under strict GDPR rules.',
+            'content' => 'We do not collect or process sensitive personal data through the LMS.',
         ]);
 
         Gdpr::create([
@@ -72,7 +72,7 @@ class GdprSeeder extends Seeder
         ]);
 
         Gdpr::create([
-            'content' => 'Account data: deleted after the company removes your account, training data: stored according to company/legal requirements (often 3–5 years).',
+            'content' => 'Account data: deleted after the company removes your account, training data: stored for 2 years.',
         ]);
 
         Gdpr::create([

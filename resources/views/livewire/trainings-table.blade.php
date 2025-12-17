@@ -69,7 +69,7 @@
 
         @empty
             <tr>
-                <td colspan="{{ count($this->tableHeaders) }}">There are no trainings.</td>
+                <td colspan="10">There are no trainings.</td>
             </tr>
         @endforelse
     </x-blocks.trainings-table-head>

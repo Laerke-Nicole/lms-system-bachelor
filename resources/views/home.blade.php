@@ -9,7 +9,15 @@
             <div class="row mb-5">
                 <div class="col-12">
                     <h2>Hi, {{ auth()->user()->first_name }}</h2>
-                    <p>Welcome, check your learning.</p>
+                    <p>
+                        @if(auth()->user()->role === 'user')
+                            Welcome, here’s an overview of your training.
+                        @elseif(auth()->user()->role === 'leader')
+                            Welcome, here’s an overview of your employees training.
+                        @else
+                            Here’s an overview of the platform activity.
+                        @endif
+                    </p>
                 </div>
             </div>
 

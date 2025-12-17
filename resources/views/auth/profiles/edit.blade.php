@@ -14,7 +14,7 @@
     <x-blocks.form action="{{ route('profiles.update') }}" method="POST" class="mb-0">
         @method('PUT')
 
-        <div class="section-spacing">
+        <div class="mb-5">
             <div class="row">
                 @if($user->first_name)
                     <x-elements.input col="col-lg-6" label="First name" name="first_name" value="{{ $user->first_name }}"/>
@@ -57,12 +57,12 @@
 
     <div class="row mb-3">
 {{--        change your password --}}
-        <div class="col-9">
+        <div class="col-9 col-lg-4">
             <label class="form-label text-label-1">Your password</label>
             <p>**************</p>
         </div>
 
-        <div class="col-3 d-flex justify-content-end">
+        <div class="col-3 col-lg-5 d-flex justify-content-end justify-content-lg-start">
             <a href="{{ route('profiles.password.edit') }}">
                 <i class="bi bi-pencil"></i>
             </a>
