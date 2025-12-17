@@ -8,7 +8,7 @@
         @forelse($trainingUsers as $participant)
             <tr>
                 <td>{{ $participant->user->first_name }} {{ $participant->user->last_name }}</td>
-                @if(in_array($training->status, ['Completed', 'Expired']))
+                @if(in_array($training->status, ['Completed', 'Expiring']))
                     <td>
                         <input type="hidden" name="completed_evaluation_at" value="0">
 
@@ -28,7 +28,7 @@
                 @else
                     <td>-</td>
                 @endif
-                @if(in_array($training->status, ['Completed', 'Expired']))
+                @if(in_array($training->status, ['Completed', 'Expiring']))
                     <td>
                         <x-blocks.assessment-upload :participant="$participant" :participantId="$participant->id" />
                     </td>

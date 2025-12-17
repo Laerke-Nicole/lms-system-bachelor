@@ -59,7 +59,7 @@ class TrainingsTable extends Component
         match ($this->filter) {
             'upcoming'  => $query->where('trainings.status', 'Upcoming'),
             'completed' => $query->where('trainings.status', 'Completed'),
-            'expired'   => $query->where('trainings.status', 'Expired'),
+            'expired'   => $query->where('trainings.status', 'Expiring'),
             default     => null,
         };
 
@@ -67,7 +67,7 @@ class TrainingsTable extends Component
         if (in_array($this->filter, ['upcoming', 'all'])) {
             $query->orderBy('training_slots.training_date');
         } else {
-//            sort completed and expired by training_date descending
+//            sort completed and expiring by training_date descending
             $query->orderBy('training_slots.training_date', 'desc');
         }
 

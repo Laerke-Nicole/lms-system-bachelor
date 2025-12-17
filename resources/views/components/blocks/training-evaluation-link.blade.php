@@ -6,7 +6,7 @@
 @endphp
 
 @if( auth()->user()->role === 'leader' || auth()->user()->role === 'user' )
-    @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->evaluation && $trainingUser && !$trainingUser->completed_evaluation_at)
+    @if(in_array($training->status, ['Completed', 'Expiring']) && $training->trainingSlot->course->evaluation && $trainingUser && !$trainingUser->completed_evaluation_at)
         <li><hr class="dropdown-divider"></li>
 
         <li>

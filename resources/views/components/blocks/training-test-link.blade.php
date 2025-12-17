@@ -1,7 +1,7 @@
 @props(['training'])
 
 @if( auth()->user()->role === 'leader' || auth()->user()->role === 'user' )
-    @if(in_array($training->status, ['Completed', 'Expired']) && $training->trainingSlot->course->followUpTest)
+    @if(in_array($training->status, ['Completed', 'Expiring']) && $training->trainingSlot->course->followUpTest)
         <li>
             <a class="dropdown-item fs-5" href="{{ $training->trainingSlot->course->followUpTest->test_link }}" target="_blank">
                 <i class="bi bi-journal me-2"></i>

@@ -4,7 +4,7 @@
         <button class="{{ $filter === 'all' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('all')">All</button>
         <button class="{{ $filter === 'upcoming' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('upcoming')">Upcoming</button>
         <button class="{{ $filter === 'completed' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('completed')">Completed</button>
-        <button class="{{ $filter === 'expired' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('expired')">Expired</button>
+        <button class="{{ $filter === 'expired' ? 'btn btn-primary btn-sm' : 'btn btn-outline-primary btn-sm' }}" wire:click="setFilter('expired')">Expiring</button>
     </div>
 
     <x-blocks.trainings-table-head :filter="$filter">
@@ -22,11 +22,31 @@
                 @if(auth()->user()->role === 'admin')
                     <td>{{ $training->orderedBy->first_name }} {{ $training->orderedBy->last_name }}</td>
                     @if($training->status === 'Upcoming' || $filter === 'all')
-                        <td>{{ $training->reminder_before_training_formatted ?? '-' }}</td>
+                        <td>
+                            @if($training->reminder_before_training_formatted)
+                                {{ $training->reminder_before_training_formatted }}
+                            @else
+                                -
+                            @endif
+                        </td>
                     @endif
-                    @if(in_array($training->status, ['Completed','Expired']) || $filter === 'all')
-                        <td>{{ $training->reminder_sent_18_m ? '✔' : '-' }}</td>
-                        <td>{{ $training->reminder_sent_22_m ? '✔' : '-' }}</td>
+                    @if(in_array($training->status, ['Completed','Expiring']) || $filter === 'all')
+                        <td>
+                            @if($training->reminder_sent_18_m)
+                                <i class="bi bi-check-lg"></i>
+                            @else
+                                -
+                            @endif
+                        </td>
+
+                        <td>
+                            @if($training->reminder_sent_22_m)
+                                <i class="bi bi-check-lg"></i>
+                            @else
+                                -
+                            @endif
+                        </td>
+
                     @endif
                 @endif
                 @if($filter === 'all')
@@ -37,7 +57,7 @@
                                 'btn btn-sm',
                                 'btn-primary' => $training->status === 'Upcoming',
                                 'btn-success' => $training->status === 'Completed',
-                                'btn-danger'  => $training->status === 'Expired',
+                                'btn-danger'  => $training->status === 'Expiring',
                             ])>
                             {{ $training->status }}
                         </span>

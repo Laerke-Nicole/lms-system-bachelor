@@ -15,14 +15,14 @@ class TrainingFactory extends Factory
      */
     public function definition()
     {
-        $statuses = ['Upcoming', 'Completed', 'Expired'];
+        $statuses = ['Upcoming', 'Completed', 'Expiring'];
 
         $status = $this->faker->randomElement($statuses);
 
         return [
             'status' => $status,
-            'reminder_sent_18_m' => in_array($status, ['Completed', 'Expired']) && $this->faker->boolean(30),
-            'reminder_sent_22_m' => in_array($status, ['Completed', 'Expired']) && $this->faker->boolean(10),
+            'reminder_sent_18_m' => in_array($status, ['Completed', 'Expiring']) && $this->faker->boolean(30),
+            'reminder_sent_22_m' => in_array($status, ['Completed', 'Expiring']) && $this->faker->boolean(10),
             'reminder_before_training' => $status === 'Upcoming' ? $this->faker->optional()->dateTimeBetween('-1 month', '+1 month') : null,
             'completed_at' => $status === 'Completed' ? $this->faker->dateTimeBetween('-2 years', '+2 years') : null,
             'ordered_by_id' => User::where('role', 'leader')->inRandomOrder()->value('id'),
