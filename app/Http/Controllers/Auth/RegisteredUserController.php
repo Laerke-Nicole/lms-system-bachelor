@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserCredentials;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
@@ -58,11 +60,24 @@ class RegisteredUserController extends Controller
 
 //        if password input field is empty then make a random password
         if (!$validated['password']) {
-            $validated['password'] = Str::random(8);
+            $password = Str::random(8);
+            $validated['password'] = $password;
+        } else {
+            $password = $validated['password'];
         }
 
         //        create user
-        User::create($validated);
+        $newUser = User::create($validated);
+
+//        send email to the user with the email in the input when their account is created
+        Mail::to($newUser->email)->send(new UserCredentials(
+            $newUser->first_name,
+            $newUser->last_name,
+            $newUser->email,
+            $password,
+            route('login'),
+            $newUser->role
+        ));
 
 //        return view message depending on the users role
         if ($user->role === 'admin') {
