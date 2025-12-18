@@ -21,37 +21,6 @@ class TrainingController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // validate the user input
-        $validated = $request->validate([
-            'training_slot_id' => 'required|exists:training_slots,id',
-        ]);
-
-//        set standard values when creating
-        $validated['ordered_by_id'] = auth()->id();
-        $validated['status'] = 'Pending';
-        $validated['reminder_sent_18_m'] = false;
-        $validated['reminder_sent_22_m'] = false;
-        $validated['reminder_before_training'] = null;
-
-        // create a new training in the db
-        $training = Training::create($validated);
-
-//        update the slot to unavailable
-        $training->trainingSlot->update(['status' => 'Unavailable']);
-
-        //  redirect the user and send a success message
-        return redirect()->route('trainings.index')->with('success', 'Training created successfully.');
-    }
-
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Training  $training
@@ -77,6 +46,9 @@ class TrainingController extends Controller
      */
     public function edit(Training $training)
     {
+//        only leaders and admins can edit trainings
+        abort_unless(in_array(auth()->user()->role, ['leader', 'admin']), 403);
+
 //       cant edit a training that is expiring or completed
         if ($training->status === 'Expiring' || $training->status === 'Completed') {
             return redirect()->route('trainings.index')->with('error', 'Cannot edit trainings with this status.');
@@ -121,6 +93,9 @@ class TrainingController extends Controller
      */
     public function update(Request $request, Training $training)
     {
+//        only leaders and admins can update trainings
+        abort_unless(in_array(auth()->user()->role, ['leader', 'admin']), 403);
+
 //        cant update a training that is completed or expiring
         if ($training->status === 'Expiring' || $training->status === 'Completed') {
             return redirect()->route('trainings.index')->with('error', 'Cannot update trainings with this status.');
