@@ -38,7 +38,7 @@ class NewCertificate extends Notification
         if ($notifiable->role === 'leader' && $notifiable->id !== $this->certificate_recipient_id) {
             return (new MailMessage)
                 ->subject('Employee certificate earned')
-                ->line('One of your employees has earned a certificate for ' . $this->course_name . '!')
+                ->line("One of your employees has earned a certificate for {$this->course_name}!")
                 ->line('You can view their certificates in the employee management section.');
         }
 
