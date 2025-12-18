@@ -80,7 +80,36 @@ class CertificateController extends Controller
     }
 
     /**
-     * Display of the users certificates on their profile
+     * generate and download certificate for a specific participant (for admins/trainers viewing training show page)
+     *
+     * @param TrainingUser $trainingUser
+     * @return \Illuminate\Http\Response
+     */
+    public function participantCertificatePdf(TrainingUser $trainingUser)
+    {
+        // get the users certificate
+        $certificate = Certificate::where('training_user_id', $trainingUser->id)
+            ->firstOrFail();
+
+        $abInventech = AbInventech::first();
+
+        $data = [
+            'title'     => 'Certificate',
+            'subtitle'  => 'of completion',
+            'presented' => 'presented to',
+            'certificate' => $certificate,
+            'abInventech' => $abInventech,
+            'trainingUser' => $trainingUser,
+        ];
+
+        $pdf = Pdf::loadView('certificates.certificatePdf', $data);
+
+        // PDF file name
+        return $pdf->stream('certificate_for_'.$certificate->trainingUser->training->course->title.'.pdf');
+    }
+
+    /**
+     * display of the users certificates on their profile
      *
      * @return \Illuminate\Http\Response
      */

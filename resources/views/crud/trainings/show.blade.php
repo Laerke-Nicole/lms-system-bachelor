@@ -47,13 +47,15 @@
             <x-blocks.detail field="Status" title="{{ $training->status }}" />
         @endif
 
-{{--        show the certificate of this training --}}
-        @if($training->certificate)
-            <x-blocks.download-certificate :training="$training" />
+{{--        show the users own certificate of this training --}}
+        @if(auth()->user()->role === 'user' && $userTrainingRecord && in_array($training->status, ['Completed', 'Expiring']))
+            @include('components/blocks/trainings-certificate-auth-download')
         @endif
 
 {{--        table with users where you can say if the user has completed the test, evaluation or signed --}}
-        <livewire:training-participants-completion :training="$training" />
+        @if(auth()->user()->role === 'admin' || auth()->user()->role === 'leader')
+            <livewire:training-participants-completion :training="$training" />
+        @endif
 
     </div>
 

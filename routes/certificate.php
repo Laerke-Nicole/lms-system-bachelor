@@ -7,4 +7,5 @@ Route::middleware(['auth', 'role:user,leader'])->controller(CertificateControlle
     Route::get('/certificates/{trainingUser}/preview', 'preview')->name('certificates.certificate-preview');
     Route::get('/certificates/{training_id}/confirmation', 'certificateConfirmation')->name('certificates.certificate-confirmation');
     Route::get('/certificates/{training_id}', 'certificatePdf')->name('certificates.certificatePdf');
+    Route::get('/certificates/participant/{trainingUser}/download', 'participantCertificatePdf')->name('certificates.participantCertificatePdf');
 });

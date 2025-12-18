@@ -8,10 +8,13 @@
         ['label' => 'Participant'],
         ['label' => 'Completed evaluation?'],
         ['label' => 'Assessment file'],
+        ['label' => 'Certificate'],
         ]">
         @forelse($trainingUsers as $participant)
             <tr>
-                <td>{{ $participant->user->first_name }} {{ $participant->user->last_name }}</td>
+                <td>{{ $participant->user->first_name }} {{ $participant->user->last_name }}
+                    <br><span class="text-muted">{{ $participant->user->email }}</span>
+                </td>
                 @if(in_array($training->status, ['Completed', 'Expiring']))
                     <td>
                         <input type="hidden" name="completed_evaluation_at" value="0">
@@ -35,6 +38,20 @@
                 @if(in_array($training->status, ['Completed', 'Expiring']))
                     <td>
                         <x-blocks.assessment-upload :participant="$participant" :participantId="$participant->id" />
+                    </td>
+                @else
+                    <td>-</td>
+                @endif
+
+                @if(in_array($training->status, ['Completed', 'Expiring']) && $training->id)
+                    <td>
+                        @if($participant->signature && $participant->signature->signature_image)
+                            <a href="{{ route('certificates.participantCertificatePdf', $participant->id) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
+                        @elseif($participant->signature && $participant->signature->signed_certificate_image)
+                            <a href="{{ asset('storage/' . $participant->signature->signed_certificate_image) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
+                        @else
+                            <span class="text-muted">Not signed yet</span>
+                        @endif
                     </td>
                 @else
                     <td>-</td>

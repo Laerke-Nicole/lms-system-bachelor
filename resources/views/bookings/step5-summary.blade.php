@@ -11,7 +11,7 @@
                 <div>
                     <p class="step5__eyebrow mb-2 text-primary text-label-1">Thank you for booking</p>
                     <h1 class="step5__title mb-3">Booking successful</h1>
-                    <p class="step5__content mb-5 pb-2">We have received your booking. You can see it in your upcoming trainings tab.</p>
+                    <p class="step5__content mb-5 pb-2">We have received your booking. You can see it in your pending trainings tab.</p>
                 </div>
 
                 <hr>
@@ -72,7 +72,7 @@
                 <div class="col-lg-6">
                     <h4 class="mb-3">What happens next?</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-2 small">The training will now appear under “Upcoming trainings” in your dashboard.</li>
+                        <li class="mb-2 small">The training will now appear under “Pending trainings” in your dashboard.</li>
                         <li class="mb-3 small">You’ll receive a reminder to rebook this training 18 months before it expires.</li>
                     </ul>
                     <a href="{{ route('home') }}" class="btn btn-primary">Back to dashboard</a>

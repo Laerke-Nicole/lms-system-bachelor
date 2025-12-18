@@ -59,7 +59,13 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        return view('crud.trainings.show', compact('training'));
+        // get the logged in users training info (for showing their own certificate)
+        $userTrainingRecord = $training->trainingUsers()
+            ->where('user_id', auth()->id())
+            ->with('signature')
+            ->first();
+
+        return view('crud.trainings.show', compact('training', 'userTrainingRecord'));
     }
 
 

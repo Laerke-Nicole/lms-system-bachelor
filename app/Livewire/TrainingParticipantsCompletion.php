@@ -18,7 +18,7 @@ class TrainingParticipantsCompletion extends Component
     public function render()
     {
         return view('livewire.training-participants-completion', [
-            'trainingUsers' => $this->training->trainingUsers()->with('user')->paginate(5),
+            'trainingUsers' => $this->training->trainingUsers()->with('user', 'signature')->paginate(5),
         ]);
     }
 
