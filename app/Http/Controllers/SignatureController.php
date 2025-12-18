@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Models\Signature;
 use App\Models\TrainingUser;
+use App\Notifications\NewCertificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -83,6 +84,11 @@ class SignatureController extends Controller
             'temporary_signature' => null,
         ]);
 
+//        send notification to the user and their leader when the certificate was made
+        $courseName = $trainingUser->training->course->title;
+        $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id));
+        $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id));
+
         return redirect()->route('certificates.certificate-confirmation', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile and in your trainings history.');
     }
 
@@ -116,6 +122,11 @@ class SignatureController extends Controller
             'signature_confirmed' => true,
             'signed_at' => now(),
         ]);
+
+//        send notification to the user and their leader when the certificate was made
+        $courseName = $trainingUser->training->course->title;
+        $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id));
+        $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id));
 
         return redirect()->route('certificates.certificate-confirmation', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
     }
