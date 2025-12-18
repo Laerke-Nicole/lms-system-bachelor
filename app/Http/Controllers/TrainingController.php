@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Training;
+use App\Models\User;
+use App\Notifications\TrainingUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
@@ -133,6 +135,22 @@ class TrainingController extends Controller
 
 //        save changes to training
         $training->save();
+
+//        send notification to admins and orderedBy user (excluding the updater)
+        $courseName = $training->course->title;
+        $updaterName = auth()->user()->first_name . ' ' . auth()->user()->last_name;
+        $currentUserId = auth()->id();
+
+//        notify all admins (except if they're the updater)
+        $admins = User::where('role', 'admin')->where('id', '!=', $currentUserId)->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
+        }
+
+//        notify the orderedBy user (except if they're the updater)
+        if ($training->orderedBy && $training->orderedBy->id !== $currentUserId) {
+            $training->orderedBy->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
+        }
 
         //  redirect the user and send a success message
         return redirect()->route('trainings.index')->with('success', 'Training updated successfully.');
