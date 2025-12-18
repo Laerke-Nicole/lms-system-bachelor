@@ -4,7 +4,11 @@
     <x-blocks.message/>
     <x-blocks.error-alert/>
 
-    <x-blocks.table-head :headers="['Participant', 'Completed evaluation?', 'Assessment file']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Participant'],
+        ['label' => 'Completed evaluation?'],
+        ['label' => 'Assessment file'],
+        ]">
         @forelse($trainingUsers as $participant)
             <tr>
                 <td>{{ $participant->user->first_name }} {{ $participant->user->last_name }}</td>
