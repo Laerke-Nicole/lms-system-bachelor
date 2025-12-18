@@ -26,13 +26,14 @@
         </x-elements.select>
         <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" value="{{ $courseMaterial->url }}"/>
         <x-elements.input label="PDF" name="pdf" type="file" :required="false" />
-        <x-blocks.detail :isImage="true" :title="$course->image ?? 'No image'" />
+        <div class="w-50 mb-3">
+            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ basename($course->image) }}" class="'w-50 img-fluid">
+        </div>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
             <a href="{{ route('courses.course_materials.index', $course) }}" class="btn btn-outline-secondary">Cancel</a>
         </div>
     </x-blocks.form>
-
 
 @endsection
