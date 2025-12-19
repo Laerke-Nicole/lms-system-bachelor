@@ -14,7 +14,7 @@ class NewReminderBeforeTraining extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public string $training_id, public string $course_name, public string $training_date)
     {
         //
     }
@@ -35,9 +35,9 @@ class NewReminderBeforeTraining extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Upcoming training reminder')
+            ->line("Your training for {$this->course_name} is coming up on {$this->training_date}.")
+            ->action('View training', route('trainings.show', $this->training_id));
     }
 
     /**

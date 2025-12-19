@@ -11,4 +11,6 @@ Artisan::command('inspire', function () {
 //delete expired token when reset password
 Schedule::command('auth:clear-resets')->everyFifteenMinutes();
 Schedule::command('app:update-expiring-trainings')->daily();
+Schedule::command('app:send-reminder-before-training')->daily();
+Schedule::command('app:send-reminder18m-before-expired')->daily();
 Schedule::command('model:prune')->daily();
