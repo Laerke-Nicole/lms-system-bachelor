@@ -10,7 +10,13 @@
                     <div class="w-100">
                         <p class="fs-5 mb-2 text-primary">403</p>
                         <h1 class="fs-60 mb-3">Access denied</h1>
-                        <p class="fs-4 mb-5">Sorry, you don't have access to this page.</p>
+                        <p class="fs-4 mb-5">
+                            @if(isset($exception) && $exception->getMessage())
+                                {{ $exception->getMessage() }}
+                            @else
+                                Sorry, you don't have access to this page.
+                            @endif
+                        </p>
                         <div>
                             <a href="{{ route('home') }}" class="text-decoration-underline-hover d-flex gap-1 fs-5 align-items-center text-primary">
                                 <i class="bi bi-arrow-left-short fs-3"></i>
