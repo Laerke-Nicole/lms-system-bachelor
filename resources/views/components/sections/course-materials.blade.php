@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{--    {{ Breadcrumbs::render('to-home', 'Course Materials', 'courses.course_materials.index') }}--}}
+    {{ Breadcrumbs::render('sections.course-materials', $training) }}
 
     @if($course)
         <x-blocks.title title="Course materials for {{ $course->title }}"/>

@@ -2,14 +2,7 @@
 
 @section('content')
 
-{{--    {{ Breadcrumbs::render(--}}
-{{--        'crud.create',--}}
-{{--        'Requirements',--}}
-{{--        'requirements.index',--}}
-{{--        'Create',--}}
-{{--        'requirements.create'--}}
-{{--    ) }}--}}
-
+    {{ Breadcrumbs::render('courses.requirements.create', $course) }}
 
     <x-blocks.title title="Create new requirement" />
 

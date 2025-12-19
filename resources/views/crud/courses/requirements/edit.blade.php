@@ -2,14 +2,7 @@
 
 @section('content')
 
-{{--    {{ Breadcrumbs::render(--}}
-{{--        'crud.show',--}}
-{{--        'Courses.Requirements',--}}
-{{--        'courses.requirements.index',--}}
-{{--        'Edit',--}}
-{{--        'courses.requirements.edit',--}}
-{{--        $course--}}
-{{--    ) }}--}}
+    {{ Breadcrumbs::render('courses.requirements.edit', $course) }}
 
     <x-blocks.title title="Edit requirement {{ $requirement->title }}" />
 

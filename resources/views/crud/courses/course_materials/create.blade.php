@@ -2,14 +2,7 @@
 
 @section('content')
 
-{{--    {{ Breadcrumbs::render(--}}
-{{--        'crud.create',--}}
-{{--        'Course Materials',--}}
-{{--        'course_materials.index',--}}
-{{--        'Create',--}}
-{{--        'course_materials.create'--}}
-{{--    ) }}--}}
-
+    {{ Breadcrumbs::render('courses.course_materials.create', $course) }}
 
     <x-blocks.title title="Create new course material" subTitle="Please fill out either a URL or upload a PDF." />
 

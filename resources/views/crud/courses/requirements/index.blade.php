@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{--    {{ Breadcrumbs::render('to-home', 'Requirements', 'courses.requirements.index') }}--}}
+    {{ Breadcrumbs::render('courses.requirements', $course) }}
 
     <x-blocks.title href="{{ route('courses.requirements.create', $course) }}" title="Requirements for {{ $course->title }}" buttonText="Create"/>
 

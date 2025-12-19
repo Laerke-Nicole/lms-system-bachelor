@@ -2,6 +2,8 @@
 
 @section('content')
 
+    {{ Breadcrumbs::render('signatures.digital.digital-confirm', $trainingUser) }}
+
     <div class="row justify-content-center section-spacing">
         <div class="col-lg-10">
 

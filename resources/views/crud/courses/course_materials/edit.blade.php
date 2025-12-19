@@ -2,14 +2,7 @@
 
 @section('content')
 
-{{--    {{ Breadcrumbs::render(--}}
-{{--        'crud.show',--}}
-{{--        'Courses.Course Materials',--}}
-{{--        'courses.course_materials.index',--}}
-{{--        'Edit',--}}
-{{--        'courses.course_materials.edit',--}}
-{{--        $course--}}
-{{--    ) }}--}}
+    {{ Breadcrumbs::render('courses.course_materials.edit', $course) }}
 
     <x-blocks.title title="Edit course material {{ $courseMaterial->title }}" />
 
@@ -24,11 +17,17 @@
                 <option value="{{ $type }}" {{ $courseMaterial->type === $type ? 'selected' : '' }}>{{ $type }}</option>
             @endforeach
         </x-elements.select>
-        <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" value="{{ $courseMaterial->url }}"/>
-        <x-elements.input label="PDF" name="pdf" type="file" :required="false" />
-        <div class="w-50 mb-3">
-            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ basename($course->image) }}" class="'w-50 img-fluid">
-        </div>
+        @if(!$courseMaterial->pdf)
+            <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" value="{{ $courseMaterial->url }}"/>
+        @endif
+        @if(!$courseMaterial->url)
+            <x-elements.input label="PDF" name="pdf" type="file" :required="false" />
+        @endif
+        @if($courseMaterial->pdf)
+            <div class="mb-3">
+                <a href="{{ asset('storage/' . $courseMaterial->pdf) }}" target="_blank">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a>
+            </div>
+        @endif
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>

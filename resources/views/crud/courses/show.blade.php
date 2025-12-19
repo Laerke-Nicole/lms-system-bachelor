@@ -6,7 +6,7 @@
         'crud.show',
         'Courses',
         'courses.index',
-        'Show',
+        'View',
         'courses.show',
         $course
     ) }}

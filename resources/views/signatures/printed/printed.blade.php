@@ -2,6 +2,8 @@
 
 @section('content')
 
+    {{ Breadcrumbs::render('signatures.printed.printed', $trainingUser) }}
+
     <div class="row justify-content-center">
         <div class="col-lg-7">
             <div class="alert alert-primary" role="alert">

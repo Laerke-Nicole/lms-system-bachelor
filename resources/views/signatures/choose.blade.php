@@ -2,11 +2,13 @@
 
 @section('content')
 
+    {{ Breadcrumbs::render('signatures.choose', $trainingUser ) }}
+
     <x-blocks.title title="Choose how you wish to sign your certificate" />
 
     <div class="row">
         <div class="col-lg-8">
-            <div class="row">
+            <div class="row g-3 mb-3">
                 <div class="col-lg-6">
                     <a href="{{ route('signatures.digital.digital', $trainingUser) }}">
                         <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
