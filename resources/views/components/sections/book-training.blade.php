@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
-            <a href="{{ route('trainings.create') }}" class="btn btn-primary">
+            <a href="{{ route('trainings.bookings.course') }}" class="btn btn-primary">
                 Book training
             </a>
         </div>
