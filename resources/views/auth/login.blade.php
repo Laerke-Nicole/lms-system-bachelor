@@ -7,14 +7,14 @@
             <!-- left side with form -->
             <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-between align-items-start">
 
-                <div class="p-md-4 d-flex flex-column w-100">
-                    <div>
-                        @if($abInventech->logo)
-                            <div class="mb-5">
-                                <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
-                            </div>
-                        @endif
+                @if($abInventech->logo)
+                    <div class="pt-3 pt-md-4 ps-md-4 pt-lg-5 ps-lg-5">
+                        <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
+                    </div>
+                @endif
 
+                <div class="p-md-4 p-lg-5 d-flex flex-column w-100">
+                    <div>
                         <div class="w-100">
                             <h3 class="mb-4">Log in</h3>
 
@@ -34,7 +34,7 @@
                 </div>
 
                 <!-- privacy policy link -->
-                <div class="pb-3 ms-md-4">
+                <div class="pb-3 ps-md-4 ps-lg-5">
                     <a href="{{ route('gdprs.privacy-policy') }}" class="fs-6 text-decoration-none opacity-75"><u>Privacy policy</u></a>
                 </div>
             </div>
