@@ -23,7 +23,6 @@
                             </div>
 
                             <x-blocks.message />
-                            <x-blocks.error-alert />
                         </x-blocks.form>
                     </div>
                 </div>

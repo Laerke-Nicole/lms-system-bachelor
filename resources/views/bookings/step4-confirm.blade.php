@@ -9,7 +9,7 @@
     <div class="row booking-section">
         <div class="col-12 col-lg-8 booking-section-small">
 
-            <x-blocks.error-alert />
+            <x-blocks.message />
 
             <x-blocks.form action="{{ route('trainings.bookings.confirm.store') }}" method="POST" class="mb-0">
 

@@ -23,7 +23,6 @@
     @endif
 
     <x-blocks.message />
-    <x-blocks.error-alert />
 
     <x-blocks.form action="{{ route('register') }}" method="POST">
         <x-elements.input label="First name" placeholder="Enter your first name" name="first_name" type="text" :value="old('first_name')" />
@@ -83,7 +82,6 @@
 {{--                        </div>--}}
 
 {{--                        <x-blocks.message />--}}
-{{--                        <x-blocks.error-alert />--}}
 {{--                    </x-blocks.form>--}}
 {{--                </div>--}}
 {{--            </div>--}}

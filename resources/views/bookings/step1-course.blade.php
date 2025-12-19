@@ -10,7 +10,7 @@
     @foreach($courses as $course)
         <div class="col-md-6 d-flex">
 
-            <x-blocks.error-alert />
+            <x-blocks.message />
 
             <x-blocks.form action="{{ route('trainings.bookings.course.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
                 <input type="hidden" name="course_id" value="{{ $course->id }}">

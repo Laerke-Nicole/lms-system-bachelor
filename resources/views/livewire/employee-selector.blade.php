@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <x-blocks.error-alert />
+    <x-blocks.message />
 
 {{--    the checkboxex with employee names and email --}}
     <div class="mb-4">

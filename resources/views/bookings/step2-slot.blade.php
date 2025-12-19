@@ -12,7 +12,7 @@
             @foreach($trainingSlots as $trainingSlot)
                 <div class="col-12 col-md-6 col-lg-4">
 
-                    <x-blocks.error-alert />
+                    <x-blocks.message />
 
                     <x-blocks.form action="{{ route('trainings.bookings.slot.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
                         <input type="hidden" name="training_slot_id" value="{{ $trainingSlot->id }}">
