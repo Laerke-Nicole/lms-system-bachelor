@@ -23,6 +23,10 @@ class HomeController extends Controller
         $upcomingTrainingCount = Training::where('status', 'Upcoming')->count();
         $completedTrainingCount = Training::where('status', 'Completed')->count();
 
-        return view('home', compact('participateTraining', 'pendingTrainingCount', 'upcomingTrainingCount', 'completedTrainingCount'));
+
+//        get trainings
+        $trainings = Training::latest()->paginate(6);
+
+        return view('home', compact('trainings', 'participateTraining', 'pendingTrainingCount', 'upcomingTrainingCount', 'completedTrainingCount'));
     }
 }

@@ -5,7 +5,7 @@
 
     <div class="row mb-5">
 {{--        left side--}}
-        <div class="col-lg-8">
+        <div class="col-xl-8">
             <div class="row mb-5">
                 <div class="col-12">
                     <h2>Hi, {{ auth()->user()->first_name }}</h2>
@@ -37,13 +37,13 @@
 
             {{--    admin dashboard --}}
             @if(auth()->user()->role === 'admin')
-                calendar with all active trainings (all companies and sites) including requests.
+                @include('components/sections/trainings-list-home')
                 @include('components/sections/create-manage-courses')
             @endif
         </div>
 
 {{--        right side --}}
-        <div class="col-lg-4">
+        <div class="col-xl-4">
             <div class="px-12">
                 <div class="row">
                     <div class="bg-white rounded min-vh-100 py-12">
