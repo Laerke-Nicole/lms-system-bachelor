@@ -29,7 +29,7 @@
                             <x-elements.input label="Upload an image or pdf of your printed and signed certificate" name="signed_certificate_image" type="file" col="col-md-6" />
                         </div>
 
-                        <x-blocks.error-alert/>
+                        <x-blocks.message/>
 
                         <button type="submit" class="btn btn-primary w-100">Submit signature</button>
                     </x-blocks.form>

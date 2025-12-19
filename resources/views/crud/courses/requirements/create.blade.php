@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Create new requirement" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.requirements.store', $course) }}" method="POST">
         <x-elements.input label="Title" name="title" />

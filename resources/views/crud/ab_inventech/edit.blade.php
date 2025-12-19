@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Edit {{ $abInventech->ab_inventech_name }}'s information" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('ab_inventech.update', $abInventech->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')

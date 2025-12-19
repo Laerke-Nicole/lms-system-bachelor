@@ -7,9 +7,7 @@
 <p class="mb-5">Here you can update your information so your details are up-to-date.</p>
 
 <div>
-    <x-blocks.message />
-
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('profiles.update') }}" method="POST" class="mb-0">
         @method('PUT')

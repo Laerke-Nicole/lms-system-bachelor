@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Create new course" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
         <x-elements.input label="Title" name="title" />

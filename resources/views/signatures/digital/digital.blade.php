@@ -16,7 +16,7 @@
                                 <x-elements.input label="Upload an image of your signature" name="signature_image" type="file" col="col-md-6" />
                             </div>
 
-                            <x-blocks.error-alert/>
+                            <x-blocks.message/>
 
 {{--                        confirmation checkbox --}}
                             <div class="col-12">

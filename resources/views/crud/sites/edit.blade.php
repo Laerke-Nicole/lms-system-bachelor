@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Edit {{ $site->site_name }}" subTitle="Site for {{ $site->company->company_name }}" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('sites.update', $site->id) }}" method="POST">
         @method('PUT')

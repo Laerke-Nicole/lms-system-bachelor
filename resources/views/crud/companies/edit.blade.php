@@ -14,7 +14,7 @@
 
     <x-blocks.title title="Edit {{ $company->company_name }}" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('companies.update', $company->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')

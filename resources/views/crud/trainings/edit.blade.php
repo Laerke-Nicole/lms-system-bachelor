@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Edit training for: {{ $training->trainingSlot->course->title }}" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('trainings.update', $training->id) }}" method="POST">
         @method('PUT')

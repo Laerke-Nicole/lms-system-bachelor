@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Create new company" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
         <x-elements.input label="Name" name="company_name" />

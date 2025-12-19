@@ -12,7 +12,7 @@
 
     <x-blocks.title title="Create new training slot" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('training_slots.store') }}" method="POST">
 

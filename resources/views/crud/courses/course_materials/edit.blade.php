@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Edit course material {{ $courseMaterial->title }}" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.course_materials.update', [$course, $courseMaterial]) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')

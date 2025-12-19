@@ -2,7 +2,6 @@
     <p class="text-dark fw-bold">Participants</p>
 
     <x-blocks.message/>
-    <x-blocks.error-alert/>
 
     <x-blocks.table-head :headers="[
         ['label' => 'Participant'],

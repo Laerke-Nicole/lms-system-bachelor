@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Create new gdpr text" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('gdprs.store') }}" method="POST">
         <x-elements.input label="Title" name="title" />

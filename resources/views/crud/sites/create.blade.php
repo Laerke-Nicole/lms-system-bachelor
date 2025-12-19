@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Create new site" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('sites.store') }}" method="POST">
         <x-elements.input label="Name" name="site_name" />

@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Create new course material" subTitle="Please fill out either a URL or upload a PDF." />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.course_materials.store', $course) }}" method="POST" enctype="multipart/form-data">
         <x-elements.input label="Title" name="title" />

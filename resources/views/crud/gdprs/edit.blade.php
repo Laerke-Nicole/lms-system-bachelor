@@ -13,7 +13,7 @@
 
     <x-blocks.title title="Edit" />
 
-    <x-blocks.error-alert/>
+    <x-blocks.message/>
 
     <x-blocks.form action="{{ route('gdprs.update', $gdpr->id) }}" method="POST">
         @method('PUT')
