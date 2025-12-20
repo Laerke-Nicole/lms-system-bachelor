@@ -206,6 +206,11 @@ class BookingController extends Controller
             $user->notify(new NewTraining($course_name, $training_date, $training->id));
         }
 
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new NewTraining($course_name, $training_date, $training->id));
+        }
+
 //        remove all the data from the session
         session()->forget('booking');
 
