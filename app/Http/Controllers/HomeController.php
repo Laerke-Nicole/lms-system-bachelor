@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Training;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class HomeController extends Controller
         $upcomingTrainingCount = Training::where('status', 'Upcoming')->count();
         $completedTrainingCount = Training::where('status', 'Completed')->count();
 
-        return view('home', compact('trainings', 'participateTraining', 'pendingTrainingCount', 'upcomingTrainingCount', 'completedTrainingCount'));
+        $courses = Course::all();
+
+        return view('home', compact('trainings', 'participateTraining', 'pendingTrainingCount', 'upcomingTrainingCount', 'completedTrainingCount', 'courses'));
     }
 
     //   show trainings based on user role

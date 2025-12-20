@@ -40,6 +40,11 @@
             </x-elements.select>
         @endif
 
+        @if(auth()->user()->role === 'leader')
+            <input type="hidden" name="place" value="{{ $training->trainingSlot->place }}">
+            <input type="hidden" name="status" value="{{ $training->status }}">
+        @endif
+
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>
             <a href="{{ route('trainings.index') }}" class="btn btn-outline-secondary">Cancel</a>

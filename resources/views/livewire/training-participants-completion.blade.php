@@ -23,6 +23,7 @@
                     <td>{{ $participant->user->first_name }} {{ $participant->user->last_name }}
                         <br><span class="text-muted">{{ $participant->user->email }}</span>
                     </td>
+
                     {{--                checkbox if they completed evaluation --}}
                     @if(auth()->user()->role === 'admin')
                         @if(in_array($training->status, ['Completed', 'Expiring']))

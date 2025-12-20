@@ -45,9 +45,10 @@
                                     Upload new signature
                                 </a>
 
-                                <x-blocks.form action="{{ route('signatures.digital.digital-submit', $trainingUser) }}" method="POST" class="mb-0">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        Confirm
+                                <x-blocks.form action="{{ route('signatures.digital.digital-submit', $trainingUser) }}" method="POST" class="mb-0" x-data="{ loading: false }" @submit="loading = true">
+                                    <button type="submit" class="btn btn-primary w-100" :disabled="loading">
+                                        <span x-show="!loading">Confirm</span>
+                                        <span x-show="loading" class="spinner-border spinner-border-sm"></span>
                                     </button>
                                 </x-blocks.form>
                             </div>

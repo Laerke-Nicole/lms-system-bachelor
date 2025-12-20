@@ -9,8 +9,8 @@
 
 {{--    leader dashboard --}}
 @if(auth()->user()->role === 'leader')
+{{--    quick access to booking training--}}
     @include('components/sections/book-training')
-    Status on employees (who needs refresher soon)
 {{--    Overview of planned courses for his team--}}
     @include('components/sections/trainings-list-home')
 @endif

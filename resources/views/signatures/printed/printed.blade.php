@@ -25,7 +25,7 @@
                         </div>
                     </div>
 
-                    <x-blocks.form action="{{ route('signatures.printed.printed', $trainingUser->id) }}" method="POST" class="mb-0">
+                    <x-blocks.form action="{{ route('signatures.printed.printed', $trainingUser->id) }}" method="POST" class="mb-0" x-data="{ loading: false }" @submit="loading = true">
 
                         <div class="mb-4">
                             <x-elements.input label="Upload an image or pdf of your printed and signed certificate" name="signed_certificate_image" type="file" col="col-md-6" />
@@ -33,7 +33,10 @@
 
                         <x-blocks.message/>
 
-                        <button type="submit" class="btn btn-primary w-100">Submit signature</button>
+                        <button type="submit" class="btn btn-primary w-100" :disabled="loading">
+                            <span x-show="!loading">Submit signature</span>
+                            <span x-show="loading" class="spinner-border spinner-border-sm"></span>
+                        </button>
                     </x-blocks.form>
 
                 </div>
