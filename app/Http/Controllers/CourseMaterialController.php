@@ -46,9 +46,9 @@ class CourseMaterialController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'type' => 'required',
-            'url' => 'nullable|url',
+            'url' => 'nullable|url|max:2048',
             'pdf' => 'nullable|mimes:pdf|max:5120',
         ]);
 
@@ -91,9 +91,9 @@ class CourseMaterialController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'type' => 'required',
-            'url' => 'nullable|url',
+            'url' => 'nullable|url|max:2048',
             'pdf' => 'nullable|mimes:pdf|max:5120',
         ]);
 

@@ -44,13 +44,13 @@ class SiteController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'site_name' => 'required',
-            'site_mail' => 'required|email',
-            'site_phone' => 'required',
+            'site_name' => 'required|string|max:255',
+            'site_mail' => 'required|email|max:254',
+            'site_phone' => 'required|string|max:20',
             'company_id' => 'required|exists:companies,id',
             'street_name' => 'required|string|max:255',
-            'street_number' => 'required|string|max:10',
-            'postal_code' => 'required|string|max:10',
+            'street_number' => 'required|string|max:20',
+            'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
         ]);
@@ -114,12 +114,12 @@ class SiteController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'site_name' => 'required',
-            'site_mail' => 'required|email',
-            'site_phone' => 'required',
+            'site_name' => 'required|string|max:255',
+            'site_mail' => 'required|email|max:254',
+            'site_phone' => 'required|string|max:20',
             'street_name' => 'required|string|max:255',
-            'street_number' => 'required|string|max:10',
-            'postal_code' => 'required|string|max:10',
+            'street_number' => 'required|string|max:20',
+            'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
         ]);

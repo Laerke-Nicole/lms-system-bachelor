@@ -34,10 +34,10 @@ class RegisteredUserController extends Controller
 
         //        validate user inputs
         $userInfo = [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
+            'first_name' => 'required|string|max:100',
+            'last_name' => 'required|string|max:100',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|max:254|unique:users',
             'password' => 'nullable|string|min:8|confirmed',
         ];
 

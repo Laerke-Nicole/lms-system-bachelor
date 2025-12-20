@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gdprs', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('title', 255)->nullable();
             $table->text('content')->nullable();
 
             $table->timestamps();

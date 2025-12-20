@@ -22,8 +22,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->datetime('completed_evaluation_at')->nullable();
-            $table->string('temporary_signature')->nullable();
-            $table->string('assessment')->nullable();
+            $table->string('temporary_signature', 255)->nullable();
+            $table->string('assessment', 255)->nullable();
 
             $table->timestamps();
         });

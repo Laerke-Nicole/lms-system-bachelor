@@ -16,13 +16,13 @@
     <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
-        <x-elements.input label="Title" name="title" />
+        <x-elements.input label="Title" name="title" maxlength="255" />
         <x-elements.textarea label="Description" name="description" />
         <x-elements.input label="Duration" placeholder="Duration (in hours)" name="duration" type="number" />
         <x-elements.input label="Duration months" name="duration_months" type="number" />
         <x-elements.input label="Max participants" name="max_participants" type="number" />
-        <x-elements.input label="Evaluation link" name="evaluation_link" type="url" />
-        <x-elements.input label="Follow up test link" name="test_link" type="url" />
+        <x-elements.input label="Evaluation link" name="evaluation_link" type="url" maxlength="2048" />
+        <x-elements.input label="Follow up test link" name="test_link" type="url" maxlength="2048" />
         <x-elements.input label="Image" name="image" type="file" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

@@ -30,13 +30,14 @@ class AbInventechController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'ab_inventech_name' => 'required',
-            'ab_inventech_mail' => 'required|email',
-            'ab_inventech_phone' => 'required',
+            'ab_inventech_name' => 'required|string|max:255',
+            'ab_inventech_web' => 'required|url|max:2048',
+            'ab_inventech_mail' => 'required|email|max:254',
+            'ab_inventech_phone' => 'required|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'street_name' => 'required|string|max:255',
-            'street_number' => 'required|string|max:10',
-            'postal_code' => 'required|string|max:10',
+            'street_number' => 'required|string|max:20',
+            'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
         ]);
@@ -89,13 +90,14 @@ class AbInventechController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'ab_inventech_name' => 'required',
-            'ab_inventech_mail' => 'required|email',
-            'ab_inventech_phone' => 'required',
+            'ab_inventech_name' => 'required|string|max:255',
+            'ab_inventech_web' => 'required|url|max:2048',
+            'ab_inventech_mail' => 'required|email|max:254',
+            'ab_inventech_phone' => 'required|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'street_name' => 'required|string|max:255',
-            'street_number' => 'required|string|max:10',
-            'postal_code' => 'required|string|max:10',
+            'street_number' => 'required|string|max:20',
+            'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
         ]);

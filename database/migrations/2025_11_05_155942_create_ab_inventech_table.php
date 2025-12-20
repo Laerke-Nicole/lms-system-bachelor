@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('ab_inventech', function (Blueprint $table) {
             $table->id();
-            $table->string('ab_inventech_name');
-            $table->string('ab_inventech_web')->unique();
-            $table->string('ab_inventech_mail')->unique();
-            $table->string('ab_inventech_phone')->unique();
-            $table->string('logo')->nullable();
+            $table->string('ab_inventech_name', 255);
+            $table->string('ab_inventech_web', 2048)->unique();
+            $table->string('ab_inventech_mail', 254)->unique();
+            $table->string('ab_inventech_phone', 20)->unique();
+            $table->string('logo', 255)->nullable();
 
             $table->foreignId('address_id')
                 ->constrained('addresses')

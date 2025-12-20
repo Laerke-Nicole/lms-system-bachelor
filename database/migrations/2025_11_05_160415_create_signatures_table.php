@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             $table->id();
-            $table->string('signature_image')->nullable();
-            $table->string('signed_certificate_image')->nullable();
+            $table->string('signature_image', 255)->nullable();
+            $table->string('signed_certificate_image', 255)->nullable();
             $table->boolean('signature_confirmed')->nullable();
             $table->datetime('signed_at')->nullable();
 

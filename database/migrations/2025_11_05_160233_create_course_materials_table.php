@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('course_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title', 255);
             $table->enum('type', ['Video', 'PDF', 'Task', 'Quiz', 'Other']);
-            $table->string('url')->nullable();
-            $table->string('pdf')->nullable();
+            $table->string('url', 2048)->nullable();
+            $table->string('pdf', 255)->nullable();
 
             $table->foreignId('course_id')
                 ->constrained('courses')

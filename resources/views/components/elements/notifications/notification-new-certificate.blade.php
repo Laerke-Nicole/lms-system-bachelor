@@ -12,12 +12,11 @@
                     </a>
                 </div>
 
-                <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
-                    @csrf
+                <x-blocks.form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
                     <button type="submit" class="btn btn-sm btn-outline-secondary">
                         Mark as read
                     </button>
-                </form>
+                </x-blocks.form>
             </div>
         </div>
     @endif
@@ -30,12 +29,11 @@
 
             <p>You can find it in your profile page under "certificates" or in the trainings history under the action "view".</p>
 
-            <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
-                @csrf
+            <x-blocks.form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
                 <button type="submit" class="btn btn-sm btn-outline-secondary">
                     Mark as read
                 </button>
-            </form>
+            </x-blocks.form>
         </div>
     @endif
 @endif

@@ -15,12 +15,11 @@
                 </a>
             </div>
 
-            <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
-                @csrf
+            <x-blocks.form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
                 <button type="submit" class="btn btn-sm btn-outline-secondary">
                     Mark as read
                 </button>
-            </form>
+            </x-blocks.form>
         </div>
     </div>
 @endif

@@ -25,10 +25,10 @@
     <x-blocks.message />
 
     <x-blocks.form action="{{ route('register') }}" method="POST">
-        <x-elements.input label="First name" placeholder="Enter your first name" name="first_name" type="text" :value="old('first_name')" />
-        <x-elements.input label="Last name" placeholder="Enter your last name" name="last_name" type="text" :value="old('last_name')"  />
-        <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')"  />
-        <x-elements.input label="Phone" placeholder="Enter your phone number" name="phone" type="text" :value="old('phone')"  />
+        <x-elements.input label="First name" placeholder="Enter your first name" name="first_name" type="text" :value="old('first_name')" maxlength="100" />
+        <x-elements.input label="Last name" placeholder="Enter your last name" name="last_name" type="text" :value="old('last_name')" maxlength="100" />
+        <x-elements.input label="Email" placeholder="Enter your email" name="email" type="email" :value="old('email')" maxlength="254" />
+        <x-elements.input label="Phone" placeholder="Enter your phone number" name="phone" type="text" :value="old('phone')" maxlength="20" />
         @if(auth()->user()->role === 'admin')
             <x-elements.select label="Site" name="site_id">
                 @foreach($sites as $site)

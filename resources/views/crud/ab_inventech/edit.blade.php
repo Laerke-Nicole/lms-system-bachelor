@@ -18,9 +18,10 @@
     <x-blocks.form action="{{ route('ab_inventech.update', $abInventech->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
 
-        <x-elements.input label="Name" name="ab_inventech_name" value="{{ $abInventech->ab_inventech_name }}"/>
-        <x-elements.input label="Email" name="ab_inventech_mail" value="{{ $abInventech->ab_inventech_mail }}"/>
-        <x-elements.input label="Phone" name="ab_inventech_phone" value="{{ $abInventech->ab_inventech_phone }}"/>
+        <x-elements.input label="Name" name="ab_inventech_name" value="{{ $abInventech->ab_inventech_name }}" maxlength="255"/>
+        <x-elements.input label="Web" name="ab_inventech_web" value="{{ $abInventech->ab_inventech_web }}" maxlength="2048"/>
+        <x-elements.input label="Email" name="ab_inventech_mail" value="{{ $abInventech->ab_inventech_mail }}" maxlength="254"/>
+        <x-elements.input label="Phone" name="ab_inventech_phone" value="{{ $abInventech->ab_inventech_phone }}" maxlength="20"/>
         <x-elements.input label="Logo" name="logo" type="file" :required="false" />
         <div class="w-50 mb-3">
             <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="'w-50 img-fluid">

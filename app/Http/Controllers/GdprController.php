@@ -40,7 +40,7 @@ class GdprController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'content' => 'required',
         ]);
 
@@ -87,7 +87,7 @@ class GdprController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'content' => 'required',
         ]);
 

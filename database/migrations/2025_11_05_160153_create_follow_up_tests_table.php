@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('follow_up_tests', function (Blueprint $table) {
             $table->id();
-            $table->string('test_link');
+            $table->string('test_link', 2048);
 
             $table->timestamps();
         });

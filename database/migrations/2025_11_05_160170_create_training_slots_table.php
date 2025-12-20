@@ -16,7 +16,7 @@ return new class extends Migration
             $table->dateTime('training_date');
             $table->enum('place', ['Online', 'On site']);
             $table->enum('status', ['Available', 'Unavailable'])->default('Available');
-            $table->string('participation_link')->nullable();
+            $table->string('participation_link', 2048)->nullable();
 
             $table->foreignId('course_id')
                 ->constrained('courses')

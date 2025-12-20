@@ -48,9 +48,9 @@ class TrainingSlotController extends Controller
         $validated = $request->validate([
             'course_id' => 'required|exists:courses,id',
             'trainer_id' => 'required|exists:users,id',
-            'place' => 'required',
+            'place' => 'required|string|max:255',
             'training_date' => 'required|date',
-            'participation_link' => ['nullable', 'url'],
+            'participation_link' => ['nullable', 'url', 'max:2048'],
         ]);
 
         // add the admin who created this slot
@@ -103,9 +103,9 @@ class TrainingSlotController extends Controller
         // validate the user input
         $validated = $request->validate([
             'trainer_id' => 'required|exists:users,id',
-            'place' => 'required',
+            'place' => 'required|string|max:255',
             'training_date' => 'required|date',
-            'participation_link' => ['nullable', 'url'],
+            'participation_link' => ['nullable', 'url', 'max:2048'],
         ]);
 
         // update the training slot in the db

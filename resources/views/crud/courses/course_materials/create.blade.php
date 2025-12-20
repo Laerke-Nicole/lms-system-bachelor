@@ -9,13 +9,13 @@
     <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.course_materials.store', $course) }}" method="POST" enctype="multipart/form-data">
-        <x-elements.input label="Title" name="title" />
+        <x-elements.input label="Title" name="title" maxlength="255" />
         <x-elements.select label="Type" name="type">
             @foreach($types as $type)
                 <option value="{{ $type }}">{{ $type }}</option>
             @endforeach
         </x-elements.select>
-        <x-elements.input label="URL (optional)" placeholder="For video, task, quiz, or other" name="url" :required="false" />
+        <x-elements.input label="URL (optional)" placeholder="For video, task, quiz, or other" name="url" :required="false" maxlength="2048" />
         <x-elements.input label="PDF" name="pdf" type="file" :required="false" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

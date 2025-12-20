@@ -33,7 +33,7 @@
             @endforeach
         </x-elements.select>
 
-        <x-elements.input label="Participation link (optional)" placeholder="Participation link" name="participation_link" type="url" value="{{ $trainingSlot->participation_link }}" :required="false" />
+        <x-elements.input label="Participation link (optional)" placeholder="Participation link" name="participation_link" type="url" value="{{ $trainingSlot->participation_link }}" :required="false" maxlength="2048" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -43,13 +43,13 @@ class CourseController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'description' => 'required',
             'duration' => 'required|integer',
             'duration_months' => 'required|integer',
             'max_participants' => 'required|integer',
-            'evaluation_link' => 'required|url',
-            'test_link' => 'required|url',
+            'evaluation_link' => 'required|url|max:2048',
+            'test_link' => 'required|url|max:2048',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -116,13 +116,13 @@ class CourseController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'description' => 'required',
             'duration' => 'required|integer',
             'duration_months' => 'required|integer',
             'max_participants' => 'required|integer',
-            'evaluation_link' => 'required|url',
-            'test_link' => 'required|url',
+            'evaluation_link' => 'required|url|max:2048',
+            'test_link' => 'required|url|max:2048',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

@@ -11,7 +11,7 @@
     <x-blocks.form action="{{ route('courses.requirements.update', [$course, $requirement]) }}" method="POST">
         @method('PUT')
 
-        <x-elements.input label="Title" name="title" value="{{ $requirement->title }}"/>
+        <x-elements.input label="Title" name="title" value="{{ $requirement->title }}" maxlength="255"/>
         <x-elements.textarea label="Content" name="content" value="{{ $requirement->content }}"/>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

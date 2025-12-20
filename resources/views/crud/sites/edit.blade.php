@@ -18,9 +18,9 @@
     <x-blocks.form action="{{ route('sites.update', $site->id) }}" method="POST">
         @method('PUT')
 
-        <x-elements.input label="Name" name="site_name" value="{{ $site->site_name }}"/>
-        <x-elements.input label="Mail" name="site_mail" value="{{ $site->site_mail }}"/>
-        <x-elements.input label="Phone" name="site_phone" value="{{ $site->site_phone }}"/>
+        <x-elements.input label="Name" name="site_name" value="{{ $site->site_name }}" maxlength="255"/>
+        <x-elements.input label="Mail" name="site_mail" value="{{ $site->site_mail }}" maxlength="254"/>
+        <x-elements.input label="Phone" name="site_phone" value="{{ $site->site_phone }}" maxlength="20"/>
         <x-blocks.edit-address :table="$site" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

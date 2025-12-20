@@ -9,6 +9,8 @@
                 value="{{ old($name, $value ?? '') }}"
                 class="{{ $class ?? 'form-control box-shadow-inset' }}"
                 placeholder="{{ $placeholder ?? $label }}"
+                maxlength="{{ $maxlength ?? null }}"
+                minlength="{{ $minlength ?? null }}"
                 {{ $attributes->merge(['required' => true]) }}>
 
             {{-- password toggle include --}}

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->string('site_name')->nullable();
-            $table->string('site_mail')->nullable()->unique();
-            $table->string('site_phone')->nullable()->unique();
+            $table->string('site_name', 255)->nullable();
+            $table->string('site_mail', 254)->nullable()->unique();
+            $table->string('site_phone', 20)->nullable()->unique();
 
             $table->foreignId('company_id')->nullable()
                 ->constrained('companies')

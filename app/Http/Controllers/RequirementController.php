@@ -42,7 +42,7 @@ class RequirementController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'content' => 'required',
         ]);
 
@@ -89,7 +89,7 @@ class RequirementController extends Controller
     {
         // validate the user input
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'content' => 'required',
         ]);
 

@@ -11,14 +11,14 @@
     <x-blocks.form action="{{ route('courses.course_materials.update', [$course, $courseMaterial]) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
 
-        <x-elements.input label="Title" name="title" value="{{ $courseMaterial->title }}"/>
+        <x-elements.input label="Title" name="title" value="{{ $courseMaterial->title }}" maxlength="255"/>
         <x-elements.select label="Type" name="type">
             @foreach($types as $type)
                 <option value="{{ $type }}" {{ $courseMaterial->type === $type ? 'selected' : '' }}>{{ $type }}</option>
             @endforeach
         </x-elements.select>
         @if(!$courseMaterial->pdf)
-            <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" value="{{ $courseMaterial->url }}"/>
+            <x-elements.input label="URL (optional)" placeholder="URL" name="url" :required="false" value="{{ $courseMaterial->url }}" maxlength="2048"/>
         @endif
         @if(!$courseMaterial->url)
             <x-elements.input label="PDF" name="pdf" type="file" :required="false" />

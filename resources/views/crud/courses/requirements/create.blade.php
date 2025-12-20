@@ -9,7 +9,7 @@
     <x-blocks.message/>
 
     <x-blocks.form action="{{ route('courses.requirements.store', $course) }}" method="POST">
-        <x-elements.input label="Title" name="title" />
+        <x-elements.input label="Title" name="title" maxlength="255" />
         <x-elements.textarea label="Content" name="content" />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

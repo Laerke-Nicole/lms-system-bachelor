@@ -43,11 +43,11 @@ class CompanyController extends Controller
         // validate the user input
         $validated = $request->validate([
             'company_name' => 'required|string|max:255',
-            'company_mail' => 'required|email|max:255',
-            'company_phone' => 'required|string|max:50',
+            'company_mail' => 'required|email|max:254',
+            'company_phone' => 'required|string|max:20',
             'street_name' => 'required|string|max:255',
-            'street_number' => 'required|string|max:10',
-            'postal_code' => 'required|string|max:10',
+            'street_number' => 'required|string|max:20',
+            'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
         ]);
@@ -115,11 +115,11 @@ class CompanyController extends Controller
         // validate the user input
         $validated = $request->validate([
             'company_name' => 'required|string|max:255',
-            'company_mail' => 'required|email|max:255',
-            'company_phone' => 'required|string|max:50',
+            'company_mail' => 'required|email|max:254',
+            'company_phone' => 'required|string|max:20',
             'street_name' => 'required|string|max:255',
-            'street_number' => 'required|string|max:10',
-            'postal_code' => 'required|string|max:10',
+            'street_number' => 'required|string|max:20',
+            'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
         ]);

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('company_mail')->unique();
-            $table->string('company_phone')->nullable()->unique();
+            $table->string('company_name', 255);
+            $table->string('company_mail', 254)->unique();
+            $table->string('company_phone', 20)->nullable()->unique();
 
             $table->foreignId('address_id')
                 ->constrained('addresses')

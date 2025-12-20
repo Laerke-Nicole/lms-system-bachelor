@@ -16,9 +16,9 @@
     <x-blocks.message/>
 
     <x-blocks.form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
-        <x-elements.input label="Name" name="company_name" />
-        <x-elements.input label="Mail" name="company_mail" />
-        <x-elements.input label="Phone" name="company_phone" />
+        <x-elements.input label="Name" name="company_name" maxlength="255" />
+        <x-elements.input label="Mail" name="company_mail" maxlength="254" />
+        <x-elements.input label="Phone" name="company_phone" maxlength="20" />
         <x-blocks.create-address />
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

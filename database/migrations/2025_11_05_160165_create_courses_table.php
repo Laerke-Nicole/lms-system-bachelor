@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title', 255);
             $table->text('description')->nullable();
             $table->integer('duration');
             $table->integer('duration_months');
             $table->integer('max_participants');
-            $table->string('image')->nullable();
+            $table->string('image', 255)->nullable();
 
             $table->foreignId('evaluation_id')
                 ->constrained('evaluations')
