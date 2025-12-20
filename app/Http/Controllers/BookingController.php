@@ -206,6 +206,7 @@ class BookingController extends Controller
             $user->notify(new NewTraining($course_name, $training_date, $training->id));
         }
 
+//        send notification to all admins
         $admins = User::where('role', 'admin')->get();
         foreach ($admins as $admin) {
             $admin->notify(new NewTraining($course_name, $training_date, $training->id));
