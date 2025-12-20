@@ -14,7 +14,7 @@ class NewCertificate extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public string $course_name, public int $certificate_recipient_id)
+    public function __construct(public string $course_name, public int $certificate_recipient_id, public int $training_id)
     {
         //
     }
@@ -39,7 +39,7 @@ class NewCertificate extends Notification
             return (new MailMessage)
                 ->subject('Employee certificate earned')
                 ->line("One of your employees has earned a certificate for {$this->course_name}!")
-                ->line('You can view their certificates in the employee management section.');
+                ->action('View certificate', route('trainings.show', $this->training_id));
         }
 
         // mail for the user that got the certificate
@@ -59,6 +59,7 @@ class NewCertificate extends Notification
         return [
             'course_name' => $this->course_name,
             'certificate_recipient_id' => $this->certificate_recipient_id,
+            'training_id' => $this->training_id,
         ];
     }
 }

@@ -1,0 +1,9 @@
+.notification-alert {
+    background: $primary;
+    padding: 5px;
+    border-radius: 100%;
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    z-index: 1;
+}

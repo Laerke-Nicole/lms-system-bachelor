@@ -88,8 +88,8 @@ class SignatureController extends Controller
 
 //        send notification to the user and their leader when the certificate was made
         $courseName = $trainingUser->training->course->title;
-        $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id));
-        $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id));
+        $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
+        $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
 
         return redirect()->route('certificates.certificate-confirmation', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile and in your trainings history.');
     }
@@ -127,8 +127,8 @@ class SignatureController extends Controller
 
 //        send notification to the user and their leader when the certificate was made
         $courseName = $trainingUser->training->course->title;
-        $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id));
-        $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id));
+        $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
+        $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
 
         return redirect()->route('certificates.certificate-confirmation', $trainingUser->training_id)->with('success', 'Congratulations! Your certificate is ready to download. You can always find your certificates in your profile.');
     }

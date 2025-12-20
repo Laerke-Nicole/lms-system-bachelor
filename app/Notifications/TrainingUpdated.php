@@ -37,8 +37,7 @@ class TrainingUpdated extends Notification
         return (new MailMessage)
             ->subject('Training updated')
             ->line("A training for {$this->course_name} has been updated by {$this->updater_name}.")
-            ->action('View training', route('trainings.show', $this->training_id))
-            ->line('Please check the training details for more information.');
+            ->action('View training', route('trainings.show', $this->training_id));
     }
 
     /**
