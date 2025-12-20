@@ -11,9 +11,9 @@
 @auth
 <div id="app">
     <header>
-        @include('components/sections/navigation')
+        @include('components.sections.navigation')
 
-        @include('components/sections/sidebar')
+        @include('components.sections.sidebar')
     </header>
 
     <main class="container">

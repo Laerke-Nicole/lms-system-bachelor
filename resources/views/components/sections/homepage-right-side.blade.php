@@ -4,7 +4,7 @@
             <div class="bg-white rounded min-vh-100 py-12">
                 {{--    user dashboard --}}
                 @if(auth()->user()->role === 'user')
-                    @include('components/sections/homepage-course-materials')
+                    @include('components.sections.homepage-course-materials')
                 @endif
 
 {{--                --}}{{--    leader dashboard --}}
@@ -14,7 +14,7 @@
 
                 {{--    admin dashboard --}}
                 @if(auth()->user()->role === 'admin')
-                    @include('components/sections/statistics')
+                    @include('components.sections.statistics')
                 @endif
             </div>
         </div>

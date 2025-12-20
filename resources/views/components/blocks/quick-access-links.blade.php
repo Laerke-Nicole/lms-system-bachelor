@@ -2,10 +2,10 @@
 
     @if(auth()->user()->role === 'admin')
         {{--    for admins --}}
-        @include('components/elements/quick-access-links-admin')
+        @include('components.elements.quick-access-links-admin')
     @elseif(auth()->user()->role === 'leader')
         {{--    for leaders --}}
-        @include('components/elements/quick-access-links-leader')
+        @include('components.elements.quick-access-links-leader')
     @endif
 
 

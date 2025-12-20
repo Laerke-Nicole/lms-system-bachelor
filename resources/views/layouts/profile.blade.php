@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        @include('components/sections/profile-links')
+        @include('components.sections.profile-links')
 
         <div class="col-lg-9 section-spacing">
             @yield('profile-content')

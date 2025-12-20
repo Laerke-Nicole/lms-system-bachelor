@@ -49,11 +49,11 @@
 
 {{--        show the users own certificate of this training --}}
         @if(auth()->user()->role === 'user' && $userTrainingRecord && in_array($training->status, ['Completed', 'Expiring']))
-            @include('components/blocks/trainings-certificate-auth-download')
+            @include('components.blocks.trainings-certificate-auth-download')
         @endif
 {{--        show the users own assessment of this training --}}
         @if(auth()->user()->role === 'user' && $userTrainingRecord && in_array($training->status, ['Completed', 'Expiring']))
-            @include('components/blocks/trainings-assessment-auth-download')
+            @include('components.blocks.trainings-assessment-auth-download')
         @endif
 
 {{--        table with users where you can say if the user has completed the test, evaluation or signed --}}

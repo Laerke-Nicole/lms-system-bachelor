@@ -3,13 +3,13 @@
 
         <li><x-elements.link href="{{ route('home') }}" title="Dashboard" icon="bi bi-house"></x-elements.link></li>
 
-        @include('components/blocks/sidebar-clients')
+        @include('components.blocks.sidebar-clients')
 
-        @include('components/blocks/sidebar-trainings')
+        @include('components.blocks.sidebar-trainings')
 
-        @include('components/blocks/sidebar-courses')
+        @include('components.blocks.sidebar-courses')
 
-        @include('components/blocks/sidebar-settings')
+        @include('components.blocks.sidebar-settings')
 
 {{--        <li>--}}
 {{--            <x-blocks.form action="{{ route('logout') }}" method="POST" class="mb-0 w-100">--}}

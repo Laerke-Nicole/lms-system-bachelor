@@ -9,19 +9,19 @@
             @forelse(auth()->user()->unreadNotifications as $notification)
                 <li class="dropdown-item">
                     {{--                new training--}}
-                    @include('components/elements/notifications/notification-new-training')
+                    @include('components.elements.notifications.notification-new-training')
 
                     {{--                training updated--}}
-                    @include('components/elements/notifications/notification-training-updated')
+                    @include('components.elements.notifications.notification-training-updated')
 
                     {{--                new certificate--}}
-                    @include('components/elements/notifications/notification-new-certificate')
+                    @include('components.elements.notifications.notification-new-certificate')
 
     {{--                reminder 18 months--}}
-                    @include('components/elements/notifications/notification-new-reminder-18m')
+                    @include('components.elements.notifications.notification-new-reminder-18m')
 
     {{--                reminder before training--}}
-                    @include('components/elements/notifications/notification-new-reminder-before')
+                    @include('components.elements.notifications.notification-new-reminder-before')
                 </li>
                 <hr class="dropdown-divider">
             @empty

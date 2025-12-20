@@ -62,7 +62,7 @@
 
 {{--        trainings actions --}}
         <td>
-            @include('components/elements/trainings-actions')
+            @include('components.elements.trainings-actions')
         </td>
     </tr>
 
