@@ -26,7 +26,7 @@ class NewCertificate extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -57,7 +57,8 @@ class NewCertificate extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'course_name' => $this->course_name,
+            'certificate_recipient_id' => $this->certificate_recipient_id,
         ];
     }
 }

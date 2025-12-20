@@ -26,7 +26,7 @@ class NewReminder18mPostTraining extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -49,7 +49,8 @@ class NewReminder18mPostTraining extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'training_id' => $this->training_id,
+            'course_name' => $this->course_name,
         ];
     }
 }

@@ -26,7 +26,7 @@ class TrainingUpdated extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -49,7 +49,9 @@ class TrainingUpdated extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'training_id' => $this->training_id,
+            'course_name' => $this->course_name,
+            'updater_name' => $this->updater_name,
         ];
     }
 }
