@@ -15,6 +15,8 @@ class SignatureController extends Controller
 //    first user chooses the way to submit their signature
     public function choose(TrainingUser $trainingUser)
     {
+        $this->authorizedAccess($trainingUser);
+
         return view('signatures.choose', compact('trainingUser'));
     }
 

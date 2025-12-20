@@ -65,7 +65,7 @@ class TrainingsTable extends Component
         };
 
 //            sort pending, upcoming and all by training_date ascending
-        if (in_array($this->filter, ['pending', 'upcoming', 'all'])) {
+        if (in_array($this->filter, ['pending', 'upcoming'])) {
             $query->orderBy('training_slots.training_date');
         } else {
 //            sort completed and expiring by training_date descending

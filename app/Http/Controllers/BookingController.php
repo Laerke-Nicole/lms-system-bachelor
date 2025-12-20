@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Training;
 use App\Models\TrainingSlot;
 use App\Models\User;
+use App\Notifications\NewTraining;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -194,6 +195,16 @@ class BookingController extends Controller
 
 //        update the slot to unavailable
         $slot->update(['status' => 'Unavailable']);
+
+//        send notification to the employees/users in the booking
+//        get the different values the notification needs
+        $course_name = $training->course->title;
+        $training_date = $training->trainingSlot->training_date;
+
+//        send notification to all participants
+        foreach ($training->users as $user) {
+            $user->notify(new NewTraining($course_name, $training_date, $training->id));
+        }
 
 //        remove all the data from the session
         session()->forget('booking');
