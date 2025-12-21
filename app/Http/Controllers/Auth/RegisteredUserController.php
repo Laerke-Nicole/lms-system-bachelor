@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
 //        if user isnt leader or admin send 403
         abort_unless(in_array($user->role, ['admin', 'leader']), 403);
 
-        $sites = Site::all();
+        $sites = Site::with('company')->get();
         return view('auth.register', compact('sites'));
     }
 

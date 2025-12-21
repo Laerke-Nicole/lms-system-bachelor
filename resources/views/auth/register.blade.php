@@ -32,7 +32,7 @@
         @if(auth()->user()->role === 'admin')
             <x-elements.select label="Site" name="site_id">
                 @foreach($sites as $site)
-                    <option value="{{ $site->id }}">{{ $site->site_name }}</option>
+                    <option value="{{ $site->id }}">{{ $site->site_name }} ({{ $site->company->company_name }})</option>
                 @endforeach
             </x-elements.select>
         @endif
