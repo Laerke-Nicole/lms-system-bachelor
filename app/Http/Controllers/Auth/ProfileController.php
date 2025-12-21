@@ -55,6 +55,9 @@ class ProfileController extends Controller
 
     public function certificates()
     {
+//        admins can enter this page
+        abort_if(auth()->user()->role === 'admin', 403);
+
         $user = Auth::user();
 
 //        get the certificates belonging to the user

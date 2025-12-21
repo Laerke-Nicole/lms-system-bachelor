@@ -6,7 +6,9 @@
     <div class="row order-1 order-lg-2">
         <ul class="text-label-1 list-unstyled d-flex flex-lg-column gap-2 gap-lg-4 profile-nav w-100 flex-nowrap">
             <li><a href="{{ route('profiles.edit') }}" class="text-decoration-underline-hover">Personal information</a></li>
-            <li><a href="{{ route('profiles.certificates') }}" class="text-decoration-underline-hover">Certificates</a></li>
+            @if(auth()->user()->role === 'leader' || auth()->user()->role === 'user')
+                <li><a href="{{ route('profiles.certificates') }}" class="text-decoration-underline-hover">Certificates</a></li>
+            @endif
             <li><a href="{{ route('profiles.contacts') }}" class="text-decoration-underline-hover">Contact us</a></li>
             <li><a href="{{ route('gdprs.privacy-policy') }}" class="text-decoration-underline-hover">Privacy policy</a></li>
             <li>
