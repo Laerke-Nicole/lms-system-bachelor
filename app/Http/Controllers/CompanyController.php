@@ -67,7 +67,12 @@ class CompanyController extends Controller
         ]);
 
         // create company including address id
-        Address:: create($validated);
+        Company::create([
+            'company_name' => $request->company_name,
+            'company_mail' => $request->company_mail,
+            'company_phone' => $request->company_phone,
+            'address_id' => $address->id,
+        ]);
 
         //  redirect the user and send a success message
         return redirect()->route('companies.index')->with('success', 'Company created successfully.');
