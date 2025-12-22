@@ -9,7 +9,7 @@
 <div class="row booking-section">
     <div class="col-12 col-lg-8 booking-section-small">
         <div class="row g-3 step-cards">
-            @foreach($trainingSlots as $trainingSlot)
+            @forelse($trainingSlots as $trainingSlot)
                 <div class="col-12 col-md-6 col-lg-4">
 
                     <x-blocks.message />
@@ -48,7 +48,9 @@
                         </button>
                     </x-blocks.form>
                 </div>
-            @endforeach
+            @empty
+                There are currently no available slots to book for this course. Please contact us for more information.
+            @endforelse
         </div>
     </div>
 
