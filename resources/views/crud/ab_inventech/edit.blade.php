@@ -19,7 +19,7 @@
         @method('PUT')
 
         <x-elements.input label="Name" name="ab_inventech_name" value="{{ $abInventech->ab_inventech_name }}" maxlength="255"/>
-        <x-elements.input label="Web" name="ab_inventech_web" value="{{ $abInventech->ab_inventech_web }}" maxlength="2048"/>
+        <x-elements.input label="Web" name="ab_inventech_web" value="{{ $abInventech->ab_inventech_web }}" maxlength="500"/>
         <x-elements.input label="Email" name="ab_inventech_mail" value="{{ $abInventech->ab_inventech_mail }}" maxlength="254"/>
         <x-elements.input label="Phone" name="ab_inventech_phone" value="{{ $abInventech->ab_inventech_phone }}" maxlength="20"/>
         <x-elements.input label="Logo" name="logo" type="file" :required="false" />

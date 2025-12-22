@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AbInventech;
+use App\Models\Address;
+use App\Models\PostalCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,7 +33,7 @@ class AbInventechController extends Controller
         // validate the user input
         $validated = $request->validate([
             'ab_inventech_name' => 'required|string|max:255',
-            'ab_inventech_web' => 'required|url|max:2048',
+            'ab_inventech_web' => 'required|url|max:512',
             'ab_inventech_mail' => 'required|email|max:254',
             'ab_inventech_phone' => 'required|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -42,13 +44,34 @@ class AbInventechController extends Controller
             'country' => 'required|string|max:100',
         ]);
 
+        // create postal code
+        $postalCode = PostalCode::create([
+            'postal_code' => $request->postal_code,
+            'city' => $request->city,
+            'country' => $request->country,
+        ]);
+
+        // create address including postal code id
+        $address = Address::create([
+            'street_name' => $request->street_name,
+            'street_number' => $request->street_number,
+            'postal_code_id' => $postalCode->id,
+        ]);
+
+        $logoPath = null;
         if ($request->hasFile('logo')) {
             $logoPath = $request->file('logo')->store('ab_inventech', 'public');
-            $validated['logo'] = $logoPath;
         }
 
-        // create a new ab inventech in the db
-        AbInventech::create($validated);
+        // create ab inventech including address id
+        AbInventech::create([
+            'ab_inventech_name' => $request->ab_inventech_name,
+            'ab_inventech_web' => $request->ab_inventech_web,
+            'ab_inventech_mail' => $request->ab_inventech_mail,
+            'ab_inventech_phone' => $request->ab_inventech_phone,
+            'logo' => $logoPath,
+            'address_id' => $address->id,
+        ]);
 
         //  redirect the user and send a success message
         return redirect()->route('ab_inventech.index')->with('success', 'AB Inventech created successfully.');
@@ -91,7 +114,7 @@ class AbInventechController extends Controller
         // validate the user input
         $validated = $request->validate([
             'ab_inventech_name' => 'required|string|max:255',
-            'ab_inventech_web' => 'required|url|max:2048',
+            'ab_inventech_web' => 'required|url|max:512',
             'ab_inventech_mail' => 'required|email|max:254',
             'ab_inventech_phone' => 'required|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -118,7 +141,7 @@ class AbInventechController extends Controller
         if ($request->hasFile('logo')) {
 
            if ($abInventech->logo) {
-                Storage::delete('public/' . $abInventech->logo);
+                Storage::disk('public')->delete($abInventech->logo);
             }
             $validated['logo'] = $request->file('logo')->store('ab_inventech', 'public');
         }
@@ -140,7 +163,7 @@ class AbInventechController extends Controller
     public function destroy(AbInventech $abInventech)
     {
         if ($abInventech->logo) {
-            Storage::delete('public/' . $abInventech->logo);
+            Storage::disk('public')->delete($abInventech->logo);
         }
 
         // delete the ab inventech from the db
