@@ -142,7 +142,7 @@ class CourseController extends Controller
 
         if ($request->hasFile('image')) {
             if ($course->image) {
-                Storage::delete('public/' . $course->image);
+                Storage::disk('public')->delete($course->image);
             }
             $imagePath = $request->file('image')->store('courses', 'public');
             $validated['image'] = $imagePath;
@@ -165,7 +165,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         if ($course->image) {
-            Storage::delete('public/' . $course->image);
+            Storage::disk('public')->delete($course->image);
         }
 
         // delete the courses from the db

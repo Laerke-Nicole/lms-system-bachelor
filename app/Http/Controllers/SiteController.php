@@ -70,7 +70,13 @@ class SiteController extends Controller
         ]);
 
         // create site including address id
-        Site::create($validated);
+        Site::create([
+            'site_name' => $request->site_name,
+            'site_mail' => $request->site_mail,
+            'site_phone' => $request->site_phone,
+            'company_id' => $request->company_id,
+            'address_id' => $address->id,
+        ]);
 
         //  redirect the user and send a success message
         return redirect()->route('sites.index')->with('success', 'Site created successfully.');
