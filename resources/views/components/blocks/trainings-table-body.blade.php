@@ -33,14 +33,6 @@
                     @endif
                 </td>
 
-                <td class="d-none d-xl-table-cell">
-                    @if($training->reminder_sent_22_m)
-                        <i class="bi bi-check-lg"></i>
-                    @else
-                        -
-                    @endif
-                </td>
-
             @endif
         @endif
 

@@ -20,7 +20,6 @@
 
             @if(in_array($filter, ['completed', 'expired', 'all']))
                 <th scope="col" class="text-label-1 text-body d-none d-xl-table-cell">Reminder 18m</th>
-                <th scope="col" class="text-label-1 text-body d-none d-xl-table-cell">Reminder 22m</th>
             @endif
         @endif
 

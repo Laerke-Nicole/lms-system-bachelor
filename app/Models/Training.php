@@ -14,7 +14,6 @@ class Training extends Model
     protected $fillable = [
         'status',
         'reminder_sent_18_m',
-        'reminder_sent_22_m',
         'reminder_before_training',
         'ordered_by_id',
         'training_slot_id',

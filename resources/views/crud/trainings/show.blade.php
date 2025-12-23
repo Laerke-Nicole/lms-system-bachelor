@@ -41,7 +41,6 @@
         @endif
         @if(in_array($training->status, ['Completed', 'Expiring']) && auth()->user()->role === 'admin')
             <x-blocks.detail field="Reminder sent 18 months" title="{{ $training->reminder_sent_18_m ? 'Reminder sent' : 'Not sent' }}" />
-            <x-blocks.detail field="Reminder sent 22 months" title="{{ $training->reminder_sent_22_m ? 'Reminder sent' : 'Not sent' }}" />
         @endif
         @if($training->status)
             <x-blocks.detail field="Status" title="{{ $training->status }}" />
