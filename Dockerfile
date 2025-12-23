@@ -2,25 +2,30 @@ FROM php:8.3-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
     unzip \
+    curl \
+    nodejs \
+    npm \
     libzip-dev \
-    && docker-php-ext-install zip pdo pdo_mysql
+    && docker-php-ext-install pdo pdo_mysql zip
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /app
 
-# Copy project files
+# Install PHP dependencies
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Install Node dependencies & build assets
+COPY package.json package-lock.json ./
+RUN npm install
+RUN npm run build
+
+# Copy the rest of the app
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
-
-# Expose port
 EXPOSE 10000
 
-# Start Laravel
 CMD php artisan serve --host=0.0.0.0 --port=10000
