@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 
@@ -22,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS in production (required for Render deployment)
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
 //        pagination on index pages
         Paginator::useBootstrap();
 

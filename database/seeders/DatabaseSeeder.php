@@ -28,31 +28,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        PostalCode::factory(30)->create();
-        Address::factory(50)->create();
-        Company::factory(4)->create();
-        Site::factory(5)->create();
-        User::factory(100)->create();
-        $this->call([
-            AdminUserSeeder::class,
-            CourseSeeder::class,
-        ]);
-        Evaluation::factory(4)->create();
-        FollowUpTest::factory(4)->create();
-        TrainingSlot::factory(50)->create();
-        Training::factory(10)->create();
-        CourseMaterial::factory(20)->create();
-        Requirement::factory(10)->create();
-        TrainingUser::factory(10)->create();
-        Certificate::factory(10)->create();
-        Signature::factory(10)->create();
-
-        //  seeders
+        // Production seeders - always run these first
         $this->call([
             PostalCodeSeeder::class,
             AddressSeeder::class,
             AbInventechSeeder::class,
             GdprSeeder::class,
+            AdminUserSeeder::class,
+            CourseSeeder::class,
         ]);
+
+        // Only run factory-generated test data in non-production environments
+        if (!app()->environment('production')) {
+            PostalCode::factory(30)->create();
+            Address::factory(50)->create();
+            Company::factory(4)->create();
+            Site::factory(5)->create();
+            User::factory(100)->create();
+            Evaluation::factory(4)->create();
+            FollowUpTest::factory(4)->create();
+            TrainingSlot::factory(50)->create();
+            Training::factory(10)->create();
+            CourseMaterial::factory(20)->create();
+            Requirement::factory(10)->create();
+            TrainingUser::factory(10)->create();
+            Certificate::factory(10)->create();
+            Signature::factory(10)->create();
+        }
     }
 }
