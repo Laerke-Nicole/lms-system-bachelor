@@ -4,7 +4,7 @@ services:
     env: docker
     plan: free
     region: frankfurt
-    healthCheckPath: /up
+    healthCheckPath: /
     healthCheckMaxRetries: 15
     healthCheckInterval: 10000
     healthCheckTimeout: 10000

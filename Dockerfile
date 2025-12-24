@@ -34,17 +34,14 @@ RUN mkdir -p /var/www/html/scripts && \
     echo 'echo "=== Laravel Startup Script ==="' >> /var/www/html/scripts/00-laravel.sh && \
     echo 'cd /var/www/html' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 1: Running migrations..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan migrate --force || echo "Migration failed"' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 1: Clearing old caches..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'php artisan optimize:clear || true' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 2: Running seeders..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan db:seed --force || echo "Seeding failed (may already be seeded)"' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 2: Running migrations..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'php artisan migrate --force || true' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 3: Clearing all caches..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan optimize:clear' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 3: Running seeders..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'php artisan db:seed --force || true' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 4: Caching config only..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan config:cache' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "=== Laravel Ready! ==="' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "=== Laravel Ready ==="' >> /var/www/html/scripts/00-laravel.sh && \
     chmod +x /var/www/html/scripts/00-laravel.sh
