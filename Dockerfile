@@ -31,25 +31,20 @@ RUN cd /var/www/html && npm install && npm run build && rm -rf node_modules
 # Create scripts directory and startup script
 RUN mkdir -p /var/www/html/scripts && \
     echo '#!/bin/sh' > /var/www/html/scripts/00-laravel.sh && \
-    echo 'set -e' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Starting Laravel initialization..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "=== Laravel Startup Script ==="' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'cd /var/www/html' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Running migrations..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan migrate --force' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 1: Running migrations..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'php artisan migrate --force || echo "Migration failed"' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Checking if seeding needed..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'USER_COUNT=$(php artisan tinker --execute="echo App\\\\Models\\\\User::count();")' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'if [ "$USER_COUNT" -eq "0" ]; then' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '  echo "Database is empty, running seeders..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '  php artisan db:seed --force' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'else' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '  echo "Database already seeded, skipping..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'fi' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 2: Running seeders..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'php artisan db:seed --force || echo "Seeding failed (may already be seeded)"' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Optimizing Laravel..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 3: Clearing all caches..."' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'php artisan optimize:clear' >> /var/www/html/scripts/00-laravel.sh && \
+    echo '' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "Step 4: Caching config only..."' >> /var/www/html/scripts/00-laravel.sh && \
     echo 'php artisan config:cache' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan route:cache' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan view:cache' >> /var/www/html/scripts/00-laravel.sh && \
     echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Laravel ready!"' >> /var/www/html/scripts/00-laravel.sh && \
+    echo 'echo "=== Laravel Ready! ==="' >> /var/www/html/scripts/00-laravel.sh && \
     chmod +x /var/www/html/scripts/00-laravel.sh
