@@ -55,6 +55,16 @@ This guide walks you through deploying your LMS System with Render (frontend/app
    | `DB_DATABASE` | `railway` | Railway |
    | `DB_USERNAME` | `root` | Railway |
    | `DB_PASSWORD` | Your Railway password | Railway |
+   | `ADMIN1_EMAIL` | Your admin email | You choose |
+   | `ADMIN1_FIRST_NAME` | Admin first name | You choose |
+   | `ADMIN1_LAST_NAME` | Admin last name | You choose |
+   | `ADMIN1_PHONE` | Admin phone | You choose |
+   | `ADMIN1_PASSWORD` | Secure password | You choose |
+   | `ADMIN2_EMAIL` | Second admin email (optional) | You choose |
+   | `ADMIN2_FIRST_NAME` | Second admin first name | You choose |
+   | `ADMIN2_LAST_NAME` | Second admin last name | You choose |
+   | `ADMIN2_PHONE` | Second admin phone | You choose |
+   | `ADMIN2_PASSWORD` | Secure password | You choose |
 
 4. **Deploy**
    - Click "Create Web Service"
@@ -129,6 +139,20 @@ QUEUE_CONNECTION=database
 # Logging
 LOG_CHANNEL=stderr
 LOG_LEVEL=error
+
+# Admin Users (Required for seeding)
+ADMIN1_EMAIL=your-admin@example.com
+ADMIN1_FIRST_NAME=Admin
+ADMIN1_LAST_NAME=User
+ADMIN1_PHONE=12345678
+ADMIN1_PASSWORD=secure-password-here
+
+# Second Admin (Optional)
+ADMIN2_EMAIL=second-admin@example.com
+ADMIN2_FIRST_NAME=Second
+ADMIN2_LAST_NAME=Admin
+ADMIN2_PHONE=87654321
+ADMIN2_PASSWORD=another-secure-password
 ```
 
 ## Troubleshooting

@@ -34,3 +34,23 @@ services:
         value: database
       - key: LOG_CHANNEL
         value: stderr
+      - key: ADMIN1_EMAIL
+        sync: false
+      - key: ADMIN1_FIRST_NAME
+        sync: false
+      - key: ADMIN1_LAST_NAME
+        sync: false
+      - key: ADMIN1_PHONE
+        sync: false
+      - key: ADMIN1_PASSWORD
+        sync: false
+      - key: ADMIN2_EMAIL
+        sync: false
+      - key: ADMIN2_FIRST_NAME
+        sync: false
+      - key: ADMIN2_LAST_NAME
+        sync: false
+      - key: ADMIN2_PHONE
+        sync: false
+      - key: ADMIN2_PASSWORD
+        sync: false

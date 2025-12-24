@@ -21,8 +21,9 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 # Install Node.js for asset building
 RUN apk add --no-cache nodejs npm
 
-# Install composer dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --working-dir=/var/www/html
+# Install composer dependencies and regenerate autoload
+RUN composer install --no-dev --optimize-autoloader --no-interaction --working-dir=/var/www/html && \
+    composer dump-autoload --optimize --no-dev --working-dir=/var/www/html
 
 # Build frontend assets
 RUN cd /var/www/html && npm install && npm run build && rm -rf node_modules
