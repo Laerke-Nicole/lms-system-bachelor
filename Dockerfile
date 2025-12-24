@@ -1,48 +1,37 @@
-FROM richarvey/nginx-php-fpm:3.1.6
+FROM php:8.3-apache
 
-# Copy application files
+# Enable Apache rewrite
+RUN a2enmod rewrite
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    unzip \
+    git \
+    libzip-dev \
+    nodejs \
+    npm \
+    && docker-php-ext-install pdo pdo_mysql zip
+
+# Set Apache document root to Laravel public folder
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+# Update Apache config
+RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+ && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Copy app
 COPY . /var/www/html
 
-# Image config
-ENV SKIP_COMPOSER 1
-ENV WEBROOT /var/www/html/public
-ENV ENABLE_LARAVEL_REWRITE true
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Laravel config
-ENV APP_ENV production
-ENV APP_DEBUG false
-ENV LOG_CHANNEL stderr
+# Install PHP deps
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Allow composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# Build frontend
+RUN npm install && npm run build && rm -rf node_modules
 
-# Install Node.js for asset building
-RUN apk add --no-cache nodejs npm
+# Permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Install composer dependencies and regenerate autoload
-RUN composer install --no-dev --optimize-autoloader --no-interaction --working-dir=/var/www/html && \
-    composer dump-autoload --optimize --no-dev --working-dir=/var/www/html
-
-# Build frontend assets
-RUN cd /var/www/html && npm install && npm run build && rm -rf node_modules
-
-# Create scripts directory and startup script
-RUN mkdir -p /var/www/html/scripts && \
-    echo '#!/bin/sh' > /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "=== Laravel Startup Script ==="' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'cd /var/www/html' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 1: Clearing old caches..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan optimize:clear || true' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 2: Running migrations..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan migrate --force || true' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "Step 3: Running seeders..."' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'php artisan db:seed --force || true' >> /var/www/html/scripts/00-laravel.sh && \
-    echo '' >> /var/www/html/scripts/00-laravel.sh && \
-    echo 'echo "=== Laravel Ready ==="' >> /var/www/html/scripts/00-laravel.sh && \
-    chmod +x /var/www/html/scripts/00-laravel.sh
+EXPOSE 80
