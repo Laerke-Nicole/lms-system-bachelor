@@ -14,7 +14,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# COPY THE APP FIRST (artisan must exist)
+# Copy app
 COPY . .
 
 # Install PHP dependencies
@@ -26,6 +26,9 @@ RUN npm run build
 
 EXPOSE 10000
 
-RUN php artisan migrate --force
-
-CMD php artisan serve --host=0.0.0.0 --port=10000
+# IMPORTANT: run migrations AT START, not build
+CMD php artisan config:clear \
+ && php artisan cache:clear \
+ && php artisan optimize:clear \
+ && php artisan migrate --force \
+ && php artisan serve --host=0.0.0.0 --port=10000
