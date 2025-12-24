@@ -4,7 +4,10 @@ services:
     env: docker
     plan: free
     region: frankfurt
-    healthCheckPath: /
+    healthCheckPath: /up
+    healthCheckMaxRetries: 15
+    healthCheckInterval: 10000
+    healthCheckTimeout: 10000
     envVars:
       - key: APP_KEY
         generateValue: true
