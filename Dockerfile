@@ -27,8 +27,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --working-d
 # Build frontend assets
 RUN cd /var/www/html && npm install && npm run build && rm -rf node_modules
 
-# Create startup script
-RUN echo '#!/bin/sh' > /var/www/html/scripts/00-laravel.sh && \
+# Create scripts directory and startup script
+RUN mkdir -p /var/www/html/scripts && \
+    echo '#!/bin/sh' > /var/www/html/scripts/00-laravel.sh && \
     echo 'echo "Optimizing Laravel..."' >> /var/www/html/scripts/00-laravel.sh && \
     echo 'php artisan config:cache' >> /var/www/html/scripts/00-laravel.sh && \
     echo 'php artisan route:cache' >> /var/www/html/scripts/00-laravel.sh && \
