@@ -15,10 +15,12 @@ class PostalCodeSeeder extends Seeder
 
     public function run()
     {
-        PostalCode::create([
-            'postal_code' => '7430',
-            'city'    => 'Ikast',
-            'country' => 'Denmark',
-        ]);
+        PostalCode::updateOrCreate(
+            ['postal_code' => '7430'],
+            [
+                'city' => 'Ikast',
+                'country' => 'Denmark',
+            ]
+        );
     }
 }

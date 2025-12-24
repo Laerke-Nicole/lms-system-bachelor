@@ -16,12 +16,16 @@ class AddressSeeder extends Seeder
 
     public function run()
     {
-        $postal = PostalCode::where('postal_code', '7430')->first();
+        $postal = PostalCode::where('postal_code', '7430')->firstOrFail();
 
-        Address::create([
-            'street_name'    => 'Eli Christensensvej',
-            'street_number'  => '76-84',
-            'postal_code_id' => $postal->id,
-        ]);
+        Address::updateOrCreate(
+            [
+                'street_name' => 'Eli Christensensvej',
+                'street_number' => '76-84',
+            ],
+            [
+                'postal_code_id' => $postal->id,
+            ]
+        );
     }
 }

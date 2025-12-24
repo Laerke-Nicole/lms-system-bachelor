@@ -15,15 +15,17 @@ class AbInventechSeeder extends Seeder
      */
     public function run()
     {
-        $address = Address::where('street_name', 'Eli Christensensvej')->first();
+        $address = Address::where('street_name', 'Eli Christensensvej')->firstOrFail();
 
-        AbInventech::create([
-            'ab_inventech_web' => 'https://www.ab-inventech.dk/',
-            'ab_inventech_name'  => 'AB Inventech',
-            'ab_inventech_mail'  => 'mail@ab-inventech.dk',
-            'ab_inventech_phone' => '+45 97 15 50 22',
-            'logo' => 'ab_inventech/ab_inventech.png',
-            'address_id' => $address->id,
-        ]);
+        AbInventech::updateOrCreate(
+            ['ab_inventech_web' => 'https://www.ab-inventech.dk/'],
+            [
+                'ab_inventech_name'  => 'AB Inventech',
+                'ab_inventech_mail'  => 'mail@ab-inventech.dk',
+                'ab_inventech_phone' => '+45 97 15 50 22',
+                'logo' => 'ab_inventech/ab_inventech.png',
+                'address_id' => $address->id,
+            ]
+        );
     }
 }

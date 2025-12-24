@@ -14,9 +14,8 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin User 1 - from environment variables
         if (env('ADMIN1_EMAIL')) {
-            User::create(
+            User::updateOrCreate(
                 ['email' => env('ADMIN1_EMAIL')],
                 [
                     'first_name' => env('ADMIN1_FIRST_NAME', 'Admin'),

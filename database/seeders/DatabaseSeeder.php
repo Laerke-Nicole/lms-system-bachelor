@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Production seeders - always run these first
+        // production seeders
         $this->call([
             PostalCodeSeeder::class,
             AddressSeeder::class,
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
         ]);
 
-        // Only run factory-generated test data in non-production environments
+        // non production seeders
         if (!app()->environment('production')) {
             PostalCode::factory(30)->create();
             Address::factory(50)->create();
