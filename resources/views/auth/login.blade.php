@@ -42,7 +42,7 @@
 
             <!-- right side with img -->
             <div class="col-md-6 col-lg-8 p-0 d-none d-md-block">
-                <img src="{{ asset('storage/standard-windmill-image.jpg') }}" alt="windmill" class="windmill-image img-fluid w-100 h-100 object-fit-cover">
+                <img src="{{ asset('images/standard-windmill-image.jpg') }}" alt="windmill" class="windmill-image img-fluid w-100 h-100 object-fit-cover">
             </div>
         </div>
     </div>

@@ -71,8 +71,8 @@ class GdprSeeder extends Seeder
         );
 
         Gdpr::updateOrCreate(
-            ['content' => 'Your employer's LMS administrators and leaders, training providers responsible for delivering your courses, service providers who host or support the LMS (cloud, email, hosting).'],
-            ['content' => 'Your employer's LMS administrators and leaders, training providers responsible for delivering your courses, service providers who host or support the LMS (cloud, email, hosting).']
+            ['content' => "Your employer's LMS administrators and leaders, training providers responsible for delivering your courses, service providers who host or support the LMS (cloud, email, hosting)."],
+            ['content' => "Your employer's LMS administrators and leaders, training providers responsible for delivering your courses, service providers who host or support the LMS (cloud, email, hosting)."]
         );
 
         Gdpr::updateOrCreate(
