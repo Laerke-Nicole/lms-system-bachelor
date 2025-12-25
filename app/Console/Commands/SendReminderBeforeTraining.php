@@ -29,7 +29,7 @@ class SendReminderBeforeTraining extends Command
                     foreach ($training->users as $user) {
                         $user->notify(new NewReminderBeforeTraining($training->id, $courseName, $trainingDate));
                     }
-                } catch (\Exception $e) {
+                } catch (\Throwable $e) {
                     \Log::error('Failed to send training reminder notification: ' . $e->getMessage());
                 }
 

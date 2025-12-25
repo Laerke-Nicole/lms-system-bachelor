@@ -147,7 +147,7 @@ class TrainingController extends Controller
             foreach ($admins as $admin) {
                 $admin->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send training update notification to admins: ' . $e->getMessage());
         }
 
@@ -156,7 +156,7 @@ class TrainingController extends Controller
             if ($training->orderedBy && $training->orderedBy->id !== $currentUserId) {
                 $training->orderedBy->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send training update notification to orderedBy user: ' . $e->getMessage());
         }
 

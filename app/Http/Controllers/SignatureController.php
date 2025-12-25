@@ -91,7 +91,7 @@ class SignatureController extends Controller
             $courseName = $trainingUser->training->course->title;
             $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
             $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send certificate notification: ' . $e->getMessage());
         }
 
@@ -134,7 +134,7 @@ class SignatureController extends Controller
             $courseName = $trainingUser->training->course->title;
             $trainingUser->user->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
             $trainingUser->training->orderedBy->notify(new NewCertificate($courseName, $trainingUser->user_id, $trainingUser->training_id));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send certificate notification: ' . $e->getMessage());
         }
 

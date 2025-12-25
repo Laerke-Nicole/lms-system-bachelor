@@ -79,7 +79,7 @@ class RegisteredUserController extends Controller
                 route('login'),
                 $newUser->role
             ));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send user credentials email: ' . $e->getMessage());
         }
 

@@ -205,7 +205,7 @@ class BookingController extends Controller
             foreach ($training->users as $user) {
                 $user->notify(new NewTraining($course_name, $training_date, $training->id));
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send training notification to participants: ' . $e->getMessage());
         }
 
@@ -215,7 +215,7 @@ class BookingController extends Controller
             foreach ($admins as $admin) {
                 $admin->notify(new NewTraining($course_name, $training_date, $training->id));
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Failed to send training notification to admins: ' . $e->getMessage());
         }
 
