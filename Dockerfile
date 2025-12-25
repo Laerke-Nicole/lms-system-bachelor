@@ -40,8 +40,6 @@ RUN echo '#!/bin/bash' > /start.sh && \
     echo 'echo "Running Laravel startup tasks..."' >> /start.sh && \
     echo 'php artisan storage:link || true' >> /start.sh && \
     echo 'php artisan optimize:clear || true' >> /start.sh && \
-    echo 'php artisan migrate --force || true' >> /start.sh && \
-    echo 'php artisan db:seed --force || true' >> /start.sh && \
     echo 'chown -R www-data:www-data storage bootstrap/cache' >> /start.sh && \
     echo 'exec apache2-foreground' >> /start.sh && \
     chmod +x /start.sh

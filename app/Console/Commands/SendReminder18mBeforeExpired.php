@@ -36,7 +36,11 @@ class SendReminder18MBeforeExpired extends Command
             ->each(function ($training) {
                 $courseName = $training->course->title;
 
-                $training->orderedBy->notify(new NewReminder18mPostTraining($training->id, $courseName));
+                try {
+                    $training->orderedBy->notify(new NewReminder18mPostTraining($training->id, $courseName));
+                } catch (\Exception $e) {
+                    \Log::error('Failed to send 18-month reminder notification: ' . $e->getMessage());
+                }
 
                 $training->update(['reminder_sent_18_m' => true]);
             });

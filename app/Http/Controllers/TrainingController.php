@@ -142,14 +142,22 @@ class TrainingController extends Controller
         $currentUserId = auth()->id();
 
 //        notify all admins (except if they're the updater)
-        $admins = User::where('role', 'admin')->where('id', '!=', $currentUserId)->get();
-        foreach ($admins as $admin) {
-            $admin->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
+        try {
+            $admins = User::where('role', 'admin')->where('id', '!=', $currentUserId)->get();
+            foreach ($admins as $admin) {
+                $admin->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
+            }
+        } catch (\Exception $e) {
+            \Log::error('Failed to send training update notification to admins: ' . $e->getMessage());
         }
 
 //        notify the orderedBy user (except if they're the updater)
-        if ($training->orderedBy && $training->orderedBy->id !== $currentUserId) {
-            $training->orderedBy->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
+        try {
+            if ($training->orderedBy && $training->orderedBy->id !== $currentUserId) {
+                $training->orderedBy->notify(new TrainingUpdated($courseName, $updaterName, $training->id));
+            }
+        } catch (\Exception $e) {
+            \Log::error('Failed to send training update notification to orderedBy user: ' . $e->getMessage());
         }
 
         //  redirect the user and send a success message

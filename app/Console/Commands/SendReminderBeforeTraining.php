@@ -25,8 +25,12 @@ class SendReminderBeforeTraining extends Command
                 $trainingDate = $training->trainingSlot->date_time_formatted;
 
 //                send to all those trainings to the users in the training
-                foreach ($training->users as $user) {
-                    $user->notify(new NewReminderBeforeTraining($training->id, $courseName, $trainingDate));
+                try {
+                    foreach ($training->users as $user) {
+                        $user->notify(new NewReminderBeforeTraining($training->id, $courseName, $trainingDate));
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('Failed to send training reminder notification: ' . $e->getMessage());
                 }
 
                 $training->update(['reminder_before_training' => now()]);

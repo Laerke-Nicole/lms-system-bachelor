@@ -70,14 +70,18 @@ class RegisteredUserController extends Controller
         $newUser = User::create($validated);
 
 //        send email to the user with the email in the input when their account is created
-        Mail::to($newUser->email)->send(new UserCredentials(
-            $newUser->first_name,
-            $newUser->last_name,
-            $newUser->email,
-            $password,
-            route('login'),
-            $newUser->role
-        ));
+        try {
+            Mail::to($newUser->email)->send(new UserCredentials(
+                $newUser->first_name,
+                $newUser->last_name,
+                $newUser->email,
+                $password,
+                route('login'),
+                $newUser->role
+            ));
+        } catch (\Exception $e) {
+            \Log::error('Failed to send user credentials email: ' . $e->getMessage());
+        }
 
 //        return view message depending on the users role
         if ($user->role === 'admin') {

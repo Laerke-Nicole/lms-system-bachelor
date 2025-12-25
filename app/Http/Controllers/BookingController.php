@@ -201,14 +201,22 @@ class BookingController extends Controller
         $training_date = $training->trainingSlot->training_date;
 
 //        send notification to all participants
-        foreach ($training->users as $user) {
-            $user->notify(new NewTraining($course_name, $training_date, $training->id));
+        try {
+            foreach ($training->users as $user) {
+                $user->notify(new NewTraining($course_name, $training_date, $training->id));
+            }
+        } catch (\Exception $e) {
+            \Log::error('Failed to send training notification to participants: ' . $e->getMessage());
         }
 
 //        send notification to all admins
-        $admins = User::where('role', 'admin')->get();
-        foreach ($admins as $admin) {
-            $admin->notify(new NewTraining($course_name, $training_date, $training->id));
+        try {
+            $admins = User::where('role', 'admin')->get();
+            foreach ($admins as $admin) {
+                $admin->notify(new NewTraining($course_name, $training_date, $training->id));
+            }
+        } catch (\Exception $e) {
+            \Log::error('Failed to send training notification to admins: ' . $e->getMessage());
         }
 
 //        remove all the data from the session
