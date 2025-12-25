@@ -72,3 +72,13 @@ jobs:
         with:
           name: laravel-log
           path: storage/logs/laravel.log
+
+  deploy:
+    name: Deploy to Render
+    needs: build
+    runs-on: ubuntu-latest
+    if: success()
+
+    steps:
+      - name: Upload to Render with Render Deploy Hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}

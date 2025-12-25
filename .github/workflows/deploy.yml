@@ -5,15 +5,11 @@ on:
     branches: [main]
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: composer install
-      - run: php artisan test
+  test:
+    uses: ./.github/workflows/tests.yml
 
   deploy:
-    needs: tests
+    needs: test
     runs-on: ubuntu-latest
     if: success()
 
