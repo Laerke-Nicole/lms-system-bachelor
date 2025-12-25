@@ -34,4 +34,17 @@ RUN npm install && npm run build && rm -rf node_modules
 # Permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Create startup script
+RUN echo '#!/bin/bash' > /start.sh && \
+    echo 'set -e' >> /start.sh && \
+    echo 'echo "Running Laravel startup tasks..."' >> /start.sh && \
+    echo 'php artisan storage:link || true' >> /start.sh && \
+    echo 'php artisan optimize:clear || true' >> /start.sh && \
+    echo 'chown -R www-data:www-data storage bootstrap/cache' >> /start.sh && \
+    echo 'exec apache2-foreground' >> /start.sh && \
+    chmod +x /start.sh
+
+
 EXPOSE 80
+
+CMD ["/start.sh"]
