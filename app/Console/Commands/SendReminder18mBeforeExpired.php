@@ -30,7 +30,7 @@ class SendReminder18MBeforeExpired extends Command
         $eighteenMonthsAgo = now()->subMonths(18)->toDateString();
 
         Training::with(['trainingSlot.course', 'orderedBy'])
-            ->where('status', 'Completed')
+            ->where('status', 'Expiring')
             ->where('reminder_sent_18_m', false)
             ->whereDate('completed_at', $eighteenMonthsAgo)
             ->each(function ($training) {
