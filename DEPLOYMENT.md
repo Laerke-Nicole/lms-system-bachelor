@@ -65,6 +65,20 @@ This guide walks you through deploying your LMS System with Render (frontend/app
    | `ADMIN2_LAST_NAME` | Second admin last name | You choose |
    | `ADMIN2_PHONE` | Second admin phone | You choose |
    | `ADMIN2_PASSWORD` | Secure password | You choose |
+   | `MAIL_USERNAME` | Your Brevo login email | Brevo |
+   | `MAIL_PASSWORD` | Your Brevo SMTP key | Brevo |
+   | `MAIL_FROM_ADDRESS` | Sender email address | Your verified email |
+
+   **Getting Brevo SMTP Credentials:**
+   1. Log in to [Brevo](https://app.brevo.com)
+   2. Go to Settings → SMTP & API
+   3. Click "SMTP" tab
+   4. Your SMTP credentials:
+      - `MAIL_HOST`: `smtp-relay.brevo.com`
+      - `MAIL_PORT`: `587`
+      - `MAIL_USERNAME`: Your login email
+      - `MAIL_PASSWORD`: Generate an SMTP key (starts with `xsmtpsib-`)
+   5. Verify your sender email address in Brevo under "Senders"
 
 4. **Deploy**
    - Click "Create Web Service"
@@ -153,6 +167,16 @@ ADMIN2_FIRST_NAME=Second
 ADMIN2_LAST_NAME=Admin
 ADMIN2_PHONE=87654321
 ADMIN2_PASSWORD=another-secure-password
+
+# Mail (Brevo SMTP)
+MAIL_MAILER=smtp
+MAIL_HOST=smtp-relay.brevo.com
+MAIL_PORT=587
+MAIL_ENCRYPTION=tls
+MAIL_USERNAME=your-brevo-login@example.com
+MAIL_PASSWORD=xsmtpsib-your-smtp-key-here
+MAIL_FROM_ADDRESS=your-verified-sender@example.com
+MAIL_FROM_NAME="AB Inventech LMS"
 ```
 
 ## Troubleshooting
@@ -194,6 +218,24 @@ Verify in Render:
 - First request wakes up the app (~30 seconds)
 - Subsequent requests are fast
 - Upgrade to Starter plan for always-on service
+
+### Email/Mail Issues
+
+**Error: Emails not being sent**
+
+✅ Check Brevo configuration:
+1. Verify environment variables in Render:
+   - `MAIL_MAILER=smtp`
+   - `MAIL_HOST=smtp-relay.brevo.com`
+   - `MAIL_PORT=587`
+   - `MAIL_ENCRYPTION=tls`
+   - `MAIL_USERNAME` = your Brevo login email
+   - `MAIL_PASSWORD` = your Brevo SMTP key
+   - `MAIL_FROM_ADDRESS` = verified sender email
+2. Verify sender email in Brevo (Settings → Senders)
+3. Check Brevo SMTP quota/limits
+4. Check Render logs for SMTP errors
+5. After updating mail settings, redeploy or run: `php artisan config:clear`
 
 ## Updating Your Application
 
@@ -244,6 +286,5 @@ In Render dashboard:
 ## Next Steps
 
 1. ✅ Set up custom domain (abi-lms.com)
-2. ✅ Configure email service (SMTP settings)
-3. ✅ Set up monitoring/alerts
-4. ✅ Configure backup strategy
+2. ✅ Set up monitoring/alerts
+3. ✅ Configure backup strategy
