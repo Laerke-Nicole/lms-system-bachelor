@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -34,14 +35,24 @@ Route::post('/forgot-password', function (Request $request) {
 //    validate email
     $request->validate(['email' => 'required|email']);
 
-//    send reset link to user
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
+    try {
+        //    send reset link to user
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
 
-    return $status === Password::ResetLinkSent
-        ? redirect()->route('password.reset.sent')
-        : back()->withErrors(['email' => __($status)]);
+        return $status === Password::ResetLinkSent
+            ? redirect()->route('password.reset.sent')
+            : back()->withErrors(['email' => __($status)]);
+    } catch (\Throwable $e) {
+        // Log the error for debugging
+        Log::error('Password reset email failed: ' . $e->getMessage());
+
+        // Return user-friendly error message
+        return back()->withErrors([
+            'email' => 'Unable to send password reset email. Please try again later or contact support.'
+        ]);
+    }
 })->middleware('guest')->name('password.email');
 
 //    reset password
