@@ -8,13 +8,19 @@
 
     <x-blocks.message/>
 
-    <x-blocks.table-head :headers="['Date & time', 'Course', 'Place', 'Trainer', 'Actions']">
+    <x-blocks.table-head :headers="[
+        ['label' => 'Date & time'],
+        ['label' => 'Course', 'class' => 'd-none d-md-table-cell'],
+        ['label' => 'Place', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Trainer', 'class' => 'd-none d-lg-table-cell'],
+        ['label' => 'Actions'],
+        ]">
         @forelse ($trainingSlots as $trainingSlot)
             <tr>
                 <td>{{ $trainingSlot->training_date ? $trainingSlot->training_date->format('d M Y, H:i') : '-' }}</td>
-                <td>{{ $trainingSlot->course->title ?? '-' }}</td>
-                <td>{{ $trainingSlot->place ?? '-' }}</td>
-                <td>
+                <td class="d-none d-md-table-cell">{{ $trainingSlot->course->title ?? '-' }}</td>
+                <td class="d-none d-lg-table-cell">{{ $trainingSlot->place ?? '-' }}</td>
+                <td class="d-none d-lg-table-cell">
                     @if($trainingSlot->trainer)
                         {{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}
                     @else
