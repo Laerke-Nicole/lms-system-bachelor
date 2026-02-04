@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Training;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -56,5 +57,41 @@ class HomeController extends Controller
         }
 
         return $query->orderBy('training_slots.training_date', 'desc')->paginate(6);
+    }
+
+    /**
+     * Return trainings as JSON for admin calendar
+     */
+    public function calendarTrainings(Request $request)
+    {
+        $start = Carbon::parse($request->query('start'))->startOfDay();
+        $end = Carbon::parse($request->query('end'))->endOfDay();
+
+        $trainings = Training::query()
+            ->with(['trainingSlot.course', 'orderedBy.site.company'])
+            ->whereHas('trainingSlot', function ($query) use ($start, $end) {
+                $query->whereBetween('training_date', [$start, $end]);
+            })
+            ->get();
+
+        return response()->json(
+            $trainings->map(function ($training) {
+                $isPending = $training->status === 'Pending';
+                $companyName = $training->orderedBy?->site?->company?->company_name;
+
+                return [
+                    'id' => $training->id,
+                    'title' => $training->trainingSlot->course->title,
+                    'start' => $training->trainingSlot->training_date->toIso8601String(),
+                    'url' => route('trainings.show', $training->id),
+                    'backgroundColor' => $isPending ? '#6c757d' : '#0d6efd',
+                    'borderColor' => $isPending ? '#6c757d' : '#0d6efd',
+                    'extendedProps' => [
+                        'status' => $training->status,
+                        'company' => $companyName,
+                    ],
+                ];
+            })->values()
+        );
     }
 }

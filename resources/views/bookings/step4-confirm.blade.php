@@ -23,27 +23,27 @@
 
                         <div class="col-sm-8">
                             <h4 class="fw-semibold mb-3">{{ $course->title }}</h4>
-                            <p class="mb-2">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                            <p class="mb-2">{{ $trainingSlot->training_date->format('d M Y') }}</p>
                             <p>{{ $course->duration }} hrs</p>
                         </div>
                     </div>
 
                     <hr>
 
-                    <div class="d-flex flex-column gap-2 mt-2">
-                        <h5 class="text-label-1">Training details</h5>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">Trainer</p>
-                            <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
-                        </div>
+{{--                    <div class="d-flex flex-column gap-2 mt-2">--}}
+{{--                        <h5 class="text-label-1">Training details</h5>--}}
+{{--                        <div class="d-flex justify-content-between">--}}
+{{--                            <p class="text-muted">Trainer</p>--}}
+{{--                            <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>--}}
+{{--                        </div>--}}
 
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted mb-2">Location</p>
-                            <p class="text-dark mb-2">{{ $trainingSlot->place }}</p>
-                        </div>
-                    </div>
+{{--                        <div class="d-flex justify-content-between">--}}
+{{--                            <p class="text-muted mb-2">Location</p>--}}
+{{--                            <p class="text-dark mb-2">{{ $trainingSlot->place }}</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    <hr>
+{{--                    <hr>--}}
 
                     <div class="d-flex flex-column gap-2 mt-2 mb-2">
                         <div class="d-flex justify-content-between">

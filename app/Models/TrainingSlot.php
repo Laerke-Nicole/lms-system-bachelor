@@ -14,6 +14,7 @@ class TrainingSlot extends Model
 
     protected $fillable = [
         'training_date',
+        'training_day',
         'place',
         'status',
         'participation_link',

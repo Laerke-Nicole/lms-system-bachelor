@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('status', ['Pending', 'Upcoming', 'Completed', 'Expiring'])->default('Pending');
             $table->boolean('reminder_sent_18_m')->default(false)->nullable();
+            $table->boolean('reminder_sent_22_m')->default(false)->nullable();
             $table->date('reminder_before_training')->nullable();
             $table->dateTime('completed_at')->nullable();
 

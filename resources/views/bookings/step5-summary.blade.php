@@ -37,7 +37,7 @@
                             </div>
                             <div class="d-flex gap-4 align-items-center small">
                                 @if($training->trainingSlot->training_date)
-                                    <p class="mb-0"><span class="text-dark">Date </span>{{ $training->trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                                    <p class="mb-0"><span class="text-dark">Date </span>{{ $training->trainingSlot->training_date->format('d M Y') }}</p>
                                 @endif
                                 @if($training->trainingSlot->place)
                                     <span class="opacity-25">|</span>

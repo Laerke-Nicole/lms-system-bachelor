@@ -8,6 +8,8 @@ use App\Models\Training;
 use App\Models\TrainingSlot;
 use App\Models\User;
 use App\Notifications\NewTraining;
+use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -47,19 +49,42 @@ class BookingController extends Controller
     public function selectTrainingSlot()
     {
 //        retrieve the session
-        $session = session('booking.course_id');
+        $courseId = session('booking.course_id');
 
 //        throw and 404 error if there's no session
-        abort_if(!$session, 404);
-
-        $trainingSlots = TrainingSlot::where('course_id', $session)
-            ->where('status', 'Available')
-            ->orderBy('training_date')->get();
+        abort_if(!$courseId, 404);
 
 //        get the requirements for this training slots, course
-        $course = Course::with('requirements')->findOrFail($session);
+        $course = Course::with('requirements')->findOrFail($courseId);
 
-        return view('bookings.step2-slot', compact('trainingSlots', 'course'));
+        return view('bookings.step2-slot', compact('course'));
+    }
+
+    /**
+     * step 2 - availability calendar
+     */
+    public function availability(Request $request)
+    {
+        $courseId = session('booking.course_id');
+        abort_if(!$courseId, 404);
+
+        $start = Carbon::parse($request->query('start'))->toDateString();
+        $end   = Carbon::parse($request->query('end'))->toDateString();
+
+        // taken = any slot exists for that day (per your “whole day” rule)
+        $takenDays = TrainingSlot::query()
+            ->where('course_id', $courseId)
+            ->whereBetween('training_day', [$start, $end])
+            ->pluck('training_day');
+
+        return response()->json(
+            $takenDays->map(fn ($day) => [
+                'start' => $day,
+                'end' => Carbon::parse($day)->addDay()->toDateString(),
+                'display' => 'background',
+                'classNames' => ['day-taken'],
+            ])->values()
+        );
     }
 
     /**
@@ -67,15 +92,44 @@ class BookingController extends Controller
      */
     public function storeTrainingSlot(Request $request)
     {
-        // validate the user input
+//        // validate the user input
+//        $validated = $request->validate([
+//            'training_slot_id' => 'required|exists:training_slots,id',
+//        ]);
+//
+////        store the trainings slot id in the session
+//        session(['booking.training_slot_id' => $validated['training_slot_id']]);
+//
+////        clear session data about the users chosen if user goes back to the last page
+//        session()->forget(['booking.user_ids']);
+//
+//        return redirect()->route('trainings.bookings.employees');
+
+        $courseId = session('booking.course_id');
+        abort_if(!$courseId, 404);
+
         $validated = $request->validate([
-            'training_slot_id' => 'required|exists:training_slots,id',
+            'training_day' => ['required', 'date_format:Y-m-d', 'after_or_equal:today'],
         ]);
 
-//        store the trainings slot id in the session
-        session(['booking.training_slot_id' => $validated['training_slot_id']]);
+        $day = $validated['training_day'];
 
-//        clear session data about the users chosen if user goes back to the last page
+        try {
+            $slot = TrainingSlot::create([
+                'course_id' => $courseId,
+                'training_day' => $day,
+                'training_date' => $day . ' 08:00:00',
+                'status' => 'Available',
+                'place' => null,
+                'created_by_admin_id' => null,
+                'trainer_id' => null,
+            ]);
+        } catch (QueryException $e) {
+            // If unique index hits: already taken
+            return back()->withErrors(['training_day' => 'That day is already taken. Please pick another.']);
+        }
+
+        session(['booking.training_slot_id' => $slot->id]);
         session()->forget(['booking.user_ids']);
 
         return redirect()->route('trainings.bookings.employees');

@@ -36,13 +36,13 @@
 
                     <div class="d-flex justify-content-between">
                         <p class="text-muted">Date</p>
-                        <p class="text-dark">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</p>
+                        <p class="text-dark">{{ $trainingSlot->training_date->format('d M Y') }}</p>
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">Trainer</p>
-                        <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
-                    </div>
+{{--                    <div class="d-flex justify-content-between">--}}
+{{--                        <p class="text-muted">Trainer</p>--}}
+{{--                        <p class="text-dark">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>--}}
+{{--                    </div>--}}
 
                     <div class="d-flex justify-content-between">
                         <p class="text-muted">Location</p>

@@ -58,6 +58,7 @@ class TrainingController extends Controller
 
         $slot = $training->trainingSlot;
         $places = ['Online', 'On site'];
+        $trainers = User::where('role', 'admin')->get();
         $statuses = [];
 
 //        if status is pending admin can change it to upcoming
@@ -82,7 +83,7 @@ class TrainingController extends Controller
             $statuses = ['Expiring'];
         }
 
-        return view('crud.trainings.edit', compact('training','places', 'slot', 'statuses'));
+        return view('crud.trainings.edit', compact('training','places', 'slot', 'statuses', 'trainers'));
     }
 
 
@@ -109,6 +110,7 @@ class TrainingController extends Controller
             'place' => 'required',
             'status' => 'required',
             'participation_link' => 'nullable|url',
+            'trainer_id' => 'required|exists:users,id',
         ]);
 
 //        update the training date and participation link on trainingslot
@@ -116,6 +118,7 @@ class TrainingController extends Controller
             'training_date' => $validated['training_date'],
             'place' => $validated['place'],
             'participation_link' => $validated['participation_link'] ?? null,
+            'trainer_id' => $validated['trainer_id'],
         ]);
 
 

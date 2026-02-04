@@ -1,79 +1,110 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ Breadcrumbs::render('bookings.slot') }}
 
-{{ Breadcrumbs::render('bookings.slot') }}
+    <h3 class="mb-4">When do you want to book for?</h3>
 
-<h3 class="mb-5">When do you want to book for?</h3>
+    <x-blocks.message />
 
-<div class="row booking-section">
-    <div class="col-12 col-lg-8 booking-section-small">
-        <div class="row g-3 step-cards">
-            @forelse($trainingSlots as $trainingSlot)
-                <div class="col-12 col-md-6 col-lg-4">
+    <div class="row booking-section">
+        <div class="col-12 col-lg-8 booking-section-small">
+            <div id="booking-calendar" class="bg-white rounded-3 shadow-sm p-3"></div>
 
-                    <x-blocks.message />
+            <form id="dayForm" method="POST" action="{{ route('trainings.bookings.slot.store') }}" class="d-none">
+                @csrf
+                <input type="hidden" name="training_day" id="training_day">
+            </form>
+        </div>
 
-                    <x-blocks.form action="{{ route('trainings.bookings.slot.store') }}" method="POST" class="mb-0 w-100 d-flex flex-column">
-                        <input type="hidden" name="training_slot_id" value="{{ $trainingSlot->id }}">
-
-                        <button type="submit" class="step-cards__card w-100 border-0 bg-white rounded-3 shadow-sm text-start d-flex flex-column p-0">
-
-                        <div class="position-relative">
-                            <div class="position-absolute top-0 left-0 m-2 z-1">
-                                <p class="badge text-bg-light text-label-2">{{ $trainingSlot->place }}</p>
-                            </div>
-                            <div class="step-cards__card__image-wrapper2 img-hover-scale">
-                                <img src="{{ asset('storage/' . $trainingSlot->course->image) ?? 'images/placeholder.png' }}"
-                                     alt="{{ $trainingSlot->course->title }}"
-                                     class="step-cards__card__image-wrapper2__image object-fit-cover position-relative h-34 w-100">
-                            </div>
-                        </div>
-
-                        <div class="p-3">
-                            <p class="text-primary text-label-2 mb-1">{{ $trainingSlot->course->title }}</p>
-                            <h4 class="mb-3">{{ $trainingSlot->training_date->format('d M Y, H:i') }}</h4>
-
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex justify-content-center gap-2">
-                                    <i class="bi bi-person text-muted"></i>
-                                    <p class="fs-5 mb-0 text-muted">{{ $trainingSlot->trainer->first_name }} {{ $trainingSlot->trainer->last_name }}</p>
-                                </div>
-
-                                <div>
-                                    <i class="bi bi-chevron-right text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                        </button>
-                    </x-blocks.form>
+        @if($course->requirements->isNotEmpty())
+            <div class="col-12 col-lg-4">
+                <div class="booking-sidebar booking-requirements">
+                    <h3>Requirements and rules</h3>
+                    @foreach($course->requirements as $requirement)
+                        @if($requirement->title)
+                            <h4 class="booking-requirements__title">{{ $requirement->title }}</h4>
+                        @endif
+                        @if($requirement->content)
+                            <p class="booking-requirements__content">{{ $requirement->content }}</p>
+                        @endif
+                    @endforeach
                 </div>
-            @empty
-                There are currently no available slots to book for this course. Please contact us for more information.
-            @endforelse
-        </div>
-    </div>
-
-    @if($course->requirements->isNotEmpty())
-        <div class="col-12 col-lg-4">
-            <div class="booking-sidebar booking-requirements">
-                <h3>Requirements and rules</h3>
-
-                @foreach($course->requirements as $requirement)
-                    @if($requirement->title)
-                        <h4 class="booking-requirements__title">{{ $requirement->title }}</h4>
-                    @endif
-
-                    @if($requirement->content)
-                        <p class="booking-requirements__content">{{ $requirement->content }}</p>
-                    @endif
-                @endforeach
             </div>
-        </div>
-    @endif
-</div>
-
+        @endif
+    </div>
 @endsection
+
+@push('styles')
+    <style>
+        /* Taken days - red background, disabled cursor */
+        .fc .day-taken {
+            background: #dc3545 !important;
+            opacity: .25;
+        }
+        .fc .fc-daygrid-day.fc-day-taken .fc-daygrid-day-frame {
+            cursor: not-allowed;
+        }
+
+        /* Past days - grey out, disabled cursor */
+        .fc .fc-day-past .fc-daygrid-day-frame {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        /* Available days - pointer cursor, grey hover */
+        .fc .fc-daygrid-day:not(.fc-day-past):not(.fc-day-taken) .fc-daygrid-day-frame {
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+        .fc .fc-daygrid-day:not(.fc-day-past):not(.fc-day-taken):hover .fc-daygrid-day-frame {
+            background-color: rgba(108, 117, 125, 0.15);
+        }
+    </style>
+@endpush
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('booking-calendar');
+            const form = document.getElementById('dayForm');
+            const input = document.getElementById('training_day');
+
+            const calendar = new FullCalendar.Calendar(el, {
+                initialView: 'dayGridMonth',
+                firstDay: 1,
+                height: 'auto',
+                validRange: { start: new Date().toISOString().slice(0,10) },
+
+                events: "{{ route('trainings.bookings.slot.availability') }}",
+
+                // Mark day cells as taken when background events render
+                eventDidMount: function(info) {
+                    if (info.event.display === 'background' && info.event.classNames.includes('day-taken')) {
+                        const dateStr = info.event.startStr.slice(0, 10);
+                        const dayCell = el.querySelector(`[data-date="${dateStr}"]`);
+                        if (dayCell) {
+                            dayCell.classList.add('fc-day-taken');
+                        }
+                    }
+                },
+
+                dateClick: function(info) {
+                    const day = info.dateStr;
+
+                    // block taken days
+                    if (info.dayEl.classList.contains('fc-day-taken')) return;
+
+                    input.value = day;
+                    form.submit();
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+@endpush
 
 @push('fixed-elements')
     <x-blocks.booking-progress-bar :step="2" />

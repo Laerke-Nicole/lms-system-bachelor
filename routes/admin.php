@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role:leader'])->group(function () {
 
 // user role admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/calendar/trainings', [HomeController::class, 'calendarTrainings'])->name('calendar.trainings');
     Route::resource('companies', CompanyController::class);
     Route::resource('sites', SiteController::class);
     Route::resource('ab_inventech', AbInventechController::class);

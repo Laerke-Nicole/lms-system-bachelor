@@ -17,8 +17,8 @@
 
 {{--    admin dashboard --}}
 @if(auth()->user()->role === 'admin')
-{{--    all active trainings--}}
-    @include('components.sections.trainings-list-home')
+{{--    all trainings calendar--}}
+    @include('components.sections.trainings-calendar-home')
 {{--quick links to manage and create new courses--}}
     @include('components.sections.create-manage-courses')
 @endif

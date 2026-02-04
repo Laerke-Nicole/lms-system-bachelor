@@ -5,6 +5,7 @@
     <!-- SCSS and JS -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
+    @stack('styles')
 </head>
 <body>
 
@@ -24,6 +25,7 @@
 
 @stack('fixed-elements')
 
+@stack('scripts')
 @endauth
 
 </body>

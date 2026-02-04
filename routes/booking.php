@@ -10,6 +10,7 @@ Route::middleware(['auth', 'role:leader'])->controller(BookingController::class)
 
 //    step 2 picking slot
     Route::get('/slot', 'selectTrainingSlot')->name('slot');
+    Route::get('/slot/availability', 'availability')->name('slot.availability');
     Route::post('/slot', 'storeTrainingSlot')->name('slot.store');
 
 //    step 3 picking the employees

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('training_slots', function (Blueprint $table) {
             $table->id();
             $table->dateTime('training_date');
-            $table->enum('place', ['Online', 'On site']);
+            $table->date('training_day');
+            $table->enum('place', ['Online', 'On site'])->nullable();
             $table->enum('status', ['Available', 'Unavailable'])->default('Available');
             $table->string('participation_link', 2048)->nullable();
 
@@ -24,14 +25,18 @@ return new class extends Migration
                 ->cascadeOnUpdate();
 
             $table->foreignId('created_by_admin_id')
+                ->nullable()
                 ->constrained('users')
-                ->cascadeOnDelete()
+                ->nullOnDelete()
                 ->cascadeOnUpdate();
 
             $table->foreignId('trainer_id')
+                ->nullable()
                 ->constrained('users')
-                ->cascadeOnDelete()
+                ->nullOnDelete()
                 ->cascadeOnUpdate();
+
+            $table->unique(['course_id', 'training_day'], 'uniq_course_day');
 
             $table->timestamps();
         });

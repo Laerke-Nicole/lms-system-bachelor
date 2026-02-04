@@ -4,8 +4,12 @@
         <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->course->title }}</td>
 
         @if(auth()->user()->role === 'user' || auth()->user()->role === 'leader')
-            <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
-            @if($filter === 'all' || $filter === 'upcoming')
+            @if($training->trainingSlot->trainer)
+                <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->trainer->first_name }} {{ $training->trainingSlot->trainer->last_name }}</td>
+            @else
+                <td class="d-none d-lg-table-cell"></td>
+            @endif
+                @if($filter === 'all' || $filter === 'upcoming')
                 <td class="d-none d-lg-table-cell">{{ $training->trainingSlot->place }}</td>
             @endif
         @endif
