@@ -61,6 +61,7 @@ class TrainingController extends Controller
         $trainers = User::where('role', 'admin')->get();
         $statuses = [];
 
+
 //        if status is pending admin can change it to upcoming
         if ($training->status === 'Pending') {
             $statuses = ['Pending', 'Upcoming'];
