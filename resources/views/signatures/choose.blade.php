@@ -57,7 +57,7 @@
             <div class="col-lg-4">
                 <div class="alert alert-primary" role="alert">
                     Please review your assessment before continuing.
-                    <a href="{{ asset('storage/' . $trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">You can open the PDF here</a>.
+                    <a href="{{ uploads_url($trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">You can open the PDF here</a>.
                 </div>
             </div>
         @endif

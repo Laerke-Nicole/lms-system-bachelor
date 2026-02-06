@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="mb-4">
                             <h3>2. Training completion printed signature</h3>
-                            <p>Please sign by uploading a copy of your signed certificate to confirm that you completed this training and have <a href="{{ asset('storage/' . $trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">read your assessment evaluation</a>.</p>
+                            <p>Please sign by uploading a copy of your signed certificate to confirm that you completed this training and have <a href="{{ uploads_url($trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">read your assessment evaluation</a>.</p>
                         </div>
                     </div>
 

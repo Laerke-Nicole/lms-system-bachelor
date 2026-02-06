@@ -35,7 +35,7 @@ class SignatureController extends Controller
         ]);
 
 //        save the temporary signature image
-        $signaturePath = $request->file('signature_image')->store('signature_image/temp', 'public');
+        $signaturePath = $request->file('signature_image')->store('signature_image/temp', config('filesystems.uploads'));
 
         $trainingUser->update([
             'temporary_signature' => $signaturePath,
@@ -65,7 +65,7 @@ class SignatureController extends Controller
 
 //        replace the temporary signature with the real one
         $signature = str_replace('signatures/temp', 'signatures/final', $trainingUser->temporary_signature);
-        Storage::disk('public')->move($trainingUser->temporary_signature, $signature);
+        uploads_disk()->move($trainingUser->temporary_signature, $signature);
 
         // create the certificate
         $certificate = Certificate::create([
@@ -113,7 +113,7 @@ class SignatureController extends Controller
             'signed_certificate_image' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
-        $signaturePath = $request->file('signed_certificate_image')->store('signed_certificate', 'public');
+        $signaturePath = $request->file('signed_certificate_image')->store('signed_certificate', config('filesystems.uploads'));
 
         // create the certificate
         $certificate = Certificate::firstOrCreate([

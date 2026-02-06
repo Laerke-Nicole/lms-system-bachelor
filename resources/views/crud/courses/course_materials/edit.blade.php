@@ -25,7 +25,7 @@
         @endif
         @if($courseMaterial->pdf)
             <div class="mb-3">
-                <a href="{{ asset('storage/' . $courseMaterial->pdf) }}" target="_blank">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a>
+                <a href="{{ uploads_url($courseMaterial->pdf) }}" target="_blank">View PDF<i class="bi bi-file-earmark-pdf ms-2"></i></a>
             </div>
         @endif
 

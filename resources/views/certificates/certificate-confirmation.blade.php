@@ -16,7 +16,7 @@
     {{--                    if user signed by printing --}}
                     @elseif($certificate->signature->signed_certificate_image)
                         <div>
-                            <a href="{{ asset('storage/' . $certificate->signature->signed_certificate_image) }}" class="btn btn-primary" target="_blank">Get certificate<i class="bi bi-download ms-2"></i></a>
+                            <a href="{{ uploads_url($certificate->signature->signed_certificate_image) }}" class="btn btn-primary" target="_blank">Get certificate<i class="bi bi-download ms-2"></i></a>
                         </div>
                     @endif
                     <div>

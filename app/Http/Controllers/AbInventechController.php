@@ -60,7 +60,7 @@ class AbInventechController extends Controller
 
         $logoPath = null;
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('ab_inventech', 'public');
+            $logoPath = $request->file('logo')->store('ab_inventech', config('filesystems.uploads'));
         }
 
         // create ab inventech including address id
@@ -141,9 +141,9 @@ class AbInventechController extends Controller
         if ($request->hasFile('logo')) {
 
            if ($abInventech->logo) {
-                Storage::disk('public')->delete($abInventech->logo);
+                uploads_disk()->delete($abInventech->logo);
             }
-            $validated['logo'] = $request->file('logo')->store('ab_inventech', 'public');
+            $validated['logo'] = $request->file('logo')->store('ab_inventech', config('filesystems.uploads'));
         }
 
 //        updated ab inventech
@@ -163,7 +163,7 @@ class AbInventechController extends Controller
     public function destroy(AbInventech $abInventech)
     {
         if ($abInventech->logo) {
-            Storage::disk('public')->delete($abInventech->logo);
+            uploads_disk()->delete($abInventech->logo);
         }
 
         // delete the ab inventech from the db

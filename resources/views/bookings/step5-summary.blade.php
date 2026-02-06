@@ -20,7 +20,7 @@
                     <div class="row mb-3 g-3">
                         <div class="col-sm-3 col-lg-4">
                             @if($training->trainingSlot->course->image)
-                                <img src="{{ asset('storage/' . $training->trainingSlot->course->image) }}"
+                                <img src="{{ uploads_url($training->trainingSlot->course->image) }}"
                                      alt="{{ $training->trainingSlot->course->title }}"
                                      class="h-100 w-100 object-fit-cover rounded">
                             @else

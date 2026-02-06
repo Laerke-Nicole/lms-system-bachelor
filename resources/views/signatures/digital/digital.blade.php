@@ -32,7 +32,7 @@
                                         required
                                     >
                                     <label class="form-label">I hereby confirm my signature is correct, I completed the required training and evaluation, and have
-                                        <a href="{{ asset('storage/' . $trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">read my assessment evaluation</a>.
+                                        <a href="{{ uploads_url($trainingUser->assessment) }}" target="_blank" class="text-decoration-underline">read my assessment evaluation</a>.
                                     </label>
                                 </div>
                             </div>

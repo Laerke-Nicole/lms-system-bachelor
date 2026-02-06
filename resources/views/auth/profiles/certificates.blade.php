@@ -49,7 +49,7 @@
                             </div>
                         @elseif($certificate->trainingUser->signature->signed_certificate_image)
                             <div>
-                                <a href="{{ asset('storage/' . $certificate->trainingUser->signature->signed_certificate_image) }}"
+                                <a href="{{ uploads_url($certificate->trainingUser->signature->signed_certificate_image) }}"
                                    target="_blank"><i class="bi bi-download me-2"></i>Download</a>
                             </div>
                         @endif

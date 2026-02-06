@@ -12,7 +12,7 @@
                     </div>
                 @elseif($userTrainingRecord->signature && $userTrainingRecord->signature->signed_certificate_image)
                     <div>
-                        <a href="{{ asset('storage/' . $userTrainingRecord->signature->signed_certificate_image) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
+                        <a href="{{ uploads_url($userTrainingRecord->signature->signed_certificate_image) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
                     </div>
                 @else
                     <span class="text-muted">Certificate not yet available</span>

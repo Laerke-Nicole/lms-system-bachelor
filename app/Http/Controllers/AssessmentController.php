@@ -25,7 +25,7 @@ class AssessmentController extends Controller
         $trainingUser = TrainingUser::findOrFail($trainingUserId);
 
         // store the file in public/assessments
-        $assessmentPath = $request->file('assessment')->store('assessments', 'public');
+        $assessmentPath = $request->file('assessment')->store('assessments', config('filesystems.uploads'));
 
         // update the training user with the assessment path
         $trainingUser->update([
@@ -39,8 +39,8 @@ class AssessmentController extends Controller
 //    delete the assessment image
     public function destroy(TrainingUser $trainingUser)
     {
-        if ($trainingUser->assessment && Storage::disk('public')->exists($trainingUser->assessment)) {
-            Storage::disk('public')->delete($trainingUser->assessment);
+        if ($trainingUser->assessment && uploads_disk()->exists($trainingUser->assessment)) {
+            uploads_disk()->delete($trainingUser->assessment);
         }
 
         // delete the assessment image

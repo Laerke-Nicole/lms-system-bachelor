@@ -10,7 +10,7 @@
 
                 @if($abInventech && $abInventech->logo)
                     <div class="pt-3 pt-md-4 ps-md-4 pt-lg-5 ps-lg-5">
-                        <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
+                        <img src="{{ uploads_url($abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="w-36 img-fluid">
                     </div>
                 @endif
 

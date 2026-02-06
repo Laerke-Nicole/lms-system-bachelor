@@ -39,7 +39,7 @@
                             <h4>{{ $material->type }}</h4>
                             <p class="mb-2">{{ $material->title }}</p>
                             @if($material->type === 'PDF' && $material->pdf)
-                                <a href="{{ asset('storage/' . $material->pdf) }}" target="_blank" class="text-primary">
+                                <a href="{{ uploads_url($material->pdf) }}" target="_blank" class="text-primary">
                                     Download PDF
                                     <i class="bi bi-download ms-1"></i>
                                 </a>

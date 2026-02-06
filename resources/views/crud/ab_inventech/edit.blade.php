@@ -24,7 +24,7 @@
         <x-elements.input label="Phone" name="ab_inventech_phone" value="{{ $abInventech->ab_inventech_phone }}" maxlength="20"/>
         <x-elements.input label="Logo" name="logo" type="file" :required="false" />
         <div class="w-50 mb-3">
-            <img src="{{ asset('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="'w-50 img-fluid">
+            <img src="{{ uploads_url($abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="'w-50 img-fluid">
         </div>
         <x-blocks.edit-address :table="$abInventech" />
 

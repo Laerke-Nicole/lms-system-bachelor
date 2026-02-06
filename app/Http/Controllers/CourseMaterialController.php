@@ -53,7 +53,7 @@ class CourseMaterialController extends Controller
         ]);
 
         if ($request->hasFile('pdf')) {
-            $pdfPath = $request->file('pdf')->store('courses', 'public');
+            $pdfPath = $request->file('pdf')->store('courses', config('filesystems.uploads'));
             $validated['pdf'] = $pdfPath;
         }
 
@@ -99,9 +99,9 @@ class CourseMaterialController extends Controller
 
         if ($request->hasFile('pdf')) {
             if ($courseMaterial->pdf) {
-                Storage::delete('public/' . $courseMaterial->pdf);
+                uploads_disk()->delete($courseMaterial->pdf);
             }
-            $pdfPath = $request->file('pdf')->store('courseMaterials', 'public');
+            $pdfPath = $request->file('pdf')->store('courseMaterials', config('filesystems.uploads'));
             $validated['pdf'] = $pdfPath;
         }
 

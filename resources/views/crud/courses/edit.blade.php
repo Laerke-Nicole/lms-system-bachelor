@@ -27,7 +27,7 @@
         <x-elements.input label="Follow up test link" name="test_link" type="url" value="{{ $course->test_link }}" maxlength="2048"/>
         <x-elements.input label="Image" name="image" type="file" :required="false" />
         <div class="w-50 mb-5">
-            <img src="{{ asset('storage/' . $course->image) }}" alt="{{ basename($course->image) }}" class="'w-50 img-fluid">
+            <img src="{{ uploads_url($course->image) }}" alt="{{ basename($course->image) }}" class="'w-50 img-fluid">
         </div>
 
         <div class="d-flex flex-wrap align-items-baseline gap-2">

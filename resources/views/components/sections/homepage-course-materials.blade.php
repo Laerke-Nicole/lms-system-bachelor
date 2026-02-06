@@ -3,7 +3,7 @@
     <a href="{{ route('sections.course-materials', $material->id) }}">
         <div class="row align-items-center">
             <div class="col-lg-4">
-                <img src="{{ asset('storage/' . $material->image) ?? 'images/placeholder.png' }}"
+                <img src="{{ uploads_url($material->image) ?? 'images/placeholder.png' }}"
                      alt="{{ $material->title }}"
                      class="h-100 w-100 object-fit-cover">
             </div>

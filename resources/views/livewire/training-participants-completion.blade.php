@@ -64,7 +64,7 @@
                                 @if($participant->signature && $participant->signature->signature_image)
                                     <a href="{{ route('certificates.participantCertificatePdf', $participant->id) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
                                 @elseif($participant->signature && $participant->signature->signed_certificate_image)
-                                    <a href="{{ asset('storage/' . $participant->signature->signed_certificate_image) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
+                                    <a href="{{ uploads_url($participant->signature->signed_certificate_image) }}" target="_blank"><i class="bi bi-download me-2"></i>Download</a>
                                 @else
                                     <span class="text-muted">Not signed yet</span>
                                 @endif

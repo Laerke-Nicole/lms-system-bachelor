@@ -13,7 +13,7 @@
             <dd class="col-sm-10 {{ $valueClass ?? 'lh-md' }}">
                 @if($isImage)
                     @if($title)
-                        <img src="{{ asset('storage/' . $title) }}"
+                        <img src="{{ uploads_url($title) }}"
                              alt="{{ basename($title) }}"
                              class="{{ $imageClass ?? 'w-60 img-fluid' }}">
                     @endif
