@@ -120,7 +120,7 @@ class BookingController extends Controller
                 'training_day' => $day,
                 'training_date' => $day . ' 08:00:00',
                 'status' => 'Available',
-                'place' => null,
+                'place' => 'Online',
                 'created_by_admin_id' => null,
                 'trainer_id' => null,
             ]);
