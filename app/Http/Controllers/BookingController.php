@@ -125,8 +125,12 @@ class BookingController extends Controller
                 'trainer_id' => null,
             ]);
         } catch (QueryException $e) {
-            // If unique index hits: already taken
-            return back()->withErrors(['training_day' => 'That day is already taken. Please pick another.']);
+            // Only treat integrity constraint violations (duplicate key) as "already taken"
+            if ($e->getCode() === '23000') {
+                return back()->withErrors(['training_day' => 'That day is already taken. Please pick another.']);
+            }
+
+            throw $e;
         }
 
         session(['booking.training_slot_id' => $slot->id]);
