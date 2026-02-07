@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,15 @@ class TrainingSlot extends Model
     protected $casts = [
         'training_date' => 'datetime',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (TrainingSlot $slot) {
+            if ($slot->isDirty('training_date') && $slot->training_date) {
+                $slot->training_day = Carbon::parse($slot->training_date)->toDateString();
+            }
+        });
+    }
 
 //    format of dates to not show 2025-01-12 but 01 dec 2025
     protected function serializeDate(DateTimeInterface $date)

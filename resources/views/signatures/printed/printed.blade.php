@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="row justify-content-center py-5">
+    <div class="row justify-content-center py-5 section-spacing">
         <div class="col-lg-7">
 
             <div class="card shadow-sm border-0">
