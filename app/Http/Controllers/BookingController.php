@@ -125,11 +125,7 @@ class BookingController extends Controller
                 'trainer_id' => null,
             ]);
         } catch (QueryException $e) {
-            if ($e->getCode() === '23000') {
-                return back()->withErrors(['training_day' => 'That day is already taken. Please pick another.']);
-            }
-
-            throw $e;
+            return back()->withErrors(['training_day' => 'DB Error: ' . $e->getMessage()]);
         }
 
         session(['booking.training_slot_id' => $slot->id]);
