@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Support\Facades\Log;
 
 class TrainingSlot extends Model
 {
@@ -81,33 +82,45 @@ class TrainingSlot extends Model
      */
     protected function pruning(): void
     {
-        $disk = uploads_disk();
+        try {
+            $disk = uploads_disk();
 
-        $training = $this->training;
-        if (!$training) {
+            $training = $this->training()
+                ->with(['trainingUsers.signature'])
+                ->first();
+
+            if (!$training) return;
+
+            foreach ($training->trainingUsers as $trainingUser) {
+                $this->deleteFileFromDisk($disk, $trainingUser->assessment);
+                $this->deleteFileFromDisk($disk, $trainingUser->temporary_signature);
+
+                if ($signature = $trainingUser->signature) {
+                    $this->deleteFileFromDisk($disk, $signature->signature_image);
+                    $this->deleteFileFromDisk($disk, $signature->signed_certificate_image);
+                }
+            }
+        } catch (\Throwable $e) {
+            Log::error('TrainingSlot pruning failed for slot #' . $this->id, [
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    /**
+     * Safely delete a file from disk, validating the path first.
+     */
+    private function deleteFileFromDisk($disk, ?string $path): void
+    {
+        if (empty($path) || $path === '/' || $path === '.' || str_contains($path, '..')) {
             return;
         }
 
-        foreach ($training->trainingUsers as $trainingUser) {
-            // Delete assessment PDF
-            if ($trainingUser->assessment) {
-                $disk->delete($trainingUser->assessment);
-            }
-
-            // Delete temporary signature image
-            if ($trainingUser->temporary_signature) {
-                $disk->delete($trainingUser->temporary_signature);
-            }
-
-            // Delete signature files
-            if ($signature = $trainingUser->signature) {
-                if ($signature->signature_image) {
-                    $disk->delete($signature->signature_image);
-                }
-                if ($signature->signed_certificate_image) {
-                    $disk->delete($signature->signed_certificate_image);
-                }
-            }
+        if (!$disk->delete($path)) {
+            Log::warning('Failed to delete file during pruning', [
+                'path' => $path,
+                'slot_id' => $this->id,
+            ]);
         }
     }
 }
