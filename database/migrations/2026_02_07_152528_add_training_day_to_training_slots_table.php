@@ -27,12 +27,13 @@ return new class extends Migration
             $table->date('training_day')->nullable(false)->change();
         });
 
-        // Only add the unique constraint if it doesn't already exist
-        $indexExists = collect(DB::select("SHOW INDEX FROM training_slots WHERE Key_name = 'uniq_course_day'"))->isNotEmpty();
-        if (!$indexExists) {
+        // Add unique constraint if it doesn't already exist
+        try {
             Schema::table('training_slots', function (Blueprint $table) {
                 $table->unique(['course_id', 'training_day'], 'uniq_course_day');
             });
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Constraint already exists, skip
         }
     }
 
