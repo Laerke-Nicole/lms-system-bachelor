@@ -39,9 +39,9 @@
                                 @if($training->trainingSlot->training_date)
                                     <p class="mb-0"><span class="text-dark">Date </span>{{ $training->trainingSlot->training_date->format('d M Y') }}</p>
                                 @endif
-                                @if($training->trainingSlot->place)
+                                @if($training->trainingSlot->course->duration)
                                     <span class="opacity-25">|</span>
-                                    <p class="mb-0"><span class="text-dark">Location </span> {{ $training->trainingSlot->place }}</p>
+                                    <p class="mb-0"><span class="text-dark">Duration </span> {{ $training->trainingSlot->course->duration }} hrs</p>
                                 @endif
                             </div>
                         </div>

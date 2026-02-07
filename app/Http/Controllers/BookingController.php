@@ -92,19 +92,6 @@ class BookingController extends Controller
      */
     public function storeTrainingSlot(Request $request)
     {
-//        // validate the user input
-//        $validated = $request->validate([
-//            'training_slot_id' => 'required|exists:training_slots,id',
-//        ]);
-//
-////        store the trainings slot id in the session
-//        session(['booking.training_slot_id' => $validated['training_slot_id']]);
-//
-////        clear session data about the users chosen if user goes back to the last page
-//        session()->forget(['booking.user_ids']);
-//
-//        return redirect()->route('trainings.bookings.employees');
-
         $courseId = session('booking.course_id');
         abort_if(!$courseId, 404);
 
