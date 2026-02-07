@@ -111,7 +111,7 @@ class TrainingController extends Controller
             'place' => 'required',
             'status' => 'required',
             'participation_link' => 'nullable|url',
-            'trainer_id' => 'required|exists:users,id',
+            'trainer_id' => 'nullable|exists:users,id',
         ]);
 
 //        update the training date and participation link on trainingslot
