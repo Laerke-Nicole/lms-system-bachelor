@@ -125,7 +125,14 @@ class BookingController extends Controller
                 'trainer_id' => null,
             ]);
         } catch (QueryException $e) {
-            // Only treat integrity constraint violations (duplicate key) as "already taken"
+            \Log::error('TrainingSlot creation failed', [
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+                'course_id' => $courseId,
+                'day' => $day,
+            ]);
+
+            // Only treat duplicate key as "already taken"
             if ($e->getCode() === '23000') {
                 return back()->withErrors(['training_day' => 'That day is already taken. Please pick another.']);
             }
