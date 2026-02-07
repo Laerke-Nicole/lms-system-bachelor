@@ -105,7 +105,7 @@
 
     @if($abInventech && $abInventech->logo)
         <div class="certificate__logo">
-            <img src="{{ public_path('storage/' . $abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
+            <img src="{{ uploads_url($abInventech->logo) }}" alt="{{ basename($abInventech->logo) }}" class="certificate__image">
         </div>
     @endif
 
@@ -131,7 +131,7 @@
     @if($certificate->signature)
         <div class="certificate__signature-block">
             @if($certificate->signature->signature_image)
-                <img src="{{ public_path('storage/' . $certificate->signature->signature_image) }}" class="certificate__signature-image">
+                <img src="{{ uploads_url($certificate->signature->signature_image) }}" class="certificate__signature-image">
             @endif
             <div class="certificate__signature-line"></div>
             <p class="certificate__verified-label">Participant</p>

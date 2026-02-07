@@ -11,7 +11,7 @@
             <div class="row g-3 mb-3">
                 <div class="col-lg-6">
                     <a href="{{ route('signatures.digital.digital', $trainingUser) }}">
-                        <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
+                        <div class="h-100 align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
                             <div class="col-lg-7">
                                 <div class="mb-3">
                                     <i class="bi bi-laptop fs-1"></i>
@@ -32,7 +32,7 @@
 
                 <div class="col-lg-6">
                     <a href="{{ route('signatures.printed.printed', $trainingUser) }}">
-                        <div class="align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
+                        <div class="h-100 align-content-between justify-content-between bg-white rounded-3 shadow-sm p-4">
                             <div class="col-lg-7">
                                 <div class="mb-3">
                                     <i class="bi bi-printer fs-1"></i>
