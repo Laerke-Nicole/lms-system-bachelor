@@ -75,4 +75,39 @@ class TrainingSlot extends Model
     {
         return static::where('training_date', '<=', now()->subMonths(24));
     }
+
+    /**
+     * Delete associated files from storage before pruning the database rows.
+     */
+    protected function pruning(): void
+    {
+        $disk = uploads_disk();
+
+        $training = $this->training;
+        if (!$training) {
+            return;
+        }
+
+        foreach ($training->trainingUsers as $trainingUser) {
+            // Delete assessment PDF
+            if ($trainingUser->assessment) {
+                $disk->delete($trainingUser->assessment);
+            }
+
+            // Delete temporary signature image
+            if ($trainingUser->temporary_signature) {
+                $disk->delete($trainingUser->temporary_signature);
+            }
+
+            // Delete signature files
+            if ($signature = $trainingUser->signature) {
+                if ($signature->signature_image) {
+                    $disk->delete($signature->signature_image);
+                }
+                if ($signature->signed_certificate_image) {
+                    $disk->delete($signature->signed_certificate_image);
+                }
+            }
+        }
+    }
 }
