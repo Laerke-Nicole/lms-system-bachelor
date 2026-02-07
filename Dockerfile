@@ -31,6 +31,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Build frontend
 RUN npm install && npm run build && rm -rf node_modules
 
+# Publish Livewire assets so Apache serves them as static files
+RUN php artisan livewire:publish --assets
+
 # Permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
